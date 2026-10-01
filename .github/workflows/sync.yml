@@ -1,0 +1,120 @@
+name: Sync upstream release
+
+# GitHub does not let one repository subscribe to another repository's release
+# events, so polling is the only trigger that works without cooperation from
+# github-aws-runners/terraform-aws-github-runner. The repository_dispatch
+# trigger is here so a webhook relay can push us an event and skip the polling
+# delay.
+on:
+  schedule:
+    - cron: '17 * * * *'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Upstream version to sync (defaults to the latest release)'
+        required: false
+        type: string
+      force:
+        description: 'Regenerate even if the tag already exists'
+        required: false
+        default: false
+        type: boolean
+  repository_dispatch:
+    types: [upstream-release]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-upstream
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      # Installation-only mode: with no 'command' input the action downloads the
+      # CLI and exits without logging in, so no PULUMI_ACCESS_TOKEN is needed.
+      # Codegen never talks to the Pulumi Cloud backend.
+      - uses: pulumi/actions@v7
+
+      - name: Configure git identity
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+      - name: Sync
+        id: sync
+        env:
+          GH_TOKEN: ${{ github.token }}
+          INPUT_VERSION: ${{ inputs.version || github.event.client_payload.version || '' }}
+          INPUT_FORCE: ${{ inputs.force || false }}
+        run: |
+          args=()
+          [[ -n "$INPUT_VERSION" ]] && args+=(--version "$INPUT_VERSION")
+          [[ "$INPUT_FORCE" == 'true' ]] && args+=(--force)
+
+          set +e
+          ./scripts/sync.sh "${args[@]}"
+          code=$?
+          set -e
+
+          # 75 means the release is not on the OpenTofu registry yet. That is
+          # expected for a while after an upstream release, so let the next
+          # scheduled run pick it up instead of reporting a red build.
+          if [[ $code -eq 75 ]]; then
+            echo "::notice::Upstream release is not published to the OpenTofu registry yet; retrying on the next scheduled run."
+            exit 0
+          fi
+          exit $code
+
+      - name: Push
+        if: steps.sync.outputs.synced == 'true'
+        run: git push --follow-tags origin HEAD:${{ github.event.repository.default_branch }}
+
+      # A tag alone notifies nobody and does not show up on the repository's
+      # front page, so every synced version gets a release too.
+      - name: Release
+        if: steps.sync.outputs.synced == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.sync.outputs.version }}
+        run: |
+          tag="v$VERSION"
+          major="${VERSION%%.*}"
+          go_module="github.com/gvtlabs/pulumi-aws-github-runner/sdks/go"
+          (( major >= 2 )) && go_module="$go_module/v$major"
+
+          # The Go module tag repair path reports a sync without there being a
+          # new upstream version, and there the release already exists.
+          if gh release view "$tag" >/dev/null 2>&1; then
+            exit 0
+          fi
+
+          fence='```'
+          gh release create "$tag" --verify-tag --title "$tag" --notes-file - <<EOF
+          Pulumi SDKs generated from [github-aws-runners/terraform-aws-github-runner $tag](https://github.com/github-aws-runners/terraform-aws-github-runner/releases/tag/$tag) (the \`multi-runner\` module).
+
+          ${fence}bash
+          pulumi package add terraform-module github-aws-runners/github-runner/aws//modules/multi-runner $VERSION github-runner
+          ${fence}
+
+          The Go SDK lives in this repository and can be depended on directly:
+
+          ${fence}bash
+          go get $go_module@$tag
+          ${fence}
+          EOF
+
+      - name: Summary
+        if: always()
+        run: |
+          if [[ '${{ steps.sync.outputs.synced }}' == 'true' ]]; then
+            echo "Synced \`v${{ steps.sync.outputs.version }}\`." >>"$GITHUB_STEP_SUMMARY"
+          else
+            echo "Nothing to do; already at \`v${{ steps.sync.outputs.version }}\`." >>"$GITHUB_STEP_SUMMARY"
+          fi
