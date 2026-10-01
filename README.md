@@ -79,7 +79,7 @@ Terraform names, so `multi_runner_config` stays `Multi_runner_config` in Go.
 ## How the sync works
 
 [`.github/workflows/sync.yml`](.github/workflows/sync.yml) runs
-[`scripts/sync.sh`](scripts/sync.sh) hourly. The script reads the latest upstream
+[`scripts/sync.sh`](scripts/sync.sh) daily. The script reads the latest upstream
 release, exits early if a matching tag already exists, and otherwise regenerates
 all five SDKs, commits them, and creates the mirroring tags. The workflow then
 publishes a GitHub release for the `v<version>` tag, which is what a consumer
