@@ -1,0 +1,10 @@
+{
+  "resource": true,
+  "name": "terraform-module",
+  "version": "0.2.2",
+  "parameterization": {
+    "name": "github-runner",
+    "version": "7.11.0",
+    "value": "ewogICJtb2R1bGUiOiAiZ2l0aHViLWF3cy1ydW5uZXJzL2dpdGh1Yi1ydW5uZXIvYXdzLy9tb2R1bGVzL211bHRpLXJ1bm5lciIsCiAgInZlcnNpb24iOiAiNy4xMS4wIiwKICAicGFja2FnZU5hbWUiOiAiZ2l0aHViLXJ1bm5lciIKfQ=="
+  }
+}
