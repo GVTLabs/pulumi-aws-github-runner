@@ -6,6 +6,7 @@ package com.pulumi.githubrunner.inputs;
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.githubrunner.inputs.GithubAppIdSsmArgs;
+import com.pulumi.githubrunner.inputs.GithubAppInstallationIdSsmArgs;
 import com.pulumi.githubrunner.inputs.GithubAppKeyBase64SsmArgs;
 import com.pulumi.githubrunner.inputs.GithubAppWebhookSecretSsmArgs;
 import java.lang.String;
@@ -30,6 +31,20 @@ public final class GithubAppArgs extends com.pulumi.resources.ResourceArgs {
 
     public Optional<Output<GithubAppIdSsmArgs>> id_ssm() {
         return Optional.ofNullable(this.id_ssm);
+    }
+
+    @Import(name="installation_id")
+    private @Nullable Output<String> installation_id;
+
+    public Optional<Output<String>> installation_id() {
+        return Optional.ofNullable(this.installation_id);
+    }
+
+    @Import(name="installation_id_ssm")
+    private @Nullable Output<GithubAppInstallationIdSsmArgs> installation_id_ssm;
+
+    public Optional<Output<GithubAppInstallationIdSsmArgs>> installation_id_ssm() {
+        return Optional.ofNullable(this.installation_id_ssm);
     }
 
     @Import(name="key_base64")
@@ -65,6 +80,8 @@ public final class GithubAppArgs extends com.pulumi.resources.ResourceArgs {
     private GithubAppArgs(GithubAppArgs $) {
         this.id = $.id;
         this.id_ssm = $.id_ssm;
+        this.installation_id = $.installation_id;
+        this.installation_id_ssm = $.installation_id_ssm;
         this.key_base64 = $.key_base64;
         this.key_base64_ssm = $.key_base64_ssm;
         this.webhook_secret = $.webhook_secret;
@@ -105,6 +122,24 @@ public final class GithubAppArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder id_ssm(GithubAppIdSsmArgs id_ssm) {
             return id_ssm(Output.of(id_ssm));
+        }
+
+        public Builder installation_id(@Nullable Output<String> installation_id) {
+            $.installation_id = installation_id;
+            return this;
+        }
+
+        public Builder installation_id(String installation_id) {
+            return installation_id(Output.of(installation_id));
+        }
+
+        public Builder installation_id_ssm(@Nullable Output<GithubAppInstallationIdSsmArgs> installation_id_ssm) {
+            $.installation_id_ssm = installation_id_ssm;
+            return this;
+        }
+
+        public Builder installation_id_ssm(GithubAppInstallationIdSsmArgs installation_id_ssm) {
+            return installation_id_ssm(Output.of(installation_id_ssm));
         }
 
         public Builder key_base64(@Nullable Output<String> key_base64) {

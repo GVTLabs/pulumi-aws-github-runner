@@ -117,7 +117,7 @@ public class Utilities {
 			// Package version
 			getVersion(),
 			// Parameter
-			"ewogICJtb2R1bGUiOiAiZ2l0aHViLWF3cy1ydW5uZXJzL2dpdGh1Yi1ydW5uZXIvYXdzLy9tb2R1bGVzL211bHRpLXJ1bm5lciIsCiAgInZlcnNpb24iOiAiNy4xMS4wIiwKICAicGFja2FnZU5hbWUiOiAiZ2l0aHViLXJ1bm5lciIKfQ=="
+			"ewogICJtb2R1bGUiOiAiZ2l0aHViLWF3cy1ydW5uZXJzL2dpdGh1Yi1ydW5uZXIvYXdzLy9tb2R1bGVzL211bHRpLXJ1bm5lciIsCiAgInZlcnNpb24iOiAiOC4wLjAiLAogICJwYWNrYWdlTmFtZSI6ICJnaXRodWItcnVubmVyIgp9"
 		);
 	}
 

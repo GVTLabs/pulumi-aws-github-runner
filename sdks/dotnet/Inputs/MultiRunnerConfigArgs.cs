@@ -12,14 +12,40 @@ namespace Pulumi.GithubRunner.Inputs
 
     public sealed class MultiRunnerConfigArgs : global::Pulumi.ResourceArgs
     {
+        [Input("compute_provider")]
+        public Input<Inputs.MultiRunnerConfigComputeProviderArgs>? Compute_provider { get; set; }
+
+        [Input("lambda")]
+        public Input<Inputs.MultiRunnerConfigLambdaArgs>? Lambda { get; set; }
+
         [Input("matcherConfig")]
         public Input<Inputs.MultiRunnerConfigMatcherConfigArgs>? MatcherConfig { get; set; }
+
+        [Input("observability")]
+        public Input<Inputs.MultiRunnerConfigObservabilityArgs>? Observability { get; set; }
+
+        [Input("orchestration_provider")]
+        public Input<Inputs.MultiRunnerConfigOrchestrationProviderArgs>? Orchestration_provider { get; set; }
 
         [Input("redrive_build_queue")]
         public Input<Inputs.MultiRunnerConfigRedriveBuildQueueArgs>? Redrive_build_queue { get; set; }
 
+        [Input("runner")]
+        public Input<Inputs.MultiRunnerConfigRunnerArgs>? Runner { get; set; }
+
         [Input("runner_config")]
         public Input<Inputs.MultiRunnerConfigRunnerConfigArgs>? Runner_config { get; set; }
+
+        [Input("storage_provider")]
+        public Input<Inputs.MultiRunnerConfigStorageProviderArgs>? Storage_provider { get; set; }
+
+        [Input("tags")]
+        private InputMap<string>? _tags;
+        public InputMap<string> Tags
+        {
+            get => _tags ?? (_tags = new InputMap<string>());
+            set => _tags = value;
+        }
 
         public MultiRunnerConfigArgs()
         {

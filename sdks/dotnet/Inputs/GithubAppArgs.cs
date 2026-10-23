@@ -18,6 +18,12 @@ namespace Pulumi.GithubRunner.Inputs
         [Input("id_ssm")]
         public Input<Inputs.GithubAppIdSsmArgs>? Id_ssm { get; set; }
 
+        [Input("installation_id")]
+        public Input<string>? Installation_id { get; set; }
+
+        [Input("installation_id_ssm")]
+        public Input<Inputs.GithubAppInstallationIdSsmArgs>? Installation_id_ssm { get; set; }
+
         [Input("key_base64")]
         public Input<string>? Key_base64 { get; set; }
 

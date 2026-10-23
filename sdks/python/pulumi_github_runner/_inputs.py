@@ -33,10 +33,228 @@ __all__ = [
     'GithubAppArgsDict',
     'GithubAppIdSsmArgs',
     'GithubAppIdSsmArgsDict',
+    'GithubAppInstallationIdSsmArgs',
+    'GithubAppInstallationIdSsmArgsDict',
     'GithubAppKeyBase64SsmArgs',
     'GithubAppKeyBase64SsmArgsDict',
     'GithubAppWebhookSecretSsmArgs',
     'GithubAppWebhookSecretSsmArgsDict',
+    'GlobalConfigArgs',
+    'GlobalConfigArgsDict',
+    'GlobalConfigComputeProviderArgs',
+    'GlobalConfigComputeProviderArgsDict',
+    'GlobalConfigComputeProviderAwsArgs',
+    'GlobalConfigComputeProviderAwsArgsDict',
+    'GlobalConfigComputeProviderAwsEc2Args',
+    'GlobalConfigComputeProviderAwsEc2ArgsDict',
+    'GlobalConfigComputeProviderAwsEc2AmiArgs',
+    'GlobalConfigComputeProviderAwsEc2AmiArgsDict',
+    'GlobalConfigComputeProviderAwsEc2AmiHousekeeperArgs',
+    'GlobalConfigComputeProviderAwsEc2AmiHousekeeperArgsDict',
+    'GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactArgs',
+    'GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactArgsDict',
+    'GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactS3Args',
+    'GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactS3ArgsDict',
+    'GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigArgs',
+    'GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigArgsDict',
+    'GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigAmiFiltersArgs',
+    'GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigAmiFiltersArgsDict',
+    'GlobalConfigComputeProviderAwsEc2AmiHousekeeperLambdaArgs',
+    'GlobalConfigComputeProviderAwsEc2AmiHousekeeperLambdaArgsDict',
+    'GlobalConfigComputeProviderAwsEc2AmiHousekeeperScheduleArgs',
+    'GlobalConfigComputeProviderAwsEc2AmiHousekeeperScheduleArgsDict',
+    'GlobalConfigComputeProviderAwsEc2CloudwatchAgentArgs',
+    'GlobalConfigComputeProviderAwsEc2CloudwatchAgentArgsDict',
+    'GlobalConfigComputeProviderAwsEc2EgressRulesArgs',
+    'GlobalConfigComputeProviderAwsEc2EgressRulesArgsDict',
+    'GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArgs',
+    'GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArgsDict',
+    'GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactArgs',
+    'GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactArgsDict',
+    'GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactS3Args',
+    'GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactS3ArgsDict',
+    'GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesArgs',
+    'GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesArgsDict',
+    'GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesRunnerDeregistrationArgs',
+    'GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesRunnerDeregistrationArgsDict',
+    'GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationHandlerArgs',
+    'GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationHandlerArgsDict',
+    'GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationNotificationWatcherArgs',
+    'GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationNotificationWatcherArgsDict',
+    'GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherLambdaArgs',
+    'GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherLambdaArgsDict',
+    'GlobalConfigComputeProviderAwsEc2RunnerBinariesArgs',
+    'GlobalConfigComputeProviderAwsEc2RunnerBinariesArgsDict',
+    'GlobalConfigComputeProviderAwsEc2RunnerBinariesS3Args',
+    'GlobalConfigComputeProviderAwsEc2RunnerBinariesS3ArgsDict',
+    'GlobalConfigComputeProviderAwsEc2RunnerBinariesS3EncryptionArgs',
+    'GlobalConfigComputeProviderAwsEc2RunnerBinariesS3EncryptionArgsDict',
+    'GlobalConfigComputeProviderAwsEc2RunnerBinariesS3LoggingArgs',
+    'GlobalConfigComputeProviderAwsEc2RunnerBinariesS3LoggingArgsDict',
+    'GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArgs',
+    'GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArgsDict',
+    'GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactArgs',
+    'GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactArgsDict',
+    'GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactS3Args',
+    'GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactS3ArgsDict',
+    'GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerLambdaArgs',
+    'GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerLambdaArgsDict',
+    'GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerScheduleArgs',
+    'GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerScheduleArgsDict',
+    'GlobalConfigComputeProviderSelectionsArgs',
+    'GlobalConfigComputeProviderSelectionsArgsDict',
+    'GlobalConfigGithubArgs',
+    'GlobalConfigGithubArgsDict',
+    'GlobalConfigGithubAdditionalAppsArgs',
+    'GlobalConfigGithubAdditionalAppsArgsDict',
+    'GlobalConfigGithubAdditionalAppsIdSsmArgs',
+    'GlobalConfigGithubAdditionalAppsIdSsmArgsDict',
+    'GlobalConfigGithubAdditionalAppsInstallationIdSsmArgs',
+    'GlobalConfigGithubAdditionalAppsInstallationIdSsmArgsDict',
+    'GlobalConfigGithubAdditionalAppsKeyBase64SsmArgs',
+    'GlobalConfigGithubAdditionalAppsKeyBase64SsmArgsDict',
+    'GlobalConfigGithubAppArgs',
+    'GlobalConfigGithubAppArgsDict',
+    'GlobalConfigGithubAppIdSsmArgs',
+    'GlobalConfigGithubAppIdSsmArgsDict',
+    'GlobalConfigGithubAppInstallationIdSsmArgs',
+    'GlobalConfigGithubAppInstallationIdSsmArgsDict',
+    'GlobalConfigGithubAppKeyBase64SsmArgs',
+    'GlobalConfigGithubAppKeyBase64SsmArgsDict',
+    'GlobalConfigGithubAppWebhookSecretSsmArgs',
+    'GlobalConfigGithubAppWebhookSecretSsmArgsDict',
+    'GlobalConfigGithubEnterpriseServerArgs',
+    'GlobalConfigGithubEnterpriseServerArgsDict',
+    'GlobalConfigLambdaArgs',
+    'GlobalConfigLambdaArgsDict',
+    'GlobalConfigLambdaArtifactArgs',
+    'GlobalConfigLambdaArtifactArgsDict',
+    'GlobalConfigLambdaArtifactS3Args',
+    'GlobalConfigLambdaArtifactS3ArgsDict',
+    'GlobalConfigLambdaPrincipalsArgs',
+    'GlobalConfigLambdaPrincipalsArgsDict',
+    'GlobalConfigLambdaRoleArgs',
+    'GlobalConfigLambdaRoleArgsDict',
+    'GlobalConfigObservabilityArgs',
+    'GlobalConfigObservabilityArgsDict',
+    'GlobalConfigObservabilityLogsArgs',
+    'GlobalConfigObservabilityLogsArgsDict',
+    'GlobalConfigObservabilityMetricsArgs',
+    'GlobalConfigObservabilityMetricsArgsDict',
+    'GlobalConfigObservabilityMetricsMetricArgs',
+    'GlobalConfigObservabilityMetricsMetricArgsDict',
+    'GlobalConfigObservabilityMetricsMetricGithubAppRateLimitArgs',
+    'GlobalConfigObservabilityMetricsMetricGithubAppRateLimitArgsDict',
+    'GlobalConfigObservabilityMetricsMetricJobRetryArgs',
+    'GlobalConfigObservabilityMetricsMetricJobRetryArgsDict',
+    'GlobalConfigObservabilityMetricsMetricSpotTerminationWarningArgs',
+    'GlobalConfigObservabilityMetricsMetricSpotTerminationWarningArgsDict',
+    'GlobalConfigObservabilityTracingArgs',
+    'GlobalConfigObservabilityTracingArgsDict',
+    'GlobalConfigOrchestrationProviderArgs',
+    'GlobalConfigOrchestrationProviderArgsDict',
+    'GlobalConfigOrchestrationProviderScaleSetArgs',
+    'GlobalConfigOrchestrationProviderScaleSetArgsDict',
+    'GlobalConfigOrchestrationProviderScaleSetConfigStoreArgs',
+    'GlobalConfigOrchestrationProviderScaleSetConfigStoreArgsDict',
+    'GlobalConfigOrchestrationProviderScaleSetContainerArgs',
+    'GlobalConfigOrchestrationProviderScaleSetContainerArgsDict',
+    'GlobalConfigOrchestrationProviderScaleSetEcsArgs',
+    'GlobalConfigOrchestrationProviderScaleSetEcsArgsDict',
+    'GlobalConfigOrchestrationProviderScaleSetEcsClusterArgs',
+    'GlobalConfigOrchestrationProviderScaleSetEcsClusterArgsDict',
+    'GlobalConfigOrchestrationProviderScaleSetEcsIamArgs',
+    'GlobalConfigOrchestrationProviderScaleSetEcsIamArgsDict',
+    'GlobalConfigOrchestrationProviderScaleSetEcsServiceArgs',
+    'GlobalConfigOrchestrationProviderScaleSetEcsServiceArgsDict',
+    'GlobalConfigOrchestrationProviderScaleSetEcsTaskArgs',
+    'GlobalConfigOrchestrationProviderScaleSetEcsTaskArgsDict',
+    'GlobalConfigOrchestrationProviderScaleSetEcsTaskEphemeralStorageArgs',
+    'GlobalConfigOrchestrationProviderScaleSetEcsTaskEphemeralStorageArgsDict',
+    'GlobalConfigOrchestrationProviderScaleSetGroupingArgs',
+    'GlobalConfigOrchestrationProviderScaleSetGroupingArgsDict',
+    'GlobalConfigOrchestrationProviderScaleSetGroupingCustomArgs',
+    'GlobalConfigOrchestrationProviderScaleSetGroupingCustomArgsDict',
+    'GlobalConfigOrchestrationProviderScaleSetGroupingCustomGroupsArgs',
+    'GlobalConfigOrchestrationProviderScaleSetGroupingCustomGroupsArgsDict',
+    'GlobalConfigOrchestrationProviderScaleSetLoggingArgs',
+    'GlobalConfigOrchestrationProviderScaleSetLoggingArgsDict',
+    'GlobalConfigOrchestrationProviderScaleSetNetworkArgs',
+    'GlobalConfigOrchestrationProviderScaleSetNetworkArgsDict',
+    'GlobalConfigOrchestrationProviderScaleSetNetworkHttpsEgressArgs',
+    'GlobalConfigOrchestrationProviderScaleSetNetworkHttpsEgressArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookArgs',
+    'GlobalConfigOrchestrationProviderWebhookArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookEventbridgeArgs',
+    'GlobalConfigOrchestrationProviderWebhookEventbridgeArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookGithubArgs',
+    'GlobalConfigOrchestrationProviderWebhookGithubArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookLambdaArgs',
+    'GlobalConfigOrchestrationProviderWebhookLambdaArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookLambdaArtifactArgs',
+    'GlobalConfigOrchestrationProviderWebhookLambdaArtifactArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookLambdaArtifactS3Args',
+    'GlobalConfigOrchestrationProviderWebhookLambdaArtifactS3ArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookLambdaPoolArgs',
+    'GlobalConfigOrchestrationProviderWebhookLambdaPoolArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookLambdaPoolConfigArgs',
+    'GlobalConfigOrchestrationProviderWebhookLambdaPoolConfigArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookLambdaScaleArgs',
+    'GlobalConfigOrchestrationProviderWebhookLambdaScaleArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookLambdaScaleDownArgs',
+    'GlobalConfigOrchestrationProviderWebhookLambdaScaleDownArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgs',
+    'GlobalConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookLambdaScaleUpArgs',
+    'GlobalConfigOrchestrationProviderWebhookLambdaScaleUpArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgs',
+    'GlobalConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookLambdaWebhookArgs',
+    'GlobalConfigOrchestrationProviderWebhookLambdaWebhookArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookLambdaWebhookApiGatewayAccessLogSettingsArgs',
+    'GlobalConfigOrchestrationProviderWebhookLambdaWebhookApiGatewayAccessLogSettingsArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactArgs',
+    'GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactS3Args',
+    'GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactS3ArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookQueueArgs',
+    'GlobalConfigOrchestrationProviderWebhookQueueArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookQueueEncryptionArgs',
+    'GlobalConfigOrchestrationProviderWebhookQueueEncryptionArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgs',
+    'GlobalConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgsDict',
+    'GlobalConfigOrchestrationProviderWebhookRunnerArgs',
+    'GlobalConfigOrchestrationProviderWebhookRunnerArgsDict',
+    'GlobalConfigRolesArgs',
+    'GlobalConfigRolesArgsDict',
+    'GlobalConfigRunnerArgs',
+    'GlobalConfigRunnerArgsDict',
+    'GlobalConfigRunnerHooksArgs',
+    'GlobalConfigRunnerHooksArgsDict',
+    'GlobalConfigRunnerIamArgs',
+    'GlobalConfigRunnerIamArgsDict',
+    'GlobalConfigRunnerIamRoleArgs',
+    'GlobalConfigRunnerIamRoleArgsDict',
+    'GlobalConfigStorageProviderArgs',
+    'GlobalConfigStorageProviderArgsDict',
+    'GlobalConfigStorageProviderAwsArgs',
+    'GlobalConfigStorageProviderAwsArgsDict',
+    'GlobalConfigStorageProviderAwsSsmArgs',
+    'GlobalConfigStorageProviderAwsSsmArgsDict',
+    'GlobalConfigStorageProviderAwsSsmHousekeeperArgs',
+    'GlobalConfigStorageProviderAwsSsmHousekeeperArgsDict',
+    'GlobalConfigStorageProviderAwsSsmHousekeeperConfigArgs',
+    'GlobalConfigStorageProviderAwsSsmHousekeeperConfigArgsDict',
+    'GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArgs',
+    'GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArgsDict',
+    'GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgs',
+    'GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgsDict',
+    'GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3Args',
+    'GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3ArgsDict',
+    'GlobalConfigStorageProviderAwsSsmParametersArgs',
+    'GlobalConfigStorageProviderAwsSsmParametersArgsDict',
+    'GlobalConfigStorageProviderAwsSsmPathsArgs',
+    'GlobalConfigStorageProviderAwsSsmPathsArgsDict',
     'IamOverridesArgs',
     'IamOverridesArgsDict',
     'InstanceTerminationWatcherArgs',
@@ -51,10 +269,116 @@ __all__ = [
     'MetricsMetricArgsDict',
     'MultiRunnerConfigArgs',
     'MultiRunnerConfigArgsDict',
+    'MultiRunnerConfigComputeProviderArgs',
+    'MultiRunnerConfigComputeProviderArgsDict',
+    'MultiRunnerConfigComputeProviderAwsArgs',
+    'MultiRunnerConfigComputeProviderAwsArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2Args',
+    'MultiRunnerConfigComputeProviderAwsEc2ArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2AmiArgs',
+    'MultiRunnerConfigComputeProviderAwsEc2AmiArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2AmiIdSsmParameterArgs',
+    'MultiRunnerConfigComputeProviderAwsEc2AmiIdSsmParameterArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2AmiKmsKeyArgs',
+    'MultiRunnerConfigComputeProviderAwsEc2AmiKmsKeyArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2BinariesSyncerArgs',
+    'MultiRunnerConfigComputeProviderAwsEc2BinariesSyncerArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2BlockDeviceMappingsArgs',
+    'MultiRunnerConfigComputeProviderAwsEc2BlockDeviceMappingsArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2CloudwatchAgentArgs',
+    'MultiRunnerConfigComputeProviderAwsEc2CloudwatchAgentArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2CpuOptionsArgs',
+    'MultiRunnerConfigComputeProviderAwsEc2CpuOptionsArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2EgressRulesArgs',
+    'MultiRunnerConfigComputeProviderAwsEc2EgressRulesArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2InstanceProfileArgs',
+    'MultiRunnerConfigComputeProviderAwsEc2InstanceProfileArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2LicenseSpecificationsArgs',
+    'MultiRunnerConfigComputeProviderAwsEc2LicenseSpecificationsArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2LogFilesArgs',
+    'MultiRunnerConfigComputeProviderAwsEc2LogFilesArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2MetadataOptionsArgs',
+    'MultiRunnerConfigComputeProviderAwsEc2MetadataOptionsArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesArgs',
+    'MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesConnectionTrackingSpecificationArgs',
+    'MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesConnectionTrackingSpecificationArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationArgs',
+    'MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgs',
+    'MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2PlacementArgs',
+    'MultiRunnerConfigComputeProviderAwsEc2PlacementArgsDict',
+    'MultiRunnerConfigComputeProviderAwsEc2UserDataArgs',
+    'MultiRunnerConfigComputeProviderAwsEc2UserDataArgsDict',
+    'MultiRunnerConfigLambdaArgs',
+    'MultiRunnerConfigLambdaArgsDict',
+    'MultiRunnerConfigLambdaRoleArgs',
+    'MultiRunnerConfigLambdaRoleArgsDict',
     'MultiRunnerConfigMatcherConfigArgs',
     'MultiRunnerConfigMatcherConfigArgsDict',
+    'MultiRunnerConfigObservabilityArgs',
+    'MultiRunnerConfigObservabilityArgsDict',
+    'MultiRunnerConfigObservabilityLogsArgs',
+    'MultiRunnerConfigObservabilityLogsArgsDict',
+    'MultiRunnerConfigObservabilityMetricsArgs',
+    'MultiRunnerConfigObservabilityMetricsArgsDict',
+    'MultiRunnerConfigObservabilityMetricsMetricArgs',
+    'MultiRunnerConfigObservabilityMetricsMetricArgsDict',
+    'MultiRunnerConfigObservabilityMetricsMetricGithubAppRateLimitArgs',
+    'MultiRunnerConfigObservabilityMetricsMetricGithubAppRateLimitArgsDict',
+    'MultiRunnerConfigObservabilityMetricsMetricJobRetryArgs',
+    'MultiRunnerConfigObservabilityMetricsMetricJobRetryArgsDict',
+    'MultiRunnerConfigObservabilityMetricsMetricSpotTerminationWarningArgs',
+    'MultiRunnerConfigObservabilityMetricsMetricSpotTerminationWarningArgsDict',
+    'MultiRunnerConfigObservabilityTracingArgs',
+    'MultiRunnerConfigObservabilityTracingArgsDict',
+    'MultiRunnerConfigOrchestrationProviderArgs',
+    'MultiRunnerConfigOrchestrationProviderArgsDict',
+    'MultiRunnerConfigOrchestrationProviderScaleSetArgs',
+    'MultiRunnerConfigOrchestrationProviderScaleSetArgsDict',
+    'MultiRunnerConfigOrchestrationProviderScaleSetRunnerArgs',
+    'MultiRunnerConfigOrchestrationProviderScaleSetRunnerArgsDict',
+    'MultiRunnerConfigOrchestrationProviderWebhookArgs',
+    'MultiRunnerConfigOrchestrationProviderWebhookArgsDict',
+    'MultiRunnerConfigOrchestrationProviderWebhookGithubArgs',
+    'MultiRunnerConfigOrchestrationProviderWebhookGithubArgsDict',
+    'MultiRunnerConfigOrchestrationProviderWebhookJobRetryArgs',
+    'MultiRunnerConfigOrchestrationProviderWebhookJobRetryArgsDict',
+    'MultiRunnerConfigOrchestrationProviderWebhookJobRetryLambdaArgs',
+    'MultiRunnerConfigOrchestrationProviderWebhookJobRetryLambdaArgsDict',
+    'MultiRunnerConfigOrchestrationProviderWebhookLambdaArgs',
+    'MultiRunnerConfigOrchestrationProviderWebhookLambdaArgsDict',
+    'MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolArgs',
+    'MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolArgsDict',
+    'MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolConfigArgs',
+    'MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolConfigArgsDict',
+    'MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleArgs',
+    'MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleArgsDict',
+    'MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownArgs',
+    'MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownArgsDict',
+    'MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgs',
+    'MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgsDict',
+    'MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpArgs',
+    'MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpArgsDict',
+    'MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgs',
+    'MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgsDict',
+    'MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigArgs',
+    'MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigArgsDict',
+    'MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyArgs',
+    'MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyArgsDict',
+    'MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyRestrictedKeysArgs',
+    'MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyRestrictedKeysArgsDict',
+    'MultiRunnerConfigOrchestrationProviderWebhookQueueArgs',
+    'MultiRunnerConfigOrchestrationProviderWebhookQueueArgsDict',
+    'MultiRunnerConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgs',
+    'MultiRunnerConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgsDict',
+    'MultiRunnerConfigOrchestrationProviderWebhookRunnerArgs',
+    'MultiRunnerConfigOrchestrationProviderWebhookRunnerArgsDict',
     'MultiRunnerConfigRedriveBuildQueueArgs',
     'MultiRunnerConfigRedriveBuildQueueArgsDict',
+    'MultiRunnerConfigRunnerArgs',
+    'MultiRunnerConfigRunnerArgsDict',
     'MultiRunnerConfigRunnerConfigArgs',
     'MultiRunnerConfigRunnerConfigArgsDict',
     'MultiRunnerConfigRunnerConfigAmiArgs',
@@ -71,12 +395,50 @@ __all__ = [
     'MultiRunnerConfigRunnerConfigJobRetryArgsDict',
     'MultiRunnerConfigRunnerConfigLicenseSpecificationsArgs',
     'MultiRunnerConfigRunnerConfigLicenseSpecificationsArgsDict',
+    'MultiRunnerConfigRunnerConfigNetworkInterfacesArgs',
+    'MultiRunnerConfigRunnerConfigNetworkInterfacesArgsDict',
+    'MultiRunnerConfigRunnerConfigNetworkInterfacesConnectionTrackingSpecificationArgs',
+    'MultiRunnerConfigRunnerConfigNetworkInterfacesConnectionTrackingSpecificationArgsDict',
+    'MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationArgs',
+    'MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationArgsDict',
+    'MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgs',
+    'MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgsDict',
     'MultiRunnerConfigRunnerConfigPlacementArgs',
     'MultiRunnerConfigRunnerConfigPlacementArgsDict',
     'MultiRunnerConfigRunnerConfigPoolConfigArgs',
     'MultiRunnerConfigRunnerConfigPoolConfigArgsDict',
     'MultiRunnerConfigRunnerConfigRunnerLogFilesArgs',
     'MultiRunnerConfigRunnerConfigRunnerLogFilesArgsDict',
+    'MultiRunnerConfigRunnerConfigSsmTtlSecondsArgs',
+    'MultiRunnerConfigRunnerConfigSsmTtlSecondsArgsDict',
+    'MultiRunnerConfigRunnerHooksArgs',
+    'MultiRunnerConfigRunnerHooksArgsDict',
+    'MultiRunnerConfigRunnerIamArgs',
+    'MultiRunnerConfigRunnerIamArgsDict',
+    'MultiRunnerConfigRunnerIamRoleArgs',
+    'MultiRunnerConfigRunnerIamRoleArgsDict',
+    'MultiRunnerConfigStorageProviderArgs',
+    'MultiRunnerConfigStorageProviderArgsDict',
+    'MultiRunnerConfigStorageProviderAwsArgs',
+    'MultiRunnerConfigStorageProviderAwsArgsDict',
+    'MultiRunnerConfigStorageProviderAwsSsmArgs',
+    'MultiRunnerConfigStorageProviderAwsSsmArgsDict',
+    'MultiRunnerConfigStorageProviderAwsSsmHousekeeperArgs',
+    'MultiRunnerConfigStorageProviderAwsSsmHousekeeperArgsDict',
+    'MultiRunnerConfigStorageProviderAwsSsmHousekeeperConfigArgs',
+    'MultiRunnerConfigStorageProviderAwsSsmHousekeeperConfigArgsDict',
+    'MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArgs',
+    'MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArgsDict',
+    'MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgs',
+    'MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgsDict',
+    'MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3Args',
+    'MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3ArgsDict',
+    'MultiRunnerConfigStorageProviderAwsSsmParametersArgs',
+    'MultiRunnerConfigStorageProviderAwsSsmParametersArgsDict',
+    'MultiRunnerConfigStorageProviderAwsSsmPathsArgs',
+    'MultiRunnerConfigStorageProviderAwsSsmPathsArgsDict',
+    'MultiRunnerConfigStorageProviderAwsSsmTtlSecondsArgs',
+    'MultiRunnerConfigStorageProviderAwsSsmTtlSecondsArgsDict',
     'QueueEncryptionArgs',
     'QueueEncryptionArgsDict',
     'RunnerEgressRulesArgs',
@@ -431,6 +793,8 @@ class EventbridgeArgs:
 class GithubAppArgsDict(TypedDict):
     id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     id_ssm: NotRequired[pulumi.Input[Optional['GithubAppIdSsmArgsDict']]]
+    installation_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    installation_id_ssm: NotRequired[pulumi.Input[Optional['GithubAppInstallationIdSsmArgsDict']]]
     key_base64: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     key_base64_ssm: NotRequired[pulumi.Input[Optional['GithubAppKeyBase64SsmArgsDict']]]
     webhook_secret: NotRequired[pulumi.Input[Optional[_builtins.str]]]
@@ -441,6 +805,8 @@ class GithubAppArgs:
     def __init__(__self__, *,
                  id: pulumi.Input[Optional[_builtins.str]] = None,
                  id_ssm: pulumi.Input[Optional['GithubAppIdSsmArgs']] = None,
+                 installation_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 installation_id_ssm: pulumi.Input[Optional['GithubAppInstallationIdSsmArgs']] = None,
                  key_base64: pulumi.Input[Optional[_builtins.str]] = None,
                  key_base64_ssm: pulumi.Input[Optional['GithubAppKeyBase64SsmArgs']] = None,
                  webhook_secret: pulumi.Input[Optional[_builtins.str]] = None,
@@ -449,6 +815,10 @@ class GithubAppArgs:
             pulumi.set(__self__, "id", id)
         if id_ssm is not None:
             pulumi.set(__self__, "id_ssm", id_ssm)
+        if installation_id is not None:
+            pulumi.set(__self__, "installation_id", installation_id)
+        if installation_id_ssm is not None:
+            pulumi.set(__self__, "installation_id_ssm", installation_id_ssm)
         if key_base64 is not None:
             pulumi.set(__self__, "key_base64", key_base64)
         if key_base64_ssm is not None:
@@ -475,6 +845,24 @@ class GithubAppArgs:
     @id_ssm.setter
     def id_ssm(self, value: pulumi.Input[Optional['GithubAppIdSsmArgs']]):
         pulumi.set(self, "id_ssm", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def installation_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "installation_id")
+
+    @installation_id.setter
+    def installation_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "installation_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def installation_id_ssm(self) -> pulumi.Input[Optional['GithubAppInstallationIdSsmArgs']]:
+        return pulumi.get(self, "installation_id_ssm")
+
+    @installation_id_ssm.setter
+    def installation_id_ssm(self, value: pulumi.Input[Optional['GithubAppInstallationIdSsmArgs']]):
+        pulumi.set(self, "installation_id_ssm", value)
 
     @_builtins.property
     @pulumi.getter
@@ -519,6 +907,39 @@ class GithubAppIdSsmArgsDict(TypedDict):
 
 @pulumi.input_type
 class GithubAppIdSsmArgs:
+    def __init__(__self__, *,
+                 arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def arn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "arn")
+
+    @arn.setter
+    def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "arn", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class GithubAppInstallationIdSsmArgsDict(TypedDict):
+    arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GithubAppInstallationIdSsmArgs:
     def __init__(__self__, *,
                  arn: pulumi.Input[Optional[_builtins.str]] = None,
                  name: pulumi.Input[Optional[_builtins.str]] = None):
@@ -610,6 +1031,5234 @@ class GithubAppWebhookSecretSsmArgs:
     @name.setter
     def name(self, value: pulumi.Input[Optional[_builtins.str]]):
         pulumi.set(self, "name", value)
+
+
+class GlobalConfigArgsDict(TypedDict):
+    roles: NotRequired[pulumi.Input[Optional['GlobalConfigRolesArgsDict']]]
+    runner: NotRequired[pulumi.Input[Optional['GlobalConfigRunnerArgsDict']]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class GlobalConfigArgs:
+    def __init__(__self__, *,
+                 roles: pulumi.Input[Optional['GlobalConfigRolesArgs']] = None,
+                 runner: pulumi.Input[Optional['GlobalConfigRunnerArgs']] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        if roles is not None:
+            pulumi.set(__self__, "roles", roles)
+        if runner is not None:
+            pulumi.set(__self__, "runner", runner)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def roles(self) -> pulumi.Input[Optional['GlobalConfigRolesArgs']]:
+        return pulumi.get(self, "roles")
+
+    @roles.setter
+    def roles(self, value: pulumi.Input[Optional['GlobalConfigRolesArgs']]):
+        pulumi.set(self, "roles", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def runner(self) -> pulumi.Input[Optional['GlobalConfigRunnerArgs']]:
+        return pulumi.get(self, "runner")
+
+    @runner.setter
+    def runner(self, value: pulumi.Input[Optional['GlobalConfigRunnerArgs']]):
+        pulumi.set(self, "runner", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+class GlobalConfigComputeProviderArgsDict(TypedDict):
+    aws: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsArgsDict']]]
+    selections: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input['GlobalConfigComputeProviderSelectionsArgsDict']]]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderArgs:
+    def __init__(__self__, *,
+                 aws: pulumi.Input[Optional['GlobalConfigComputeProviderAwsArgs']] = None,
+                 selections: pulumi.Input[Optional[Mapping[str, pulumi.Input['GlobalConfigComputeProviderSelectionsArgs']]]] = None):
+        if aws is not None:
+            pulumi.set(__self__, "aws", aws)
+        if selections is not None:
+            pulumi.set(__self__, "selections", selections)
+
+    @_builtins.property
+    @pulumi.getter
+    def aws(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsArgs']]:
+        return pulumi.get(self, "aws")
+
+    @aws.setter
+    def aws(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsArgs']]):
+        pulumi.set(self, "aws", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def selections(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input['GlobalConfigComputeProviderSelectionsArgs']]]]:
+        return pulumi.get(self, "selections")
+
+    @selections.setter
+    def selections(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input['GlobalConfigComputeProviderSelectionsArgs']]]]):
+        pulumi.set(self, "selections", value)
+
+
+class GlobalConfigComputeProviderAwsArgsDict(TypedDict):
+    ec2: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2ArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsArgs:
+    def __init__(__self__, *,
+                 ec2: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2Args']] = None):
+        if ec2 is not None:
+            pulumi.set(__self__, "ec2", ec2)
+
+    @_builtins.property
+    @pulumi.getter
+    def ec2(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2Args']]:
+        return pulumi.get(self, "ec2")
+
+    @ec2.setter
+    def ec2(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2Args']]):
+        pulumi.set(self, "ec2", value)
+
+
+class GlobalConfigComputeProviderAwsEc2ArgsDict(TypedDict):
+    additional_security_group_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    ami: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiArgsDict']]]
+    associate_public_ipv4_address: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    cloudwatch_agent: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2CloudwatchAgentArgsDict']]]
+    egress_rules: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigComputeProviderAwsEc2EgressRulesArgsDict']]]]]
+    instance_profile_path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    instance_termination_watcher: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArgsDict']]]
+    key_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    managed_security_group_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    runner_binaries: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesArgsDict']]]
+    subnet_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    vpc_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2Args:
+    def __init__(__self__, *,
+                 additional_security_group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ami: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiArgs']] = None,
+                 associate_public_ipv4_address: pulumi.Input[Optional[_builtins.bool]] = None,
+                 cloudwatch_agent: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2CloudwatchAgentArgs']] = None,
+                 egress_rules: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigComputeProviderAwsEc2EgressRulesArgs']]]] = None,
+                 instance_profile_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_termination_watcher: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArgs']] = None,
+                 key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_security_group_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 runner_binaries: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesArgs']] = None,
+                 subnet_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None):
+        if additional_security_group_ids is not None:
+            pulumi.set(__self__, "additional_security_group_ids", additional_security_group_ids)
+        if ami is not None:
+            pulumi.set(__self__, "ami", ami)
+        if associate_public_ipv4_address is not None:
+            pulumi.set(__self__, "associate_public_ipv4_address", associate_public_ipv4_address)
+        if cloudwatch_agent is not None:
+            pulumi.set(__self__, "cloudwatch_agent", cloudwatch_agent)
+        if egress_rules is not None:
+            pulumi.set(__self__, "egress_rules", egress_rules)
+        if instance_profile_path is not None:
+            pulumi.set(__self__, "instance_profile_path", instance_profile_path)
+        if instance_termination_watcher is not None:
+            pulumi.set(__self__, "instance_termination_watcher", instance_termination_watcher)
+        if key_name is not None:
+            pulumi.set(__self__, "key_name", key_name)
+        if managed_security_group_enabled is not None:
+            pulumi.set(__self__, "managed_security_group_enabled", managed_security_group_enabled)
+        if runner_binaries is not None:
+            pulumi.set(__self__, "runner_binaries", runner_binaries)
+        if subnet_ids is not None:
+            pulumi.set(__self__, "subnet_ids", subnet_ids)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def additional_security_group_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "additional_security_group_ids")
+
+    @additional_security_group_ids.setter
+    def additional_security_group_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_security_group_ids", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ami(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiArgs']]:
+        return pulumi.get(self, "ami")
+
+    @ami.setter
+    def ami(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiArgs']]):
+        pulumi.set(self, "ami", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def associate_public_ipv4_address(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "associate_public_ipv4_address")
+
+    @associate_public_ipv4_address.setter
+    def associate_public_ipv4_address(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "associate_public_ipv4_address", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def cloudwatch_agent(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2CloudwatchAgentArgs']]:
+        return pulumi.get(self, "cloudwatch_agent")
+
+    @cloudwatch_agent.setter
+    def cloudwatch_agent(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2CloudwatchAgentArgs']]):
+        pulumi.set(self, "cloudwatch_agent", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def egress_rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigComputeProviderAwsEc2EgressRulesArgs']]]]:
+        return pulumi.get(self, "egress_rules")
+
+    @egress_rules.setter
+    def egress_rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigComputeProviderAwsEc2EgressRulesArgs']]]]):
+        pulumi.set(self, "egress_rules", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def instance_profile_path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "instance_profile_path")
+
+    @instance_profile_path.setter
+    def instance_profile_path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "instance_profile_path", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def instance_termination_watcher(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArgs']]:
+        return pulumi.get(self, "instance_termination_watcher")
+
+    @instance_termination_watcher.setter
+    def instance_termination_watcher(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArgs']]):
+        pulumi.set(self, "instance_termination_watcher", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "key_name")
+
+    @key_name.setter
+    def key_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "key_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def managed_security_group_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "managed_security_group_enabled")
+
+    @managed_security_group_enabled.setter
+    def managed_security_group_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "managed_security_group_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def runner_binaries(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesArgs']]:
+        return pulumi.get(self, "runner_binaries")
+
+    @runner_binaries.setter
+    def runner_binaries(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesArgs']]):
+        pulumi.set(self, "runner_binaries", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def subnet_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "subnet_ids")
+
+    @subnet_ids.setter
+    def subnet_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "subnet_ids", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def vpc_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "vpc_id")
+
+    @vpc_id.setter
+    def vpc_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "vpc_id", value)
+
+
+class GlobalConfigComputeProviderAwsEc2AmiArgsDict(TypedDict):
+    housekeeper: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2AmiArgs:
+    def __init__(__self__, *,
+                 housekeeper: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperArgs']] = None):
+        if housekeeper is not None:
+            pulumi.set(__self__, "housekeeper", housekeeper)
+
+    @_builtins.property
+    @pulumi.getter
+    def housekeeper(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperArgs']]:
+        return pulumi.get(self, "housekeeper")
+
+    @housekeeper.setter
+    def housekeeper(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperArgs']]):
+        pulumi.set(self, "housekeeper", value)
+
+
+class GlobalConfigComputeProviderAwsEc2AmiHousekeeperArgsDict(TypedDict):
+    artifact: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactArgsDict']]]
+    cleanup_config: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigArgsDict']]]
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    lambda_: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperLambdaArgsDict']]]
+    schedule: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperScheduleArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2AmiHousekeeperArgs:
+    def __init__(__self__, *,
+                 artifact: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactArgs']] = None,
+                 cleanup_config: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigArgs']] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 lambda_: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperLambdaArgs']] = None,
+                 schedule: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperScheduleArgs']] = None):
+        if artifact is not None:
+            pulumi.set(__self__, "artifact", artifact)
+        if cleanup_config is not None:
+            pulumi.set(__self__, "cleanup_config", cleanup_config)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if lambda_ is not None:
+            pulumi.set(__self__, "lambda_", lambda_)
+        if schedule is not None:
+            pulumi.set(__self__, "schedule", schedule)
+
+    @_builtins.property
+    @pulumi.getter
+    def artifact(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactArgs']]:
+        return pulumi.get(self, "artifact")
+
+    @artifact.setter
+    def artifact(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactArgs']]):
+        pulumi.set(self, "artifact", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def cleanup_config(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigArgs']]:
+        return pulumi.get(self, "cleanup_config")
+
+    @cleanup_config.setter
+    def cleanup_config(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigArgs']]):
+        pulumi.set(self, "cleanup_config", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lambda")
+    def lambda_(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperLambdaArgs']]:
+        return pulumi.get(self, "lambda_")
+
+    @lambda_.setter
+    def lambda_(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperLambdaArgs']]):
+        pulumi.set(self, "lambda_", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperScheduleArgs']]:
+        return pulumi.get(self, "schedule")
+
+    @schedule.setter
+    def schedule(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperScheduleArgs']]):
+        pulumi.set(self, "schedule", value)
+
+
+class GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactArgsDict(TypedDict):
+    s3: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactS3ArgsDict']]]
+    zip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactArgs:
+    def __init__(__self__, *,
+                 s3: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactS3Args']] = None,
+                 zip: pulumi.Input[Optional[_builtins.str]] = None):
+        if s3 is not None:
+            pulumi.set(__self__, "s3", s3)
+        if zip is not None:
+            pulumi.set(__self__, "zip", zip)
+
+    @_builtins.property
+    @pulumi.getter
+    def s3(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactS3Args']]:
+        return pulumi.get(self, "s3")
+
+    @s3.setter
+    def s3(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactS3Args']]):
+        pulumi.set(self, "s3", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def zip(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "zip")
+
+    @zip.setter
+    def zip(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "zip", value)
+
+
+class GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactS3ArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    object_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactS3Args:
+    def __init__(__self__, *,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 object_version: pulumi.Input[Optional[_builtins.str]] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if object_version is not None:
+            pulumi.set(__self__, "object_version", object_version)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def object_version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "object_version")
+
+    @object_version.setter
+    def object_version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "object_version", value)
+
+
+class GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigArgsDict(TypedDict):
+    ami_filters: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigAmiFiltersArgsDict']]]]]
+    dry_run: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    launch_template_names: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    max_items: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    minimum_days_old: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    ssm_parameter_names: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigArgs:
+    def __init__(__self__, *,
+                 ami_filters: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigAmiFiltersArgs']]]] = None,
+                 dry_run: pulumi.Input[Optional[_builtins.bool]] = None,
+                 launch_template_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 max_items: pulumi.Input[Optional[_builtins.float]] = None,
+                 minimum_days_old: pulumi.Input[Optional[_builtins.float]] = None,
+                 ssm_parameter_names: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        if ami_filters is not None:
+            pulumi.set(__self__, "ami_filters", ami_filters)
+        if dry_run is not None:
+            pulumi.set(__self__, "dry_run", dry_run)
+        if launch_template_names is not None:
+            pulumi.set(__self__, "launch_template_names", launch_template_names)
+        if max_items is not None:
+            pulumi.set(__self__, "max_items", max_items)
+        if minimum_days_old is not None:
+            pulumi.set(__self__, "minimum_days_old", minimum_days_old)
+        if ssm_parameter_names is not None:
+            pulumi.set(__self__, "ssm_parameter_names", ssm_parameter_names)
+
+    @_builtins.property
+    @pulumi.getter(name="amiFilters")
+    def ami_filters(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigAmiFiltersArgs']]]]:
+        return pulumi.get(self, "ami_filters")
+
+    @ami_filters.setter
+    def ami_filters(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigAmiFiltersArgs']]]]):
+        pulumi.set(self, "ami_filters", value)
+
+    @_builtins.property
+    @pulumi.getter(name="dryRun")
+    def dry_run(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "dry_run")
+
+    @dry_run.setter
+    def dry_run(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "dry_run", value)
+
+    @_builtins.property
+    @pulumi.getter(name="launchTemplateNames")
+    def launch_template_names(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "launch_template_names")
+
+    @launch_template_names.setter
+    def launch_template_names(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "launch_template_names", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxItems")
+    def max_items(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "max_items")
+
+    @max_items.setter
+    def max_items(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "max_items", value)
+
+    @_builtins.property
+    @pulumi.getter(name="minimumDaysOld")
+    def minimum_days_old(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "minimum_days_old")
+
+    @minimum_days_old.setter
+    def minimum_days_old(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "minimum_days_old", value)
+
+    @_builtins.property
+    @pulumi.getter(name="ssmParameterNames")
+    def ssm_parameter_names(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "ssm_parameter_names")
+
+    @ssm_parameter_names.setter
+    def ssm_parameter_names(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "ssm_parameter_names", value)
+
+
+class GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigAmiFiltersArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    values: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigAmiFiltersArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 values: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if values is not None:
+            pulumi.set(__self__, "values", values)
+
+    @_builtins.property
+    @pulumi.getter(name="Name")
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter(name="Values")
+    def values(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "values")
+
+    @values.setter
+    def values(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "values", value)
+
+
+class GlobalConfigComputeProviderAwsEc2AmiHousekeeperLambdaArgsDict(TypedDict):
+    memory_size: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2AmiHousekeeperLambdaArgs:
+    def __init__(__self__, *,
+                 memory_size: pulumi.Input[Optional[_builtins.float]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.float]] = None):
+        if memory_size is not None:
+            pulumi.set(__self__, "memory_size", memory_size)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def memory_size(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "memory_size")
+
+    @memory_size.setter
+    def memory_size(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "memory_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "timeout", value)
+
+
+class GlobalConfigComputeProviderAwsEc2AmiHousekeeperScheduleArgsDict(TypedDict):
+    expression: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2AmiHousekeeperScheduleArgs:
+    def __init__(__self__, *,
+                 expression: pulumi.Input[Optional[_builtins.str]] = None):
+        if expression is not None:
+            pulumi.set(__self__, "expression", expression)
+
+    @_builtins.property
+    @pulumi.getter
+    def expression(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "expression")
+
+    @expression.setter
+    def expression(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "expression", value)
+
+
+class GlobalConfigComputeProviderAwsEc2CloudwatchAgentArgsDict(TypedDict):
+    config: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2CloudwatchAgentArgs:
+    def __init__(__self__, *,
+                 config: pulumi.Input[Optional[_builtins.str]] = None):
+        if config is not None:
+            pulumi.set(__self__, "config", config)
+
+    @_builtins.property
+    @pulumi.getter
+    def config(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "config", value)
+
+
+class GlobalConfigComputeProviderAwsEc2EgressRulesArgsDict(TypedDict):
+    cidr_blocks: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    from_port: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    ipv6_cidr_blocks: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    prefix_list_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    protocol: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    security_groups: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    self: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    to_port: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2EgressRulesArgs:
+    def __init__(__self__, *,
+                 cidr_blocks: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 from_port: pulumi.Input[Optional[_builtins.float]] = None,
+                 ipv6_cidr_blocks: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 prefix_list_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 security_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 self: pulumi.Input[Optional[_builtins.bool]] = None,
+                 to_port: pulumi.Input[Optional[_builtins.float]] = None):
+        if cidr_blocks is not None:
+            pulumi.set(__self__, "cidr_blocks", cidr_blocks)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if from_port is not None:
+            pulumi.set(__self__, "from_port", from_port)
+        if ipv6_cidr_blocks is not None:
+            pulumi.set(__self__, "ipv6_cidr_blocks", ipv6_cidr_blocks)
+        if prefix_list_ids is not None:
+            pulumi.set(__self__, "prefix_list_ids", prefix_list_ids)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if self is not None:
+            pulumi.set(__self__, "self", self)
+        if to_port is not None:
+            pulumi.set(__self__, "to_port", to_port)
+
+    @_builtins.property
+    @pulumi.getter
+    def cidr_blocks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "cidr_blocks")
+
+    @cidr_blocks.setter
+    def cidr_blocks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "cidr_blocks", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def from_port(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "from_port")
+
+    @from_port.setter
+    def from_port(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "from_port", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv6_cidr_blocks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "ipv6_cidr_blocks")
+
+    @ipv6_cidr_blocks.setter
+    def ipv6_cidr_blocks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "ipv6_cidr_blocks", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def prefix_list_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "prefix_list_ids")
+
+    @prefix_list_ids.setter
+    def prefix_list_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "prefix_list_ids", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "protocol", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def security_groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "security_groups")
+
+    @security_groups.setter
+    def security_groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "security_groups", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def self(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "self")
+
+    @self.setter
+    def self(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "self", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def to_port(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "to_port")
+
+    @to_port.setter
+    def to_port(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "to_port", value)
+
+
+class GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArgsDict(TypedDict):
+    artifact: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactArgsDict']]]
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    environment_variables: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    features: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesArgsDict']]]
+    lambda_: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherLambdaArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArgs:
+    def __init__(__self__, *,
+                 artifact: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactArgs']] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 environment_variables: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 features: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesArgs']] = None,
+                 lambda_: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherLambdaArgs']] = None):
+        if artifact is not None:
+            pulumi.set(__self__, "artifact", artifact)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if environment_variables is not None:
+            pulumi.set(__self__, "environment_variables", environment_variables)
+        if features is not None:
+            pulumi.set(__self__, "features", features)
+        if lambda_ is not None:
+            pulumi.set(__self__, "lambda_", lambda_)
+
+    @_builtins.property
+    @pulumi.getter
+    def artifact(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactArgs']]:
+        return pulumi.get(self, "artifact")
+
+    @artifact.setter
+    def artifact(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactArgs']]):
+        pulumi.set(self, "artifact", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def environment_variables(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "environment_variables")
+
+    @environment_variables.setter
+    def environment_variables(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "environment_variables", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def features(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesArgs']]:
+        return pulumi.get(self, "features")
+
+    @features.setter
+    def features(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesArgs']]):
+        pulumi.set(self, "features", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lambda")
+    def lambda_(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherLambdaArgs']]:
+        return pulumi.get(self, "lambda_")
+
+    @lambda_.setter
+    def lambda_(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherLambdaArgs']]):
+        pulumi.set(self, "lambda_", value)
+
+
+class GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactArgsDict(TypedDict):
+    s3: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactS3ArgsDict']]]
+    zip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactArgs:
+    def __init__(__self__, *,
+                 s3: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactS3Args']] = None,
+                 zip: pulumi.Input[Optional[_builtins.str]] = None):
+        if s3 is not None:
+            pulumi.set(__self__, "s3", s3)
+        if zip is not None:
+            pulumi.set(__self__, "zip", zip)
+
+    @_builtins.property
+    @pulumi.getter
+    def s3(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactS3Args']]:
+        return pulumi.get(self, "s3")
+
+    @s3.setter
+    def s3(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactS3Args']]):
+        pulumi.set(self, "s3", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def zip(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "zip")
+
+    @zip.setter
+    def zip(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "zip", value)
+
+
+class GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactS3ArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    object_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactS3Args:
+    def __init__(__self__, *,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 object_version: pulumi.Input[Optional[_builtins.str]] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if object_version is not None:
+            pulumi.set(__self__, "object_version", object_version)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def object_version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "object_version")
+
+    @object_version.setter
+    def object_version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "object_version", value)
+
+
+class GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesArgsDict(TypedDict):
+    runner_deregistration: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesRunnerDeregistrationArgsDict']]]
+    spot_termination_handler: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationHandlerArgsDict']]]
+    spot_termination_notification_watcher: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationNotificationWatcherArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesArgs:
+    def __init__(__self__, *,
+                 runner_deregistration: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesRunnerDeregistrationArgs']] = None,
+                 spot_termination_handler: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationHandlerArgs']] = None,
+                 spot_termination_notification_watcher: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationNotificationWatcherArgs']] = None):
+        if runner_deregistration is not None:
+            pulumi.set(__self__, "runner_deregistration", runner_deregistration)
+        if spot_termination_handler is not None:
+            pulumi.set(__self__, "spot_termination_handler", spot_termination_handler)
+        if spot_termination_notification_watcher is not None:
+            pulumi.set(__self__, "spot_termination_notification_watcher", spot_termination_notification_watcher)
+
+    @_builtins.property
+    @pulumi.getter
+    def runner_deregistration(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesRunnerDeregistrationArgs']]:
+        return pulumi.get(self, "runner_deregistration")
+
+    @runner_deregistration.setter
+    def runner_deregistration(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesRunnerDeregistrationArgs']]):
+        pulumi.set(self, "runner_deregistration", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def spot_termination_handler(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationHandlerArgs']]:
+        return pulumi.get(self, "spot_termination_handler")
+
+    @spot_termination_handler.setter
+    def spot_termination_handler(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationHandlerArgs']]):
+        pulumi.set(self, "spot_termination_handler", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def spot_termination_notification_watcher(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationNotificationWatcherArgs']]:
+        return pulumi.get(self, "spot_termination_notification_watcher")
+
+    @spot_termination_notification_watcher.setter
+    def spot_termination_notification_watcher(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationNotificationWatcherArgs']]):
+        pulumi.set(self, "spot_termination_notification_watcher", value)
+
+
+class GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesRunnerDeregistrationArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesRunnerDeregistrationArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+
+class GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationHandlerArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationHandlerArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+
+class GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationNotificationWatcherArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationNotificationWatcherArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+
+class GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherLambdaArgsDict(TypedDict):
+    memory_size: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherLambdaArgs:
+    def __init__(__self__, *,
+                 memory_size: pulumi.Input[Optional[_builtins.float]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.float]] = None):
+        if memory_size is not None:
+            pulumi.set(__self__, "memory_size", memory_size)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def memory_size(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "memory_size")
+
+    @memory_size.setter
+    def memory_size(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "memory_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "timeout", value)
+
+
+class GlobalConfigComputeProviderAwsEc2RunnerBinariesArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    s3: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesS3ArgsDict']]]
+    syncer: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2RunnerBinariesArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 s3: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesS3Args']] = None,
+                 syncer: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArgs']] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if s3 is not None:
+            pulumi.set(__self__, "s3", s3)
+        if syncer is not None:
+            pulumi.set(__self__, "syncer", syncer)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def s3(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesS3Args']]:
+        return pulumi.get(self, "s3")
+
+    @s3.setter
+    def s3(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesS3Args']]):
+        pulumi.set(self, "s3", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def syncer(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArgs']]:
+        return pulumi.get(self, "syncer")
+
+    @syncer.setter
+    def syncer(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArgs']]):
+        pulumi.set(self, "syncer", value)
+
+
+class GlobalConfigComputeProviderAwsEc2RunnerBinariesS3ArgsDict(TypedDict):
+    encryption: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesS3EncryptionArgsDict']]]
+    logging: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesS3LoggingArgsDict']]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    versioning: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2RunnerBinariesS3Args:
+    def __init__(__self__, *,
+                 encryption: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesS3EncryptionArgs']] = None,
+                 logging: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesS3LoggingArgs']] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 versioning: pulumi.Input[Optional[_builtins.str]] = None):
+        if encryption is not None:
+            pulumi.set(__self__, "encryption", encryption)
+        if logging is not None:
+            pulumi.set(__self__, "logging", logging)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if versioning is not None:
+            pulumi.set(__self__, "versioning", versioning)
+
+    @_builtins.property
+    @pulumi.getter
+    def encryption(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesS3EncryptionArgs']]:
+        return pulumi.get(self, "encryption")
+
+    @encryption.setter
+    def encryption(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesS3EncryptionArgs']]):
+        pulumi.set(self, "encryption", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def logging(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesS3LoggingArgs']]:
+        return pulumi.get(self, "logging")
+
+    @logging.setter
+    def logging(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesS3LoggingArgs']]):
+        pulumi.set(self, "logging", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def versioning(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "versioning")
+
+    @versioning.setter
+    def versioning(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "versioning", value)
+
+
+class GlobalConfigComputeProviderAwsEc2RunnerBinariesS3EncryptionArgsDict(TypedDict):
+    bucket_key_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    kms_master_key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    sse_algorithm: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2RunnerBinariesS3EncryptionArgs:
+    def __init__(__self__, *,
+                 bucket_key_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 kms_master_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 sse_algorithm: pulumi.Input[Optional[_builtins.str]] = None):
+        if bucket_key_enabled is not None:
+            pulumi.set(__self__, "bucket_key_enabled", bucket_key_enabled)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if kms_master_key_id is not None:
+            pulumi.set(__self__, "kms_master_key_id", kms_master_key_id)
+        if sse_algorithm is not None:
+            pulumi.set(__self__, "sse_algorithm", sse_algorithm)
+
+    @_builtins.property
+    @pulumi.getter
+    def bucket_key_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "bucket_key_enabled")
+
+    @bucket_key_enabled.setter
+    def bucket_key_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "bucket_key_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def kms_master_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "kms_master_key_id")
+
+    @kms_master_key_id.setter
+    def kms_master_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "kms_master_key_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def sse_algorithm(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "sse_algorithm")
+
+    @sse_algorithm.setter
+    def sse_algorithm(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "sse_algorithm", value)
+
+
+class GlobalConfigComputeProviderAwsEc2RunnerBinariesS3LoggingArgsDict(TypedDict):
+    bucket: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    prefix: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2RunnerBinariesS3LoggingArgs:
+    def __init__(__self__, *,
+                 bucket: pulumi.Input[Optional[_builtins.str]] = None,
+                 prefix: pulumi.Input[Optional[_builtins.str]] = None):
+        if bucket is not None:
+            pulumi.set(__self__, "bucket", bucket)
+        if prefix is not None:
+            pulumi.set(__self__, "prefix", prefix)
+
+    @_builtins.property
+    @pulumi.getter
+    def bucket(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "bucket")
+
+    @bucket.setter
+    def bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "bucket", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "prefix")
+
+    @prefix.setter
+    def prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "prefix", value)
+
+
+class GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArgsDict(TypedDict):
+    artifact: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactArgsDict']]]
+    lambda_: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerLambdaArgsDict']]]
+    schedule: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerScheduleArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArgs:
+    def __init__(__self__, *,
+                 artifact: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactArgs']] = None,
+                 lambda_: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerLambdaArgs']] = None,
+                 schedule: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerScheduleArgs']] = None):
+        if artifact is not None:
+            pulumi.set(__self__, "artifact", artifact)
+        if lambda_ is not None:
+            pulumi.set(__self__, "lambda_", lambda_)
+        if schedule is not None:
+            pulumi.set(__self__, "schedule", schedule)
+
+    @_builtins.property
+    @pulumi.getter
+    def artifact(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactArgs']]:
+        return pulumi.get(self, "artifact")
+
+    @artifact.setter
+    def artifact(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactArgs']]):
+        pulumi.set(self, "artifact", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lambda")
+    def lambda_(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerLambdaArgs']]:
+        return pulumi.get(self, "lambda_")
+
+    @lambda_.setter
+    def lambda_(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerLambdaArgs']]):
+        pulumi.set(self, "lambda_", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerScheduleArgs']]:
+        return pulumi.get(self, "schedule")
+
+    @schedule.setter
+    def schedule(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerScheduleArgs']]):
+        pulumi.set(self, "schedule", value)
+
+
+class GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactArgsDict(TypedDict):
+    s3: NotRequired[pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactS3ArgsDict']]]
+    zip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactArgs:
+    def __init__(__self__, *,
+                 s3: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactS3Args']] = None,
+                 zip: pulumi.Input[Optional[_builtins.str]] = None):
+        if s3 is not None:
+            pulumi.set(__self__, "s3", s3)
+        if zip is not None:
+            pulumi.set(__self__, "zip", zip)
+
+    @_builtins.property
+    @pulumi.getter
+    def s3(self) -> pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactS3Args']]:
+        return pulumi.get(self, "s3")
+
+    @s3.setter
+    def s3(self, value: pulumi.Input[Optional['GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactS3Args']]):
+        pulumi.set(self, "s3", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def zip(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "zip")
+
+    @zip.setter
+    def zip(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "zip", value)
+
+
+class GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactS3ArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    object_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactS3Args:
+    def __init__(__self__, *,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 object_version: pulumi.Input[Optional[_builtins.str]] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if object_version is not None:
+            pulumi.set(__self__, "object_version", object_version)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def object_version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "object_version")
+
+    @object_version.setter
+    def object_version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "object_version", value)
+
+
+class GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerLambdaArgsDict(TypedDict):
+    memory_size: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerLambdaArgs:
+    def __init__(__self__, *,
+                 memory_size: pulumi.Input[Optional[_builtins.float]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.float]] = None):
+        if memory_size is not None:
+            pulumi.set(__self__, "memory_size", memory_size)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def memory_size(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "memory_size")
+
+    @memory_size.setter
+    def memory_size(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "memory_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "timeout", value)
+
+
+class GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerScheduleArgsDict(TypedDict):
+    expression: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    state: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerScheduleArgs:
+    def __init__(__self__, *,
+                 expression: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None):
+        if expression is not None:
+            pulumi.set(__self__, "expression", expression)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+
+    @_builtins.property
+    @pulumi.getter
+    def expression(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "expression")
+
+    @expression.setter
+    def expression(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "expression", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "state")
+
+    @state.setter
+    def state(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "state", value)
+
+
+class GlobalConfigComputeProviderSelectionsArgsDict(TypedDict):
+    namespace: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigComputeProviderSelectionsArgs:
+    def __init__(__self__, *,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "namespace", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+
+class GlobalConfigGithubArgsDict(TypedDict):
+    additional_apps: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigGithubAdditionalAppsArgsDict']]]]]
+    app: NotRequired[pulumi.Input[Optional['GlobalConfigGithubAppArgsDict']]]
+    enterprise_server: NotRequired[pulumi.Input[Optional['GlobalConfigGithubEnterpriseServerArgsDict']]]
+    runner_owner: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    runner_registration_level: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    user_agent: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigGithubArgs:
+    def __init__(__self__, *,
+                 additional_apps: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigGithubAdditionalAppsArgs']]]] = None,
+                 app: pulumi.Input[Optional['GlobalConfigGithubAppArgs']] = None,
+                 enterprise_server: pulumi.Input[Optional['GlobalConfigGithubEnterpriseServerArgs']] = None,
+                 runner_owner: pulumi.Input[Optional[_builtins.str]] = None,
+                 runner_registration_level: pulumi.Input[Optional[_builtins.str]] = None,
+                 user_agent: pulumi.Input[Optional[_builtins.str]] = None):
+        if additional_apps is not None:
+            pulumi.set(__self__, "additional_apps", additional_apps)
+        if app is not None:
+            pulumi.set(__self__, "app", app)
+        if enterprise_server is not None:
+            pulumi.set(__self__, "enterprise_server", enterprise_server)
+        if runner_owner is not None:
+            pulumi.set(__self__, "runner_owner", runner_owner)
+        if runner_registration_level is not None:
+            pulumi.set(__self__, "runner_registration_level", runner_registration_level)
+        if user_agent is not None:
+            pulumi.set(__self__, "user_agent", user_agent)
+
+    @_builtins.property
+    @pulumi.getter
+    def additional_apps(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigGithubAdditionalAppsArgs']]]]:
+        return pulumi.get(self, "additional_apps")
+
+    @additional_apps.setter
+    def additional_apps(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigGithubAdditionalAppsArgs']]]]):
+        pulumi.set(self, "additional_apps", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def app(self) -> pulumi.Input[Optional['GlobalConfigGithubAppArgs']]:
+        return pulumi.get(self, "app")
+
+    @app.setter
+    def app(self, value: pulumi.Input[Optional['GlobalConfigGithubAppArgs']]):
+        pulumi.set(self, "app", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enterprise_server(self) -> pulumi.Input[Optional['GlobalConfigGithubEnterpriseServerArgs']]:
+        return pulumi.get(self, "enterprise_server")
+
+    @enterprise_server.setter
+    def enterprise_server(self, value: pulumi.Input[Optional['GlobalConfigGithubEnterpriseServerArgs']]):
+        pulumi.set(self, "enterprise_server", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def runner_owner(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "runner_owner")
+
+    @runner_owner.setter
+    def runner_owner(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "runner_owner", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def runner_registration_level(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "runner_registration_level")
+
+    @runner_registration_level.setter
+    def runner_registration_level(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "runner_registration_level", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def user_agent(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "user_agent")
+
+    @user_agent.setter
+    def user_agent(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "user_agent", value)
+
+
+class GlobalConfigGithubAdditionalAppsArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id_ssm: NotRequired[pulumi.Input[Optional['GlobalConfigGithubAdditionalAppsIdSsmArgsDict']]]
+    installation_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    installation_id_ssm: NotRequired[pulumi.Input[Optional['GlobalConfigGithubAdditionalAppsInstallationIdSsmArgsDict']]]
+    key_base64: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    key_base64_ssm: NotRequired[pulumi.Input[Optional['GlobalConfigGithubAdditionalAppsKeyBase64SsmArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigGithubAdditionalAppsArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 id_ssm: pulumi.Input[Optional['GlobalConfigGithubAdditionalAppsIdSsmArgs']] = None,
+                 installation_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 installation_id_ssm: pulumi.Input[Optional['GlobalConfigGithubAdditionalAppsInstallationIdSsmArgs']] = None,
+                 key_base64: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_base64_ssm: pulumi.Input[Optional['GlobalConfigGithubAdditionalAppsKeyBase64SsmArgs']] = None):
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if id_ssm is not None:
+            pulumi.set(__self__, "id_ssm", id_ssm)
+        if installation_id is not None:
+            pulumi.set(__self__, "installation_id", installation_id)
+        if installation_id_ssm is not None:
+            pulumi.set(__self__, "installation_id_ssm", installation_id_ssm)
+        if key_base64 is not None:
+            pulumi.set(__self__, "key_base64", key_base64)
+        if key_base64_ssm is not None:
+            pulumi.set(__self__, "key_base64_ssm", key_base64_ssm)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id_ssm(self) -> pulumi.Input[Optional['GlobalConfigGithubAdditionalAppsIdSsmArgs']]:
+        return pulumi.get(self, "id_ssm")
+
+    @id_ssm.setter
+    def id_ssm(self, value: pulumi.Input[Optional['GlobalConfigGithubAdditionalAppsIdSsmArgs']]):
+        pulumi.set(self, "id_ssm", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def installation_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "installation_id")
+
+    @installation_id.setter
+    def installation_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "installation_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def installation_id_ssm(self) -> pulumi.Input[Optional['GlobalConfigGithubAdditionalAppsInstallationIdSsmArgs']]:
+        return pulumi.get(self, "installation_id_ssm")
+
+    @installation_id_ssm.setter
+    def installation_id_ssm(self, value: pulumi.Input[Optional['GlobalConfigGithubAdditionalAppsInstallationIdSsmArgs']]):
+        pulumi.set(self, "installation_id_ssm", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key_base64(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "key_base64")
+
+    @key_base64.setter
+    def key_base64(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "key_base64", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key_base64_ssm(self) -> pulumi.Input[Optional['GlobalConfigGithubAdditionalAppsKeyBase64SsmArgs']]:
+        return pulumi.get(self, "key_base64_ssm")
+
+    @key_base64_ssm.setter
+    def key_base64_ssm(self, value: pulumi.Input[Optional['GlobalConfigGithubAdditionalAppsKeyBase64SsmArgs']]):
+        pulumi.set(self, "key_base64_ssm", value)
+
+
+class GlobalConfigGithubAdditionalAppsIdSsmArgsDict(TypedDict):
+    arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigGithubAdditionalAppsIdSsmArgs:
+    def __init__(__self__, *,
+                 arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def arn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "arn")
+
+    @arn.setter
+    def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "arn", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class GlobalConfigGithubAdditionalAppsInstallationIdSsmArgsDict(TypedDict):
+    arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigGithubAdditionalAppsInstallationIdSsmArgs:
+    def __init__(__self__, *,
+                 arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def arn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "arn")
+
+    @arn.setter
+    def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "arn", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class GlobalConfigGithubAdditionalAppsKeyBase64SsmArgsDict(TypedDict):
+    arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigGithubAdditionalAppsKeyBase64SsmArgs:
+    def __init__(__self__, *,
+                 arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def arn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "arn")
+
+    @arn.setter
+    def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "arn", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class GlobalConfigGithubAppArgsDict(TypedDict):
+    id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    id_ssm: NotRequired[pulumi.Input[Optional['GlobalConfigGithubAppIdSsmArgsDict']]]
+    installation_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    installation_id_ssm: NotRequired[pulumi.Input[Optional['GlobalConfigGithubAppInstallationIdSsmArgsDict']]]
+    key_base64: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    key_base64_ssm: NotRequired[pulumi.Input[Optional['GlobalConfigGithubAppKeyBase64SsmArgsDict']]]
+    webhook_secret: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    webhook_secret_ssm: NotRequired[pulumi.Input[Optional['GlobalConfigGithubAppWebhookSecretSsmArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigGithubAppArgs:
+    def __init__(__self__, *,
+                 id: pulumi.Input[Optional[_builtins.str]] = None,
+                 id_ssm: pulumi.Input[Optional['GlobalConfigGithubAppIdSsmArgs']] = None,
+                 installation_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 installation_id_ssm: pulumi.Input[Optional['GlobalConfigGithubAppInstallationIdSsmArgs']] = None,
+                 key_base64: pulumi.Input[Optional[_builtins.str]] = None,
+                 key_base64_ssm: pulumi.Input[Optional['GlobalConfigGithubAppKeyBase64SsmArgs']] = None,
+                 webhook_secret: pulumi.Input[Optional[_builtins.str]] = None,
+                 webhook_secret_ssm: pulumi.Input[Optional['GlobalConfigGithubAppWebhookSecretSsmArgs']] = None):
+        if id is not None:
+            pulumi.set(__self__, "id", id)
+        if id_ssm is not None:
+            pulumi.set(__self__, "id_ssm", id_ssm)
+        if installation_id is not None:
+            pulumi.set(__self__, "installation_id", installation_id)
+        if installation_id_ssm is not None:
+            pulumi.set(__self__, "installation_id_ssm", installation_id_ssm)
+        if key_base64 is not None:
+            pulumi.set(__self__, "key_base64", key_base64)
+        if key_base64_ssm is not None:
+            pulumi.set(__self__, "key_base64_ssm", key_base64_ssm)
+        if webhook_secret is not None:
+            pulumi.set(__self__, "webhook_secret", webhook_secret)
+        if webhook_secret_ssm is not None:
+            pulumi.set(__self__, "webhook_secret_ssm", webhook_secret_ssm)
+
+    @_builtins.property
+    @pulumi.getter
+    def id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "id")
+
+    @id.setter
+    def id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id_ssm(self) -> pulumi.Input[Optional['GlobalConfigGithubAppIdSsmArgs']]:
+        return pulumi.get(self, "id_ssm")
+
+    @id_ssm.setter
+    def id_ssm(self, value: pulumi.Input[Optional['GlobalConfigGithubAppIdSsmArgs']]):
+        pulumi.set(self, "id_ssm", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def installation_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "installation_id")
+
+    @installation_id.setter
+    def installation_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "installation_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def installation_id_ssm(self) -> pulumi.Input[Optional['GlobalConfigGithubAppInstallationIdSsmArgs']]:
+        return pulumi.get(self, "installation_id_ssm")
+
+    @installation_id_ssm.setter
+    def installation_id_ssm(self, value: pulumi.Input[Optional['GlobalConfigGithubAppInstallationIdSsmArgs']]):
+        pulumi.set(self, "installation_id_ssm", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key_base64(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "key_base64")
+
+    @key_base64.setter
+    def key_base64(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "key_base64", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key_base64_ssm(self) -> pulumi.Input[Optional['GlobalConfigGithubAppKeyBase64SsmArgs']]:
+        return pulumi.get(self, "key_base64_ssm")
+
+    @key_base64_ssm.setter
+    def key_base64_ssm(self, value: pulumi.Input[Optional['GlobalConfigGithubAppKeyBase64SsmArgs']]):
+        pulumi.set(self, "key_base64_ssm", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def webhook_secret(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "webhook_secret")
+
+    @webhook_secret.setter
+    def webhook_secret(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "webhook_secret", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def webhook_secret_ssm(self) -> pulumi.Input[Optional['GlobalConfigGithubAppWebhookSecretSsmArgs']]:
+        return pulumi.get(self, "webhook_secret_ssm")
+
+    @webhook_secret_ssm.setter
+    def webhook_secret_ssm(self, value: pulumi.Input[Optional['GlobalConfigGithubAppWebhookSecretSsmArgs']]):
+        pulumi.set(self, "webhook_secret_ssm", value)
+
+
+class GlobalConfigGithubAppIdSsmArgsDict(TypedDict):
+    arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigGithubAppIdSsmArgs:
+    def __init__(__self__, *,
+                 arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def arn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "arn")
+
+    @arn.setter
+    def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "arn", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class GlobalConfigGithubAppInstallationIdSsmArgsDict(TypedDict):
+    arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigGithubAppInstallationIdSsmArgs:
+    def __init__(__self__, *,
+                 arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def arn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "arn")
+
+    @arn.setter
+    def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "arn", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class GlobalConfigGithubAppKeyBase64SsmArgsDict(TypedDict):
+    arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigGithubAppKeyBase64SsmArgs:
+    def __init__(__self__, *,
+                 arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def arn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "arn")
+
+    @arn.setter
+    def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "arn", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class GlobalConfigGithubAppWebhookSecretSsmArgsDict(TypedDict):
+    arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigGithubAppWebhookSecretSsmArgs:
+    def __init__(__self__, *,
+                 arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def arn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "arn")
+
+    @arn.setter
+    def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "arn", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class GlobalConfigGithubEnterpriseServerArgsDict(TypedDict):
+    ssl_verify: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    url: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigGithubEnterpriseServerArgs:
+    def __init__(__self__, *,
+                 ssl_verify: pulumi.Input[Optional[_builtins.bool]] = None,
+                 url: pulumi.Input[Optional[_builtins.str]] = None):
+        if ssl_verify is not None:
+            pulumi.set(__self__, "ssl_verify", ssl_verify)
+        if url is not None:
+            pulumi.set(__self__, "url", url)
+
+    @_builtins.property
+    @pulumi.getter
+    def ssl_verify(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "ssl_verify")
+
+    @ssl_verify.setter
+    def ssl_verify(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "ssl_verify", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def url(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "url")
+
+    @url.setter
+    def url(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "url", value)
+
+
+class GlobalConfigLambdaArgsDict(TypedDict):
+    architecture: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    artifact: NotRequired[pulumi.Input[Optional['GlobalConfigLambdaArtifactArgsDict']]]
+    principals: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigLambdaPrincipalsArgsDict']]]]]
+    role: NotRequired[pulumi.Input[Optional['GlobalConfigLambdaRoleArgsDict']]]
+    runtime: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    security_group_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    subnet_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class GlobalConfigLambdaArgs:
+    def __init__(__self__, *,
+                 architecture: pulumi.Input[Optional[_builtins.str]] = None,
+                 artifact: pulumi.Input[Optional['GlobalConfigLambdaArtifactArgs']] = None,
+                 principals: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigLambdaPrincipalsArgs']]]] = None,
+                 role: pulumi.Input[Optional['GlobalConfigLambdaRoleArgs']] = None,
+                 runtime: pulumi.Input[Optional[_builtins.str]] = None,
+                 security_group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 subnet_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        if architecture is not None:
+            pulumi.set(__self__, "architecture", architecture)
+        if artifact is not None:
+            pulumi.set(__self__, "artifact", artifact)
+        if principals is not None:
+            pulumi.set(__self__, "principals", principals)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if runtime is not None:
+            pulumi.set(__self__, "runtime", runtime)
+        if security_group_ids is not None:
+            pulumi.set(__self__, "security_group_ids", security_group_ids)
+        if subnet_ids is not None:
+            pulumi.set(__self__, "subnet_ids", subnet_ids)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def architecture(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "architecture")
+
+    @architecture.setter
+    def architecture(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "architecture", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def artifact(self) -> pulumi.Input[Optional['GlobalConfigLambdaArtifactArgs']]:
+        return pulumi.get(self, "artifact")
+
+    @artifact.setter
+    def artifact(self, value: pulumi.Input[Optional['GlobalConfigLambdaArtifactArgs']]):
+        pulumi.set(self, "artifact", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def principals(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigLambdaPrincipalsArgs']]]]:
+        return pulumi.get(self, "principals")
+
+    @principals.setter
+    def principals(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigLambdaPrincipalsArgs']]]]):
+        pulumi.set(self, "principals", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[Optional['GlobalConfigLambdaRoleArgs']]:
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[Optional['GlobalConfigLambdaRoleArgs']]):
+        pulumi.set(self, "role", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def runtime(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "runtime")
+
+    @runtime.setter
+    def runtime(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "runtime", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def security_group_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "security_group_ids")
+
+    @security_group_ids.setter
+    def security_group_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "security_group_ids", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def subnet_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "subnet_ids")
+
+    @subnet_ids.setter
+    def subnet_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "subnet_ids", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+class GlobalConfigLambdaArtifactArgsDict(TypedDict):
+    s3: NotRequired[pulumi.Input[Optional['GlobalConfigLambdaArtifactS3ArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigLambdaArtifactArgs:
+    def __init__(__self__, *,
+                 s3: pulumi.Input[Optional['GlobalConfigLambdaArtifactS3Args']] = None):
+        if s3 is not None:
+            pulumi.set(__self__, "s3", s3)
+
+    @_builtins.property
+    @pulumi.getter
+    def s3(self) -> pulumi.Input[Optional['GlobalConfigLambdaArtifactS3Args']]:
+        return pulumi.get(self, "s3")
+
+    @s3.setter
+    def s3(self, value: pulumi.Input[Optional['GlobalConfigLambdaArtifactS3Args']]):
+        pulumi.set(self, "s3", value)
+
+
+class GlobalConfigLambdaArtifactS3ArgsDict(TypedDict):
+    bucket: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigLambdaArtifactS3Args:
+    def __init__(__self__, *,
+                 bucket: pulumi.Input[Optional[_builtins.str]] = None):
+        if bucket is not None:
+            pulumi.set(__self__, "bucket", bucket)
+
+    @_builtins.property
+    @pulumi.getter
+    def bucket(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "bucket")
+
+    @bucket.setter
+    def bucket(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "bucket", value)
+
+
+class GlobalConfigLambdaPrincipalsArgsDict(TypedDict):
+    identifiers: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigLambdaPrincipalsArgs:
+    def __init__(__self__, *,
+                 identifiers: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 type: pulumi.Input[Optional[_builtins.str]] = None):
+        if identifiers is not None:
+            pulumi.set(__self__, "identifiers", identifiers)
+        if type is not None:
+            pulumi.set(__self__, "type", type)
+
+    @_builtins.property
+    @pulumi.getter
+    def identifiers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "identifiers")
+
+    @identifiers.setter
+    def identifiers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "identifiers", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "type", value)
+
+
+class GlobalConfigLambdaRoleArgsDict(TypedDict):
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    permissions_boundary: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigLambdaRoleArgs:
+    def __init__(__self__, *,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 permissions_boundary: pulumi.Input[Optional[_builtins.str]] = None):
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if permissions_boundary is not None:
+            pulumi.set(__self__, "permissions_boundary", permissions_boundary)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "path", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def permissions_boundary(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "permissions_boundary")
+
+    @permissions_boundary.setter
+    def permissions_boundary(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "permissions_boundary", value)
+
+
+class GlobalConfigObservabilityArgsDict(TypedDict):
+    logs: NotRequired[pulumi.Input[Optional['GlobalConfigObservabilityLogsArgsDict']]]
+    metrics: NotRequired[pulumi.Input[Optional['GlobalConfigObservabilityMetricsArgsDict']]]
+    tracing: NotRequired[pulumi.Input[Optional['GlobalConfigObservabilityTracingArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigObservabilityArgs:
+    def __init__(__self__, *,
+                 logs: pulumi.Input[Optional['GlobalConfigObservabilityLogsArgs']] = None,
+                 metrics: pulumi.Input[Optional['GlobalConfigObservabilityMetricsArgs']] = None,
+                 tracing: pulumi.Input[Optional['GlobalConfigObservabilityTracingArgs']] = None):
+        if logs is not None:
+            pulumi.set(__self__, "logs", logs)
+        if metrics is not None:
+            pulumi.set(__self__, "metrics", metrics)
+        if tracing is not None:
+            pulumi.set(__self__, "tracing", tracing)
+
+    @_builtins.property
+    @pulumi.getter
+    def logs(self) -> pulumi.Input[Optional['GlobalConfigObservabilityLogsArgs']]:
+        return pulumi.get(self, "logs")
+
+    @logs.setter
+    def logs(self, value: pulumi.Input[Optional['GlobalConfigObservabilityLogsArgs']]):
+        pulumi.set(self, "logs", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def metrics(self) -> pulumi.Input[Optional['GlobalConfigObservabilityMetricsArgs']]:
+        return pulumi.get(self, "metrics")
+
+    @metrics.setter
+    def metrics(self, value: pulumi.Input[Optional['GlobalConfigObservabilityMetricsArgs']]):
+        pulumi.set(self, "metrics", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tracing(self) -> pulumi.Input[Optional['GlobalConfigObservabilityTracingArgs']]:
+        return pulumi.get(self, "tracing")
+
+    @tracing.setter
+    def tracing(self, value: pulumi.Input[Optional['GlobalConfigObservabilityTracingArgs']]):
+        pulumi.set(self, "tracing", value)
+
+
+class GlobalConfigObservabilityLogsArgsDict(TypedDict):
+    class_: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    kms_key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    level: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    retention_in_days: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class GlobalConfigObservabilityLogsArgs:
+    def __init__(__self__, *,
+                 class_: pulumi.Input[Optional[_builtins.str]] = None,
+                 kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 level: pulumi.Input[Optional[_builtins.str]] = None,
+                 retention_in_days: pulumi.Input[Optional[_builtins.float]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        if class_ is not None:
+            pulumi.set(__self__, "class_", class_)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if level is not None:
+            pulumi.set(__self__, "level", level)
+        if retention_in_days is not None:
+            pulumi.set(__self__, "retention_in_days", retention_in_days)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="class")
+    def class_(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "class_")
+
+    @class_.setter
+    def class_(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "class_", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def kms_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "kms_key_id")
+
+    @kms_key_id.setter
+    def kms_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "kms_key_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def level(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "level")
+
+    @level.setter
+    def level(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "level", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def retention_in_days(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "retention_in_days")
+
+    @retention_in_days.setter
+    def retention_in_days(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "retention_in_days", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+class GlobalConfigObservabilityMetricsArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    metric: NotRequired[pulumi.Input[Optional['GlobalConfigObservabilityMetricsMetricArgsDict']]]
+    namespace: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigObservabilityMetricsArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 metric: pulumi.Input[Optional['GlobalConfigObservabilityMetricsMetricArgs']] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if metric is not None:
+            pulumi.set(__self__, "metric", metric)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def metric(self) -> pulumi.Input[Optional['GlobalConfigObservabilityMetricsMetricArgs']]:
+        return pulumi.get(self, "metric")
+
+    @metric.setter
+    def metric(self, value: pulumi.Input[Optional['GlobalConfigObservabilityMetricsMetricArgs']]):
+        pulumi.set(self, "metric", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "namespace", value)
+
+
+class GlobalConfigObservabilityMetricsMetricArgsDict(TypedDict):
+    github_app_rate_limit: NotRequired[pulumi.Input[Optional['GlobalConfigObservabilityMetricsMetricGithubAppRateLimitArgsDict']]]
+    job_retry: NotRequired[pulumi.Input[Optional['GlobalConfigObservabilityMetricsMetricJobRetryArgsDict']]]
+    spot_termination_warning: NotRequired[pulumi.Input[Optional['GlobalConfigObservabilityMetricsMetricSpotTerminationWarningArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigObservabilityMetricsMetricArgs:
+    def __init__(__self__, *,
+                 github_app_rate_limit: pulumi.Input[Optional['GlobalConfigObservabilityMetricsMetricGithubAppRateLimitArgs']] = None,
+                 job_retry: pulumi.Input[Optional['GlobalConfigObservabilityMetricsMetricJobRetryArgs']] = None,
+                 spot_termination_warning: pulumi.Input[Optional['GlobalConfigObservabilityMetricsMetricSpotTerminationWarningArgs']] = None):
+        if github_app_rate_limit is not None:
+            pulumi.set(__self__, "github_app_rate_limit", github_app_rate_limit)
+        if job_retry is not None:
+            pulumi.set(__self__, "job_retry", job_retry)
+        if spot_termination_warning is not None:
+            pulumi.set(__self__, "spot_termination_warning", spot_termination_warning)
+
+    @_builtins.property
+    @pulumi.getter
+    def github_app_rate_limit(self) -> pulumi.Input[Optional['GlobalConfigObservabilityMetricsMetricGithubAppRateLimitArgs']]:
+        return pulumi.get(self, "github_app_rate_limit")
+
+    @github_app_rate_limit.setter
+    def github_app_rate_limit(self, value: pulumi.Input[Optional['GlobalConfigObservabilityMetricsMetricGithubAppRateLimitArgs']]):
+        pulumi.set(self, "github_app_rate_limit", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def job_retry(self) -> pulumi.Input[Optional['GlobalConfigObservabilityMetricsMetricJobRetryArgs']]:
+        return pulumi.get(self, "job_retry")
+
+    @job_retry.setter
+    def job_retry(self, value: pulumi.Input[Optional['GlobalConfigObservabilityMetricsMetricJobRetryArgs']]):
+        pulumi.set(self, "job_retry", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def spot_termination_warning(self) -> pulumi.Input[Optional['GlobalConfigObservabilityMetricsMetricSpotTerminationWarningArgs']]:
+        return pulumi.get(self, "spot_termination_warning")
+
+    @spot_termination_warning.setter
+    def spot_termination_warning(self, value: pulumi.Input[Optional['GlobalConfigObservabilityMetricsMetricSpotTerminationWarningArgs']]):
+        pulumi.set(self, "spot_termination_warning", value)
+
+
+class GlobalConfigObservabilityMetricsMetricGithubAppRateLimitArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+
+@pulumi.input_type
+class GlobalConfigObservabilityMetricsMetricGithubAppRateLimitArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+
+class GlobalConfigObservabilityMetricsMetricJobRetryArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+
+@pulumi.input_type
+class GlobalConfigObservabilityMetricsMetricJobRetryArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+
+class GlobalConfigObservabilityMetricsMetricSpotTerminationWarningArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+
+@pulumi.input_type
+class GlobalConfigObservabilityMetricsMetricSpotTerminationWarningArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+
+class GlobalConfigObservabilityTracingArgsDict(TypedDict):
+    capture_error: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    capture_http_requests: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    mode: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigObservabilityTracingArgs:
+    def __init__(__self__, *,
+                 capture_error: pulumi.Input[Optional[_builtins.bool]] = None,
+                 capture_http_requests: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mode: pulumi.Input[Optional[_builtins.str]] = None):
+        if capture_error is not None:
+            pulumi.set(__self__, "capture_error", capture_error)
+        if capture_http_requests is not None:
+            pulumi.set(__self__, "capture_http_requests", capture_http_requests)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @_builtins.property
+    @pulumi.getter
+    def capture_error(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "capture_error")
+
+    @capture_error.setter
+    def capture_error(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "capture_error", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def capture_http_requests(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "capture_http_requests")
+
+    @capture_http_requests.setter
+    def capture_http_requests(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "capture_http_requests", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "mode", value)
+
+
+class GlobalConfigOrchestrationProviderArgsDict(TypedDict):
+    scale_set: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetArgsDict']]]
+    webhook: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderArgs:
+    def __init__(__self__, *,
+                 scale_set: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetArgs']] = None,
+                 webhook: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookArgs']] = None):
+        if scale_set is not None:
+            pulumi.set(__self__, "scale_set", scale_set)
+        if webhook is not None:
+            pulumi.set(__self__, "webhook", webhook)
+
+    @_builtins.property
+    @pulumi.getter
+    def scale_set(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetArgs']]:
+        return pulumi.get(self, "scale_set")
+
+    @scale_set.setter
+    def scale_set(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetArgs']]):
+        pulumi.set(self, "scale_set", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def webhook(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookArgs']]:
+        return pulumi.get(self, "webhook")
+
+    @webhook.setter
+    def webhook(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookArgs']]):
+        pulumi.set(self, "webhook", value)
+
+
+class GlobalConfigOrchestrationProviderScaleSetArgsDict(TypedDict):
+    config_store: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetConfigStoreArgsDict']]]
+    container: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetContainerArgsDict']]]
+    ecs: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsArgsDict']]]
+    grouping: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetGroupingArgsDict']]]
+    logging: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetLoggingArgsDict']]]
+    network: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetNetworkArgsDict']]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderScaleSetArgs:
+    def __init__(__self__, *,
+                 config_store: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetConfigStoreArgs']] = None,
+                 container: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetContainerArgs']] = None,
+                 ecs: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsArgs']] = None,
+                 grouping: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetGroupingArgs']] = None,
+                 logging: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetLoggingArgs']] = None,
+                 network: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetNetworkArgs']] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        if config_store is not None:
+            pulumi.set(__self__, "config_store", config_store)
+        if container is not None:
+            pulumi.set(__self__, "container", container)
+        if ecs is not None:
+            pulumi.set(__self__, "ecs", ecs)
+        if grouping is not None:
+            pulumi.set(__self__, "grouping", grouping)
+        if logging is not None:
+            pulumi.set(__self__, "logging", logging)
+        if network is not None:
+            pulumi.set(__self__, "network", network)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def config_store(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetConfigStoreArgs']]:
+        return pulumi.get(self, "config_store")
+
+    @config_store.setter
+    def config_store(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetConfigStoreArgs']]):
+        pulumi.set(self, "config_store", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def container(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetContainerArgs']]:
+        return pulumi.get(self, "container")
+
+    @container.setter
+    def container(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetContainerArgs']]):
+        pulumi.set(self, "container", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ecs(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsArgs']]:
+        return pulumi.get(self, "ecs")
+
+    @ecs.setter
+    def ecs(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsArgs']]):
+        pulumi.set(self, "ecs", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def grouping(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetGroupingArgs']]:
+        return pulumi.get(self, "grouping")
+
+    @grouping.setter
+    def grouping(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetGroupingArgs']]):
+        pulumi.set(self, "grouping", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def logging(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetLoggingArgs']]:
+        return pulumi.get(self, "logging")
+
+    @logging.setter
+    def logging(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetLoggingArgs']]):
+        pulumi.set(self, "logging", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def network(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetNetworkArgs']]:
+        return pulumi.get(self, "network")
+
+    @network.setter
+    def network(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetNetworkArgs']]):
+        pulumi.set(self, "network", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+class GlobalConfigOrchestrationProviderScaleSetConfigStoreArgsDict(TypedDict):
+    path_prefix: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    tier: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderScaleSetConfigStoreArgs:
+    def __init__(__self__, *,
+                 path_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 tier: pulumi.Input[Optional[_builtins.str]] = None):
+        if path_prefix is not None:
+            pulumi.set(__self__, "path_prefix", path_prefix)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if tier is not None:
+            pulumi.set(__self__, "tier", tier)
+
+    @_builtins.property
+    @pulumi.getter
+    def path_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "path_prefix")
+
+    @path_prefix.setter
+    def path_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "path_prefix", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tier(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "tier")
+
+    @tier.setter
+    def tier(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "tier", value)
+
+
+class GlobalConfigOrchestrationProviderScaleSetContainerArgsDict(TypedDict):
+    health_check_command: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    health_check_interval: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    health_check_retries: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    health_check_start_period: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    health_check_timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    health_path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    health_port: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    health_stale_after_seconds: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    image: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    reconnect_initial_backoff_seconds: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    reconnect_max_backoff_seconds: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    session_close_timeout_seconds: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    shutdown_timeout_seconds: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    stop_timeout_seconds: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    user: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderScaleSetContainerArgs:
+    def __init__(__self__, *,
+                 health_check_command: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 health_check_interval: pulumi.Input[Optional[_builtins.float]] = None,
+                 health_check_retries: pulumi.Input[Optional[_builtins.float]] = None,
+                 health_check_start_period: pulumi.Input[Optional[_builtins.float]] = None,
+                 health_check_timeout: pulumi.Input[Optional[_builtins.float]] = None,
+                 health_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 health_port: pulumi.Input[Optional[_builtins.float]] = None,
+                 health_stale_after_seconds: pulumi.Input[Optional[_builtins.float]] = None,
+                 image: pulumi.Input[Optional[_builtins.str]] = None,
+                 reconnect_initial_backoff_seconds: pulumi.Input[Optional[_builtins.float]] = None,
+                 reconnect_max_backoff_seconds: pulumi.Input[Optional[_builtins.float]] = None,
+                 session_close_timeout_seconds: pulumi.Input[Optional[_builtins.float]] = None,
+                 shutdown_timeout_seconds: pulumi.Input[Optional[_builtins.float]] = None,
+                 stop_timeout_seconds: pulumi.Input[Optional[_builtins.float]] = None,
+                 user: pulumi.Input[Optional[_builtins.str]] = None):
+        if health_check_command is not None:
+            pulumi.set(__self__, "health_check_command", health_check_command)
+        if health_check_interval is not None:
+            pulumi.set(__self__, "health_check_interval", health_check_interval)
+        if health_check_retries is not None:
+            pulumi.set(__self__, "health_check_retries", health_check_retries)
+        if health_check_start_period is not None:
+            pulumi.set(__self__, "health_check_start_period", health_check_start_period)
+        if health_check_timeout is not None:
+            pulumi.set(__self__, "health_check_timeout", health_check_timeout)
+        if health_path is not None:
+            pulumi.set(__self__, "health_path", health_path)
+        if health_port is not None:
+            pulumi.set(__self__, "health_port", health_port)
+        if health_stale_after_seconds is not None:
+            pulumi.set(__self__, "health_stale_after_seconds", health_stale_after_seconds)
+        if image is not None:
+            pulumi.set(__self__, "image", image)
+        if reconnect_initial_backoff_seconds is not None:
+            pulumi.set(__self__, "reconnect_initial_backoff_seconds", reconnect_initial_backoff_seconds)
+        if reconnect_max_backoff_seconds is not None:
+            pulumi.set(__self__, "reconnect_max_backoff_seconds", reconnect_max_backoff_seconds)
+        if session_close_timeout_seconds is not None:
+            pulumi.set(__self__, "session_close_timeout_seconds", session_close_timeout_seconds)
+        if shutdown_timeout_seconds is not None:
+            pulumi.set(__self__, "shutdown_timeout_seconds", shutdown_timeout_seconds)
+        if stop_timeout_seconds is not None:
+            pulumi.set(__self__, "stop_timeout_seconds", stop_timeout_seconds)
+        if user is not None:
+            pulumi.set(__self__, "user", user)
+
+    @_builtins.property
+    @pulumi.getter
+    def health_check_command(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "health_check_command")
+
+    @health_check_command.setter
+    def health_check_command(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "health_check_command", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def health_check_interval(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "health_check_interval")
+
+    @health_check_interval.setter
+    def health_check_interval(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "health_check_interval", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def health_check_retries(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "health_check_retries")
+
+    @health_check_retries.setter
+    def health_check_retries(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "health_check_retries", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def health_check_start_period(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "health_check_start_period")
+
+    @health_check_start_period.setter
+    def health_check_start_period(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "health_check_start_period", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def health_check_timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "health_check_timeout")
+
+    @health_check_timeout.setter
+    def health_check_timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "health_check_timeout", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def health_path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "health_path")
+
+    @health_path.setter
+    def health_path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "health_path", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def health_port(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "health_port")
+
+    @health_port.setter
+    def health_port(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "health_port", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def health_stale_after_seconds(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "health_stale_after_seconds")
+
+    @health_stale_after_seconds.setter
+    def health_stale_after_seconds(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "health_stale_after_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def image(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "image")
+
+    @image.setter
+    def image(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "image", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def reconnect_initial_backoff_seconds(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "reconnect_initial_backoff_seconds")
+
+    @reconnect_initial_backoff_seconds.setter
+    def reconnect_initial_backoff_seconds(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "reconnect_initial_backoff_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def reconnect_max_backoff_seconds(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "reconnect_max_backoff_seconds")
+
+    @reconnect_max_backoff_seconds.setter
+    def reconnect_max_backoff_seconds(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "reconnect_max_backoff_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def session_close_timeout_seconds(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "session_close_timeout_seconds")
+
+    @session_close_timeout_seconds.setter
+    def session_close_timeout_seconds(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "session_close_timeout_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def shutdown_timeout_seconds(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "shutdown_timeout_seconds")
+
+    @shutdown_timeout_seconds.setter
+    def shutdown_timeout_seconds(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "shutdown_timeout_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def stop_timeout_seconds(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "stop_timeout_seconds")
+
+    @stop_timeout_seconds.setter
+    def stop_timeout_seconds(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "stop_timeout_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def user(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "user")
+
+    @user.setter
+    def user(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "user", value)
+
+
+class GlobalConfigOrchestrationProviderScaleSetEcsArgsDict(TypedDict):
+    cluster: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsClusterArgsDict']]]
+    iam: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsIamArgsDict']]]
+    service: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsServiceArgsDict']]]
+    task: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsTaskArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderScaleSetEcsArgs:
+    def __init__(__self__, *,
+                 cluster: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsClusterArgs']] = None,
+                 iam: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsIamArgs']] = None,
+                 service: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsServiceArgs']] = None,
+                 task: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsTaskArgs']] = None):
+        if cluster is not None:
+            pulumi.set(__self__, "cluster", cluster)
+        if iam is not None:
+            pulumi.set(__self__, "iam", iam)
+        if service is not None:
+            pulumi.set(__self__, "service", service)
+        if task is not None:
+            pulumi.set(__self__, "task", task)
+
+    @_builtins.property
+    @pulumi.getter
+    def cluster(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsClusterArgs']]:
+        return pulumi.get(self, "cluster")
+
+    @cluster.setter
+    def cluster(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsClusterArgs']]):
+        pulumi.set(self, "cluster", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def iam(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsIamArgs']]:
+        return pulumi.get(self, "iam")
+
+    @iam.setter
+    def iam(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsIamArgs']]):
+        pulumi.set(self, "iam", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def service(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsServiceArgs']]:
+        return pulumi.get(self, "service")
+
+    @service.setter
+    def service(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsServiceArgs']]):
+        pulumi.set(self, "service", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def task(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsTaskArgs']]:
+        return pulumi.get(self, "task")
+
+    @task.setter
+    def task(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsTaskArgs']]):
+        pulumi.set(self, "task", value)
+
+
+class GlobalConfigOrchestrationProviderScaleSetEcsClusterArgsDict(TypedDict):
+    arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    container_insights: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    mode: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderScaleSetEcsClusterArgs:
+    def __init__(__self__, *,
+                 arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 container_insights: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mode: pulumi.Input[Optional[_builtins.str]] = None,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
+        if container_insights is not None:
+            pulumi.set(__self__, "container_insights", container_insights)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def arn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "arn")
+
+    @arn.setter
+    def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "arn", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def container_insights(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "container_insights")
+
+    @container_insights.setter
+    def container_insights(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "container_insights", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "mode", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class GlobalConfigOrchestrationProviderScaleSetEcsIamArgsDict(TypedDict):
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    permissions_boundary: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderScaleSetEcsIamArgs:
+    def __init__(__self__, *,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 permissions_boundary: pulumi.Input[Optional[_builtins.str]] = None):
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if permissions_boundary is not None:
+            pulumi.set(__self__, "permissions_boundary", permissions_boundary)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "path", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def permissions_boundary(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "permissions_boundary")
+
+    @permissions_boundary.setter
+    def permissions_boundary(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "permissions_boundary", value)
+
+
+class GlobalConfigOrchestrationProviderScaleSetEcsServiceArgsDict(TypedDict):
+    platform_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderScaleSetEcsServiceArgs:
+    def __init__(__self__, *,
+                 platform_version: pulumi.Input[Optional[_builtins.str]] = None):
+        if platform_version is not None:
+            pulumi.set(__self__, "platform_version", platform_version)
+
+    @_builtins.property
+    @pulumi.getter
+    def platform_version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "platform_version")
+
+    @platform_version.setter
+    def platform_version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "platform_version", value)
+
+
+class GlobalConfigOrchestrationProviderScaleSetEcsTaskArgsDict(TypedDict):
+    cpu: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    cpu_architecture: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    ephemeral_storage: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsTaskEphemeralStorageArgsDict']]]
+    memory: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderScaleSetEcsTaskArgs:
+    def __init__(__self__, *,
+                 cpu: pulumi.Input[Optional[_builtins.float]] = None,
+                 cpu_architecture: pulumi.Input[Optional[_builtins.str]] = None,
+                 ephemeral_storage: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsTaskEphemeralStorageArgs']] = None,
+                 memory: pulumi.Input[Optional[_builtins.float]] = None):
+        if cpu is not None:
+            pulumi.set(__self__, "cpu", cpu)
+        if cpu_architecture is not None:
+            pulumi.set(__self__, "cpu_architecture", cpu_architecture)
+        if ephemeral_storage is not None:
+            pulumi.set(__self__, "ephemeral_storage", ephemeral_storage)
+        if memory is not None:
+            pulumi.set(__self__, "memory", memory)
+
+    @_builtins.property
+    @pulumi.getter
+    def cpu(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "cpu")
+
+    @cpu.setter
+    def cpu(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "cpu", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def cpu_architecture(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "cpu_architecture")
+
+    @cpu_architecture.setter
+    def cpu_architecture(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "cpu_architecture", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ephemeral_storage(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsTaskEphemeralStorageArgs']]:
+        return pulumi.get(self, "ephemeral_storage")
+
+    @ephemeral_storage.setter
+    def ephemeral_storage(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetEcsTaskEphemeralStorageArgs']]):
+        pulumi.set(self, "ephemeral_storage", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def memory(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "memory")
+
+    @memory.setter
+    def memory(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "memory", value)
+
+
+class GlobalConfigOrchestrationProviderScaleSetEcsTaskEphemeralStorageArgsDict(TypedDict):
+    size_in_gib: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderScaleSetEcsTaskEphemeralStorageArgs:
+    def __init__(__self__, *,
+                 size_in_gib: pulumi.Input[Optional[_builtins.float]] = None):
+        if size_in_gib is not None:
+            pulumi.set(__self__, "size_in_gib", size_in_gib)
+
+    @_builtins.property
+    @pulumi.getter
+    def size_in_gib(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "size_in_gib")
+
+    @size_in_gib.setter
+    def size_in_gib(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "size_in_gib", value)
+
+
+class GlobalConfigOrchestrationProviderScaleSetGroupingArgsDict(TypedDict):
+    custom: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetGroupingCustomArgsDict']]]
+    strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderScaleSetGroupingArgs:
+    def __init__(__self__, *,
+                 custom: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetGroupingCustomArgs']] = None,
+                 strategy: pulumi.Input[Optional[_builtins.str]] = None):
+        if custom is not None:
+            pulumi.set(__self__, "custom", custom)
+        if strategy is not None:
+            pulumi.set(__self__, "strategy", strategy)
+
+    @_builtins.property
+    @pulumi.getter
+    def custom(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetGroupingCustomArgs']]:
+        return pulumi.get(self, "custom")
+
+    @custom.setter
+    def custom(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetGroupingCustomArgs']]):
+        pulumi.set(self, "custom", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "strategy")
+
+    @strategy.setter
+    def strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "strategy", value)
+
+
+class GlobalConfigOrchestrationProviderScaleSetGroupingCustomArgsDict(TypedDict):
+    groups: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input['GlobalConfigOrchestrationProviderScaleSetGroupingCustomGroupsArgsDict']]]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderScaleSetGroupingCustomArgs:
+    def __init__(__self__, *,
+                 groups: pulumi.Input[Optional[Mapping[str, pulumi.Input['GlobalConfigOrchestrationProviderScaleSetGroupingCustomGroupsArgs']]]] = None):
+        if groups is not None:
+            pulumi.set(__self__, "groups", groups)
+
+    @_builtins.property
+    @pulumi.getter
+    def groups(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input['GlobalConfigOrchestrationProviderScaleSetGroupingCustomGroupsArgs']]]]:
+        return pulumi.get(self, "groups")
+
+    @groups.setter
+    def groups(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input['GlobalConfigOrchestrationProviderScaleSetGroupingCustomGroupsArgs']]]]):
+        pulumi.set(self, "groups", value)
+
+
+class GlobalConfigOrchestrationProviderScaleSetGroupingCustomGroupsArgsDict(TypedDict):
+    runner_configs: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderScaleSetGroupingCustomGroupsArgs:
+    def __init__(__self__, *,
+                 runner_configs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        if runner_configs is not None:
+            pulumi.set(__self__, "runner_configs", runner_configs)
+
+    @_builtins.property
+    @pulumi.getter
+    def runner_configs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "runner_configs")
+
+    @runner_configs.setter
+    def runner_configs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "runner_configs", value)
+
+
+class GlobalConfigOrchestrationProviderScaleSetLoggingArgsDict(TypedDict):
+    kms_key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    log_group_class: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    retention_in_days: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderScaleSetLoggingArgs:
+    def __init__(__self__, *,
+                 kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 log_group_class: pulumi.Input[Optional[_builtins.str]] = None,
+                 retention_in_days: pulumi.Input[Optional[_builtins.float]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if log_group_class is not None:
+            pulumi.set(__self__, "log_group_class", log_group_class)
+        if retention_in_days is not None:
+            pulumi.set(__self__, "retention_in_days", retention_in_days)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def kms_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "kms_key_id")
+
+    @kms_key_id.setter
+    def kms_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "kms_key_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def log_group_class(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "log_group_class")
+
+    @log_group_class.setter
+    def log_group_class(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "log_group_class", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def retention_in_days(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "retention_in_days")
+
+    @retention_in_days.setter
+    def retention_in_days(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "retention_in_days", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+class GlobalConfigOrchestrationProviderScaleSetNetworkArgsDict(TypedDict):
+    https_egress: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetNetworkHttpsEgressArgsDict']]]
+    subnet_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    vpc_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderScaleSetNetworkArgs:
+    def __init__(__self__, *,
+                 https_egress: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetNetworkHttpsEgressArgs']] = None,
+                 subnet_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None):
+        if https_egress is not None:
+            pulumi.set(__self__, "https_egress", https_egress)
+        if subnet_ids is not None:
+            pulumi.set(__self__, "subnet_ids", subnet_ids)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def https_egress(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetNetworkHttpsEgressArgs']]:
+        return pulumi.get(self, "https_egress")
+
+    @https_egress.setter
+    def https_egress(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderScaleSetNetworkHttpsEgressArgs']]):
+        pulumi.set(self, "https_egress", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def subnet_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "subnet_ids")
+
+    @subnet_ids.setter
+    def subnet_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "subnet_ids", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def vpc_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "vpc_id")
+
+    @vpc_id.setter
+    def vpc_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "vpc_id", value)
+
+
+class GlobalConfigOrchestrationProviderScaleSetNetworkHttpsEgressArgsDict(TypedDict):
+    ipv4_cidrs: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    ipv6_cidrs: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderScaleSetNetworkHttpsEgressArgs:
+    def __init__(__self__, *,
+                 ipv4_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipv6_cidrs: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        if ipv4_cidrs is not None:
+            pulumi.set(__self__, "ipv4_cidrs", ipv4_cidrs)
+        if ipv6_cidrs is not None:
+            pulumi.set(__self__, "ipv6_cidrs", ipv6_cidrs)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv4_cidrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "ipv4_cidrs")
+
+    @ipv4_cidrs.setter
+    def ipv4_cidrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "ipv4_cidrs", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv6_cidrs(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "ipv6_cidrs")
+
+    @ipv6_cidrs.setter
+    def ipv6_cidrs(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "ipv6_cidrs", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookArgsDict(TypedDict):
+    eventbridge: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookEventbridgeArgsDict']]]
+    github: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookGithubArgsDict']]]
+    lambda_: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaArgsDict']]]
+    matcher_config_parameter_store_tier: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    queue: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookQueueArgsDict']]]
+    queue_selection_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    runner: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookRunnerArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookArgs:
+    def __init__(__self__, *,
+                 eventbridge: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookEventbridgeArgs']] = None,
+                 github: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookGithubArgs']] = None,
+                 lambda_: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaArgs']] = None,
+                 matcher_config_parameter_store_tier: pulumi.Input[Optional[_builtins.str]] = None,
+                 queue: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookQueueArgs']] = None,
+                 queue_selection_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 runner: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookRunnerArgs']] = None):
+        if eventbridge is not None:
+            pulumi.set(__self__, "eventbridge", eventbridge)
+        if github is not None:
+            pulumi.set(__self__, "github", github)
+        if lambda_ is not None:
+            pulumi.set(__self__, "lambda_", lambda_)
+        if matcher_config_parameter_store_tier is not None:
+            pulumi.set(__self__, "matcher_config_parameter_store_tier", matcher_config_parameter_store_tier)
+        if queue is not None:
+            pulumi.set(__self__, "queue", queue)
+        if queue_selection_strategy is not None:
+            pulumi.set(__self__, "queue_selection_strategy", queue_selection_strategy)
+        if runner is not None:
+            pulumi.set(__self__, "runner", runner)
+
+    @_builtins.property
+    @pulumi.getter
+    def eventbridge(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookEventbridgeArgs']]:
+        return pulumi.get(self, "eventbridge")
+
+    @eventbridge.setter
+    def eventbridge(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookEventbridgeArgs']]):
+        pulumi.set(self, "eventbridge", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def github(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookGithubArgs']]:
+        return pulumi.get(self, "github")
+
+    @github.setter
+    def github(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookGithubArgs']]):
+        pulumi.set(self, "github", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lambda")
+    def lambda_(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaArgs']]:
+        return pulumi.get(self, "lambda_")
+
+    @lambda_.setter
+    def lambda_(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaArgs']]):
+        pulumi.set(self, "lambda_", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def matcher_config_parameter_store_tier(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "matcher_config_parameter_store_tier")
+
+    @matcher_config_parameter_store_tier.setter
+    def matcher_config_parameter_store_tier(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "matcher_config_parameter_store_tier", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def queue(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookQueueArgs']]:
+        return pulumi.get(self, "queue")
+
+    @queue.setter
+    def queue(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookQueueArgs']]):
+        pulumi.set(self, "queue", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def queue_selection_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "queue_selection_strategy")
+
+    @queue_selection_strategy.setter
+    def queue_selection_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "queue_selection_strategy", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def runner(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookRunnerArgs']]:
+        return pulumi.get(self, "runner")
+
+    @runner.setter
+    def runner(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookRunnerArgs']]):
+        pulumi.set(self, "runner", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookEventbridgeArgsDict(TypedDict):
+    accept_events: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookEventbridgeArgs:
+    def __init__(__self__, *,
+                 accept_events: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None):
+        if accept_events is not None:
+            pulumi.set(__self__, "accept_events", accept_events)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def accept_events(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "accept_events")
+
+    @accept_events.setter
+    def accept_events(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "accept_events", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookGithubArgsDict(TypedDict):
+    repository_white_list: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookGithubArgs:
+    def __init__(__self__, *,
+                 repository_white_list: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        if repository_white_list is not None:
+            pulumi.set(__self__, "repository_white_list", repository_white_list)
+
+    @_builtins.property
+    @pulumi.getter
+    def repository_white_list(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "repository_white_list")
+
+    @repository_white_list.setter
+    def repository_white_list(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "repository_white_list", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookLambdaArgsDict(TypedDict):
+    artifact: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaArtifactArgsDict']]]
+    pool: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaPoolArgsDict']]]
+    scale: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaScaleArgsDict']]]
+    webhook: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaWebhookArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookLambdaArgs:
+    def __init__(__self__, *,
+                 artifact: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaArtifactArgs']] = None,
+                 pool: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaPoolArgs']] = None,
+                 scale: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaScaleArgs']] = None,
+                 webhook: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaWebhookArgs']] = None):
+        if artifact is not None:
+            pulumi.set(__self__, "artifact", artifact)
+        if pool is not None:
+            pulumi.set(__self__, "pool", pool)
+        if scale is not None:
+            pulumi.set(__self__, "scale", scale)
+        if webhook is not None:
+            pulumi.set(__self__, "webhook", webhook)
+
+    @_builtins.property
+    @pulumi.getter
+    def artifact(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaArtifactArgs']]:
+        return pulumi.get(self, "artifact")
+
+    @artifact.setter
+    def artifact(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaArtifactArgs']]):
+        pulumi.set(self, "artifact", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def pool(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaPoolArgs']]:
+        return pulumi.get(self, "pool")
+
+    @pool.setter
+    def pool(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaPoolArgs']]):
+        pulumi.set(self, "pool", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def scale(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaScaleArgs']]:
+        return pulumi.get(self, "scale")
+
+    @scale.setter
+    def scale(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaScaleArgs']]):
+        pulumi.set(self, "scale", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def webhook(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaWebhookArgs']]:
+        return pulumi.get(self, "webhook")
+
+    @webhook.setter
+    def webhook(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaWebhookArgs']]):
+        pulumi.set(self, "webhook", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookLambdaArtifactArgsDict(TypedDict):
+    s3: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaArtifactS3ArgsDict']]]
+    zip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookLambdaArtifactArgs:
+    def __init__(__self__, *,
+                 s3: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaArtifactS3Args']] = None,
+                 zip: pulumi.Input[Optional[_builtins.str]] = None):
+        if s3 is not None:
+            pulumi.set(__self__, "s3", s3)
+        if zip is not None:
+            pulumi.set(__self__, "zip", zip)
+
+    @_builtins.property
+    @pulumi.getter
+    def s3(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaArtifactS3Args']]:
+        return pulumi.get(self, "s3")
+
+    @s3.setter
+    def s3(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaArtifactS3Args']]):
+        pulumi.set(self, "s3", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def zip(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "zip")
+
+    @zip.setter
+    def zip(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "zip", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookLambdaArtifactS3ArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    object_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookLambdaArtifactS3Args:
+    def __init__(__self__, *,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 object_version: pulumi.Input[Optional[_builtins.str]] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if object_version is not None:
+            pulumi.set(__self__, "object_version", object_version)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def object_version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "object_version")
+
+    @object_version.setter
+    def object_version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "object_version", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookLambdaPoolArgsDict(TypedDict):
+    config: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigOrchestrationProviderWebhookLambdaPoolConfigArgsDict']]]]]
+    include_busy_runners: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    memory_size: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    reserved_concurrent_executions: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    runner_owner: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookLambdaPoolArgs:
+    def __init__(__self__, *,
+                 config: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigOrchestrationProviderWebhookLambdaPoolConfigArgs']]]] = None,
+                 include_busy_runners: pulumi.Input[Optional[_builtins.bool]] = None,
+                 memory_size: pulumi.Input[Optional[_builtins.float]] = None,
+                 reserved_concurrent_executions: pulumi.Input[Optional[_builtins.float]] = None,
+                 runner_owner: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.float]] = None):
+        if config is not None:
+            pulumi.set(__self__, "config", config)
+        if include_busy_runners is not None:
+            pulumi.set(__self__, "include_busy_runners", include_busy_runners)
+        if memory_size is not None:
+            pulumi.set(__self__, "memory_size", memory_size)
+        if reserved_concurrent_executions is not None:
+            pulumi.set(__self__, "reserved_concurrent_executions", reserved_concurrent_executions)
+        if runner_owner is not None:
+            pulumi.set(__self__, "runner_owner", runner_owner)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def config(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigOrchestrationProviderWebhookLambdaPoolConfigArgs']]]]:
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigOrchestrationProviderWebhookLambdaPoolConfigArgs']]]]):
+        pulumi.set(self, "config", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def include_busy_runners(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "include_busy_runners")
+
+    @include_busy_runners.setter
+    def include_busy_runners(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "include_busy_runners", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def memory_size(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "memory_size")
+
+    @memory_size.setter
+    def memory_size(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "memory_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def reserved_concurrent_executions(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "reserved_concurrent_executions")
+
+    @reserved_concurrent_executions.setter
+    def reserved_concurrent_executions(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "reserved_concurrent_executions", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def runner_owner(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "runner_owner")
+
+    @runner_owner.setter
+    def runner_owner(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "runner_owner", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "timeout", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookLambdaPoolConfigArgsDict(TypedDict):
+    schedule_expression: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    schedule_expression_timezone: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    size: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookLambdaPoolConfigArgs:
+    def __init__(__self__, *,
+                 schedule_expression: pulumi.Input[Optional[_builtins.str]] = None,
+                 schedule_expression_timezone: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.float]] = None):
+        if schedule_expression is not None:
+            pulumi.set(__self__, "schedule_expression", schedule_expression)
+        if schedule_expression_timezone is not None:
+            pulumi.set(__self__, "schedule_expression_timezone", schedule_expression_timezone)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule_expression(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "schedule_expression")
+
+    @schedule_expression.setter
+    def schedule_expression(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "schedule_expression", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule_expression_timezone(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "schedule_expression_timezone")
+
+    @schedule_expression_timezone.setter
+    def schedule_expression_timezone(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "schedule_expression_timezone", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "size", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookLambdaScaleArgsDict(TypedDict):
+    down: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaScaleDownArgsDict']]]
+    up: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaScaleUpArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookLambdaScaleArgs:
+    def __init__(__self__, *,
+                 down: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaScaleDownArgs']] = None,
+                 up: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaScaleUpArgs']] = None):
+        if down is not None:
+            pulumi.set(__self__, "down", down)
+        if up is not None:
+            pulumi.set(__self__, "up", up)
+
+    @_builtins.property
+    @pulumi.getter
+    def down(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaScaleDownArgs']]:
+        return pulumi.get(self, "down")
+
+    @down.setter
+    def down(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaScaleDownArgs']]):
+        pulumi.set(self, "down", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def up(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaScaleUpArgs']]:
+        return pulumi.get(self, "up")
+
+    @up.setter
+    def up(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaScaleUpArgs']]):
+        pulumi.set(self, "up", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookLambdaScaleDownArgsDict(TypedDict):
+    idle_config: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgsDict']]]]]
+    idle_confirmation_seconds: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    memory_size: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    minimum_running_time_in_minutes: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    schedule_expression: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookLambdaScaleDownArgs:
+    def __init__(__self__, *,
+                 idle_config: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgs']]]] = None,
+                 idle_confirmation_seconds: pulumi.Input[Optional[_builtins.float]] = None,
+                 memory_size: pulumi.Input[Optional[_builtins.float]] = None,
+                 minimum_running_time_in_minutes: pulumi.Input[Optional[_builtins.float]] = None,
+                 schedule_expression: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.float]] = None):
+        if idle_config is not None:
+            pulumi.set(__self__, "idle_config", idle_config)
+        if idle_confirmation_seconds is not None:
+            pulumi.set(__self__, "idle_confirmation_seconds", idle_confirmation_seconds)
+        if memory_size is not None:
+            pulumi.set(__self__, "memory_size", memory_size)
+        if minimum_running_time_in_minutes is not None:
+            pulumi.set(__self__, "minimum_running_time_in_minutes", minimum_running_time_in_minutes)
+        if schedule_expression is not None:
+            pulumi.set(__self__, "schedule_expression", schedule_expression)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def idle_config(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgs']]]]:
+        return pulumi.get(self, "idle_config")
+
+    @idle_config.setter
+    def idle_config(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['GlobalConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgs']]]]):
+        pulumi.set(self, "idle_config", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def idle_confirmation_seconds(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "idle_confirmation_seconds")
+
+    @idle_confirmation_seconds.setter
+    def idle_confirmation_seconds(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "idle_confirmation_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def memory_size(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "memory_size")
+
+    @memory_size.setter
+    def memory_size(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "memory_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def minimum_running_time_in_minutes(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "minimum_running_time_in_minutes")
+
+    @minimum_running_time_in_minutes.setter
+    def minimum_running_time_in_minutes(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "minimum_running_time_in_minutes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule_expression(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "schedule_expression")
+
+    @schedule_expression.setter
+    def schedule_expression(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "schedule_expression", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "timeout", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgsDict(TypedDict):
+    cron: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    eviction_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    idle_count: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    time_zone: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgs:
+    def __init__(__self__, *,
+                 cron: pulumi.Input[Optional[_builtins.str]] = None,
+                 eviction_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 idle_count: pulumi.Input[Optional[_builtins.float]] = None,
+                 time_zone: pulumi.Input[Optional[_builtins.str]] = None):
+        if cron is not None:
+            pulumi.set(__self__, "cron", cron)
+        if eviction_strategy is not None:
+            pulumi.set(__self__, "eviction_strategy", eviction_strategy)
+        if idle_count is not None:
+            pulumi.set(__self__, "idle_count", idle_count)
+        if time_zone is not None:
+            pulumi.set(__self__, "time_zone", time_zone)
+
+    @_builtins.property
+    @pulumi.getter
+    def cron(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "cron")
+
+    @cron.setter
+    def cron(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "cron", value)
+
+    @_builtins.property
+    @pulumi.getter(name="evictionStrategy")
+    def eviction_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "eviction_strategy")
+
+    @eviction_strategy.setter
+    def eviction_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "eviction_strategy", value)
+
+    @_builtins.property
+    @pulumi.getter(name="idleCount")
+    def idle_count(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "idle_count")
+
+    @idle_count.setter
+    def idle_count(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "idle_count", value)
+
+    @_builtins.property
+    @pulumi.getter(name="timeZone")
+    def time_zone(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "time_zone")
+
+    @time_zone.setter
+    def time_zone(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "time_zone", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookLambdaScaleUpArgsDict(TypedDict):
+    event_source_mapping: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgsDict']]]
+    job_queued_check_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    memory_size: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    reserved_concurrent_executions: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookLambdaScaleUpArgs:
+    def __init__(__self__, *,
+                 event_source_mapping: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgs']] = None,
+                 job_queued_check_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 memory_size: pulumi.Input[Optional[_builtins.float]] = None,
+                 reserved_concurrent_executions: pulumi.Input[Optional[_builtins.float]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.float]] = None):
+        if event_source_mapping is not None:
+            pulumi.set(__self__, "event_source_mapping", event_source_mapping)
+        if job_queued_check_enabled is not None:
+            pulumi.set(__self__, "job_queued_check_enabled", job_queued_check_enabled)
+        if memory_size is not None:
+            pulumi.set(__self__, "memory_size", memory_size)
+        if reserved_concurrent_executions is not None:
+            pulumi.set(__self__, "reserved_concurrent_executions", reserved_concurrent_executions)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def event_source_mapping(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgs']]:
+        return pulumi.get(self, "event_source_mapping")
+
+    @event_source_mapping.setter
+    def event_source_mapping(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgs']]):
+        pulumi.set(self, "event_source_mapping", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def job_queued_check_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "job_queued_check_enabled")
+
+    @job_queued_check_enabled.setter
+    def job_queued_check_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "job_queued_check_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def memory_size(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "memory_size")
+
+    @memory_size.setter
+    def memory_size(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "memory_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def reserved_concurrent_executions(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "reserved_concurrent_executions")
+
+    @reserved_concurrent_executions.setter
+    def reserved_concurrent_executions(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "reserved_concurrent_executions", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "timeout", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgsDict(TypedDict):
+    batch_size: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    maximum_batching_window_in_seconds: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgs:
+    def __init__(__self__, *,
+                 batch_size: pulumi.Input[Optional[_builtins.float]] = None,
+                 maximum_batching_window_in_seconds: pulumi.Input[Optional[_builtins.float]] = None):
+        if batch_size is not None:
+            pulumi.set(__self__, "batch_size", batch_size)
+        if maximum_batching_window_in_seconds is not None:
+            pulumi.set(__self__, "maximum_batching_window_in_seconds", maximum_batching_window_in_seconds)
+
+    @_builtins.property
+    @pulumi.getter
+    def batch_size(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "batch_size")
+
+    @batch_size.setter
+    def batch_size(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "batch_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def maximum_batching_window_in_seconds(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "maximum_batching_window_in_seconds")
+
+    @maximum_batching_window_in_seconds.setter
+    def maximum_batching_window_in_seconds(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "maximum_batching_window_in_seconds", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookLambdaWebhookArgsDict(TypedDict):
+    api_gateway_access_log_settings: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaWebhookApiGatewayAccessLogSettingsArgsDict']]]
+    artifact: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactArgsDict']]]
+    memory_size: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookLambdaWebhookArgs:
+    def __init__(__self__, *,
+                 api_gateway_access_log_settings: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaWebhookApiGatewayAccessLogSettingsArgs']] = None,
+                 artifact: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactArgs']] = None,
+                 memory_size: pulumi.Input[Optional[_builtins.float]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.float]] = None):
+        if api_gateway_access_log_settings is not None:
+            pulumi.set(__self__, "api_gateway_access_log_settings", api_gateway_access_log_settings)
+        if artifact is not None:
+            pulumi.set(__self__, "artifact", artifact)
+        if memory_size is not None:
+            pulumi.set(__self__, "memory_size", memory_size)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def api_gateway_access_log_settings(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaWebhookApiGatewayAccessLogSettingsArgs']]:
+        return pulumi.get(self, "api_gateway_access_log_settings")
+
+    @api_gateway_access_log_settings.setter
+    def api_gateway_access_log_settings(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaWebhookApiGatewayAccessLogSettingsArgs']]):
+        pulumi.set(self, "api_gateway_access_log_settings", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def artifact(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactArgs']]:
+        return pulumi.get(self, "artifact")
+
+    @artifact.setter
+    def artifact(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactArgs']]):
+        pulumi.set(self, "artifact", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def memory_size(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "memory_size")
+
+    @memory_size.setter
+    def memory_size(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "memory_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "timeout", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookLambdaWebhookApiGatewayAccessLogSettingsArgsDict(TypedDict):
+    destination_arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    format: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookLambdaWebhookApiGatewayAccessLogSettingsArgs:
+    def __init__(__self__, *,
+                 destination_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 format: pulumi.Input[Optional[_builtins.str]] = None):
+        if destination_arn is not None:
+            pulumi.set(__self__, "destination_arn", destination_arn)
+        if format is not None:
+            pulumi.set(__self__, "format", format)
+
+    @_builtins.property
+    @pulumi.getter
+    def destination_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "destination_arn")
+
+    @destination_arn.setter
+    def destination_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "destination_arn", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def format(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "format")
+
+    @format.setter
+    def format(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "format", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactArgsDict(TypedDict):
+    s3: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactS3ArgsDict']]]
+    zip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactArgs:
+    def __init__(__self__, *,
+                 s3: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactS3Args']] = None,
+                 zip: pulumi.Input[Optional[_builtins.str]] = None):
+        if s3 is not None:
+            pulumi.set(__self__, "s3", s3)
+        if zip is not None:
+            pulumi.set(__self__, "zip", zip)
+
+    @_builtins.property
+    @pulumi.getter
+    def s3(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactS3Args']]:
+        return pulumi.get(self, "s3")
+
+    @s3.setter
+    def s3(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactS3Args']]):
+        pulumi.set(self, "s3", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def zip(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "zip")
+
+    @zip.setter
+    def zip(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "zip", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactS3ArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    object_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactS3Args:
+    def __init__(__self__, *,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 object_version: pulumi.Input[Optional[_builtins.str]] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if object_version is not None:
+            pulumi.set(__self__, "object_version", object_version)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def object_version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "object_version")
+
+    @object_version.setter
+    def object_version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "object_version", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookQueueArgsDict(TypedDict):
+    delay_webhook_event: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    encryption: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookQueueEncryptionArgsDict']]]
+    job_queue_retention_in_seconds: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    redrive_build_queue: NotRequired[pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgsDict']]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    visibility_timeout_seconds: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookQueueArgs:
+    def __init__(__self__, *,
+                 delay_webhook_event: pulumi.Input[Optional[_builtins.float]] = None,
+                 encryption: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookQueueEncryptionArgs']] = None,
+                 job_queue_retention_in_seconds: pulumi.Input[Optional[_builtins.float]] = None,
+                 redrive_build_queue: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgs']] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 visibility_timeout_seconds: pulumi.Input[Optional[_builtins.float]] = None):
+        if delay_webhook_event is not None:
+            pulumi.set(__self__, "delay_webhook_event", delay_webhook_event)
+        if encryption is not None:
+            pulumi.set(__self__, "encryption", encryption)
+        if job_queue_retention_in_seconds is not None:
+            pulumi.set(__self__, "job_queue_retention_in_seconds", job_queue_retention_in_seconds)
+        if redrive_build_queue is not None:
+            pulumi.set(__self__, "redrive_build_queue", redrive_build_queue)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if visibility_timeout_seconds is not None:
+            pulumi.set(__self__, "visibility_timeout_seconds", visibility_timeout_seconds)
+
+    @_builtins.property
+    @pulumi.getter
+    def delay_webhook_event(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "delay_webhook_event")
+
+    @delay_webhook_event.setter
+    def delay_webhook_event(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "delay_webhook_event", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def encryption(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookQueueEncryptionArgs']]:
+        return pulumi.get(self, "encryption")
+
+    @encryption.setter
+    def encryption(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookQueueEncryptionArgs']]):
+        pulumi.set(self, "encryption", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def job_queue_retention_in_seconds(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "job_queue_retention_in_seconds")
+
+    @job_queue_retention_in_seconds.setter
+    def job_queue_retention_in_seconds(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "job_queue_retention_in_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def redrive_build_queue(self) -> pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgs']]:
+        return pulumi.get(self, "redrive_build_queue")
+
+    @redrive_build_queue.setter
+    def redrive_build_queue(self, value: pulumi.Input[Optional['GlobalConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgs']]):
+        pulumi.set(self, "redrive_build_queue", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def visibility_timeout_seconds(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "visibility_timeout_seconds")
+
+    @visibility_timeout_seconds.setter
+    def visibility_timeout_seconds(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "visibility_timeout_seconds", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookQueueEncryptionArgsDict(TypedDict):
+    kms_data_key_reuse_period_seconds: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    kms_master_key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    sqs_managed_sse_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookQueueEncryptionArgs:
+    def __init__(__self__, *,
+                 kms_data_key_reuse_period_seconds: pulumi.Input[Optional[_builtins.float]] = None,
+                 kms_master_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 sqs_managed_sse_enabled: pulumi.Input[Optional[_builtins.bool]] = None):
+        if kms_data_key_reuse_period_seconds is not None:
+            pulumi.set(__self__, "kms_data_key_reuse_period_seconds", kms_data_key_reuse_period_seconds)
+        if kms_master_key_id is not None:
+            pulumi.set(__self__, "kms_master_key_id", kms_master_key_id)
+        if sqs_managed_sse_enabled is not None:
+            pulumi.set(__self__, "sqs_managed_sse_enabled", sqs_managed_sse_enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def kms_data_key_reuse_period_seconds(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "kms_data_key_reuse_period_seconds")
+
+    @kms_data_key_reuse_period_seconds.setter
+    def kms_data_key_reuse_period_seconds(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "kms_data_key_reuse_period_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def kms_master_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "kms_master_key_id")
+
+    @kms_master_key_id.setter
+    def kms_master_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "kms_master_key_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def sqs_managed_sse_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "sqs_managed_sse_enabled")
+
+    @sqs_managed_sse_enabled.setter
+    def sqs_managed_sse_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "sqs_managed_sse_enabled", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    max_receive_count: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_receive_count: pulumi.Input[Optional[_builtins.float]] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if max_receive_count is not None:
+            pulumi.set(__self__, "max_receive_count", max_receive_count)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxReceiveCount")
+    def max_receive_count(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "max_receive_count")
+
+    @max_receive_count.setter
+    def max_receive_count(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "max_receive_count", value)
+
+
+class GlobalConfigOrchestrationProviderWebhookRunnerArgsDict(TypedDict):
+    boot_time_in_minutes: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    ephemeral: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    jit_config_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    maximum_count: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class GlobalConfigOrchestrationProviderWebhookRunnerArgs:
+    def __init__(__self__, *,
+                 boot_time_in_minutes: pulumi.Input[Optional[_builtins.float]] = None,
+                 ephemeral: pulumi.Input[Optional[_builtins.bool]] = None,
+                 jit_config_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 maximum_count: pulumi.Input[Optional[_builtins.float]] = None):
+        if boot_time_in_minutes is not None:
+            pulumi.set(__self__, "boot_time_in_minutes", boot_time_in_minutes)
+        if ephemeral is not None:
+            pulumi.set(__self__, "ephemeral", ephemeral)
+        if jit_config_enabled is not None:
+            pulumi.set(__self__, "jit_config_enabled", jit_config_enabled)
+        if maximum_count is not None:
+            pulumi.set(__self__, "maximum_count", maximum_count)
+
+    @_builtins.property
+    @pulumi.getter
+    def boot_time_in_minutes(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "boot_time_in_minutes")
+
+    @boot_time_in_minutes.setter
+    def boot_time_in_minutes(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "boot_time_in_minutes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ephemeral(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "ephemeral")
+
+    @ephemeral.setter
+    def ephemeral(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "ephemeral", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def jit_config_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "jit_config_enabled")
+
+    @jit_config_enabled.setter
+    def jit_config_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "jit_config_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def maximum_count(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "maximum_count")
+
+    @maximum_count.setter
+    def maximum_count(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "maximum_count", value)
+
+
+class GlobalConfigRolesArgsDict(TypedDict):
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    permissions_boundary: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigRolesArgs:
+    def __init__(__self__, *,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 permissions_boundary: pulumi.Input[Optional[_builtins.str]] = None):
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if permissions_boundary is not None:
+            pulumi.set(__self__, "permissions_boundary", permissions_boundary)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "path", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def permissions_boundary(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "permissions_boundary")
+
+    @permissions_boundary.setter
+    def permissions_boundary(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "permissions_boundary", value)
+
+
+class GlobalConfigRunnerArgsDict(TypedDict):
+    architecture: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    auto_update_disabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    disable_default_labels: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    extra_labels: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    group_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    hooks: NotRequired[pulumi.Input[Optional['GlobalConfigRunnerHooksArgsDict']]]
+    iam: NotRequired[pulumi.Input[Optional['GlobalConfigRunnerIamArgsDict']]]
+    name_prefix: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    os: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    run_as: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    run_as_root: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class GlobalConfigRunnerArgs:
+    def __init__(__self__, *,
+                 architecture: pulumi.Input[Optional[_builtins.str]] = None,
+                 auto_update_disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_default_labels: pulumi.Input[Optional[_builtins.bool]] = None,
+                 extra_labels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 group_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 hooks: pulumi.Input[Optional['GlobalConfigRunnerHooksArgs']] = None,
+                 iam: pulumi.Input[Optional['GlobalConfigRunnerIamArgs']] = None,
+                 name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 os: pulumi.Input[Optional[_builtins.str]] = None,
+                 run_as: pulumi.Input[Optional[_builtins.str]] = None,
+                 run_as_root: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        if architecture is not None:
+            pulumi.set(__self__, "architecture", architecture)
+        if auto_update_disabled is not None:
+            pulumi.set(__self__, "auto_update_disabled", auto_update_disabled)
+        if disable_default_labels is not None:
+            pulumi.set(__self__, "disable_default_labels", disable_default_labels)
+        if extra_labels is not None:
+            pulumi.set(__self__, "extra_labels", extra_labels)
+        if group_name is not None:
+            pulumi.set(__self__, "group_name", group_name)
+        if hooks is not None:
+            pulumi.set(__self__, "hooks", hooks)
+        if iam is not None:
+            pulumi.set(__self__, "iam", iam)
+        if name_prefix is not None:
+            pulumi.set(__self__, "name_prefix", name_prefix)
+        if os is not None:
+            pulumi.set(__self__, "os", os)
+        if run_as is not None:
+            pulumi.set(__self__, "run_as", run_as)
+        if run_as_root is not None:
+            pulumi.set(__self__, "run_as_root", run_as_root)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def architecture(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "architecture")
+
+    @architecture.setter
+    def architecture(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "architecture", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def auto_update_disabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "auto_update_disabled")
+
+    @auto_update_disabled.setter
+    def auto_update_disabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "auto_update_disabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def disable_default_labels(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "disable_default_labels")
+
+    @disable_default_labels.setter
+    def disable_default_labels(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "disable_default_labels", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def extra_labels(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "extra_labels")
+
+    @extra_labels.setter
+    def extra_labels(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "extra_labels", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def group_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "group_name")
+
+    @group_name.setter
+    def group_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "group_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def hooks(self) -> pulumi.Input[Optional['GlobalConfigRunnerHooksArgs']]:
+        return pulumi.get(self, "hooks")
+
+    @hooks.setter
+    def hooks(self, value: pulumi.Input[Optional['GlobalConfigRunnerHooksArgs']]):
+        pulumi.set(self, "hooks", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def iam(self) -> pulumi.Input[Optional['GlobalConfigRunnerIamArgs']]:
+        return pulumi.get(self, "iam")
+
+    @iam.setter
+    def iam(self, value: pulumi.Input[Optional['GlobalConfigRunnerIamArgs']]):
+        pulumi.set(self, "iam", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "name_prefix")
+
+    @name_prefix.setter
+    def name_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name_prefix", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def os(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "os")
+
+    @os.setter
+    def os(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "os", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def run_as(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "run_as")
+
+    @run_as.setter
+    def run_as(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "run_as", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def run_as_root(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "run_as_root")
+
+    @run_as_root.setter
+    def run_as_root(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "run_as_root", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+class GlobalConfigRunnerHooksArgsDict(TypedDict):
+    job_completed: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    job_started: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigRunnerHooksArgs:
+    def __init__(__self__, *,
+                 job_completed: pulumi.Input[Optional[_builtins.str]] = None,
+                 job_started: pulumi.Input[Optional[_builtins.str]] = None):
+        if job_completed is not None:
+            pulumi.set(__self__, "job_completed", job_completed)
+        if job_started is not None:
+            pulumi.set(__self__, "job_started", job_started)
+
+    @_builtins.property
+    @pulumi.getter
+    def job_completed(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "job_completed")
+
+    @job_completed.setter
+    def job_completed(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "job_completed", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def job_started(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "job_started")
+
+    @job_started.setter
+    def job_started(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "job_started", value)
+
+
+class GlobalConfigRunnerIamArgsDict(TypedDict):
+    additional_trust_policy_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    managed_policy_arns: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    permissions_boundary: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    role: NotRequired[pulumi.Input[Optional['GlobalConfigRunnerIamRoleArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigRunnerIamArgs:
+    def __init__(__self__, *,
+                 additional_trust_policy_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_policy_arns: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 permissions_boundary: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional['GlobalConfigRunnerIamRoleArgs']] = None):
+        if additional_trust_policy_json is not None:
+            pulumi.set(__self__, "additional_trust_policy_json", additional_trust_policy_json)
+        if managed_policy_arns is not None:
+            pulumi.set(__self__, "managed_policy_arns", managed_policy_arns)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if permissions_boundary is not None:
+            pulumi.set(__self__, "permissions_boundary", permissions_boundary)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+
+    @_builtins.property
+    @pulumi.getter
+    def additional_trust_policy_json(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "additional_trust_policy_json")
+
+    @additional_trust_policy_json.setter
+    def additional_trust_policy_json(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "additional_trust_policy_json", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def managed_policy_arns(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "managed_policy_arns")
+
+    @managed_policy_arns.setter
+    def managed_policy_arns(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "managed_policy_arns", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "path", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def permissions_boundary(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "permissions_boundary")
+
+    @permissions_boundary.setter
+    def permissions_boundary(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "permissions_boundary", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[Optional['GlobalConfigRunnerIamRoleArgs']]:
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[Optional['GlobalConfigRunnerIamRoleArgs']]):
+        pulumi.set(self, "role", value)
+
+
+class GlobalConfigRunnerIamRoleArgsDict(TypedDict):
+    arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigRunnerIamRoleArgs:
+    def __init__(__self__, *,
+                 arn: pulumi.Input[Optional[_builtins.str]] = None):
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
+
+    @_builtins.property
+    @pulumi.getter
+    def arn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "arn")
+
+    @arn.setter
+    def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "arn", value)
+
+
+class GlobalConfigStorageProviderArgsDict(TypedDict):
+    aws: NotRequired[pulumi.Input[Optional['GlobalConfigStorageProviderAwsArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigStorageProviderArgs:
+    def __init__(__self__, *,
+                 aws: pulumi.Input[Optional['GlobalConfigStorageProviderAwsArgs']] = None):
+        if aws is not None:
+            pulumi.set(__self__, "aws", aws)
+
+    @_builtins.property
+    @pulumi.getter
+    def aws(self) -> pulumi.Input[Optional['GlobalConfigStorageProviderAwsArgs']]:
+        return pulumi.get(self, "aws")
+
+    @aws.setter
+    def aws(self, value: pulumi.Input[Optional['GlobalConfigStorageProviderAwsArgs']]):
+        pulumi.set(self, "aws", value)
+
+
+class GlobalConfigStorageProviderAwsArgsDict(TypedDict):
+    ssm: NotRequired[pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmArgsDict']]]
+
+@pulumi.input_type
+class GlobalConfigStorageProviderAwsArgs:
+    def __init__(__self__, *,
+                 ssm: pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmArgs']] = None):
+        if ssm is not None:
+            pulumi.set(__self__, "ssm", ssm)
+
+    @_builtins.property
+    @pulumi.getter
+    def ssm(self) -> pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmArgs']]:
+        return pulumi.get(self, "ssm")
+
+    @ssm.setter
+    def ssm(self, value: pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmArgs']]):
+        pulumi.set(self, "ssm", value)
+
+
+class GlobalConfigStorageProviderAwsSsmArgsDict(TypedDict):
+    housekeeper: NotRequired[pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperArgsDict']]]
+    kms_key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    parameters: NotRequired[pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmParametersArgsDict']]]
+    paths: NotRequired[pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmPathsArgsDict']]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class GlobalConfigStorageProviderAwsSsmArgs:
+    def __init__(__self__, *,
+                 housekeeper: pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperArgs']] = None,
+                 kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 parameters: pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmParametersArgs']] = None,
+                 paths: pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmPathsArgs']] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        if housekeeper is not None:
+            pulumi.set(__self__, "housekeeper", housekeeper)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+        if paths is not None:
+            pulumi.set(__self__, "paths", paths)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def housekeeper(self) -> pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperArgs']]:
+        return pulumi.get(self, "housekeeper")
+
+    @housekeeper.setter
+    def housekeeper(self, value: pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperArgs']]):
+        pulumi.set(self, "housekeeper", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def kms_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "kms_key_id")
+
+    @kms_key_id.setter
+    def kms_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "kms_key_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def parameters(self) -> pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmParametersArgs']]:
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmParametersArgs']]):
+        pulumi.set(self, "parameters", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def paths(self) -> pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmPathsArgs']]:
+        return pulumi.get(self, "paths")
+
+    @paths.setter
+    def paths(self, value: pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmPathsArgs']]):
+        pulumi.set(self, "paths", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+class GlobalConfigStorageProviderAwsSsmHousekeeperArgsDict(TypedDict):
+    config: NotRequired[pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperConfigArgsDict']]]
+    lambda_: NotRequired[pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArgsDict']]]
+    schedule_expression: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    state: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class GlobalConfigStorageProviderAwsSsmHousekeeperArgs:
+    def __init__(__self__, *,
+                 config: pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperConfigArgs']] = None,
+                 lambda_: pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArgs']] = None,
+                 schedule_expression: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        if config is not None:
+            pulumi.set(__self__, "config", config)
+        if lambda_ is not None:
+            pulumi.set(__self__, "lambda_", lambda_)
+        if schedule_expression is not None:
+            pulumi.set(__self__, "schedule_expression", schedule_expression)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def config(self) -> pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperConfigArgs']]:
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperConfigArgs']]):
+        pulumi.set(self, "config", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lambda")
+    def lambda_(self) -> pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArgs']]:
+        return pulumi.get(self, "lambda_")
+
+    @lambda_.setter
+    def lambda_(self, value: pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArgs']]):
+        pulumi.set(self, "lambda_", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule_expression(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "schedule_expression")
+
+    @schedule_expression.setter
+    def schedule_expression(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "schedule_expression", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "state")
+
+    @state.setter
+    def state(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "state", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+class GlobalConfigStorageProviderAwsSsmHousekeeperConfigArgsDict(TypedDict):
+    dry_run: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    minimum_days_old: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    token_path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigStorageProviderAwsSsmHousekeeperConfigArgs:
+    def __init__(__self__, *,
+                 dry_run: pulumi.Input[Optional[_builtins.bool]] = None,
+                 minimum_days_old: pulumi.Input[Optional[_builtins.float]] = None,
+                 token_path: pulumi.Input[Optional[_builtins.str]] = None):
+        if dry_run is not None:
+            pulumi.set(__self__, "dry_run", dry_run)
+        if minimum_days_old is not None:
+            pulumi.set(__self__, "minimum_days_old", minimum_days_old)
+        if token_path is not None:
+            pulumi.set(__self__, "token_path", token_path)
+
+    @_builtins.property
+    @pulumi.getter(name="dryRun")
+    def dry_run(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "dry_run")
+
+    @dry_run.setter
+    def dry_run(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "dry_run", value)
+
+    @_builtins.property
+    @pulumi.getter(name="minimumDaysOld")
+    def minimum_days_old(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "minimum_days_old")
+
+    @minimum_days_old.setter
+    def minimum_days_old(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "minimum_days_old", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenPath")
+    def token_path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "token_path")
+
+    @token_path.setter
+    def token_path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "token_path", value)
+
+
+class GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArgsDict(TypedDict):
+    artifact: NotRequired[pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgsDict']]]
+    memory_size: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArgs:
+    def __init__(__self__, *,
+                 artifact: pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgs']] = None,
+                 memory_size: pulumi.Input[Optional[_builtins.float]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.float]] = None):
+        if artifact is not None:
+            pulumi.set(__self__, "artifact", artifact)
+        if memory_size is not None:
+            pulumi.set(__self__, "memory_size", memory_size)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def artifact(self) -> pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgs']]:
+        return pulumi.get(self, "artifact")
+
+    @artifact.setter
+    def artifact(self, value: pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgs']]):
+        pulumi.set(self, "artifact", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def memory_size(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "memory_size")
+
+    @memory_size.setter
+    def memory_size(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "memory_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "timeout", value)
+
+
+class GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgsDict(TypedDict):
+    s3: NotRequired[pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3ArgsDict']]]
+    zip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgs:
+    def __init__(__self__, *,
+                 s3: pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3Args']] = None,
+                 zip: pulumi.Input[Optional[_builtins.str]] = None):
+        if s3 is not None:
+            pulumi.set(__self__, "s3", s3)
+        if zip is not None:
+            pulumi.set(__self__, "zip", zip)
+
+    @_builtins.property
+    @pulumi.getter
+    def s3(self) -> pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3Args']]:
+        return pulumi.get(self, "s3")
+
+    @s3.setter
+    def s3(self, value: pulumi.Input[Optional['GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3Args']]):
+        pulumi.set(self, "s3", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def zip(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "zip")
+
+    @zip.setter
+    def zip(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "zip", value)
+
+
+class GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3ArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    object_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3Args:
+    def __init__(__self__, *,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 object_version: pulumi.Input[Optional[_builtins.str]] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if object_version is not None:
+            pulumi.set(__self__, "object_version", object_version)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def object_version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "object_version")
+
+    @object_version.setter
+    def object_version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "object_version", value)
+
+
+class GlobalConfigStorageProviderAwsSsmParametersArgsDict(TypedDict):
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class GlobalConfigStorageProviderAwsSsmParametersArgs:
+    def __init__(__self__, *,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+class GlobalConfigStorageProviderAwsSsmPathsArgsDict(TypedDict):
+    app: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    config: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    root: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    tokens: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    webhook: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class GlobalConfigStorageProviderAwsSsmPathsArgs:
+    def __init__(__self__, *,
+                 app: pulumi.Input[Optional[_builtins.str]] = None,
+                 config: pulumi.Input[Optional[_builtins.str]] = None,
+                 root: pulumi.Input[Optional[_builtins.str]] = None,
+                 tokens: pulumi.Input[Optional[_builtins.str]] = None,
+                 webhook: pulumi.Input[Optional[_builtins.str]] = None):
+        if app is not None:
+            pulumi.set(__self__, "app", app)
+        if config is not None:
+            pulumi.set(__self__, "config", config)
+        if root is not None:
+            pulumi.set(__self__, "root", root)
+        if tokens is not None:
+            pulumi.set(__self__, "tokens", tokens)
+        if webhook is not None:
+            pulumi.set(__self__, "webhook", webhook)
+
+    @_builtins.property
+    @pulumi.getter
+    def app(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "app")
+
+    @app.setter
+    def app(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "app", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def config(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "config", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def root(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "root")
+
+    @root.setter
+    def root(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "root", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tokens(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "tokens")
+
+    @tokens.setter
+    def tokens(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "tokens", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def webhook(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "webhook")
+
+    @webhook.setter
+    def webhook(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "webhook", value)
 
 
 class IamOverridesArgsDict(TypedDict):
@@ -954,22 +6603,68 @@ class MetricsMetricArgs:
 
 
 class MultiRunnerConfigArgsDict(TypedDict):
+    compute_provider: NotRequired[pulumi.Input[Optional['MultiRunnerConfigComputeProviderArgsDict']]]
+    lambda_: NotRequired[pulumi.Input[Optional['MultiRunnerConfigLambdaArgsDict']]]
     matcher_config: NotRequired[pulumi.Input[Optional['MultiRunnerConfigMatcherConfigArgsDict']]]
+    observability: NotRequired[pulumi.Input[Optional['MultiRunnerConfigObservabilityArgsDict']]]
+    orchestration_provider: NotRequired[pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderArgsDict']]]
     redrive_build_queue: NotRequired[pulumi.Input[Optional['MultiRunnerConfigRedriveBuildQueueArgsDict']]]
+    runner: NotRequired[pulumi.Input[Optional['MultiRunnerConfigRunnerArgsDict']]]
     runner_config: NotRequired[pulumi.Input[Optional['MultiRunnerConfigRunnerConfigArgsDict']]]
+    storage_provider: NotRequired[pulumi.Input[Optional['MultiRunnerConfigStorageProviderArgsDict']]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
 
 @pulumi.input_type
 class MultiRunnerConfigArgs:
     def __init__(__self__, *,
+                 compute_provider: pulumi.Input[Optional['MultiRunnerConfigComputeProviderArgs']] = None,
+                 lambda_: pulumi.Input[Optional['MultiRunnerConfigLambdaArgs']] = None,
                  matcher_config: pulumi.Input[Optional['MultiRunnerConfigMatcherConfigArgs']] = None,
+                 observability: pulumi.Input[Optional['MultiRunnerConfigObservabilityArgs']] = None,
+                 orchestration_provider: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderArgs']] = None,
                  redrive_build_queue: pulumi.Input[Optional['MultiRunnerConfigRedriveBuildQueueArgs']] = None,
-                 runner_config: pulumi.Input[Optional['MultiRunnerConfigRunnerConfigArgs']] = None):
+                 runner: pulumi.Input[Optional['MultiRunnerConfigRunnerArgs']] = None,
+                 runner_config: pulumi.Input[Optional['MultiRunnerConfigRunnerConfigArgs']] = None,
+                 storage_provider: pulumi.Input[Optional['MultiRunnerConfigStorageProviderArgs']] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        if compute_provider is not None:
+            pulumi.set(__self__, "compute_provider", compute_provider)
+        if lambda_ is not None:
+            pulumi.set(__self__, "lambda_", lambda_)
         if matcher_config is not None:
             pulumi.set(__self__, "matcher_config", matcher_config)
+        if observability is not None:
+            pulumi.set(__self__, "observability", observability)
+        if orchestration_provider is not None:
+            pulumi.set(__self__, "orchestration_provider", orchestration_provider)
         if redrive_build_queue is not None:
             pulumi.set(__self__, "redrive_build_queue", redrive_build_queue)
+        if runner is not None:
+            pulumi.set(__self__, "runner", runner)
         if runner_config is not None:
             pulumi.set(__self__, "runner_config", runner_config)
+        if storage_provider is not None:
+            pulumi.set(__self__, "storage_provider", storage_provider)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def compute_provider(self) -> pulumi.Input[Optional['MultiRunnerConfigComputeProviderArgs']]:
+        return pulumi.get(self, "compute_provider")
+
+    @compute_provider.setter
+    def compute_provider(self, value: pulumi.Input[Optional['MultiRunnerConfigComputeProviderArgs']]):
+        pulumi.set(self, "compute_provider", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lambda")
+    def lambda_(self) -> pulumi.Input[Optional['MultiRunnerConfigLambdaArgs']]:
+        return pulumi.get(self, "lambda_")
+
+    @lambda_.setter
+    def lambda_(self, value: pulumi.Input[Optional['MultiRunnerConfigLambdaArgs']]):
+        pulumi.set(self, "lambda_", value)
 
     @_builtins.property
     @pulumi.getter(name="matcherConfig")
@@ -982,6 +6677,24 @@ class MultiRunnerConfigArgs:
 
     @_builtins.property
     @pulumi.getter
+    def observability(self) -> pulumi.Input[Optional['MultiRunnerConfigObservabilityArgs']]:
+        return pulumi.get(self, "observability")
+
+    @observability.setter
+    def observability(self, value: pulumi.Input[Optional['MultiRunnerConfigObservabilityArgs']]):
+        pulumi.set(self, "observability", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def orchestration_provider(self) -> pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderArgs']]:
+        return pulumi.get(self, "orchestration_provider")
+
+    @orchestration_provider.setter
+    def orchestration_provider(self, value: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderArgs']]):
+        pulumi.set(self, "orchestration_provider", value)
+
+    @_builtins.property
+    @pulumi.getter
     def redrive_build_queue(self) -> pulumi.Input[Optional['MultiRunnerConfigRedriveBuildQueueArgs']]:
         return pulumi.get(self, "redrive_build_queue")
 
@@ -991,12 +6704,1890 @@ class MultiRunnerConfigArgs:
 
     @_builtins.property
     @pulumi.getter
+    def runner(self) -> pulumi.Input[Optional['MultiRunnerConfigRunnerArgs']]:
+        return pulumi.get(self, "runner")
+
+    @runner.setter
+    def runner(self, value: pulumi.Input[Optional['MultiRunnerConfigRunnerArgs']]):
+        pulumi.set(self, "runner", value)
+
+    @_builtins.property
+    @pulumi.getter
     def runner_config(self) -> pulumi.Input[Optional['MultiRunnerConfigRunnerConfigArgs']]:
         return pulumi.get(self, "runner_config")
 
     @runner_config.setter
     def runner_config(self, value: pulumi.Input[Optional['MultiRunnerConfigRunnerConfigArgs']]):
         pulumi.set(self, "runner_config", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def storage_provider(self) -> pulumi.Input[Optional['MultiRunnerConfigStorageProviderArgs']]:
+        return pulumi.get(self, "storage_provider")
+
+    @storage_provider.setter
+    def storage_provider(self, value: pulumi.Input[Optional['MultiRunnerConfigStorageProviderArgs']]):
+        pulumi.set(self, "storage_provider", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+class MultiRunnerConfigComputeProviderArgsDict(TypedDict):
+    aws: NotRequired[pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsArgsDict']]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderArgs:
+    def __init__(__self__, *,
+                 aws: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsArgs']] = None):
+        if aws is not None:
+            pulumi.set(__self__, "aws", aws)
+
+    @_builtins.property
+    @pulumi.getter
+    def aws(self) -> pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsArgs']]:
+        return pulumi.get(self, "aws")
+
+    @aws.setter
+    def aws(self, value: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsArgs']]):
+        pulumi.set(self, "aws", value)
+
+
+class MultiRunnerConfigComputeProviderAwsArgsDict(TypedDict):
+    ec2: NotRequired[pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2ArgsDict']]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsArgs:
+    def __init__(__self__, *,
+                 ec2: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2Args']] = None):
+        if ec2 is not None:
+            pulumi.set(__self__, "ec2", ec2)
+
+    @_builtins.property
+    @pulumi.getter
+    def ec2(self) -> pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2Args']]:
+        return pulumi.get(self, "ec2")
+
+    @ec2.setter
+    def ec2(self, value: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2Args']]):
+        pulumi.set(self, "ec2", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2ArgsDict(TypedDict):
+    additional_security_group_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    ami: NotRequired[pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2AmiArgsDict']]]
+    associate_public_ipv4_address: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    binaries_syncer: NotRequired[pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2BinariesSyncerArgsDict']]]
+    block_device_mappings: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2BlockDeviceMappingsArgsDict']]]]]
+    cloudwatch_agent: NotRequired[pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2CloudwatchAgentArgsDict']]]
+    cpu_options: NotRequired[pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2CpuOptionsArgsDict']]]
+    create_service_linked_role_spot: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    credit_specification: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    detailed_monitoring_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    ebs_optimized: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    egress_rules: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2EgressRulesArgsDict']]]]]
+    instance_allocation_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    instance_max_spot_price: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    instance_profile: NotRequired[pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2InstanceProfileArgsDict']]]
+    instance_profile_path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    instance_target_capacity_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    instance_type_priorities: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.float]]]]]
+    instance_types: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    key_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    license_specifications: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2LicenseSpecificationsArgsDict']]]]]
+    log_files: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2LogFilesArgsDict']]]]]
+    managed_security_group_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    metadata_options: NotRequired[pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2MetadataOptionsArgsDict']]]
+    network_interfaces: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesArgsDict']]]]]
+    on_demand_failover_for_errors: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    placement: NotRequired[pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2PlacementArgsDict']]]
+    scale_errors: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    ssm_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    subnet_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    use_dedicated_host: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    user_data: NotRequired[pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2UserDataArgsDict']]]
+    vpc_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2Args:
+    def __init__(__self__, *,
+                 additional_security_group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ami: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2AmiArgs']] = None,
+                 associate_public_ipv4_address: pulumi.Input[Optional[_builtins.bool]] = None,
+                 binaries_syncer: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2BinariesSyncerArgs']] = None,
+                 block_device_mappings: pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2BlockDeviceMappingsArgs']]]] = None,
+                 cloudwatch_agent: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2CloudwatchAgentArgs']] = None,
+                 cpu_options: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2CpuOptionsArgs']] = None,
+                 create_service_linked_role_spot: pulumi.Input[Optional[_builtins.bool]] = None,
+                 credit_specification: pulumi.Input[Optional[_builtins.str]] = None,
+                 detailed_monitoring_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ebs_optimized: pulumi.Input[Optional[_builtins.bool]] = None,
+                 egress_rules: pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2EgressRulesArgs']]]] = None,
+                 instance_allocation_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_max_spot_price: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_profile: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2InstanceProfileArgs']] = None,
+                 instance_profile_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_target_capacity_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_type_priorities: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.float]]]] = None,
+                 instance_types: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 key_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 license_specifications: pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2LicenseSpecificationsArgs']]]] = None,
+                 log_files: pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2LogFilesArgs']]]] = None,
+                 managed_security_group_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 metadata_options: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2MetadataOptionsArgs']] = None,
+                 network_interfaces: pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesArgs']]]] = None,
+                 on_demand_failover_for_errors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 placement: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2PlacementArgs']] = None,
+                 scale_errors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ssm_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 subnet_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 use_dedicated_host: pulumi.Input[Optional[_builtins.bool]] = None,
+                 user_data: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2UserDataArgs']] = None,
+                 vpc_id: pulumi.Input[Optional[_builtins.str]] = None):
+        if additional_security_group_ids is not None:
+            pulumi.set(__self__, "additional_security_group_ids", additional_security_group_ids)
+        if ami is not None:
+            pulumi.set(__self__, "ami", ami)
+        if associate_public_ipv4_address is not None:
+            pulumi.set(__self__, "associate_public_ipv4_address", associate_public_ipv4_address)
+        if binaries_syncer is not None:
+            pulumi.set(__self__, "binaries_syncer", binaries_syncer)
+        if block_device_mappings is not None:
+            pulumi.set(__self__, "block_device_mappings", block_device_mappings)
+        if cloudwatch_agent is not None:
+            pulumi.set(__self__, "cloudwatch_agent", cloudwatch_agent)
+        if cpu_options is not None:
+            pulumi.set(__self__, "cpu_options", cpu_options)
+        if create_service_linked_role_spot is not None:
+            pulumi.set(__self__, "create_service_linked_role_spot", create_service_linked_role_spot)
+        if credit_specification is not None:
+            pulumi.set(__self__, "credit_specification", credit_specification)
+        if detailed_monitoring_enabled is not None:
+            pulumi.set(__self__, "detailed_monitoring_enabled", detailed_monitoring_enabled)
+        if ebs_optimized is not None:
+            pulumi.set(__self__, "ebs_optimized", ebs_optimized)
+        if egress_rules is not None:
+            pulumi.set(__self__, "egress_rules", egress_rules)
+        if instance_allocation_strategy is not None:
+            pulumi.set(__self__, "instance_allocation_strategy", instance_allocation_strategy)
+        if instance_max_spot_price is not None:
+            pulumi.set(__self__, "instance_max_spot_price", instance_max_spot_price)
+        if instance_profile is not None:
+            pulumi.set(__self__, "instance_profile", instance_profile)
+        if instance_profile_path is not None:
+            pulumi.set(__self__, "instance_profile_path", instance_profile_path)
+        if instance_target_capacity_type is not None:
+            pulumi.set(__self__, "instance_target_capacity_type", instance_target_capacity_type)
+        if instance_type_priorities is not None:
+            pulumi.set(__self__, "instance_type_priorities", instance_type_priorities)
+        if instance_types is not None:
+            pulumi.set(__self__, "instance_types", instance_types)
+        if key_name is not None:
+            pulumi.set(__self__, "key_name", key_name)
+        if license_specifications is not None:
+            pulumi.set(__self__, "license_specifications", license_specifications)
+        if log_files is not None:
+            pulumi.set(__self__, "log_files", log_files)
+        if managed_security_group_enabled is not None:
+            pulumi.set(__self__, "managed_security_group_enabled", managed_security_group_enabled)
+        if metadata_options is not None:
+            pulumi.set(__self__, "metadata_options", metadata_options)
+        if network_interfaces is not None:
+            pulumi.set(__self__, "network_interfaces", network_interfaces)
+        if on_demand_failover_for_errors is not None:
+            pulumi.set(__self__, "on_demand_failover_for_errors", on_demand_failover_for_errors)
+        if placement is not None:
+            pulumi.set(__self__, "placement", placement)
+        if scale_errors is not None:
+            pulumi.set(__self__, "scale_errors", scale_errors)
+        if ssm_enabled is not None:
+            pulumi.set(__self__, "ssm_enabled", ssm_enabled)
+        if subnet_ids is not None:
+            pulumi.set(__self__, "subnet_ids", subnet_ids)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if use_dedicated_host is not None:
+            pulumi.set(__self__, "use_dedicated_host", use_dedicated_host)
+        if user_data is not None:
+            pulumi.set(__self__, "user_data", user_data)
+        if vpc_id is not None:
+            pulumi.set(__self__, "vpc_id", vpc_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def additional_security_group_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "additional_security_group_ids")
+
+    @additional_security_group_ids.setter
+    def additional_security_group_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "additional_security_group_ids", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ami(self) -> pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2AmiArgs']]:
+        return pulumi.get(self, "ami")
+
+    @ami.setter
+    def ami(self, value: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2AmiArgs']]):
+        pulumi.set(self, "ami", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def associate_public_ipv4_address(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "associate_public_ipv4_address")
+
+    @associate_public_ipv4_address.setter
+    def associate_public_ipv4_address(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "associate_public_ipv4_address", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def binaries_syncer(self) -> pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2BinariesSyncerArgs']]:
+        return pulumi.get(self, "binaries_syncer")
+
+    @binaries_syncer.setter
+    def binaries_syncer(self, value: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2BinariesSyncerArgs']]):
+        pulumi.set(self, "binaries_syncer", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def block_device_mappings(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2BlockDeviceMappingsArgs']]]]:
+        return pulumi.get(self, "block_device_mappings")
+
+    @block_device_mappings.setter
+    def block_device_mappings(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2BlockDeviceMappingsArgs']]]]):
+        pulumi.set(self, "block_device_mappings", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def cloudwatch_agent(self) -> pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2CloudwatchAgentArgs']]:
+        return pulumi.get(self, "cloudwatch_agent")
+
+    @cloudwatch_agent.setter
+    def cloudwatch_agent(self, value: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2CloudwatchAgentArgs']]):
+        pulumi.set(self, "cloudwatch_agent", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def cpu_options(self) -> pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2CpuOptionsArgs']]:
+        return pulumi.get(self, "cpu_options")
+
+    @cpu_options.setter
+    def cpu_options(self, value: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2CpuOptionsArgs']]):
+        pulumi.set(self, "cpu_options", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def create_service_linked_role_spot(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "create_service_linked_role_spot")
+
+    @create_service_linked_role_spot.setter
+    def create_service_linked_role_spot(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "create_service_linked_role_spot", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def credit_specification(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "credit_specification")
+
+    @credit_specification.setter
+    def credit_specification(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "credit_specification", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def detailed_monitoring_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "detailed_monitoring_enabled")
+
+    @detailed_monitoring_enabled.setter
+    def detailed_monitoring_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "detailed_monitoring_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ebs_optimized(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "ebs_optimized")
+
+    @ebs_optimized.setter
+    def ebs_optimized(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "ebs_optimized", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def egress_rules(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2EgressRulesArgs']]]]:
+        return pulumi.get(self, "egress_rules")
+
+    @egress_rules.setter
+    def egress_rules(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2EgressRulesArgs']]]]):
+        pulumi.set(self, "egress_rules", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def instance_allocation_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "instance_allocation_strategy")
+
+    @instance_allocation_strategy.setter
+    def instance_allocation_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "instance_allocation_strategy", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def instance_max_spot_price(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "instance_max_spot_price")
+
+    @instance_max_spot_price.setter
+    def instance_max_spot_price(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "instance_max_spot_price", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def instance_profile(self) -> pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2InstanceProfileArgs']]:
+        return pulumi.get(self, "instance_profile")
+
+    @instance_profile.setter
+    def instance_profile(self, value: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2InstanceProfileArgs']]):
+        pulumi.set(self, "instance_profile", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def instance_profile_path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "instance_profile_path")
+
+    @instance_profile_path.setter
+    def instance_profile_path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "instance_profile_path", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def instance_target_capacity_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "instance_target_capacity_type")
+
+    @instance_target_capacity_type.setter
+    def instance_target_capacity_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "instance_target_capacity_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def instance_type_priorities(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.float]]]]:
+        return pulumi.get(self, "instance_type_priorities")
+
+    @instance_type_priorities.setter
+    def instance_type_priorities(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.float]]]]):
+        pulumi.set(self, "instance_type_priorities", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def instance_types(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "instance_types")
+
+    @instance_types.setter
+    def instance_types(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "instance_types", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def key_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "key_name")
+
+    @key_name.setter
+    def key_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "key_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def license_specifications(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2LicenseSpecificationsArgs']]]]:
+        return pulumi.get(self, "license_specifications")
+
+    @license_specifications.setter
+    def license_specifications(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2LicenseSpecificationsArgs']]]]):
+        pulumi.set(self, "license_specifications", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def log_files(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2LogFilesArgs']]]]:
+        return pulumi.get(self, "log_files")
+
+    @log_files.setter
+    def log_files(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2LogFilesArgs']]]]):
+        pulumi.set(self, "log_files", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def managed_security_group_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "managed_security_group_enabled")
+
+    @managed_security_group_enabled.setter
+    def managed_security_group_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "managed_security_group_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def metadata_options(self) -> pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2MetadataOptionsArgs']]:
+        return pulumi.get(self, "metadata_options")
+
+    @metadata_options.setter
+    def metadata_options(self, value: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2MetadataOptionsArgs']]):
+        pulumi.set(self, "metadata_options", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def network_interfaces(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesArgs']]]]:
+        return pulumi.get(self, "network_interfaces")
+
+    @network_interfaces.setter
+    def network_interfaces(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesArgs']]]]):
+        pulumi.set(self, "network_interfaces", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def on_demand_failover_for_errors(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "on_demand_failover_for_errors")
+
+    @on_demand_failover_for_errors.setter
+    def on_demand_failover_for_errors(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "on_demand_failover_for_errors", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def placement(self) -> pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2PlacementArgs']]:
+        return pulumi.get(self, "placement")
+
+    @placement.setter
+    def placement(self, value: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2PlacementArgs']]):
+        pulumi.set(self, "placement", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def scale_errors(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "scale_errors")
+
+    @scale_errors.setter
+    def scale_errors(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "scale_errors", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ssm_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "ssm_enabled")
+
+    @ssm_enabled.setter
+    def ssm_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "ssm_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def subnet_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "subnet_ids")
+
+    @subnet_ids.setter
+    def subnet_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "subnet_ids", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def use_dedicated_host(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "use_dedicated_host")
+
+    @use_dedicated_host.setter
+    def use_dedicated_host(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "use_dedicated_host", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def user_data(self) -> pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2UserDataArgs']]:
+        return pulumi.get(self, "user_data")
+
+    @user_data.setter
+    def user_data(self, value: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2UserDataArgs']]):
+        pulumi.set(self, "user_data", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def vpc_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "vpc_id")
+
+    @vpc_id.setter
+    def vpc_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "vpc_id", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2AmiArgsDict(TypedDict):
+    filter: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]]]]
+    id_ssm_parameter: NotRequired[pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2AmiIdSsmParameterArgsDict']]]
+    kms_key: NotRequired[pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2AmiKmsKeyArgsDict']]]
+    owners: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2AmiArgs:
+    def __init__(__self__, *,
+                 filter: pulumi.Input[Optional[Mapping[str, pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]]] = None,
+                 id_ssm_parameter: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2AmiIdSsmParameterArgs']] = None,
+                 kms_key: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2AmiKmsKeyArgs']] = None,
+                 owners: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None):
+        if filter is not None:
+            pulumi.set(__self__, "filter", filter)
+        if id_ssm_parameter is not None:
+            pulumi.set(__self__, "id_ssm_parameter", id_ssm_parameter)
+        if kms_key is not None:
+            pulumi.set(__self__, "kms_key", kms_key)
+        if owners is not None:
+            pulumi.set(__self__, "owners", owners)
+
+    @_builtins.property
+    @pulumi.getter
+    def filter(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]]]:
+        return pulumi.get(self, "filter")
+
+    @filter.setter
+    def filter(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]]]):
+        pulumi.set(self, "filter", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def id_ssm_parameter(self) -> pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2AmiIdSsmParameterArgs']]:
+        return pulumi.get(self, "id_ssm_parameter")
+
+    @id_ssm_parameter.setter
+    def id_ssm_parameter(self, value: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2AmiIdSsmParameterArgs']]):
+        pulumi.set(self, "id_ssm_parameter", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def kms_key(self) -> pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2AmiKmsKeyArgs']]:
+        return pulumi.get(self, "kms_key")
+
+    @kms_key.setter
+    def kms_key(self, value: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2AmiKmsKeyArgs']]):
+        pulumi.set(self, "kms_key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def owners(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "owners")
+
+    @owners.setter
+    def owners(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "owners", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2AmiIdSsmParameterArgsDict(TypedDict):
+    arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2AmiIdSsmParameterArgs:
+    def __init__(__self__, *,
+                 arn: pulumi.Input[Optional[_builtins.str]] = None):
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
+
+    @_builtins.property
+    @pulumi.getter
+    def arn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "arn")
+
+    @arn.setter
+    def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "arn", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2AmiKmsKeyArgsDict(TypedDict):
+    arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2AmiKmsKeyArgs:
+    def __init__(__self__, *,
+                 arn: pulumi.Input[Optional[_builtins.str]] = None):
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
+
+    @_builtins.property
+    @pulumi.getter
+    def arn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "arn")
+
+    @arn.setter
+    def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "arn", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2BinariesSyncerArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2BinariesSyncerArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2BlockDeviceMappingsArgsDict(TypedDict):
+    delete_on_termination: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    device_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    encrypted: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    iops: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    kms_key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    snapshot_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    throughput: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    volume_initialization_rate: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    volume_size: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    volume_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2BlockDeviceMappingsArgs:
+    def __init__(__self__, *,
+                 delete_on_termination: pulumi.Input[Optional[_builtins.bool]] = None,
+                 device_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 encrypted: pulumi.Input[Optional[_builtins.bool]] = None,
+                 iops: pulumi.Input[Optional[_builtins.float]] = None,
+                 kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 snapshot_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 throughput: pulumi.Input[Optional[_builtins.float]] = None,
+                 volume_initialization_rate: pulumi.Input[Optional[_builtins.float]] = None,
+                 volume_size: pulumi.Input[Optional[_builtins.float]] = None,
+                 volume_type: pulumi.Input[Optional[_builtins.str]] = None):
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if device_name is not None:
+            pulumi.set(__self__, "device_name", device_name)
+        if encrypted is not None:
+            pulumi.set(__self__, "encrypted", encrypted)
+        if iops is not None:
+            pulumi.set(__self__, "iops", iops)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if snapshot_id is not None:
+            pulumi.set(__self__, "snapshot_id", snapshot_id)
+        if throughput is not None:
+            pulumi.set(__self__, "throughput", throughput)
+        if volume_initialization_rate is not None:
+            pulumi.set(__self__, "volume_initialization_rate", volume_initialization_rate)
+        if volume_size is not None:
+            pulumi.set(__self__, "volume_size", volume_size)
+        if volume_type is not None:
+            pulumi.set(__self__, "volume_type", volume_type)
+
+    @_builtins.property
+    @pulumi.getter
+    def delete_on_termination(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "delete_on_termination")
+
+    @delete_on_termination.setter
+    def delete_on_termination(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "delete_on_termination", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def device_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "device_name")
+
+    @device_name.setter
+    def device_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "device_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def encrypted(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "encrypted")
+
+    @encrypted.setter
+    def encrypted(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "encrypted", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def iops(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "iops")
+
+    @iops.setter
+    def iops(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "iops", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def kms_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "kms_key_id")
+
+    @kms_key_id.setter
+    def kms_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "kms_key_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def snapshot_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "snapshot_id")
+
+    @snapshot_id.setter
+    def snapshot_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "snapshot_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def throughput(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "throughput")
+
+    @throughput.setter
+    def throughput(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "throughput", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def volume_initialization_rate(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "volume_initialization_rate")
+
+    @volume_initialization_rate.setter
+    def volume_initialization_rate(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "volume_initialization_rate", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def volume_size(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "volume_size")
+
+    @volume_size.setter
+    def volume_size(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "volume_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def volume_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "volume_type")
+
+    @volume_type.setter
+    def volume_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "volume_type", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2CloudwatchAgentArgsDict(TypedDict):
+    config: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2CloudwatchAgentArgs:
+    def __init__(__self__, *,
+                 config: pulumi.Input[Optional[_builtins.str]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None):
+        if config is not None:
+            pulumi.set(__self__, "config", config)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def config(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "config", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2CpuOptionsArgsDict(TypedDict):
+    amd_sev_snp: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    core_count: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    nested_virtualization: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    threads_per_core: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2CpuOptionsArgs:
+    def __init__(__self__, *,
+                 amd_sev_snp: pulumi.Input[Optional[_builtins.str]] = None,
+                 core_count: pulumi.Input[Optional[_builtins.float]] = None,
+                 nested_virtualization: pulumi.Input[Optional[_builtins.str]] = None,
+                 threads_per_core: pulumi.Input[Optional[_builtins.float]] = None):
+        if amd_sev_snp is not None:
+            pulumi.set(__self__, "amd_sev_snp", amd_sev_snp)
+        if core_count is not None:
+            pulumi.set(__self__, "core_count", core_count)
+        if nested_virtualization is not None:
+            pulumi.set(__self__, "nested_virtualization", nested_virtualization)
+        if threads_per_core is not None:
+            pulumi.set(__self__, "threads_per_core", threads_per_core)
+
+    @_builtins.property
+    @pulumi.getter
+    def amd_sev_snp(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "amd_sev_snp")
+
+    @amd_sev_snp.setter
+    def amd_sev_snp(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "amd_sev_snp", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def core_count(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "core_count")
+
+    @core_count.setter
+    def core_count(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "core_count", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def nested_virtualization(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "nested_virtualization")
+
+    @nested_virtualization.setter
+    def nested_virtualization(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "nested_virtualization", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def threads_per_core(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "threads_per_core")
+
+    @threads_per_core.setter
+    def threads_per_core(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "threads_per_core", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2EgressRulesArgsDict(TypedDict):
+    cidr_blocks: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    from_port: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    ipv6_cidr_blocks: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    prefix_list_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    protocol: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    security_groups: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    self: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    to_port: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2EgressRulesArgs:
+    def __init__(__self__, *,
+                 cidr_blocks: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 from_port: pulumi.Input[Optional[_builtins.float]] = None,
+                 ipv6_cidr_blocks: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 prefix_list_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 protocol: pulumi.Input[Optional[_builtins.str]] = None,
+                 security_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 self: pulumi.Input[Optional[_builtins.bool]] = None,
+                 to_port: pulumi.Input[Optional[_builtins.float]] = None):
+        if cidr_blocks is not None:
+            pulumi.set(__self__, "cidr_blocks", cidr_blocks)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if from_port is not None:
+            pulumi.set(__self__, "from_port", from_port)
+        if ipv6_cidr_blocks is not None:
+            pulumi.set(__self__, "ipv6_cidr_blocks", ipv6_cidr_blocks)
+        if prefix_list_ids is not None:
+            pulumi.set(__self__, "prefix_list_ids", prefix_list_ids)
+        if protocol is not None:
+            pulumi.set(__self__, "protocol", protocol)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if self is not None:
+            pulumi.set(__self__, "self", self)
+        if to_port is not None:
+            pulumi.set(__self__, "to_port", to_port)
+
+    @_builtins.property
+    @pulumi.getter
+    def cidr_blocks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "cidr_blocks")
+
+    @cidr_blocks.setter
+    def cidr_blocks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "cidr_blocks", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def from_port(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "from_port")
+
+    @from_port.setter
+    def from_port(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "from_port", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv6_cidr_blocks(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "ipv6_cidr_blocks")
+
+    @ipv6_cidr_blocks.setter
+    def ipv6_cidr_blocks(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "ipv6_cidr_blocks", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def prefix_list_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "prefix_list_ids")
+
+    @prefix_list_ids.setter
+    def prefix_list_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "prefix_list_ids", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def protocol(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "protocol")
+
+    @protocol.setter
+    def protocol(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "protocol", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def security_groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "security_groups")
+
+    @security_groups.setter
+    def security_groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "security_groups", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def self(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "self")
+
+    @self.setter
+    def self(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "self", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def to_port(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "to_port")
+
+    @to_port.setter
+    def to_port(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "to_port", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2InstanceProfileArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2InstanceProfileArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[Optional[_builtins.str]] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2LicenseSpecificationsArgsDict(TypedDict):
+    license_configuration_arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2LicenseSpecificationsArgs:
+    def __init__(__self__, *,
+                 license_configuration_arn: pulumi.Input[Optional[_builtins.str]] = None):
+        if license_configuration_arn is not None:
+            pulumi.set(__self__, "license_configuration_arn", license_configuration_arn)
+
+    @_builtins.property
+    @pulumi.getter
+    def license_configuration_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "license_configuration_arn")
+
+    @license_configuration_arn.setter
+    def license_configuration_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "license_configuration_arn", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2LogFilesArgsDict(TypedDict):
+    file_path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    log_class: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    log_group_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    log_stream_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    prefix_log_group: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2LogFilesArgs:
+    def __init__(__self__, *,
+                 file_path: pulumi.Input[Optional[_builtins.str]] = None,
+                 log_class: pulumi.Input[Optional[_builtins.str]] = None,
+                 log_group_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 log_stream_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 prefix_log_group: pulumi.Input[Optional[_builtins.bool]] = None):
+        if file_path is not None:
+            pulumi.set(__self__, "file_path", file_path)
+        if log_class is not None:
+            pulumi.set(__self__, "log_class", log_class)
+        if log_group_name is not None:
+            pulumi.set(__self__, "log_group_name", log_group_name)
+        if log_stream_name is not None:
+            pulumi.set(__self__, "log_stream_name", log_stream_name)
+        if prefix_log_group is not None:
+            pulumi.set(__self__, "prefix_log_group", prefix_log_group)
+
+    @_builtins.property
+    @pulumi.getter
+    def file_path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "file_path")
+
+    @file_path.setter
+    def file_path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "file_path", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def log_class(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "log_class")
+
+    @log_class.setter
+    def log_class(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "log_class", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def log_group_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "log_group_name")
+
+    @log_group_name.setter
+    def log_group_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "log_group_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def log_stream_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "log_stream_name")
+
+    @log_stream_name.setter
+    def log_stream_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "log_stream_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def prefix_log_group(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "prefix_log_group")
+
+    @prefix_log_group.setter
+    def prefix_log_group(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "prefix_log_group", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2MetadataOptionsArgsDict(TypedDict):
+    http_endpoint: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    http_put_response_hop_limit: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    http_tokens: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    instance_metadata_tags: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2MetadataOptionsArgs:
+    def __init__(__self__, *,
+                 http_endpoint: pulumi.Input[Optional[_builtins.str]] = None,
+                 http_put_response_hop_limit: pulumi.Input[Optional[_builtins.float]] = None,
+                 http_tokens: pulumi.Input[Optional[_builtins.str]] = None,
+                 instance_metadata_tags: pulumi.Input[Optional[_builtins.str]] = None):
+        if http_endpoint is not None:
+            pulumi.set(__self__, "http_endpoint", http_endpoint)
+        if http_put_response_hop_limit is not None:
+            pulumi.set(__self__, "http_put_response_hop_limit", http_put_response_hop_limit)
+        if http_tokens is not None:
+            pulumi.set(__self__, "http_tokens", http_tokens)
+        if instance_metadata_tags is not None:
+            pulumi.set(__self__, "instance_metadata_tags", instance_metadata_tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def http_endpoint(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "http_endpoint")
+
+    @http_endpoint.setter
+    def http_endpoint(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "http_endpoint", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def http_put_response_hop_limit(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "http_put_response_hop_limit")
+
+    @http_put_response_hop_limit.setter
+    def http_put_response_hop_limit(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "http_put_response_hop_limit", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def http_tokens(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "http_tokens")
+
+    @http_tokens.setter
+    def http_tokens(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "http_tokens", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def instance_metadata_tags(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "instance_metadata_tags")
+
+    @instance_metadata_tags.setter
+    def instance_metadata_tags(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "instance_metadata_tags", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesArgsDict(TypedDict):
+    associate_carrier_ip_address: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    associate_public_ip_address: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    connection_tracking_specification: NotRequired[pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesConnectionTrackingSpecificationArgsDict']]]
+    delete_on_termination: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    device_index: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    ena_srd_specification: NotRequired[pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationArgsDict']]]
+    interface_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    ipv4_address_count: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    ipv4_addresses: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    ipv4_prefix_count: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    ipv4_prefixes: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    ipv6_address_count: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    ipv6_addresses: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    ipv6_prefix_count: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    ipv6_prefixes: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    network_card_index: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    network_interface_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    primary_ipv6: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    private_ip_address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    security_groups: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    subnet_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesArgs:
+    def __init__(__self__, *,
+                 associate_carrier_ip_address: pulumi.Input[Optional[_builtins.bool]] = None,
+                 associate_public_ip_address: pulumi.Input[Optional[_builtins.bool]] = None,
+                 connection_tracking_specification: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesConnectionTrackingSpecificationArgs']] = None,
+                 delete_on_termination: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 device_index: pulumi.Input[Optional[_builtins.float]] = None,
+                 ena_srd_specification: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationArgs']] = None,
+                 interface_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipv4_address_count: pulumi.Input[Optional[_builtins.float]] = None,
+                 ipv4_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipv4_prefix_count: pulumi.Input[Optional[_builtins.float]] = None,
+                 ipv4_prefixes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipv6_address_count: pulumi.Input[Optional[_builtins.float]] = None,
+                 ipv6_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipv6_prefix_count: pulumi.Input[Optional[_builtins.float]] = None,
+                 ipv6_prefixes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 network_card_index: pulumi.Input[Optional[_builtins.float]] = None,
+                 network_interface_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 primary_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 private_ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 security_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 subnet_id: pulumi.Input[Optional[_builtins.str]] = None):
+        if associate_carrier_ip_address is not None:
+            pulumi.set(__self__, "associate_carrier_ip_address", associate_carrier_ip_address)
+        if associate_public_ip_address is not None:
+            pulumi.set(__self__, "associate_public_ip_address", associate_public_ip_address)
+        if connection_tracking_specification is not None:
+            pulumi.set(__self__, "connection_tracking_specification", connection_tracking_specification)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if device_index is not None:
+            pulumi.set(__self__, "device_index", device_index)
+        if ena_srd_specification is not None:
+            pulumi.set(__self__, "ena_srd_specification", ena_srd_specification)
+        if interface_type is not None:
+            pulumi.set(__self__, "interface_type", interface_type)
+        if ipv4_address_count is not None:
+            pulumi.set(__self__, "ipv4_address_count", ipv4_address_count)
+        if ipv4_addresses is not None:
+            pulumi.set(__self__, "ipv4_addresses", ipv4_addresses)
+        if ipv4_prefix_count is not None:
+            pulumi.set(__self__, "ipv4_prefix_count", ipv4_prefix_count)
+        if ipv4_prefixes is not None:
+            pulumi.set(__self__, "ipv4_prefixes", ipv4_prefixes)
+        if ipv6_address_count is not None:
+            pulumi.set(__self__, "ipv6_address_count", ipv6_address_count)
+        if ipv6_addresses is not None:
+            pulumi.set(__self__, "ipv6_addresses", ipv6_addresses)
+        if ipv6_prefix_count is not None:
+            pulumi.set(__self__, "ipv6_prefix_count", ipv6_prefix_count)
+        if ipv6_prefixes is not None:
+            pulumi.set(__self__, "ipv6_prefixes", ipv6_prefixes)
+        if network_card_index is not None:
+            pulumi.set(__self__, "network_card_index", network_card_index)
+        if network_interface_id is not None:
+            pulumi.set(__self__, "network_interface_id", network_interface_id)
+        if primary_ipv6 is not None:
+            pulumi.set(__self__, "primary_ipv6", primary_ipv6)
+        if private_ip_address is not None:
+            pulumi.set(__self__, "private_ip_address", private_ip_address)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def associate_carrier_ip_address(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "associate_carrier_ip_address")
+
+    @associate_carrier_ip_address.setter
+    def associate_carrier_ip_address(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "associate_carrier_ip_address", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def associate_public_ip_address(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "associate_public_ip_address")
+
+    @associate_public_ip_address.setter
+    def associate_public_ip_address(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "associate_public_ip_address", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def connection_tracking_specification(self) -> pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesConnectionTrackingSpecificationArgs']]:
+        return pulumi.get(self, "connection_tracking_specification")
+
+    @connection_tracking_specification.setter
+    def connection_tracking_specification(self, value: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesConnectionTrackingSpecificationArgs']]):
+        pulumi.set(self, "connection_tracking_specification", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def delete_on_termination(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "delete_on_termination")
+
+    @delete_on_termination.setter
+    def delete_on_termination(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "delete_on_termination", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def device_index(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "device_index")
+
+    @device_index.setter
+    def device_index(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "device_index", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ena_srd_specification(self) -> pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationArgs']]:
+        return pulumi.get(self, "ena_srd_specification")
+
+    @ena_srd_specification.setter
+    def ena_srd_specification(self, value: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationArgs']]):
+        pulumi.set(self, "ena_srd_specification", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def interface_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "interface_type")
+
+    @interface_type.setter
+    def interface_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "interface_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv4_address_count(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "ipv4_address_count")
+
+    @ipv4_address_count.setter
+    def ipv4_address_count(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "ipv4_address_count", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv4_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "ipv4_addresses")
+
+    @ipv4_addresses.setter
+    def ipv4_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "ipv4_addresses", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv4_prefix_count(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "ipv4_prefix_count")
+
+    @ipv4_prefix_count.setter
+    def ipv4_prefix_count(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "ipv4_prefix_count", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv4_prefixes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "ipv4_prefixes")
+
+    @ipv4_prefixes.setter
+    def ipv4_prefixes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "ipv4_prefixes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv6_address_count(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "ipv6_address_count")
+
+    @ipv6_address_count.setter
+    def ipv6_address_count(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "ipv6_address_count", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv6_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "ipv6_addresses")
+
+    @ipv6_addresses.setter
+    def ipv6_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "ipv6_addresses", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv6_prefix_count(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "ipv6_prefix_count")
+
+    @ipv6_prefix_count.setter
+    def ipv6_prefix_count(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "ipv6_prefix_count", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv6_prefixes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "ipv6_prefixes")
+
+    @ipv6_prefixes.setter
+    def ipv6_prefixes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "ipv6_prefixes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def network_card_index(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "network_card_index")
+
+    @network_card_index.setter
+    def network_card_index(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "network_card_index", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def network_interface_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "network_interface_id")
+
+    @network_interface_id.setter
+    def network_interface_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "network_interface_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def primary_ipv6(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "primary_ipv6")
+
+    @primary_ipv6.setter
+    def primary_ipv6(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "primary_ipv6", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def private_ip_address(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "private_ip_address")
+
+    @private_ip_address.setter
+    def private_ip_address(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_ip_address", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def security_groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "security_groups")
+
+    @security_groups.setter
+    def security_groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "security_groups", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def subnet_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "subnet_id")
+
+    @subnet_id.setter
+    def subnet_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "subnet_id", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesConnectionTrackingSpecificationArgsDict(TypedDict):
+    tcp_established_timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    udp_stream_timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    udp_timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesConnectionTrackingSpecificationArgs:
+    def __init__(__self__, *,
+                 tcp_established_timeout: pulumi.Input[Optional[_builtins.float]] = None,
+                 udp_stream_timeout: pulumi.Input[Optional[_builtins.float]] = None,
+                 udp_timeout: pulumi.Input[Optional[_builtins.float]] = None):
+        if tcp_established_timeout is not None:
+            pulumi.set(__self__, "tcp_established_timeout", tcp_established_timeout)
+        if udp_stream_timeout is not None:
+            pulumi.set(__self__, "udp_stream_timeout", udp_stream_timeout)
+        if udp_timeout is not None:
+            pulumi.set(__self__, "udp_timeout", udp_timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def tcp_established_timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "tcp_established_timeout")
+
+    @tcp_established_timeout.setter
+    def tcp_established_timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "tcp_established_timeout", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def udp_stream_timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "udp_stream_timeout")
+
+    @udp_stream_timeout.setter
+    def udp_stream_timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "udp_stream_timeout", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def udp_timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "udp_timeout")
+
+    @udp_timeout.setter
+    def udp_timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "udp_timeout", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationArgsDict(TypedDict):
+    ena_srd_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    ena_srd_udp_specification: NotRequired[pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgsDict']]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationArgs:
+    def __init__(__self__, *,
+                 ena_srd_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ena_srd_udp_specification: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgs']] = None):
+        if ena_srd_enabled is not None:
+            pulumi.set(__self__, "ena_srd_enabled", ena_srd_enabled)
+        if ena_srd_udp_specification is not None:
+            pulumi.set(__self__, "ena_srd_udp_specification", ena_srd_udp_specification)
+
+    @_builtins.property
+    @pulumi.getter
+    def ena_srd_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "ena_srd_enabled")
+
+    @ena_srd_enabled.setter
+    def ena_srd_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "ena_srd_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ena_srd_udp_specification(self) -> pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgs']]:
+        return pulumi.get(self, "ena_srd_udp_specification")
+
+    @ena_srd_udp_specification.setter
+    def ena_srd_udp_specification(self, value: pulumi.Input[Optional['MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgs']]):
+        pulumi.set(self, "ena_srd_udp_specification", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgsDict(TypedDict):
+    ena_srd_udp_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgs:
+    def __init__(__self__, *,
+                 ena_srd_udp_enabled: pulumi.Input[Optional[_builtins.bool]] = None):
+        if ena_srd_udp_enabled is not None:
+            pulumi.set(__self__, "ena_srd_udp_enabled", ena_srd_udp_enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def ena_srd_udp_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "ena_srd_udp_enabled")
+
+    @ena_srd_udp_enabled.setter
+    def ena_srd_udp_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "ena_srd_udp_enabled", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2PlacementArgsDict(TypedDict):
+    affinity: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    availability_zone: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    group_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    group_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    host_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    host_resource_group_arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    partition_number: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    spread_domain: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    tenancy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2PlacementArgs:
+    def __init__(__self__, *,
+                 affinity: pulumi.Input[Optional[_builtins.str]] = None,
+                 availability_zone: pulumi.Input[Optional[_builtins.str]] = None,
+                 group_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 group_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 host_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 host_resource_group_arn: pulumi.Input[Optional[_builtins.str]] = None,
+                 partition_number: pulumi.Input[Optional[_builtins.float]] = None,
+                 spread_domain: pulumi.Input[Optional[_builtins.str]] = None,
+                 tenancy: pulumi.Input[Optional[_builtins.str]] = None):
+        if affinity is not None:
+            pulumi.set(__self__, "affinity", affinity)
+        if availability_zone is not None:
+            pulumi.set(__self__, "availability_zone", availability_zone)
+        if group_id is not None:
+            pulumi.set(__self__, "group_id", group_id)
+        if group_name is not None:
+            pulumi.set(__self__, "group_name", group_name)
+        if host_id is not None:
+            pulumi.set(__self__, "host_id", host_id)
+        if host_resource_group_arn is not None:
+            pulumi.set(__self__, "host_resource_group_arn", host_resource_group_arn)
+        if partition_number is not None:
+            pulumi.set(__self__, "partition_number", partition_number)
+        if spread_domain is not None:
+            pulumi.set(__self__, "spread_domain", spread_domain)
+        if tenancy is not None:
+            pulumi.set(__self__, "tenancy", tenancy)
+
+    @_builtins.property
+    @pulumi.getter
+    def affinity(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "affinity")
+
+    @affinity.setter
+    def affinity(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "affinity", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def availability_zone(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "availability_zone")
+
+    @availability_zone.setter
+    def availability_zone(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "availability_zone", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def group_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "group_id")
+
+    @group_id.setter
+    def group_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "group_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def group_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "group_name")
+
+    @group_name.setter
+    def group_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "group_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def host_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "host_id")
+
+    @host_id.setter
+    def host_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "host_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def host_resource_group_arn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "host_resource_group_arn")
+
+    @host_resource_group_arn.setter
+    def host_resource_group_arn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "host_resource_group_arn", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def partition_number(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "partition_number")
+
+    @partition_number.setter
+    def partition_number(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "partition_number", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def spread_domain(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "spread_domain")
+
+    @spread_domain.setter
+    def spread_domain(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "spread_domain", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tenancy(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "tenancy")
+
+    @tenancy.setter
+    def tenancy(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "tenancy", value)
+
+
+class MultiRunnerConfigComputeProviderAwsEc2UserDataArgsDict(TypedDict):
+    content: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    debug_logging_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    post_install: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    pre_install: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    template: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigComputeProviderAwsEc2UserDataArgs:
+    def __init__(__self__, *,
+                 content: pulumi.Input[Optional[_builtins.str]] = None,
+                 debug_logging_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 post_install: pulumi.Input[Optional[_builtins.str]] = None,
+                 pre_install: pulumi.Input[Optional[_builtins.str]] = None,
+                 template: pulumi.Input[Optional[_builtins.str]] = None):
+        if content is not None:
+            pulumi.set(__self__, "content", content)
+        if debug_logging_enabled is not None:
+            pulumi.set(__self__, "debug_logging_enabled", debug_logging_enabled)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if post_install is not None:
+            pulumi.set(__self__, "post_install", post_install)
+        if pre_install is not None:
+            pulumi.set(__self__, "pre_install", pre_install)
+        if template is not None:
+            pulumi.set(__self__, "template", template)
+
+    @_builtins.property
+    @pulumi.getter
+    def content(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "content")
+
+    @content.setter
+    def content(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "content", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def debug_logging_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "debug_logging_enabled")
+
+    @debug_logging_enabled.setter
+    def debug_logging_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "debug_logging_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def post_install(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "post_install")
+
+    @post_install.setter
+    def post_install(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "post_install", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def pre_install(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "pre_install")
+
+    @pre_install.setter
+    def pre_install(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "pre_install", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def template(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "template")
+
+    @template.setter
+    def template(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "template", value)
+
+
+class MultiRunnerConfigLambdaArgsDict(TypedDict):
+    architecture: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    role: NotRequired[pulumi.Input[Optional['MultiRunnerConfigLambdaRoleArgsDict']]]
+    runtime: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    security_group_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    subnet_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class MultiRunnerConfigLambdaArgs:
+    def __init__(__self__, *,
+                 architecture: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional['MultiRunnerConfigLambdaRoleArgs']] = None,
+                 runtime: pulumi.Input[Optional[_builtins.str]] = None,
+                 security_group_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 subnet_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        if architecture is not None:
+            pulumi.set(__self__, "architecture", architecture)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+        if runtime is not None:
+            pulumi.set(__self__, "runtime", runtime)
+        if security_group_ids is not None:
+            pulumi.set(__self__, "security_group_ids", security_group_ids)
+        if subnet_ids is not None:
+            pulumi.set(__self__, "subnet_ids", subnet_ids)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def architecture(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "architecture")
+
+    @architecture.setter
+    def architecture(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "architecture", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[Optional['MultiRunnerConfigLambdaRoleArgs']]:
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[Optional['MultiRunnerConfigLambdaRoleArgs']]):
+        pulumi.set(self, "role", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def runtime(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "runtime")
+
+    @runtime.setter
+    def runtime(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "runtime", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def security_group_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "security_group_ids")
+
+    @security_group_ids.setter
+    def security_group_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "security_group_ids", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def subnet_ids(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "subnet_ids")
+
+    @subnet_ids.setter
+    def subnet_ids(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "subnet_ids", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+class MultiRunnerConfigLambdaRoleArgsDict(TypedDict):
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    permissions_boundary: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigLambdaRoleArgs:
+    def __init__(__self__, *,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 permissions_boundary: pulumi.Input[Optional[_builtins.str]] = None):
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if permissions_boundary is not None:
+            pulumi.set(__self__, "permissions_boundary", permissions_boundary)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "path", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def permissions_boundary(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "permissions_boundary")
+
+    @permissions_boundary.setter
+    def permissions_boundary(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "permissions_boundary", value)
 
 
 class MultiRunnerConfigMatcherConfigArgsDict(TypedDict):
@@ -1084,6 +8675,1496 @@ class MultiRunnerConfigMatcherConfigArgs:
         pulumi.set(self, "priority", value)
 
 
+class MultiRunnerConfigObservabilityArgsDict(TypedDict):
+    logs: NotRequired[pulumi.Input[Optional['MultiRunnerConfigObservabilityLogsArgsDict']]]
+    metrics: NotRequired[pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsArgsDict']]]
+    tracing: NotRequired[pulumi.Input[Optional['MultiRunnerConfigObservabilityTracingArgsDict']]]
+
+@pulumi.input_type
+class MultiRunnerConfigObservabilityArgs:
+    def __init__(__self__, *,
+                 logs: pulumi.Input[Optional['MultiRunnerConfigObservabilityLogsArgs']] = None,
+                 metrics: pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsArgs']] = None,
+                 tracing: pulumi.Input[Optional['MultiRunnerConfigObservabilityTracingArgs']] = None):
+        if logs is not None:
+            pulumi.set(__self__, "logs", logs)
+        if metrics is not None:
+            pulumi.set(__self__, "metrics", metrics)
+        if tracing is not None:
+            pulumi.set(__self__, "tracing", tracing)
+
+    @_builtins.property
+    @pulumi.getter
+    def logs(self) -> pulumi.Input[Optional['MultiRunnerConfigObservabilityLogsArgs']]:
+        return pulumi.get(self, "logs")
+
+    @logs.setter
+    def logs(self, value: pulumi.Input[Optional['MultiRunnerConfigObservabilityLogsArgs']]):
+        pulumi.set(self, "logs", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def metrics(self) -> pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsArgs']]:
+        return pulumi.get(self, "metrics")
+
+    @metrics.setter
+    def metrics(self, value: pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsArgs']]):
+        pulumi.set(self, "metrics", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tracing(self) -> pulumi.Input[Optional['MultiRunnerConfigObservabilityTracingArgs']]:
+        return pulumi.get(self, "tracing")
+
+    @tracing.setter
+    def tracing(self, value: pulumi.Input[Optional['MultiRunnerConfigObservabilityTracingArgs']]):
+        pulumi.set(self, "tracing", value)
+
+
+class MultiRunnerConfigObservabilityLogsArgsDict(TypedDict):
+    class_: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    kms_key_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    level: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    retention_in_days: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class MultiRunnerConfigObservabilityLogsArgs:
+    def __init__(__self__, *,
+                 class_: pulumi.Input[Optional[_builtins.str]] = None,
+                 kms_key_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 level: pulumi.Input[Optional[_builtins.str]] = None,
+                 retention_in_days: pulumi.Input[Optional[_builtins.float]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        if class_ is not None:
+            pulumi.set(__self__, "class_", class_)
+        if kms_key_id is not None:
+            pulumi.set(__self__, "kms_key_id", kms_key_id)
+        if level is not None:
+            pulumi.set(__self__, "level", level)
+        if retention_in_days is not None:
+            pulumi.set(__self__, "retention_in_days", retention_in_days)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter(name="class")
+    def class_(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "class_")
+
+    @class_.setter
+    def class_(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "class_", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def kms_key_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "kms_key_id")
+
+    @kms_key_id.setter
+    def kms_key_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "kms_key_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def level(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "level")
+
+    @level.setter
+    def level(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "level", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def retention_in_days(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "retention_in_days")
+
+    @retention_in_days.setter
+    def retention_in_days(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "retention_in_days", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+class MultiRunnerConfigObservabilityMetricsArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    metric: NotRequired[pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsMetricArgsDict']]]
+    namespace: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigObservabilityMetricsArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 metric: pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsMetricArgs']] = None,
+                 namespace: pulumi.Input[Optional[_builtins.str]] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if metric is not None:
+            pulumi.set(__self__, "metric", metric)
+        if namespace is not None:
+            pulumi.set(__self__, "namespace", namespace)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def metric(self) -> pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsMetricArgs']]:
+        return pulumi.get(self, "metric")
+
+    @metric.setter
+    def metric(self, value: pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsMetricArgs']]):
+        pulumi.set(self, "metric", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def namespace(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "namespace")
+
+    @namespace.setter
+    def namespace(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "namespace", value)
+
+
+class MultiRunnerConfigObservabilityMetricsMetricArgsDict(TypedDict):
+    github_app_rate_limit: NotRequired[pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsMetricGithubAppRateLimitArgsDict']]]
+    job_retry: NotRequired[pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsMetricJobRetryArgsDict']]]
+    spot_termination_warning: NotRequired[pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsMetricSpotTerminationWarningArgsDict']]]
+
+@pulumi.input_type
+class MultiRunnerConfigObservabilityMetricsMetricArgs:
+    def __init__(__self__, *,
+                 github_app_rate_limit: pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsMetricGithubAppRateLimitArgs']] = None,
+                 job_retry: pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsMetricJobRetryArgs']] = None,
+                 spot_termination_warning: pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsMetricSpotTerminationWarningArgs']] = None):
+        if github_app_rate_limit is not None:
+            pulumi.set(__self__, "github_app_rate_limit", github_app_rate_limit)
+        if job_retry is not None:
+            pulumi.set(__self__, "job_retry", job_retry)
+        if spot_termination_warning is not None:
+            pulumi.set(__self__, "spot_termination_warning", spot_termination_warning)
+
+    @_builtins.property
+    @pulumi.getter
+    def github_app_rate_limit(self) -> pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsMetricGithubAppRateLimitArgs']]:
+        return pulumi.get(self, "github_app_rate_limit")
+
+    @github_app_rate_limit.setter
+    def github_app_rate_limit(self, value: pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsMetricGithubAppRateLimitArgs']]):
+        pulumi.set(self, "github_app_rate_limit", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def job_retry(self) -> pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsMetricJobRetryArgs']]:
+        return pulumi.get(self, "job_retry")
+
+    @job_retry.setter
+    def job_retry(self, value: pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsMetricJobRetryArgs']]):
+        pulumi.set(self, "job_retry", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def spot_termination_warning(self) -> pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsMetricSpotTerminationWarningArgs']]:
+        return pulumi.get(self, "spot_termination_warning")
+
+    @spot_termination_warning.setter
+    def spot_termination_warning(self, value: pulumi.Input[Optional['MultiRunnerConfigObservabilityMetricsMetricSpotTerminationWarningArgs']]):
+        pulumi.set(self, "spot_termination_warning", value)
+
+
+class MultiRunnerConfigObservabilityMetricsMetricGithubAppRateLimitArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+
+@pulumi.input_type
+class MultiRunnerConfigObservabilityMetricsMetricGithubAppRateLimitArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+
+class MultiRunnerConfigObservabilityMetricsMetricJobRetryArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+
+@pulumi.input_type
+class MultiRunnerConfigObservabilityMetricsMetricJobRetryArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+
+class MultiRunnerConfigObservabilityMetricsMetricSpotTerminationWarningArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+
+@pulumi.input_type
+class MultiRunnerConfigObservabilityMetricsMetricSpotTerminationWarningArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+
+class MultiRunnerConfigObservabilityTracingArgsDict(TypedDict):
+    capture_error: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    capture_http_requests: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    mode: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigObservabilityTracingArgs:
+    def __init__(__self__, *,
+                 capture_error: pulumi.Input[Optional[_builtins.bool]] = None,
+                 capture_http_requests: pulumi.Input[Optional[_builtins.bool]] = None,
+                 mode: pulumi.Input[Optional[_builtins.str]] = None):
+        if capture_error is not None:
+            pulumi.set(__self__, "capture_error", capture_error)
+        if capture_http_requests is not None:
+            pulumi.set(__self__, "capture_http_requests", capture_http_requests)
+        if mode is not None:
+            pulumi.set(__self__, "mode", mode)
+
+    @_builtins.property
+    @pulumi.getter
+    def capture_error(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "capture_error")
+
+    @capture_error.setter
+    def capture_error(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "capture_error", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def capture_http_requests(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "capture_http_requests")
+
+    @capture_http_requests.setter
+    def capture_http_requests(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "capture_http_requests", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def mode(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "mode")
+
+    @mode.setter
+    def mode(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "mode", value)
+
+
+class MultiRunnerConfigOrchestrationProviderArgsDict(TypedDict):
+    scale_set: NotRequired[pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderScaleSetArgsDict']]]
+    webhook: NotRequired[pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookArgsDict']]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderArgs:
+    def __init__(__self__, *,
+                 scale_set: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderScaleSetArgs']] = None,
+                 webhook: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookArgs']] = None):
+        if scale_set is not None:
+            pulumi.set(__self__, "scale_set", scale_set)
+        if webhook is not None:
+            pulumi.set(__self__, "webhook", webhook)
+
+    @_builtins.property
+    @pulumi.getter
+    def scale_set(self) -> pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderScaleSetArgs']]:
+        return pulumi.get(self, "scale_set")
+
+    @scale_set.setter
+    def scale_set(self, value: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderScaleSetArgs']]):
+        pulumi.set(self, "scale_set", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def webhook(self) -> pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookArgs']]:
+        return pulumi.get(self, "webhook")
+
+    @webhook.setter
+    def webhook(self, value: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookArgs']]):
+        pulumi.set(self, "webhook", value)
+
+
+class MultiRunnerConfigOrchestrationProviderScaleSetArgsDict(TypedDict):
+    name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    runner: NotRequired[pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderScaleSetRunnerArgsDict']]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderScaleSetArgs:
+    def __init__(__self__, *,
+                 name: pulumi.Input[Optional[_builtins.str]] = None,
+                 runner: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderScaleSetRunnerArgs']] = None):
+        if name is not None:
+            pulumi.set(__self__, "name", name)
+        if runner is not None:
+            pulumi.set(__self__, "runner", runner)
+
+    @_builtins.property
+    @pulumi.getter
+    def name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "name")
+
+    @name.setter
+    def name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def runner(self) -> pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderScaleSetRunnerArgs']]:
+        return pulumi.get(self, "runner")
+
+    @runner.setter
+    def runner(self, value: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderScaleSetRunnerArgs']]):
+        pulumi.set(self, "runner", value)
+
+
+class MultiRunnerConfigOrchestrationProviderScaleSetRunnerArgsDict(TypedDict):
+    boot_time_in_minutes: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    max_runners: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    min_runners: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderScaleSetRunnerArgs:
+    def __init__(__self__, *,
+                 boot_time_in_minutes: pulumi.Input[Optional[_builtins.float]] = None,
+                 max_runners: pulumi.Input[Optional[_builtins.float]] = None,
+                 min_runners: pulumi.Input[Optional[_builtins.float]] = None):
+        if boot_time_in_minutes is not None:
+            pulumi.set(__self__, "boot_time_in_minutes", boot_time_in_minutes)
+        if max_runners is not None:
+            pulumi.set(__self__, "max_runners", max_runners)
+        if min_runners is not None:
+            pulumi.set(__self__, "min_runners", min_runners)
+
+    @_builtins.property
+    @pulumi.getter
+    def boot_time_in_minutes(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "boot_time_in_minutes")
+
+    @boot_time_in_minutes.setter
+    def boot_time_in_minutes(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "boot_time_in_minutes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def max_runners(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "max_runners")
+
+    @max_runners.setter
+    def max_runners(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "max_runners", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def min_runners(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "min_runners")
+
+    @min_runners.setter
+    def min_runners(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "min_runners", value)
+
+
+class MultiRunnerConfigOrchestrationProviderWebhookArgsDict(TypedDict):
+    github: NotRequired[pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookGithubArgsDict']]]
+    job_retry: NotRequired[pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookJobRetryArgsDict']]]
+    lambda_: NotRequired[pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaArgsDict']]]
+    matcher_config: NotRequired[pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigArgsDict']]]
+    queue: NotRequired[pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookQueueArgsDict']]]
+    runner: NotRequired[pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookRunnerArgsDict']]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderWebhookArgs:
+    def __init__(__self__, *,
+                 github: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookGithubArgs']] = None,
+                 job_retry: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookJobRetryArgs']] = None,
+                 lambda_: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaArgs']] = None,
+                 matcher_config: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigArgs']] = None,
+                 queue: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookQueueArgs']] = None,
+                 runner: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookRunnerArgs']] = None):
+        if github is not None:
+            pulumi.set(__self__, "github", github)
+        if job_retry is not None:
+            pulumi.set(__self__, "job_retry", job_retry)
+        if lambda_ is not None:
+            pulumi.set(__self__, "lambda_", lambda_)
+        if matcher_config is not None:
+            pulumi.set(__self__, "matcher_config", matcher_config)
+        if queue is not None:
+            pulumi.set(__self__, "queue", queue)
+        if runner is not None:
+            pulumi.set(__self__, "runner", runner)
+
+    @_builtins.property
+    @pulumi.getter
+    def github(self) -> pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookGithubArgs']]:
+        return pulumi.get(self, "github")
+
+    @github.setter
+    def github(self, value: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookGithubArgs']]):
+        pulumi.set(self, "github", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def job_retry(self) -> pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookJobRetryArgs']]:
+        return pulumi.get(self, "job_retry")
+
+    @job_retry.setter
+    def job_retry(self, value: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookJobRetryArgs']]):
+        pulumi.set(self, "job_retry", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lambda")
+    def lambda_(self) -> pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaArgs']]:
+        return pulumi.get(self, "lambda_")
+
+    @lambda_.setter
+    def lambda_(self, value: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaArgs']]):
+        pulumi.set(self, "lambda_", value)
+
+    @_builtins.property
+    @pulumi.getter(name="matcherConfig")
+    def matcher_config(self) -> pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigArgs']]:
+        return pulumi.get(self, "matcher_config")
+
+    @matcher_config.setter
+    def matcher_config(self, value: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigArgs']]):
+        pulumi.set(self, "matcher_config", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def queue(self) -> pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookQueueArgs']]:
+        return pulumi.get(self, "queue")
+
+    @queue.setter
+    def queue(self, value: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookQueueArgs']]):
+        pulumi.set(self, "queue", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def runner(self) -> pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookRunnerArgs']]:
+        return pulumi.get(self, "runner")
+
+    @runner.setter
+    def runner(self, value: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookRunnerArgs']]):
+        pulumi.set(self, "runner", value)
+
+
+class MultiRunnerConfigOrchestrationProviderWebhookGithubArgsDict(TypedDict):
+    organization_runners: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderWebhookGithubArgs:
+    def __init__(__self__, *,
+                 organization_runners: pulumi.Input[Optional[_builtins.bool]] = None):
+        if organization_runners is not None:
+            pulumi.set(__self__, "organization_runners", organization_runners)
+
+    @_builtins.property
+    @pulumi.getter
+    def organization_runners(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "organization_runners")
+
+    @organization_runners.setter
+    def organization_runners(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "organization_runners", value)
+
+
+class MultiRunnerConfigOrchestrationProviderWebhookJobRetryArgsDict(TypedDict):
+    delay_backoff: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    delay_in_seconds: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    lambda_: NotRequired[pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookJobRetryLambdaArgsDict']]]
+    max_attempts: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderWebhookJobRetryArgs:
+    def __init__(__self__, *,
+                 delay_backoff: pulumi.Input[Optional[_builtins.float]] = None,
+                 delay_in_seconds: pulumi.Input[Optional[_builtins.float]] = None,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 lambda_: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookJobRetryLambdaArgs']] = None,
+                 max_attempts: pulumi.Input[Optional[_builtins.float]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        if delay_backoff is not None:
+            pulumi.set(__self__, "delay_backoff", delay_backoff)
+        if delay_in_seconds is not None:
+            pulumi.set(__self__, "delay_in_seconds", delay_in_seconds)
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if lambda_ is not None:
+            pulumi.set(__self__, "lambda_", lambda_)
+        if max_attempts is not None:
+            pulumi.set(__self__, "max_attempts", max_attempts)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def delay_backoff(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "delay_backoff")
+
+    @delay_backoff.setter
+    def delay_backoff(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "delay_backoff", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def delay_in_seconds(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "delay_in_seconds")
+
+    @delay_in_seconds.setter
+    def delay_in_seconds(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "delay_in_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lambda")
+    def lambda_(self) -> pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookJobRetryLambdaArgs']]:
+        return pulumi.get(self, "lambda_")
+
+    @lambda_.setter
+    def lambda_(self, value: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookJobRetryLambdaArgs']]):
+        pulumi.set(self, "lambda_", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def max_attempts(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "max_attempts")
+
+    @max_attempts.setter
+    def max_attempts(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "max_attempts", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+class MultiRunnerConfigOrchestrationProviderWebhookJobRetryLambdaArgsDict(TypedDict):
+    memory_size: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    reserved_concurrent_executions: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderWebhookJobRetryLambdaArgs:
+    def __init__(__self__, *,
+                 memory_size: pulumi.Input[Optional[_builtins.float]] = None,
+                 reserved_concurrent_executions: pulumi.Input[Optional[_builtins.float]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.float]] = None):
+        if memory_size is not None:
+            pulumi.set(__self__, "memory_size", memory_size)
+        if reserved_concurrent_executions is not None:
+            pulumi.set(__self__, "reserved_concurrent_executions", reserved_concurrent_executions)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def memory_size(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "memory_size")
+
+    @memory_size.setter
+    def memory_size(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "memory_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def reserved_concurrent_executions(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "reserved_concurrent_executions")
+
+    @reserved_concurrent_executions.setter
+    def reserved_concurrent_executions(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "reserved_concurrent_executions", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "timeout", value)
+
+
+class MultiRunnerConfigOrchestrationProviderWebhookLambdaArgsDict(TypedDict):
+    pool: NotRequired[pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolArgsDict']]]
+    scale: NotRequired[pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleArgsDict']]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderWebhookLambdaArgs:
+    def __init__(__self__, *,
+                 pool: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolArgs']] = None,
+                 scale: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleArgs']] = None):
+        if pool is not None:
+            pulumi.set(__self__, "pool", pool)
+        if scale is not None:
+            pulumi.set(__self__, "scale", scale)
+
+    @_builtins.property
+    @pulumi.getter
+    def pool(self) -> pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolArgs']]:
+        return pulumi.get(self, "pool")
+
+    @pool.setter
+    def pool(self, value: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolArgs']]):
+        pulumi.set(self, "pool", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def scale(self) -> pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleArgs']]:
+        return pulumi.get(self, "scale")
+
+    @scale.setter
+    def scale(self, value: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleArgs']]):
+        pulumi.set(self, "scale", value)
+
+
+class MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolArgsDict(TypedDict):
+    config: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolConfigArgsDict']]]]]
+    include_busy_runners: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    memory_size: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    reserved_concurrent_executions: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    runner_owner: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolArgs:
+    def __init__(__self__, *,
+                 config: pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolConfigArgs']]]] = None,
+                 include_busy_runners: pulumi.Input[Optional[_builtins.bool]] = None,
+                 memory_size: pulumi.Input[Optional[_builtins.float]] = None,
+                 reserved_concurrent_executions: pulumi.Input[Optional[_builtins.float]] = None,
+                 runner_owner: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.float]] = None):
+        if config is not None:
+            pulumi.set(__self__, "config", config)
+        if include_busy_runners is not None:
+            pulumi.set(__self__, "include_busy_runners", include_busy_runners)
+        if memory_size is not None:
+            pulumi.set(__self__, "memory_size", memory_size)
+        if reserved_concurrent_executions is not None:
+            pulumi.set(__self__, "reserved_concurrent_executions", reserved_concurrent_executions)
+        if runner_owner is not None:
+            pulumi.set(__self__, "runner_owner", runner_owner)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def config(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolConfigArgs']]]]:
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolConfigArgs']]]]):
+        pulumi.set(self, "config", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def include_busy_runners(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "include_busy_runners")
+
+    @include_busy_runners.setter
+    def include_busy_runners(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "include_busy_runners", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def memory_size(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "memory_size")
+
+    @memory_size.setter
+    def memory_size(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "memory_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def reserved_concurrent_executions(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "reserved_concurrent_executions")
+
+    @reserved_concurrent_executions.setter
+    def reserved_concurrent_executions(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "reserved_concurrent_executions", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def runner_owner(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "runner_owner")
+
+    @runner_owner.setter
+    def runner_owner(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "runner_owner", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "timeout", value)
+
+
+class MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolConfigArgsDict(TypedDict):
+    schedule_expression: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    schedule_expression_timezone: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    size: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolConfigArgs:
+    def __init__(__self__, *,
+                 schedule_expression: pulumi.Input[Optional[_builtins.str]] = None,
+                 schedule_expression_timezone: pulumi.Input[Optional[_builtins.str]] = None,
+                 size: pulumi.Input[Optional[_builtins.float]] = None):
+        if schedule_expression is not None:
+            pulumi.set(__self__, "schedule_expression", schedule_expression)
+        if schedule_expression_timezone is not None:
+            pulumi.set(__self__, "schedule_expression_timezone", schedule_expression_timezone)
+        if size is not None:
+            pulumi.set(__self__, "size", size)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule_expression(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "schedule_expression")
+
+    @schedule_expression.setter
+    def schedule_expression(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "schedule_expression", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule_expression_timezone(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "schedule_expression_timezone")
+
+    @schedule_expression_timezone.setter
+    def schedule_expression_timezone(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "schedule_expression_timezone", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def size(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "size")
+
+    @size.setter
+    def size(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "size", value)
+
+
+class MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleArgsDict(TypedDict):
+    down: NotRequired[pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownArgsDict']]]
+    up: NotRequired[pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpArgsDict']]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleArgs:
+    def __init__(__self__, *,
+                 down: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownArgs']] = None,
+                 up: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpArgs']] = None):
+        if down is not None:
+            pulumi.set(__self__, "down", down)
+        if up is not None:
+            pulumi.set(__self__, "up", up)
+
+    @_builtins.property
+    @pulumi.getter
+    def down(self) -> pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownArgs']]:
+        return pulumi.get(self, "down")
+
+    @down.setter
+    def down(self, value: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownArgs']]):
+        pulumi.set(self, "down", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def up(self) -> pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpArgs']]:
+        return pulumi.get(self, "up")
+
+    @up.setter
+    def up(self, value: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpArgs']]):
+        pulumi.set(self, "up", value)
+
+
+class MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownArgsDict(TypedDict):
+    idle_config: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgsDict']]]]]
+    idle_confirmation_seconds: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    memory_size: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    minimum_running_time_in_minutes: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    schedule_expression: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownArgs:
+    def __init__(__self__, *,
+                 idle_config: pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgs']]]] = None,
+                 idle_confirmation_seconds: pulumi.Input[Optional[_builtins.float]] = None,
+                 memory_size: pulumi.Input[Optional[_builtins.float]] = None,
+                 minimum_running_time_in_minutes: pulumi.Input[Optional[_builtins.float]] = None,
+                 schedule_expression: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.float]] = None):
+        if idle_config is not None:
+            pulumi.set(__self__, "idle_config", idle_config)
+        if idle_confirmation_seconds is not None:
+            pulumi.set(__self__, "idle_confirmation_seconds", idle_confirmation_seconds)
+        if memory_size is not None:
+            pulumi.set(__self__, "memory_size", memory_size)
+        if minimum_running_time_in_minutes is not None:
+            pulumi.set(__self__, "minimum_running_time_in_minutes", minimum_running_time_in_minutes)
+        if schedule_expression is not None:
+            pulumi.set(__self__, "schedule_expression", schedule_expression)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def idle_config(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgs']]]]:
+        return pulumi.get(self, "idle_config")
+
+    @idle_config.setter
+    def idle_config(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgs']]]]):
+        pulumi.set(self, "idle_config", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def idle_confirmation_seconds(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "idle_confirmation_seconds")
+
+    @idle_confirmation_seconds.setter
+    def idle_confirmation_seconds(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "idle_confirmation_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def memory_size(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "memory_size")
+
+    @memory_size.setter
+    def memory_size(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "memory_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def minimum_running_time_in_minutes(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "minimum_running_time_in_minutes")
+
+    @minimum_running_time_in_minutes.setter
+    def minimum_running_time_in_minutes(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "minimum_running_time_in_minutes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule_expression(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "schedule_expression")
+
+    @schedule_expression.setter
+    def schedule_expression(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "schedule_expression", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "timeout", value)
+
+
+class MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgsDict(TypedDict):
+    cron: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    eviction_strategy: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    idle_count: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    time_zone: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgs:
+    def __init__(__self__, *,
+                 cron: pulumi.Input[Optional[_builtins.str]] = None,
+                 eviction_strategy: pulumi.Input[Optional[_builtins.str]] = None,
+                 idle_count: pulumi.Input[Optional[_builtins.float]] = None,
+                 time_zone: pulumi.Input[Optional[_builtins.str]] = None):
+        if cron is not None:
+            pulumi.set(__self__, "cron", cron)
+        if eviction_strategy is not None:
+            pulumi.set(__self__, "eviction_strategy", eviction_strategy)
+        if idle_count is not None:
+            pulumi.set(__self__, "idle_count", idle_count)
+        if time_zone is not None:
+            pulumi.set(__self__, "time_zone", time_zone)
+
+    @_builtins.property
+    @pulumi.getter
+    def cron(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "cron")
+
+    @cron.setter
+    def cron(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "cron", value)
+
+    @_builtins.property
+    @pulumi.getter(name="evictionStrategy")
+    def eviction_strategy(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "eviction_strategy")
+
+    @eviction_strategy.setter
+    def eviction_strategy(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "eviction_strategy", value)
+
+    @_builtins.property
+    @pulumi.getter(name="idleCount")
+    def idle_count(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "idle_count")
+
+    @idle_count.setter
+    def idle_count(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "idle_count", value)
+
+    @_builtins.property
+    @pulumi.getter(name="timeZone")
+    def time_zone(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "time_zone")
+
+    @time_zone.setter
+    def time_zone(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "time_zone", value)
+
+
+class MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpArgsDict(TypedDict):
+    event_source_mapping: NotRequired[pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgsDict']]]
+    job_queued_check_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    memory_size: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    reserved_concurrent_executions: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpArgs:
+    def __init__(__self__, *,
+                 event_source_mapping: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgs']] = None,
+                 job_queued_check_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 memory_size: pulumi.Input[Optional[_builtins.float]] = None,
+                 reserved_concurrent_executions: pulumi.Input[Optional[_builtins.float]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.float]] = None):
+        if event_source_mapping is not None:
+            pulumi.set(__self__, "event_source_mapping", event_source_mapping)
+        if job_queued_check_enabled is not None:
+            pulumi.set(__self__, "job_queued_check_enabled", job_queued_check_enabled)
+        if memory_size is not None:
+            pulumi.set(__self__, "memory_size", memory_size)
+        if reserved_concurrent_executions is not None:
+            pulumi.set(__self__, "reserved_concurrent_executions", reserved_concurrent_executions)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def event_source_mapping(self) -> pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgs']]:
+        return pulumi.get(self, "event_source_mapping")
+
+    @event_source_mapping.setter
+    def event_source_mapping(self, value: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgs']]):
+        pulumi.set(self, "event_source_mapping", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def job_queued_check_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "job_queued_check_enabled")
+
+    @job_queued_check_enabled.setter
+    def job_queued_check_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "job_queued_check_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def memory_size(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "memory_size")
+
+    @memory_size.setter
+    def memory_size(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "memory_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def reserved_concurrent_executions(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "reserved_concurrent_executions")
+
+    @reserved_concurrent_executions.setter
+    def reserved_concurrent_executions(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "reserved_concurrent_executions", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "timeout", value)
+
+
+class MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgsDict(TypedDict):
+    batch_size: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    maximum_batching_window_in_seconds: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgs:
+    def __init__(__self__, *,
+                 batch_size: pulumi.Input[Optional[_builtins.float]] = None,
+                 maximum_batching_window_in_seconds: pulumi.Input[Optional[_builtins.float]] = None):
+        if batch_size is not None:
+            pulumi.set(__self__, "batch_size", batch_size)
+        if maximum_batching_window_in_seconds is not None:
+            pulumi.set(__self__, "maximum_batching_window_in_seconds", maximum_batching_window_in_seconds)
+
+    @_builtins.property
+    @pulumi.getter
+    def batch_size(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "batch_size")
+
+    @batch_size.setter
+    def batch_size(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "batch_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def maximum_batching_window_in_seconds(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "maximum_batching_window_in_seconds")
+
+    @maximum_batching_window_in_seconds.setter
+    def maximum_batching_window_in_seconds(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "maximum_batching_window_in_seconds", value)
+
+
+class MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigArgsDict(TypedDict):
+    aws_dynamic_labels_policy: NotRequired[pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyArgsDict']]]
+    bidirectional_label_match: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    dynamic_labels_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    exact_match: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    label_matchers: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]]]]
+    priority: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigArgs:
+    def __init__(__self__, *,
+                 aws_dynamic_labels_policy: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyArgs']] = None,
+                 bidirectional_label_match: pulumi.Input[Optional[_builtins.bool]] = None,
+                 dynamic_labels_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 exact_match: pulumi.Input[Optional[_builtins.bool]] = None,
+                 label_matchers: pulumi.Input[Optional[Sequence[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]]] = None,
+                 priority: pulumi.Input[Optional[_builtins.float]] = None):
+        if aws_dynamic_labels_policy is not None:
+            pulumi.set(__self__, "aws_dynamic_labels_policy", aws_dynamic_labels_policy)
+        if bidirectional_label_match is not None:
+            pulumi.set(__self__, "bidirectional_label_match", bidirectional_label_match)
+        if dynamic_labels_enabled is not None:
+            pulumi.set(__self__, "dynamic_labels_enabled", dynamic_labels_enabled)
+        if exact_match is not None:
+            pulumi.set(__self__, "exact_match", exact_match)
+        if label_matchers is not None:
+            pulumi.set(__self__, "label_matchers", label_matchers)
+        if priority is not None:
+            pulumi.set(__self__, "priority", priority)
+
+    @_builtins.property
+    @pulumi.getter(name="awsDynamicLabelsPolicy")
+    def aws_dynamic_labels_policy(self) -> pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyArgs']]:
+        return pulumi.get(self, "aws_dynamic_labels_policy")
+
+    @aws_dynamic_labels_policy.setter
+    def aws_dynamic_labels_policy(self, value: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyArgs']]):
+        pulumi.set(self, "aws_dynamic_labels_policy", value)
+
+    @_builtins.property
+    @pulumi.getter(name="bidirectionalLabelMatch")
+    def bidirectional_label_match(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "bidirectional_label_match")
+
+    @bidirectional_label_match.setter
+    def bidirectional_label_match(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "bidirectional_label_match", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def dynamic_labels_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "dynamic_labels_enabled")
+
+    @dynamic_labels_enabled.setter
+    def dynamic_labels_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "dynamic_labels_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="exactMatch")
+    def exact_match(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "exact_match")
+
+    @exact_match.setter
+    def exact_match(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "exact_match", value)
+
+    @_builtins.property
+    @pulumi.getter(name="labelMatchers")
+    def label_matchers(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]]]:
+        return pulumi.get(self, "label_matchers")
+
+    @label_matchers.setter
+    def label_matchers(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[Sequence[pulumi.Input[_builtins.str]]]]]]):
+        pulumi.set(self, "label_matchers", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def priority(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "priority")
+
+    @priority.setter
+    def priority(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "priority", value)
+
+
+class MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyArgsDict(TypedDict):
+    allowed_keys: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    blocked_keys: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    restricted_keys: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input['MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyRestrictedKeysArgsDict']]]]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyArgs:
+    def __init__(__self__, *,
+                 allowed_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 blocked_keys: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 restricted_keys: pulumi.Input[Optional[Mapping[str, pulumi.Input['MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyRestrictedKeysArgs']]]] = None):
+        if allowed_keys is not None:
+            pulumi.set(__self__, "allowed_keys", allowed_keys)
+        if blocked_keys is not None:
+            pulumi.set(__self__, "blocked_keys", blocked_keys)
+        if restricted_keys is not None:
+            pulumi.set(__self__, "restricted_keys", restricted_keys)
+
+    @_builtins.property
+    @pulumi.getter
+    def allowed_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "allowed_keys")
+
+    @allowed_keys.setter
+    def allowed_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed_keys", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def blocked_keys(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "blocked_keys")
+
+    @blocked_keys.setter
+    def blocked_keys(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "blocked_keys", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def restricted_keys(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input['MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyRestrictedKeysArgs']]]]:
+        return pulumi.get(self, "restricted_keys")
+
+    @restricted_keys.setter
+    def restricted_keys(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input['MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyRestrictedKeysArgs']]]]):
+        pulumi.set(self, "restricted_keys", value)
+
+
+class MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyRestrictedKeysArgsDict(TypedDict):
+    allowed: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    denied: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    max: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyRestrictedKeysArgs:
+    def __init__(__self__, *,
+                 allowed: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 denied: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 max: pulumi.Input[Optional[_builtins.str]] = None):
+        if allowed is not None:
+            pulumi.set(__self__, "allowed", allowed)
+        if denied is not None:
+            pulumi.set(__self__, "denied", denied)
+        if max is not None:
+            pulumi.set(__self__, "max", max)
+
+    @_builtins.property
+    @pulumi.getter
+    def allowed(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "allowed")
+
+    @allowed.setter
+    def allowed(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "allowed", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def denied(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "denied")
+
+    @denied.setter
+    def denied(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "denied", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def max(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "max")
+
+    @max.setter
+    def max(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "max", value)
+
+
+class MultiRunnerConfigOrchestrationProviderWebhookQueueArgsDict(TypedDict):
+    delay_webhook_event: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    job_queue_retention_in_seconds: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    redrive_build_queue: NotRequired[pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgsDict']]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    visibility_timeout_seconds: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderWebhookQueueArgs:
+    def __init__(__self__, *,
+                 delay_webhook_event: pulumi.Input[Optional[_builtins.float]] = None,
+                 job_queue_retention_in_seconds: pulumi.Input[Optional[_builtins.float]] = None,
+                 redrive_build_queue: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgs']] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 visibility_timeout_seconds: pulumi.Input[Optional[_builtins.float]] = None):
+        if delay_webhook_event is not None:
+            pulumi.set(__self__, "delay_webhook_event", delay_webhook_event)
+        if job_queue_retention_in_seconds is not None:
+            pulumi.set(__self__, "job_queue_retention_in_seconds", job_queue_retention_in_seconds)
+        if redrive_build_queue is not None:
+            pulumi.set(__self__, "redrive_build_queue", redrive_build_queue)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if visibility_timeout_seconds is not None:
+            pulumi.set(__self__, "visibility_timeout_seconds", visibility_timeout_seconds)
+
+    @_builtins.property
+    @pulumi.getter
+    def delay_webhook_event(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "delay_webhook_event")
+
+    @delay_webhook_event.setter
+    def delay_webhook_event(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "delay_webhook_event", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def job_queue_retention_in_seconds(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "job_queue_retention_in_seconds")
+
+    @job_queue_retention_in_seconds.setter
+    def job_queue_retention_in_seconds(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "job_queue_retention_in_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def redrive_build_queue(self) -> pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgs']]:
+        return pulumi.get(self, "redrive_build_queue")
+
+    @redrive_build_queue.setter
+    def redrive_build_queue(self, value: pulumi.Input[Optional['MultiRunnerConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgs']]):
+        pulumi.set(self, "redrive_build_queue", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def visibility_timeout_seconds(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "visibility_timeout_seconds")
+
+    @visibility_timeout_seconds.setter
+    def visibility_timeout_seconds(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "visibility_timeout_seconds", value)
+
+
+class MultiRunnerConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgsDict(TypedDict):
+    enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    max_receive_count: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgs:
+    def __init__(__self__, *,
+                 enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 max_receive_count: pulumi.Input[Optional[_builtins.float]] = None):
+        if enabled is not None:
+            pulumi.set(__self__, "enabled", enabled)
+        if max_receive_count is not None:
+            pulumi.set(__self__, "max_receive_count", max_receive_count)
+
+    @_builtins.property
+    @pulumi.getter
+    def enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "enabled")
+
+    @enabled.setter
+    def enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "enabled", value)
+
+    @_builtins.property
+    @pulumi.getter(name="maxReceiveCount")
+    def max_receive_count(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "max_receive_count")
+
+    @max_receive_count.setter
+    def max_receive_count(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "max_receive_count", value)
+
+
+class MultiRunnerConfigOrchestrationProviderWebhookRunnerArgsDict(TypedDict):
+    boot_time_in_minutes: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    ephemeral: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    jit_config_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    maximum_count: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class MultiRunnerConfigOrchestrationProviderWebhookRunnerArgs:
+    def __init__(__self__, *,
+                 boot_time_in_minutes: pulumi.Input[Optional[_builtins.float]] = None,
+                 ephemeral: pulumi.Input[Optional[_builtins.bool]] = None,
+                 jit_config_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 maximum_count: pulumi.Input[Optional[_builtins.float]] = None):
+        if boot_time_in_minutes is not None:
+            pulumi.set(__self__, "boot_time_in_minutes", boot_time_in_minutes)
+        if ephemeral is not None:
+            pulumi.set(__self__, "ephemeral", ephemeral)
+        if jit_config_enabled is not None:
+            pulumi.set(__self__, "jit_config_enabled", jit_config_enabled)
+        if maximum_count is not None:
+            pulumi.set(__self__, "maximum_count", maximum_count)
+
+    @_builtins.property
+    @pulumi.getter
+    def boot_time_in_minutes(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "boot_time_in_minutes")
+
+    @boot_time_in_minutes.setter
+    def boot_time_in_minutes(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "boot_time_in_minutes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ephemeral(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "ephemeral")
+
+    @ephemeral.setter
+    def ephemeral(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "ephemeral", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def jit_config_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "jit_config_enabled")
+
+    @jit_config_enabled.setter
+    def jit_config_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "jit_config_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def maximum_count(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "maximum_count")
+
+    @maximum_count.setter
+    def maximum_count(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "maximum_count", value)
+
+
 class MultiRunnerConfigRedriveBuildQueueArgsDict(TypedDict):
     enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     max_receive_count: NotRequired[pulumi.Input[Optional[_builtins.float]]]
@@ -1115,6 +10196,169 @@ class MultiRunnerConfigRedriveBuildQueueArgs:
     @max_receive_count.setter
     def max_receive_count(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "max_receive_count", value)
+
+
+class MultiRunnerConfigRunnerArgsDict(TypedDict):
+    architecture: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    auto_update_disabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    disable_default_labels: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    extra_labels: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    group_name: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    hooks: NotRequired[pulumi.Input[Optional['MultiRunnerConfigRunnerHooksArgsDict']]]
+    iam: NotRequired[pulumi.Input[Optional['MultiRunnerConfigRunnerIamArgsDict']]]
+    name_prefix: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    os: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    run_as: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    run_as_root: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class MultiRunnerConfigRunnerArgs:
+    def __init__(__self__, *,
+                 architecture: pulumi.Input[Optional[_builtins.str]] = None,
+                 auto_update_disabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 disable_default_labels: pulumi.Input[Optional[_builtins.bool]] = None,
+                 extra_labels: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 group_name: pulumi.Input[Optional[_builtins.str]] = None,
+                 hooks: pulumi.Input[Optional['MultiRunnerConfigRunnerHooksArgs']] = None,
+                 iam: pulumi.Input[Optional['MultiRunnerConfigRunnerIamArgs']] = None,
+                 name_prefix: pulumi.Input[Optional[_builtins.str]] = None,
+                 os: pulumi.Input[Optional[_builtins.str]] = None,
+                 run_as: pulumi.Input[Optional[_builtins.str]] = None,
+                 run_as_root: pulumi.Input[Optional[_builtins.bool]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        if architecture is not None:
+            pulumi.set(__self__, "architecture", architecture)
+        if auto_update_disabled is not None:
+            pulumi.set(__self__, "auto_update_disabled", auto_update_disabled)
+        if disable_default_labels is not None:
+            pulumi.set(__self__, "disable_default_labels", disable_default_labels)
+        if extra_labels is not None:
+            pulumi.set(__self__, "extra_labels", extra_labels)
+        if group_name is not None:
+            pulumi.set(__self__, "group_name", group_name)
+        if hooks is not None:
+            pulumi.set(__self__, "hooks", hooks)
+        if iam is not None:
+            pulumi.set(__self__, "iam", iam)
+        if name_prefix is not None:
+            pulumi.set(__self__, "name_prefix", name_prefix)
+        if os is not None:
+            pulumi.set(__self__, "os", os)
+        if run_as is not None:
+            pulumi.set(__self__, "run_as", run_as)
+        if run_as_root is not None:
+            pulumi.set(__self__, "run_as_root", run_as_root)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def architecture(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "architecture")
+
+    @architecture.setter
+    def architecture(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "architecture", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def auto_update_disabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "auto_update_disabled")
+
+    @auto_update_disabled.setter
+    def auto_update_disabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "auto_update_disabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def disable_default_labels(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "disable_default_labels")
+
+    @disable_default_labels.setter
+    def disable_default_labels(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "disable_default_labels", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def extra_labels(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "extra_labels")
+
+    @extra_labels.setter
+    def extra_labels(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "extra_labels", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def group_name(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "group_name")
+
+    @group_name.setter
+    def group_name(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "group_name", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def hooks(self) -> pulumi.Input[Optional['MultiRunnerConfigRunnerHooksArgs']]:
+        return pulumi.get(self, "hooks")
+
+    @hooks.setter
+    def hooks(self, value: pulumi.Input[Optional['MultiRunnerConfigRunnerHooksArgs']]):
+        pulumi.set(self, "hooks", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def iam(self) -> pulumi.Input[Optional['MultiRunnerConfigRunnerIamArgs']]:
+        return pulumi.get(self, "iam")
+
+    @iam.setter
+    def iam(self, value: pulumi.Input[Optional['MultiRunnerConfigRunnerIamArgs']]):
+        pulumi.set(self, "iam", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def name_prefix(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "name_prefix")
+
+    @name_prefix.setter
+    def name_prefix(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "name_prefix", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def os(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "os")
+
+    @os.setter
+    def os(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "os", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def run_as(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "run_as")
+
+    @run_as.setter
+    def run_as(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "run_as", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def run_as_root(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "run_as_root")
+
+    @run_as_root.setter
+    def run_as_root(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "run_as_root", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
 
 
 class MultiRunnerConfigRunnerConfigArgsDict(TypedDict):
@@ -1150,6 +10394,7 @@ class MultiRunnerConfigRunnerConfigArgsDict(TypedDict):
     lambda_event_source_mapping_maximum_batching_window_in_seconds: NotRequired[pulumi.Input[Optional[_builtins.float]]]
     license_specifications: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigRunnerConfigLicenseSpecificationsArgsDict']]]]]
     minimum_running_time_in_minutes: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    network_interfaces: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigRunnerConfigNetworkInterfacesArgsDict']]]]]
     placement: NotRequired[pulumi.Input[Optional['MultiRunnerConfigRunnerConfigPlacementArgsDict']]]
     pool_config: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigRunnerConfigPoolConfigArgsDict']]]]]
     pool_runner_owner: NotRequired[pulumi.Input[Optional[_builtins.str]]]
@@ -1170,9 +10415,11 @@ class MultiRunnerConfigRunnerConfigArgsDict(TypedDict):
     runner_os: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     runner_run_as: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     runners_maximum_count: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    scale_down_idle_confirmation_seconds: NotRequired[pulumi.Input[Optional[_builtins.float]]]
     scale_down_schedule_expression: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     scale_errors: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     scale_up_reserved_concurrent_executions: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    ssm_ttl_seconds: NotRequired[pulumi.Input[Optional['MultiRunnerConfigRunnerConfigSsmTtlSecondsArgsDict']]]
     subnet_ids: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
     use_dedicated_host: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
     userdata_content: NotRequired[pulumi.Input[Optional[_builtins.str]]]
@@ -1216,6 +10463,7 @@ class MultiRunnerConfigRunnerConfigArgs:
                  lambda_event_source_mapping_maximum_batching_window_in_seconds: pulumi.Input[Optional[_builtins.float]] = None,
                  license_specifications: pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigRunnerConfigLicenseSpecificationsArgs']]]] = None,
                  minimum_running_time_in_minutes: pulumi.Input[Optional[_builtins.float]] = None,
+                 network_interfaces: pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigRunnerConfigNetworkInterfacesArgs']]]] = None,
                  placement: pulumi.Input[Optional['MultiRunnerConfigRunnerConfigPlacementArgs']] = None,
                  pool_config: pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigRunnerConfigPoolConfigArgs']]]] = None,
                  pool_runner_owner: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1236,9 +10484,11 @@ class MultiRunnerConfigRunnerConfigArgs:
                  runner_os: pulumi.Input[Optional[_builtins.str]] = None,
                  runner_run_as: pulumi.Input[Optional[_builtins.str]] = None,
                  runners_maximum_count: pulumi.Input[Optional[_builtins.float]] = None,
+                 scale_down_idle_confirmation_seconds: pulumi.Input[Optional[_builtins.float]] = None,
                  scale_down_schedule_expression: pulumi.Input[Optional[_builtins.str]] = None,
                  scale_errors: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  scale_up_reserved_concurrent_executions: pulumi.Input[Optional[_builtins.float]] = None,
+                 ssm_ttl_seconds: pulumi.Input[Optional['MultiRunnerConfigRunnerConfigSsmTtlSecondsArgs']] = None,
                  subnet_ids: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
                  use_dedicated_host: pulumi.Input[Optional[_builtins.bool]] = None,
                  userdata_content: pulumi.Input[Optional[_builtins.str]] = None,
@@ -1310,6 +10560,8 @@ class MultiRunnerConfigRunnerConfigArgs:
             pulumi.set(__self__, "license_specifications", license_specifications)
         if minimum_running_time_in_minutes is not None:
             pulumi.set(__self__, "minimum_running_time_in_minutes", minimum_running_time_in_minutes)
+        if network_interfaces is not None:
+            pulumi.set(__self__, "network_interfaces", network_interfaces)
         if placement is not None:
             pulumi.set(__self__, "placement", placement)
         if pool_config is not None:
@@ -1350,12 +10602,16 @@ class MultiRunnerConfigRunnerConfigArgs:
             pulumi.set(__self__, "runner_run_as", runner_run_as)
         if runners_maximum_count is not None:
             pulumi.set(__self__, "runners_maximum_count", runners_maximum_count)
+        if scale_down_idle_confirmation_seconds is not None:
+            pulumi.set(__self__, "scale_down_idle_confirmation_seconds", scale_down_idle_confirmation_seconds)
         if scale_down_schedule_expression is not None:
             pulumi.set(__self__, "scale_down_schedule_expression", scale_down_schedule_expression)
         if scale_errors is not None:
             pulumi.set(__self__, "scale_errors", scale_errors)
         if scale_up_reserved_concurrent_executions is not None:
             pulumi.set(__self__, "scale_up_reserved_concurrent_executions", scale_up_reserved_concurrent_executions)
+        if ssm_ttl_seconds is not None:
+            pulumi.set(__self__, "ssm_ttl_seconds", ssm_ttl_seconds)
         if subnet_ids is not None:
             pulumi.set(__self__, "subnet_ids", subnet_ids)
         if use_dedicated_host is not None:
@@ -1661,6 +10917,15 @@ class MultiRunnerConfigRunnerConfigArgs:
 
     @_builtins.property
     @pulumi.getter
+    def network_interfaces(self) -> pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigRunnerConfigNetworkInterfacesArgs']]]]:
+        return pulumi.get(self, "network_interfaces")
+
+    @network_interfaces.setter
+    def network_interfaces(self, value: pulumi.Input[Optional[Sequence[pulumi.Input['MultiRunnerConfigRunnerConfigNetworkInterfacesArgs']]]]):
+        pulumi.set(self, "network_interfaces", value)
+
+    @_builtins.property
+    @pulumi.getter
     def placement(self) -> pulumi.Input[Optional['MultiRunnerConfigRunnerConfigPlacementArgs']]:
         return pulumi.get(self, "placement")
 
@@ -1841,6 +11106,15 @@ class MultiRunnerConfigRunnerConfigArgs:
 
     @_builtins.property
     @pulumi.getter
+    def scale_down_idle_confirmation_seconds(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "scale_down_idle_confirmation_seconds")
+
+    @scale_down_idle_confirmation_seconds.setter
+    def scale_down_idle_confirmation_seconds(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "scale_down_idle_confirmation_seconds", value)
+
+    @_builtins.property
+    @pulumi.getter
     def scale_down_schedule_expression(self) -> pulumi.Input[Optional[_builtins.str]]:
         return pulumi.get(self, "scale_down_schedule_expression")
 
@@ -1865,6 +11139,15 @@ class MultiRunnerConfigRunnerConfigArgs:
     @scale_up_reserved_concurrent_executions.setter
     def scale_up_reserved_concurrent_executions(self, value: pulumi.Input[Optional[_builtins.float]]):
         pulumi.set(self, "scale_up_reserved_concurrent_executions", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ssm_ttl_seconds(self) -> pulumi.Input[Optional['MultiRunnerConfigRunnerConfigSsmTtlSecondsArgs']]:
+        return pulumi.get(self, "ssm_ttl_seconds")
+
+    @ssm_ttl_seconds.setter
+    def ssm_ttl_seconds(self, value: pulumi.Input[Optional['MultiRunnerConfigRunnerConfigSsmTtlSecondsArgs']]):
+        pulumi.set(self, "ssm_ttl_seconds", value)
 
     @_builtins.property
     @pulumi.getter
@@ -2408,6 +11691,398 @@ class MultiRunnerConfigRunnerConfigLicenseSpecificationsArgs:
         pulumi.set(self, "license_configuration_arn", value)
 
 
+class MultiRunnerConfigRunnerConfigNetworkInterfacesArgsDict(TypedDict):
+    associate_carrier_ip_address: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    associate_public_ip_address: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    connection_tracking_specification: NotRequired[pulumi.Input[Optional['MultiRunnerConfigRunnerConfigNetworkInterfacesConnectionTrackingSpecificationArgsDict']]]
+    delete_on_termination: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    description: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    device_index: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    ena_srd_specification: NotRequired[pulumi.Input[Optional['MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationArgsDict']]]
+    interface_type: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    ipv4_address_count: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    ipv4_addresses: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    ipv4_prefix_count: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    ipv4_prefixes: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    ipv6_address_count: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    ipv6_addresses: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    ipv6_prefix_count: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    ipv6_prefixes: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    network_card_index: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    network_interface_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    primary_ipv6: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    private_ip_address: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    security_groups: NotRequired[pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]]
+    subnet_id: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigRunnerConfigNetworkInterfacesArgs:
+    def __init__(__self__, *,
+                 associate_carrier_ip_address: pulumi.Input[Optional[_builtins.bool]] = None,
+                 associate_public_ip_address: pulumi.Input[Optional[_builtins.bool]] = None,
+                 connection_tracking_specification: pulumi.Input[Optional['MultiRunnerConfigRunnerConfigNetworkInterfacesConnectionTrackingSpecificationArgs']] = None,
+                 delete_on_termination: pulumi.Input[Optional[_builtins.bool]] = None,
+                 description: pulumi.Input[Optional[_builtins.str]] = None,
+                 device_index: pulumi.Input[Optional[_builtins.float]] = None,
+                 ena_srd_specification: pulumi.Input[Optional['MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationArgs']] = None,
+                 interface_type: pulumi.Input[Optional[_builtins.str]] = None,
+                 ipv4_address_count: pulumi.Input[Optional[_builtins.float]] = None,
+                 ipv4_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipv4_prefix_count: pulumi.Input[Optional[_builtins.float]] = None,
+                 ipv4_prefixes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipv6_address_count: pulumi.Input[Optional[_builtins.float]] = None,
+                 ipv6_addresses: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 ipv6_prefix_count: pulumi.Input[Optional[_builtins.float]] = None,
+                 ipv6_prefixes: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 network_card_index: pulumi.Input[Optional[_builtins.float]] = None,
+                 network_interface_id: pulumi.Input[Optional[_builtins.str]] = None,
+                 primary_ipv6: pulumi.Input[Optional[_builtins.bool]] = None,
+                 private_ip_address: pulumi.Input[Optional[_builtins.str]] = None,
+                 security_groups: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]] = None,
+                 subnet_id: pulumi.Input[Optional[_builtins.str]] = None):
+        if associate_carrier_ip_address is not None:
+            pulumi.set(__self__, "associate_carrier_ip_address", associate_carrier_ip_address)
+        if associate_public_ip_address is not None:
+            pulumi.set(__self__, "associate_public_ip_address", associate_public_ip_address)
+        if connection_tracking_specification is not None:
+            pulumi.set(__self__, "connection_tracking_specification", connection_tracking_specification)
+        if delete_on_termination is not None:
+            pulumi.set(__self__, "delete_on_termination", delete_on_termination)
+        if description is not None:
+            pulumi.set(__self__, "description", description)
+        if device_index is not None:
+            pulumi.set(__self__, "device_index", device_index)
+        if ena_srd_specification is not None:
+            pulumi.set(__self__, "ena_srd_specification", ena_srd_specification)
+        if interface_type is not None:
+            pulumi.set(__self__, "interface_type", interface_type)
+        if ipv4_address_count is not None:
+            pulumi.set(__self__, "ipv4_address_count", ipv4_address_count)
+        if ipv4_addresses is not None:
+            pulumi.set(__self__, "ipv4_addresses", ipv4_addresses)
+        if ipv4_prefix_count is not None:
+            pulumi.set(__self__, "ipv4_prefix_count", ipv4_prefix_count)
+        if ipv4_prefixes is not None:
+            pulumi.set(__self__, "ipv4_prefixes", ipv4_prefixes)
+        if ipv6_address_count is not None:
+            pulumi.set(__self__, "ipv6_address_count", ipv6_address_count)
+        if ipv6_addresses is not None:
+            pulumi.set(__self__, "ipv6_addresses", ipv6_addresses)
+        if ipv6_prefix_count is not None:
+            pulumi.set(__self__, "ipv6_prefix_count", ipv6_prefix_count)
+        if ipv6_prefixes is not None:
+            pulumi.set(__self__, "ipv6_prefixes", ipv6_prefixes)
+        if network_card_index is not None:
+            pulumi.set(__self__, "network_card_index", network_card_index)
+        if network_interface_id is not None:
+            pulumi.set(__self__, "network_interface_id", network_interface_id)
+        if primary_ipv6 is not None:
+            pulumi.set(__self__, "primary_ipv6", primary_ipv6)
+        if private_ip_address is not None:
+            pulumi.set(__self__, "private_ip_address", private_ip_address)
+        if security_groups is not None:
+            pulumi.set(__self__, "security_groups", security_groups)
+        if subnet_id is not None:
+            pulumi.set(__self__, "subnet_id", subnet_id)
+
+    @_builtins.property
+    @pulumi.getter
+    def associate_carrier_ip_address(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "associate_carrier_ip_address")
+
+    @associate_carrier_ip_address.setter
+    def associate_carrier_ip_address(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "associate_carrier_ip_address", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def associate_public_ip_address(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "associate_public_ip_address")
+
+    @associate_public_ip_address.setter
+    def associate_public_ip_address(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "associate_public_ip_address", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def connection_tracking_specification(self) -> pulumi.Input[Optional['MultiRunnerConfigRunnerConfigNetworkInterfacesConnectionTrackingSpecificationArgs']]:
+        return pulumi.get(self, "connection_tracking_specification")
+
+    @connection_tracking_specification.setter
+    def connection_tracking_specification(self, value: pulumi.Input[Optional['MultiRunnerConfigRunnerConfigNetworkInterfacesConnectionTrackingSpecificationArgs']]):
+        pulumi.set(self, "connection_tracking_specification", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def delete_on_termination(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "delete_on_termination")
+
+    @delete_on_termination.setter
+    def delete_on_termination(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "delete_on_termination", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def description(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "description")
+
+    @description.setter
+    def description(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "description", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def device_index(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "device_index")
+
+    @device_index.setter
+    def device_index(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "device_index", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ena_srd_specification(self) -> pulumi.Input[Optional['MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationArgs']]:
+        return pulumi.get(self, "ena_srd_specification")
+
+    @ena_srd_specification.setter
+    def ena_srd_specification(self, value: pulumi.Input[Optional['MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationArgs']]):
+        pulumi.set(self, "ena_srd_specification", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def interface_type(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "interface_type")
+
+    @interface_type.setter
+    def interface_type(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "interface_type", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv4_address_count(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "ipv4_address_count")
+
+    @ipv4_address_count.setter
+    def ipv4_address_count(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "ipv4_address_count", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv4_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "ipv4_addresses")
+
+    @ipv4_addresses.setter
+    def ipv4_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "ipv4_addresses", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv4_prefix_count(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "ipv4_prefix_count")
+
+    @ipv4_prefix_count.setter
+    def ipv4_prefix_count(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "ipv4_prefix_count", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv4_prefixes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "ipv4_prefixes")
+
+    @ipv4_prefixes.setter
+    def ipv4_prefixes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "ipv4_prefixes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv6_address_count(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "ipv6_address_count")
+
+    @ipv6_address_count.setter
+    def ipv6_address_count(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "ipv6_address_count", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv6_addresses(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "ipv6_addresses")
+
+    @ipv6_addresses.setter
+    def ipv6_addresses(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "ipv6_addresses", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv6_prefix_count(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "ipv6_prefix_count")
+
+    @ipv6_prefix_count.setter
+    def ipv6_prefix_count(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "ipv6_prefix_count", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ipv6_prefixes(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "ipv6_prefixes")
+
+    @ipv6_prefixes.setter
+    def ipv6_prefixes(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "ipv6_prefixes", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def network_card_index(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "network_card_index")
+
+    @network_card_index.setter
+    def network_card_index(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "network_card_index", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def network_interface_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "network_interface_id")
+
+    @network_interface_id.setter
+    def network_interface_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "network_interface_id", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def primary_ipv6(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "primary_ipv6")
+
+    @primary_ipv6.setter
+    def primary_ipv6(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "primary_ipv6", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def private_ip_address(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "private_ip_address")
+
+    @private_ip_address.setter
+    def private_ip_address(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "private_ip_address", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def security_groups(self) -> pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "security_groups")
+
+    @security_groups.setter
+    def security_groups(self, value: pulumi.Input[Optional[Sequence[pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "security_groups", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def subnet_id(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "subnet_id")
+
+    @subnet_id.setter
+    def subnet_id(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "subnet_id", value)
+
+
+class MultiRunnerConfigRunnerConfigNetworkInterfacesConnectionTrackingSpecificationArgsDict(TypedDict):
+    tcp_established_timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    udp_stream_timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    udp_timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class MultiRunnerConfigRunnerConfigNetworkInterfacesConnectionTrackingSpecificationArgs:
+    def __init__(__self__, *,
+                 tcp_established_timeout: pulumi.Input[Optional[_builtins.float]] = None,
+                 udp_stream_timeout: pulumi.Input[Optional[_builtins.float]] = None,
+                 udp_timeout: pulumi.Input[Optional[_builtins.float]] = None):
+        if tcp_established_timeout is not None:
+            pulumi.set(__self__, "tcp_established_timeout", tcp_established_timeout)
+        if udp_stream_timeout is not None:
+            pulumi.set(__self__, "udp_stream_timeout", udp_stream_timeout)
+        if udp_timeout is not None:
+            pulumi.set(__self__, "udp_timeout", udp_timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def tcp_established_timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "tcp_established_timeout")
+
+    @tcp_established_timeout.setter
+    def tcp_established_timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "tcp_established_timeout", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def udp_stream_timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "udp_stream_timeout")
+
+    @udp_stream_timeout.setter
+    def udp_stream_timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "udp_stream_timeout", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def udp_timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "udp_timeout")
+
+    @udp_timeout.setter
+    def udp_timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "udp_timeout", value)
+
+
+class MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationArgsDict(TypedDict):
+    ena_srd_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    ena_srd_udp_specification: NotRequired[pulumi.Input[Optional['MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgsDict']]]
+
+@pulumi.input_type
+class MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationArgs:
+    def __init__(__self__, *,
+                 ena_srd_enabled: pulumi.Input[Optional[_builtins.bool]] = None,
+                 ena_srd_udp_specification: pulumi.Input[Optional['MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgs']] = None):
+        if ena_srd_enabled is not None:
+            pulumi.set(__self__, "ena_srd_enabled", ena_srd_enabled)
+        if ena_srd_udp_specification is not None:
+            pulumi.set(__self__, "ena_srd_udp_specification", ena_srd_udp_specification)
+
+    @_builtins.property
+    @pulumi.getter
+    def ena_srd_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "ena_srd_enabled")
+
+    @ena_srd_enabled.setter
+    def ena_srd_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "ena_srd_enabled", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ena_srd_udp_specification(self) -> pulumi.Input[Optional['MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgs']]:
+        return pulumi.get(self, "ena_srd_udp_specification")
+
+    @ena_srd_udp_specification.setter
+    def ena_srd_udp_specification(self, value: pulumi.Input[Optional['MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgs']]):
+        pulumi.set(self, "ena_srd_udp_specification", value)
+
+
+class MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgsDict(TypedDict):
+    ena_srd_udp_enabled: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+
+@pulumi.input_type
+class MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgs:
+    def __init__(__self__, *,
+                 ena_srd_udp_enabled: pulumi.Input[Optional[_builtins.bool]] = None):
+        if ena_srd_udp_enabled is not None:
+            pulumi.set(__self__, "ena_srd_udp_enabled", ena_srd_udp_enabled)
+
+    @_builtins.property
+    @pulumi.getter
+    def ena_srd_udp_enabled(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "ena_srd_udp_enabled")
+
+    @ena_srd_udp_enabled.setter
+    def ena_srd_udp_enabled(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "ena_srd_udp_enabled", value)
+
+
 class MultiRunnerConfigRunnerConfigPlacementArgsDict(TypedDict):
     affinity: NotRequired[pulumi.Input[Optional[_builtins.str]]]
     availability_zone: NotRequired[pulumi.Input[Optional[_builtins.str]]]
@@ -2648,6 +12323,579 @@ class MultiRunnerConfigRunnerConfigRunnerLogFilesArgs:
     @prefix_log_group.setter
     def prefix_log_group(self, value: pulumi.Input[Optional[_builtins.bool]]):
         pulumi.set(self, "prefix_log_group", value)
+
+
+class MultiRunnerConfigRunnerConfigSsmTtlSecondsArgsDict(TypedDict):
+    tokens: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class MultiRunnerConfigRunnerConfigSsmTtlSecondsArgs:
+    def __init__(__self__, *,
+                 tokens: pulumi.Input[Optional[_builtins.float]] = None):
+        if tokens is not None:
+            pulumi.set(__self__, "tokens", tokens)
+
+    @_builtins.property
+    @pulumi.getter
+    def tokens(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "tokens")
+
+    @tokens.setter
+    def tokens(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "tokens", value)
+
+
+class MultiRunnerConfigRunnerHooksArgsDict(TypedDict):
+    job_completed: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    job_started: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigRunnerHooksArgs:
+    def __init__(__self__, *,
+                 job_completed: pulumi.Input[Optional[_builtins.str]] = None,
+                 job_started: pulumi.Input[Optional[_builtins.str]] = None):
+        if job_completed is not None:
+            pulumi.set(__self__, "job_completed", job_completed)
+        if job_started is not None:
+            pulumi.set(__self__, "job_started", job_started)
+
+    @_builtins.property
+    @pulumi.getter
+    def job_completed(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "job_completed")
+
+    @job_completed.setter
+    def job_completed(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "job_completed", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def job_started(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "job_started")
+
+    @job_started.setter
+    def job_started(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "job_started", value)
+
+
+class MultiRunnerConfigRunnerIamArgsDict(TypedDict):
+    additional_trust_policy_json: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    managed_policy_arns: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    permissions_boundary: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    role: NotRequired[pulumi.Input[Optional['MultiRunnerConfigRunnerIamRoleArgsDict']]]
+
+@pulumi.input_type
+class MultiRunnerConfigRunnerIamArgs:
+    def __init__(__self__, *,
+                 additional_trust_policy_json: pulumi.Input[Optional[_builtins.str]] = None,
+                 managed_policy_arns: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 path: pulumi.Input[Optional[_builtins.str]] = None,
+                 permissions_boundary: pulumi.Input[Optional[_builtins.str]] = None,
+                 role: pulumi.Input[Optional['MultiRunnerConfigRunnerIamRoleArgs']] = None):
+        if additional_trust_policy_json is not None:
+            pulumi.set(__self__, "additional_trust_policy_json", additional_trust_policy_json)
+        if managed_policy_arns is not None:
+            pulumi.set(__self__, "managed_policy_arns", managed_policy_arns)
+        if path is not None:
+            pulumi.set(__self__, "path", path)
+        if permissions_boundary is not None:
+            pulumi.set(__self__, "permissions_boundary", permissions_boundary)
+        if role is not None:
+            pulumi.set(__self__, "role", role)
+
+    @_builtins.property
+    @pulumi.getter
+    def additional_trust_policy_json(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "additional_trust_policy_json")
+
+    @additional_trust_policy_json.setter
+    def additional_trust_policy_json(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "additional_trust_policy_json", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def managed_policy_arns(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "managed_policy_arns")
+
+    @managed_policy_arns.setter
+    def managed_policy_arns(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "managed_policy_arns", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "path")
+
+    @path.setter
+    def path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "path", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def permissions_boundary(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "permissions_boundary")
+
+    @permissions_boundary.setter
+    def permissions_boundary(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "permissions_boundary", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def role(self) -> pulumi.Input[Optional['MultiRunnerConfigRunnerIamRoleArgs']]:
+        return pulumi.get(self, "role")
+
+    @role.setter
+    def role(self, value: pulumi.Input[Optional['MultiRunnerConfigRunnerIamRoleArgs']]):
+        pulumi.set(self, "role", value)
+
+
+class MultiRunnerConfigRunnerIamRoleArgsDict(TypedDict):
+    arn: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigRunnerIamRoleArgs:
+    def __init__(__self__, *,
+                 arn: pulumi.Input[Optional[_builtins.str]] = None):
+        if arn is not None:
+            pulumi.set(__self__, "arn", arn)
+
+    @_builtins.property
+    @pulumi.getter
+    def arn(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "arn")
+
+    @arn.setter
+    def arn(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "arn", value)
+
+
+class MultiRunnerConfigStorageProviderArgsDict(TypedDict):
+    aws: NotRequired[pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsArgsDict']]]
+
+@pulumi.input_type
+class MultiRunnerConfigStorageProviderArgs:
+    def __init__(__self__, *,
+                 aws: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsArgs']] = None):
+        if aws is not None:
+            pulumi.set(__self__, "aws", aws)
+
+    @_builtins.property
+    @pulumi.getter
+    def aws(self) -> pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsArgs']]:
+        return pulumi.get(self, "aws")
+
+    @aws.setter
+    def aws(self, value: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsArgs']]):
+        pulumi.set(self, "aws", value)
+
+
+class MultiRunnerConfigStorageProviderAwsArgsDict(TypedDict):
+    ssm: NotRequired[pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmArgsDict']]]
+
+@pulumi.input_type
+class MultiRunnerConfigStorageProviderAwsArgs:
+    def __init__(__self__, *,
+                 ssm: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmArgs']] = None):
+        if ssm is not None:
+            pulumi.set(__self__, "ssm", ssm)
+
+    @_builtins.property
+    @pulumi.getter
+    def ssm(self) -> pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmArgs']]:
+        return pulumi.get(self, "ssm")
+
+    @ssm.setter
+    def ssm(self, value: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmArgs']]):
+        pulumi.set(self, "ssm", value)
+
+
+class MultiRunnerConfigStorageProviderAwsSsmArgsDict(TypedDict):
+    housekeeper: NotRequired[pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperArgsDict']]]
+    parameters: NotRequired[pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmParametersArgsDict']]]
+    paths: NotRequired[pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmPathsArgsDict']]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+    ttl_seconds: NotRequired[pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmTtlSecondsArgsDict']]]
+
+@pulumi.input_type
+class MultiRunnerConfigStorageProviderAwsSsmArgs:
+    def __init__(__self__, *,
+                 housekeeper: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperArgs']] = None,
+                 parameters: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmParametersArgs']] = None,
+                 paths: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmPathsArgs']] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None,
+                 ttl_seconds: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmTtlSecondsArgs']] = None):
+        if housekeeper is not None:
+            pulumi.set(__self__, "housekeeper", housekeeper)
+        if parameters is not None:
+            pulumi.set(__self__, "parameters", parameters)
+        if paths is not None:
+            pulumi.set(__self__, "paths", paths)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+        if ttl_seconds is not None:
+            pulumi.set(__self__, "ttl_seconds", ttl_seconds)
+
+    @_builtins.property
+    @pulumi.getter
+    def housekeeper(self) -> pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperArgs']]:
+        return pulumi.get(self, "housekeeper")
+
+    @housekeeper.setter
+    def housekeeper(self, value: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperArgs']]):
+        pulumi.set(self, "housekeeper", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def parameters(self) -> pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmParametersArgs']]:
+        return pulumi.get(self, "parameters")
+
+    @parameters.setter
+    def parameters(self, value: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmParametersArgs']]):
+        pulumi.set(self, "parameters", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def paths(self) -> pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmPathsArgs']]:
+        return pulumi.get(self, "paths")
+
+    @paths.setter
+    def paths(self, value: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmPathsArgs']]):
+        pulumi.set(self, "paths", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def ttl_seconds(self) -> pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmTtlSecondsArgs']]:
+        return pulumi.get(self, "ttl_seconds")
+
+    @ttl_seconds.setter
+    def ttl_seconds(self, value: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmTtlSecondsArgs']]):
+        pulumi.set(self, "ttl_seconds", value)
+
+
+class MultiRunnerConfigStorageProviderAwsSsmHousekeeperArgsDict(TypedDict):
+    config: NotRequired[pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperConfigArgsDict']]]
+    lambda_: NotRequired[pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArgsDict']]]
+    schedule_expression: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    state: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class MultiRunnerConfigStorageProviderAwsSsmHousekeeperArgs:
+    def __init__(__self__, *,
+                 config: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperConfigArgs']] = None,
+                 lambda_: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArgs']] = None,
+                 schedule_expression: pulumi.Input[Optional[_builtins.str]] = None,
+                 state: pulumi.Input[Optional[_builtins.str]] = None,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        if config is not None:
+            pulumi.set(__self__, "config", config)
+        if lambda_ is not None:
+            pulumi.set(__self__, "lambda_", lambda_)
+        if schedule_expression is not None:
+            pulumi.set(__self__, "schedule_expression", schedule_expression)
+        if state is not None:
+            pulumi.set(__self__, "state", state)
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def config(self) -> pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperConfigArgs']]:
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperConfigArgs']]):
+        pulumi.set(self, "config", value)
+
+    @_builtins.property
+    @pulumi.getter(name="lambda")
+    def lambda_(self) -> pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArgs']]:
+        return pulumi.get(self, "lambda_")
+
+    @lambda_.setter
+    def lambda_(self, value: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArgs']]):
+        pulumi.set(self, "lambda_", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def schedule_expression(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "schedule_expression")
+
+    @schedule_expression.setter
+    def schedule_expression(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "schedule_expression", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def state(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "state")
+
+    @state.setter
+    def state(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "state", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+class MultiRunnerConfigStorageProviderAwsSsmHousekeeperConfigArgsDict(TypedDict):
+    dry_run: NotRequired[pulumi.Input[Optional[_builtins.bool]]]
+    minimum_days_old: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    token_path: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigStorageProviderAwsSsmHousekeeperConfigArgs:
+    def __init__(__self__, *,
+                 dry_run: pulumi.Input[Optional[_builtins.bool]] = None,
+                 minimum_days_old: pulumi.Input[Optional[_builtins.float]] = None,
+                 token_path: pulumi.Input[Optional[_builtins.str]] = None):
+        if dry_run is not None:
+            pulumi.set(__self__, "dry_run", dry_run)
+        if minimum_days_old is not None:
+            pulumi.set(__self__, "minimum_days_old", minimum_days_old)
+        if token_path is not None:
+            pulumi.set(__self__, "token_path", token_path)
+
+    @_builtins.property
+    @pulumi.getter(name="dryRun")
+    def dry_run(self) -> pulumi.Input[Optional[_builtins.bool]]:
+        return pulumi.get(self, "dry_run")
+
+    @dry_run.setter
+    def dry_run(self, value: pulumi.Input[Optional[_builtins.bool]]):
+        pulumi.set(self, "dry_run", value)
+
+    @_builtins.property
+    @pulumi.getter(name="minimumDaysOld")
+    def minimum_days_old(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "minimum_days_old")
+
+    @minimum_days_old.setter
+    def minimum_days_old(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "minimum_days_old", value)
+
+    @_builtins.property
+    @pulumi.getter(name="tokenPath")
+    def token_path(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "token_path")
+
+    @token_path.setter
+    def token_path(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "token_path", value)
+
+
+class MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArgsDict(TypedDict):
+    artifact: NotRequired[pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgsDict']]]
+    memory_size: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+    timeout: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArgs:
+    def __init__(__self__, *,
+                 artifact: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgs']] = None,
+                 memory_size: pulumi.Input[Optional[_builtins.float]] = None,
+                 timeout: pulumi.Input[Optional[_builtins.float]] = None):
+        if artifact is not None:
+            pulumi.set(__self__, "artifact", artifact)
+        if memory_size is not None:
+            pulumi.set(__self__, "memory_size", memory_size)
+        if timeout is not None:
+            pulumi.set(__self__, "timeout", timeout)
+
+    @_builtins.property
+    @pulumi.getter
+    def artifact(self) -> pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgs']]:
+        return pulumi.get(self, "artifact")
+
+    @artifact.setter
+    def artifact(self, value: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgs']]):
+        pulumi.set(self, "artifact", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def memory_size(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "memory_size")
+
+    @memory_size.setter
+    def memory_size(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "memory_size", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def timeout(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "timeout")
+
+    @timeout.setter
+    def timeout(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "timeout", value)
+
+
+class MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgsDict(TypedDict):
+    s3: NotRequired[pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3ArgsDict']]]
+    zip: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgs:
+    def __init__(__self__, *,
+                 s3: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3Args']] = None,
+                 zip: pulumi.Input[Optional[_builtins.str]] = None):
+        if s3 is not None:
+            pulumi.set(__self__, "s3", s3)
+        if zip is not None:
+            pulumi.set(__self__, "zip", zip)
+
+    @_builtins.property
+    @pulumi.getter
+    def s3(self) -> pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3Args']]:
+        return pulumi.get(self, "s3")
+
+    @s3.setter
+    def s3(self, value: pulumi.Input[Optional['MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3Args']]):
+        pulumi.set(self, "s3", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def zip(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "zip")
+
+    @zip.setter
+    def zip(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "zip", value)
+
+
+class MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3ArgsDict(TypedDict):
+    key: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    object_version: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3Args:
+    def __init__(__self__, *,
+                 key: pulumi.Input[Optional[_builtins.str]] = None,
+                 object_version: pulumi.Input[Optional[_builtins.str]] = None):
+        if key is not None:
+            pulumi.set(__self__, "key", key)
+        if object_version is not None:
+            pulumi.set(__self__, "object_version", object_version)
+
+    @_builtins.property
+    @pulumi.getter
+    def key(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "key")
+
+    @key.setter
+    def key(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "key", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def object_version(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "object_version")
+
+    @object_version.setter
+    def object_version(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "object_version", value)
+
+
+class MultiRunnerConfigStorageProviderAwsSsmParametersArgsDict(TypedDict):
+    tags: NotRequired[pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]]
+
+@pulumi.input_type
+class MultiRunnerConfigStorageProviderAwsSsmParametersArgs:
+    def __init__(__self__, *,
+                 tags: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]] = None):
+        if tags is not None:
+            pulumi.set(__self__, "tags", tags)
+
+    @_builtins.property
+    @pulumi.getter
+    def tags(self) -> pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]:
+        return pulumi.get(self, "tags")
+
+    @tags.setter
+    def tags(self, value: pulumi.Input[Optional[Mapping[str, pulumi.Input[_builtins.str]]]]):
+        pulumi.set(self, "tags", value)
+
+
+class MultiRunnerConfigStorageProviderAwsSsmPathsArgsDict(TypedDict):
+    config: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    root: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+    tokens: NotRequired[pulumi.Input[Optional[_builtins.str]]]
+
+@pulumi.input_type
+class MultiRunnerConfigStorageProviderAwsSsmPathsArgs:
+    def __init__(__self__, *,
+                 config: pulumi.Input[Optional[_builtins.str]] = None,
+                 root: pulumi.Input[Optional[_builtins.str]] = None,
+                 tokens: pulumi.Input[Optional[_builtins.str]] = None):
+        if config is not None:
+            pulumi.set(__self__, "config", config)
+        if root is not None:
+            pulumi.set(__self__, "root", root)
+        if tokens is not None:
+            pulumi.set(__self__, "tokens", tokens)
+
+    @_builtins.property
+    @pulumi.getter
+    def config(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "config")
+
+    @config.setter
+    def config(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "config", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def root(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "root")
+
+    @root.setter
+    def root(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "root", value)
+
+    @_builtins.property
+    @pulumi.getter
+    def tokens(self) -> pulumi.Input[Optional[_builtins.str]]:
+        return pulumi.get(self, "tokens")
+
+    @tokens.setter
+    def tokens(self, value: pulumi.Input[Optional[_builtins.str]]):
+        pulumi.set(self, "tokens", value)
+
+
+class MultiRunnerConfigStorageProviderAwsSsmTtlSecondsArgsDict(TypedDict):
+    tokens: NotRequired[pulumi.Input[Optional[_builtins.float]]]
+
+@pulumi.input_type
+class MultiRunnerConfigStorageProviderAwsSsmTtlSecondsArgs:
+    def __init__(__self__, *,
+                 tokens: pulumi.Input[Optional[_builtins.float]] = None):
+        if tokens is not None:
+            pulumi.set(__self__, "tokens", tokens)
+
+    @_builtins.property
+    @pulumi.getter
+    def tokens(self) -> pulumi.Input[Optional[_builtins.float]]:
+        return pulumi.get(self, "tokens")
+
+    @tokens.setter
+    def tokens(self, value: pulumi.Input[Optional[_builtins.float]]):
+        pulumi.set(self, "tokens", value)
 
 
 class QueueEncryptionArgsDict(TypedDict):

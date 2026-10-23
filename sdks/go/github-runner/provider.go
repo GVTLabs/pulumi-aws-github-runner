@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/gvtlabs/pulumi-aws-github-runner/sdks/go/v7/github-runner/internal"
+	"github.com/gvtlabs/pulumi-aws-github-runner/sdks/go/v8/github-runner/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 

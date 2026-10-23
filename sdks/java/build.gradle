@@ -12,7 +12,7 @@ group = "com.pulumi"
 
 def resolvedVersion = System.getenv("PACKAGE_VERSION") ?:
     (project.version == "unspecified"
-         ? "7.11.0"
+         ? "8.0.0"
          : project.version)
 
 def signingKey = System.getenv("SIGNING_KEY")
@@ -74,7 +74,7 @@ def genPulumiResources = tasks.register('genPulumiResources') {
             parameterization {
                 name "github-runner"
                 version resolvedVersion
-                value "ewogICJtb2R1bGUiOiAiZ2l0aHViLWF3cy1ydW5uZXJzL2dpdGh1Yi1ydW5uZXIvYXdzLy9tb2R1bGVzL211bHRpLXJ1bm5lciIsCiAgInZlcnNpb24iOiAiNy4xMS4wIiwKICAicGFja2FnZU5hbWUiOiAiZ2l0aHViLXJ1bm5lciIKfQ=="
+                value "ewogICJtb2R1bGUiOiAiZ2l0aHViLWF3cy1ydW5uZXJzL2dpdGh1Yi1ydW5uZXIvYXdzLy9tb2R1bGVzL211bHRpLXJ1bm5lciIsCiAgInZlcnNpb24iOiAiOC4wLjAiLAogICJwYWNrYWdlTmFtZSI6ICJnaXRodWItcnVubmVyIgp9"
             }
         }
         def infoJson = builder.toPrettyString()

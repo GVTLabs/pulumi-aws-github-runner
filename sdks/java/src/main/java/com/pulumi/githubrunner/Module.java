@@ -41,6 +41,26 @@ public class Module extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<String>>> runners_map() {
         return Codegen.optional(this.runners_map);
     }
+    @Export(name="runners_map_v2", refs={List.class,String.class}, tree="[0,1]")
+    private Output</* @Nullable */ List<String>> runners_map_v2;
+
+    public Output<Optional<List<String>>> runners_map_v2() {
+        return Codegen.optional(this.runners_map_v2);
+    }
+    /**
+     * Shared scale-set orchestration resources, or null when no runner configuration selects scale_set.
+     * 
+     */
+    @Export(name="scale_set", refs={Object.class}, tree="[0]")
+    private Output</* @Nullable */ Object> scale_set;
+
+    /**
+     * @return Shared scale-set orchestration resources, or null when no runner configuration selects scale_set.
+     * 
+     */
+    public Output<Optional<Object>> scale_set() {
+        return Codegen.optional(this.scale_set);
+    }
     @Export(name="ssm_parameters", refs={Object.class}, tree="[0]")
     private Output</* @Nullable */ Object> ssm_parameters;
 

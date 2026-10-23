@@ -138,6 +138,14 @@ namespace Pulumi.GithubRunner.Inputs
         [Input("minimum_running_time_in_minutes")]
         public Input<double>? Minimum_running_time_in_minutes { get; set; }
 
+        [Input("network_interfaces")]
+        private InputList<Inputs.MultiRunnerConfigRunnerConfigNetworkInterfacesArgs>? _network_interfaces;
+        public InputList<Inputs.MultiRunnerConfigRunnerConfigNetworkInterfacesArgs> Network_interfaces
+        {
+            get => _network_interfaces ?? (_network_interfaces = new InputList<Inputs.MultiRunnerConfigRunnerConfigNetworkInterfacesArgs>());
+            set => _network_interfaces = value;
+        }
+
         [Input("placement")]
         public Input<Inputs.MultiRunnerConfigRunnerConfigPlacementArgs>? Placement { get; set; }
 
@@ -233,6 +241,9 @@ namespace Pulumi.GithubRunner.Inputs
         [Input("runners_maximum_count")]
         public Input<double>? Runners_maximum_count { get; set; }
 
+        [Input("scale_down_idle_confirmation_seconds")]
+        public Input<double>? Scale_down_idle_confirmation_seconds { get; set; }
+
         [Input("scale_down_schedule_expression")]
         public Input<string>? Scale_down_schedule_expression { get; set; }
 
@@ -246,6 +257,9 @@ namespace Pulumi.GithubRunner.Inputs
 
         [Input("scale_up_reserved_concurrent_executions")]
         public Input<double>? Scale_up_reserved_concurrent_executions { get; set; }
+
+        [Input("ssm_ttl_seconds")]
+        public Input<Inputs.MultiRunnerConfigRunnerConfigSsmTtlSecondsArgs>? Ssm_ttl_seconds { get; set; }
 
         [Input("subnet_ids")]
         private InputList<string>? _subnet_ids;

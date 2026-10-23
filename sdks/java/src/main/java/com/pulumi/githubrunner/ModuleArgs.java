@@ -10,6 +10,13 @@ import com.pulumi.githubrunner.inputs.AdditionalGithubAppsArgs;
 import com.pulumi.githubrunner.inputs.AmiHousekeeperCleanupConfigArgs;
 import com.pulumi.githubrunner.inputs.EventbridgeArgs;
 import com.pulumi.githubrunner.inputs.GithubAppArgs;
+import com.pulumi.githubrunner.inputs.GlobalConfigArgs;
+import com.pulumi.githubrunner.inputs.GlobalConfigComputeProviderArgs;
+import com.pulumi.githubrunner.inputs.GlobalConfigGithubArgs;
+import com.pulumi.githubrunner.inputs.GlobalConfigLambdaArgs;
+import com.pulumi.githubrunner.inputs.GlobalConfigObservabilityArgs;
+import com.pulumi.githubrunner.inputs.GlobalConfigOrchestrationProviderArgs;
+import com.pulumi.githubrunner.inputs.GlobalConfigStorageProviderArgs;
 import com.pulumi.githubrunner.inputs.IamOverridesArgs;
 import com.pulumi.githubrunner.inputs.InstanceTerminationWatcherArgs;
 import com.pulumi.githubrunner.inputs.LambdaPrincipalsArgs;
@@ -72,12 +79,16 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Configuration for AMI cleanup.
      * 
+     * - `launchTemplateNames`: Launch template names associated with AMIs eligible for cleanup. A runner type with dynamic labels enabled creates a second, `-on-demand-override` suffixed launch template; include both names if that type&#39;s AMIs should be eligible for cleanup.
+     * 
      */
     @Import(name="ami_housekeeper_cleanup_config")
     private @Nullable Output<AmiHousekeeperCleanupConfigArgs> ami_housekeeper_cleanup_config;
 
     /**
      * @return Configuration for AMI cleanup.
+     * 
+     * - `launchTemplateNames`: Launch template names associated with AMIs eligible for cleanup. A runner type with dynamic labels enabled creates a second, `-on-demand-override` suffixed launch template; include both names if that type&#39;s AMIs should be eligible for cleanup.
      * 
      */
     public Optional<Output<AmiHousekeeperCleanupConfigArgs>> ami_housekeeper_cleanup_config() {
@@ -280,6 +291,27 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * Explicit acknowledgement for opt-in features whose schemas may change
+     * while experimental. Set to [&#34;multi-runner-v2&#34;] when using the v2
+     * provider-boundary configuration. This flag will become a deprecated no-op
+     * for one release when the feature graduates.
+     * 
+     */
+    @Import(name="experimental_features")
+    private @Nullable Output<List<String>> experimental_features;
+
+    /**
+     * @return Explicit acknowledgement for opt-in features whose schemas may change
+     * while experimental. Set to [&#34;multi-runner-v2&#34;] when using the v2
+     * provider-boundary configuration. This flag will become a deprecated no-op
+     * for one release when the feature graduates.
+     * 
+     */
+    public Optional<Output<List<String>>> experimental_features() {
+        return Optional.ofNullable(this.experimental_features);
+    }
+
+    /**
      * GitHub Enterprise SSL verification. Set to &#39;false&#39; when custom certificate (chains) is used for GitHub Enterprise Server (insecure).
      * 
      */
@@ -310,26 +342,637 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     *   GitHub app parameters, see your github app.
+     *   GitHub app parameters for the stable v1 interface, see your github app.
+     *   Omit this value when using the experimental v2 interface and provide the
+     *   app through `global_config_github` instead.
      *   You can optionally create the SSM parameters yourself and provide the ARN and name here, through the `*_ssm` attributes.
      *   If you chose to provide the configuration values directly here,
      *   please ensure the key is the base64-encoded `.pem` file (the output of `base64 app.private-key.pem`, not the content of `private-key.pem`).
      *   Note: the provided SSM parameters arn and name have a precedence over the actual value (i.e `key_base64_ssm` has a precedence over `key_base64` etc).
      * 
      */
-    @Import(name="github_app", required=true)
-    private Output<GithubAppArgs> github_app;
+    @Import(name="github_app")
+    private @Nullable Output<GithubAppArgs> github_app;
 
     /**
-     * @return   GitHub app parameters, see your github app.
+     * @return   GitHub app parameters for the stable v1 interface, see your github app.
+     *   Omit this value when using the experimental v2 interface and provide the
+     *   app through `global_config_github` instead.
      *   You can optionally create the SSM parameters yourself and provide the ARN and name here, through the `*_ssm` attributes.
      *   If you chose to provide the configuration values directly here,
      *   please ensure the key is the base64-encoded `.pem` file (the output of `base64 app.private-key.pem`, not the content of `private-key.pem`).
      *   Note: the provided SSM parameters arn and name have a precedence over the actual value (i.e `key_base64_ssm` has a precedence over `key_base64` etc).
      * 
      */
-    public Output<GithubAppArgs> github_app() {
-        return this.github_app;
+    public Optional<Output<GithubAppArgs>> github_app() {
+        return Optional.ofNullable(this.github_app);
+    }
+
+    /**
+     * Global defaults shared by all runner lanes.
+     * 
+     * global_config = {
+     *   tags: &#34;Tags applied to resources created for all runner lanes.&#34;
+     *   roles: {
+     *     path: &#34;IAM path used for roles created for runner resources.&#34;
+     *     permissions_boundary: &#34;Optional IAM permissions boundary ARN applied to created roles.&#34;
+     *   }
+     *   runner: {
+     *     os: &#34;Default operating system for runners.&#34;
+     *     architecture: &#34;Default runner architecture.&#34;
+     *     disable_default_labels: &#34;Whether to omit the default operating-system, architecture, and self-hosted labels.&#34;
+     *     extra_labels: &#34;Additional labels applied to all runners.&#34;
+     *     group_name: &#34;Default GitHub runner group.&#34;
+     *     name_prefix: &#34;Prefix for runner names.&#34;
+     *     run_as_root: &#34;Whether the GitHub Actions runner executes as root.&#34;
+     *     run_as: &#34;User that runs the GitHub Actions agent when it is not running as root.&#34;
+     *     auto_update_disabled: &#34;Whether automatic GitHub Actions runner updates are disabled.&#34;
+     *     tags: &#34;Tags applied to runner resources.&#34;
+     *     hooks: {
+     *       job_started: &#34;Script executed when a job starts on a runner.&#34;
+     *       job_completed: &#34;Script executed when a job completes on a runner.&#34;
+     *     }
+     *     iam: {
+     *       role.arn: &#34;Existing IAM role ARN to use for runners.&#34;
+     *       managed_policy_arns: &#34;Managed policy ARNs attached to the runner IAM role.&#34;
+     *       additional_trust_policy_json: &#34;Additional trust policy JSON merged into the runner role trust policy.&#34;
+     *       path: &#34;IAM path used for the runner role.&#34;
+     *       permissions_boundary: &#34;Optional IAM permissions boundary ARN for the runner role.&#34;
+     *     }
+     *   }
+     * }
+     * 
+     */
+    @Import(name="global_config")
+    private @Nullable Output<GlobalConfigArgs> global_config;
+
+    /**
+     * @return Global defaults shared by all runner lanes.
+     * 
+     * global_config = {
+     *   tags: &#34;Tags applied to resources created for all runner lanes.&#34;
+     *   roles: {
+     *     path: &#34;IAM path used for roles created for runner resources.&#34;
+     *     permissions_boundary: &#34;Optional IAM permissions boundary ARN applied to created roles.&#34;
+     *   }
+     *   runner: {
+     *     os: &#34;Default operating system for runners.&#34;
+     *     architecture: &#34;Default runner architecture.&#34;
+     *     disable_default_labels: &#34;Whether to omit the default operating-system, architecture, and self-hosted labels.&#34;
+     *     extra_labels: &#34;Additional labels applied to all runners.&#34;
+     *     group_name: &#34;Default GitHub runner group.&#34;
+     *     name_prefix: &#34;Prefix for runner names.&#34;
+     *     run_as_root: &#34;Whether the GitHub Actions runner executes as root.&#34;
+     *     run_as: &#34;User that runs the GitHub Actions agent when it is not running as root.&#34;
+     *     auto_update_disabled: &#34;Whether automatic GitHub Actions runner updates are disabled.&#34;
+     *     tags: &#34;Tags applied to runner resources.&#34;
+     *     hooks: {
+     *       job_started: &#34;Script executed when a job starts on a runner.&#34;
+     *       job_completed: &#34;Script executed when a job completes on a runner.&#34;
+     *     }
+     *     iam: {
+     *       role.arn: &#34;Existing IAM role ARN to use for runners.&#34;
+     *       managed_policy_arns: &#34;Managed policy ARNs attached to the runner IAM role.&#34;
+     *       additional_trust_policy_json: &#34;Additional trust policy JSON merged into the runner role trust policy.&#34;
+     *       path: &#34;IAM path used for the runner role.&#34;
+     *       permissions_boundary: &#34;Optional IAM permissions boundary ARN for the runner role.&#34;
+     *     }
+     *   }
+     * }
+     * 
+     */
+    public Optional<Output<GlobalConfigArgs>> global_config() {
+        return Optional.ofNullable(this.global_config);
+    }
+
+    /**
+     * Global compute-provider configuration shared by all runner lanes.
+     * 
+     * global_config_compute_provider = {
+     *   selections: &#34;Compute-provider selections keyed by namespace.&#34;
+     *   selections.namespace: &#34;Provider namespace used to resolve a compute implementation.&#34;
+     *   selections.type: &#34;Compute-provider type selected for the namespace.&#34;
+     *   aws.ec2.vpc_id: &#34;Default VPC for EC2 runners.&#34;
+     *   aws.ec2.subnet_ids: &#34;Default subnets for EC2 runners.&#34;
+     *   aws.ec2.managed_security_group_enabled: &#34;Whether the module manages the default runner security group.&#34;
+     *   aws.ec2.egress_rules: &#34;Egress rules for the managed runner security group.&#34;
+     *   aws.ec2.egress_rules.cidr_blocks: &#34;IPv4 CIDR blocks allowed by an egress rule.&#34;
+     *   aws.ec2.egress_rules.ipv6_cidr_blocks: &#34;IPv6 CIDR blocks allowed by an egress rule.&#34;
+     *   aws.ec2.egress_rules.prefix_list_ids: &#34;AWS prefix lists allowed by an egress rule.&#34;
+     *   aws.ec2.egress_rules.from_port: &#34;Start of the egress port range.&#34;
+     *   aws.ec2.egress_rules.protocol: &#34;Protocol for the egress rule.&#34;
+     *   aws.ec2.egress_rules.security_groups: &#34;Referenced security groups allowed by an egress rule.&#34;
+     *   aws.ec2.egress_rules.self: &#34;Whether the security group itself is allowed by an egress rule.&#34;
+     *   aws.ec2.egress_rules.to_port: &#34;End of the egress port range.&#34;
+     *   aws.ec2.egress_rules.description: &#34;Description of the egress rule.&#34;
+     *   aws.ec2.additional_security_group_ids: &#34;Additional security groups attached to EC2 runners.&#34;
+     *   aws.ec2.cloudwatch_agent.config: &#34;CloudWatch Agent configuration for EC2 runners.&#34;
+     *   aws.ec2.instance_profile_path: &#34;IAM path used for the EC2 instance profile.&#34;
+     *   aws.ec2.key_name: &#34;EC2 key pair name assigned to runner instances.&#34;
+     *   aws.ec2.associate_public_ipv4_address: &#34;Whether runner instances receive a public IPv4 address.&#34;
+     *   aws.ec2.tags: &#34;Tags applied to EC2 runner resources.&#34;
+     *   aws.ec2.ami.housekeeper.enabled: &#34;Whether AMI cleanup is enabled.&#34;
+     *   aws.ec2.ami.housekeeper.cleanup_config.maxItems: &#34;Maximum number of AMIs retained by cleanup.&#34;
+     *   aws.ec2.ami.housekeeper.cleanup_config.minimumDaysOld: &#34;Minimum AMI age in days before cleanup.&#34;
+     *   aws.ec2.ami.housekeeper.cleanup_config.amiFilters: &#34;AMI filters used to select AMIs for cleanup.&#34;
+     *   aws.ec2.ami.housekeeper.cleanup_config.amiFilters.Name: &#34;AMI filter name.&#34;
+     *   aws.ec2.ami.housekeeper.cleanup_config.amiFilters.Values: &#34;Values matched by the AMI filter.&#34;
+     *   aws.ec2.ami.housekeeper.cleanup_config.launchTemplateNames: &#34;Launch template names associated with AMIs eligible for cleanup. A runner type with dynamic labels enabled creates a second, &#39;-on-demand-override&#39; suffixed launch template; include both names if that type&#39;s AMIs should be eligible for cleanup.&#34;
+     *   aws.ec2.ami.housekeeper.cleanup_config.ssmParameterNames: &#34;SSM parameter names associated with AMIs eligible for cleanup.&#34;
+     *   aws.ec2.ami.housekeeper.cleanup_config.dryRun: &#34;Whether AMI cleanup reports changes without deleting AMIs.&#34;
+     *   aws.ec2.ami.housekeeper.artifact.zip: &#34;Local ZIP artifact used for the AMI housekeeper Lambda.&#34;
+     *   aws.ec2.ami.housekeeper.artifact.s3.key: &#34;S3 object key for the AMI housekeeper Lambda artifact.&#34;
+     *   aws.ec2.ami.housekeeper.artifact.s3.object_version: &#34;Optional S3 object version for the AMI housekeeper artifact.&#34;
+     *   aws.ec2.ami.housekeeper.lambda.memory_size: &#34;Memory allocated to the AMI housekeeper Lambda.&#34;
+     *   aws.ec2.ami.housekeeper.lambda.timeout: &#34;Timeout in seconds for the AMI housekeeper Lambda.&#34;
+     *   aws.ec2.ami.housekeeper.schedule.expression: &#34;Schedule expression for AMI cleanup.&#34;
+     *   aws.ec2.instance_termination_watcher.enabled: &#34;Whether the instance termination watcher is enabled.&#34;
+     *   aws.ec2.instance_termination_watcher.features.runner_deregistration.enabled: &#34;Whether terminated runners are deregistered.&#34;
+     *   aws.ec2.instance_termination_watcher.features.spot_termination_handler.enabled: &#34;Whether spot termination events trigger runner handling.&#34;
+     *   aws.ec2.instance_termination_watcher.features.spot_termination_notification_watcher.enabled: &#34;Whether spot termination notification monitoring is enabled.&#34;
+     *   aws.ec2.instance_termination_watcher.environment_variables: &#34;Environment variables passed to the termination watcher.&#34;
+     *   aws.ec2.instance_termination_watcher.artifact.zip: &#34;Local ZIP artifact used for the termination watcher Lambda.&#34;
+     *   aws.ec2.instance_termination_watcher.artifact.s3.key: &#34;S3 object key for the termination watcher Lambda artifact.&#34;
+     *   aws.ec2.instance_termination_watcher.artifact.s3.object_version: &#34;Optional S3 object version for the termination watcher artifact.&#34;
+     *   aws.ec2.instance_termination_watcher.lambda.memory_size: &#34;Memory allocated to the termination watcher Lambda.&#34;
+     *   aws.ec2.instance_termination_watcher.lambda.timeout: &#34;Timeout in seconds for the termination watcher Lambda.&#34;
+     *   aws.ec2.runner_binaries.enabled: &#34;Whether runner binary synchronization is enabled.&#34;
+     *   aws.ec2.runner_binaries.s3.encryption.enabled: &#34;Whether runner-binary S3 encryption is enabled.&#34;
+     *   aws.ec2.runner_binaries.s3.encryption.bucket_key_enabled: &#34;Whether an S3 bucket key is used for KMS encryption.&#34;
+     *   aws.ec2.runner_binaries.s3.encryption.sse_algorithm: &#34;S3 server-side encryption algorithm.&#34;
+     *   aws.ec2.runner_binaries.s3.encryption.kms_master_key_id: &#34;KMS key ID used for runner-binary S3 encryption.&#34;
+     *   aws.ec2.runner_binaries.s3.tags: &#34;Tags applied to the runner-binary S3 bucket.&#34;
+     *   aws.ec2.runner_binaries.s3.versioning: &#34;S3 versioning state for the runner-binary bucket.&#34;
+     *   aws.ec2.runner_binaries.s3.logging.bucket: &#34;S3 bucket receiving runner-binary access logs.&#34;
+     *   aws.ec2.runner_binaries.s3.logging.prefix: &#34;Prefix for runner-binary S3 access logs.&#34;
+     *   aws.ec2.runner_binaries.syncer.artifact.zip: &#34;Local ZIP artifact used for the runner-binary syncer Lambda.&#34;
+     *   aws.ec2.runner_binaries.syncer.artifact.s3.key: &#34;S3 object key for the runner-binary syncer artifact.&#34;
+     *   aws.ec2.runner_binaries.syncer.artifact.s3.object_version: &#34;Optional S3 object version for the runner-binary syncer artifact.&#34;
+     *   aws.ec2.runner_binaries.syncer.lambda.memory_size: &#34;Memory allocated to the runner-binary syncer Lambda.&#34;
+     *   aws.ec2.runner_binaries.syncer.lambda.timeout: &#34;Timeout in seconds for the runner-binary syncer Lambda.&#34;
+     *   aws.ec2.runner_binaries.syncer.schedule.expression: &#34;Schedule expression for runner-binary synchronization.&#34;
+     *   aws.ec2.runner_binaries.syncer.schedule.state: &#34;EventBridge rule state for runner-binary synchronization.&#34;
+     * }
+     * 
+     */
+    @Import(name="global_config_compute_provider")
+    private @Nullable Output<GlobalConfigComputeProviderArgs> global_config_compute_provider;
+
+    /**
+     * @return Global compute-provider configuration shared by all runner lanes.
+     * 
+     * global_config_compute_provider = {
+     *   selections: &#34;Compute-provider selections keyed by namespace.&#34;
+     *   selections.namespace: &#34;Provider namespace used to resolve a compute implementation.&#34;
+     *   selections.type: &#34;Compute-provider type selected for the namespace.&#34;
+     *   aws.ec2.vpc_id: &#34;Default VPC for EC2 runners.&#34;
+     *   aws.ec2.subnet_ids: &#34;Default subnets for EC2 runners.&#34;
+     *   aws.ec2.managed_security_group_enabled: &#34;Whether the module manages the default runner security group.&#34;
+     *   aws.ec2.egress_rules: &#34;Egress rules for the managed runner security group.&#34;
+     *   aws.ec2.egress_rules.cidr_blocks: &#34;IPv4 CIDR blocks allowed by an egress rule.&#34;
+     *   aws.ec2.egress_rules.ipv6_cidr_blocks: &#34;IPv6 CIDR blocks allowed by an egress rule.&#34;
+     *   aws.ec2.egress_rules.prefix_list_ids: &#34;AWS prefix lists allowed by an egress rule.&#34;
+     *   aws.ec2.egress_rules.from_port: &#34;Start of the egress port range.&#34;
+     *   aws.ec2.egress_rules.protocol: &#34;Protocol for the egress rule.&#34;
+     *   aws.ec2.egress_rules.security_groups: &#34;Referenced security groups allowed by an egress rule.&#34;
+     *   aws.ec2.egress_rules.self: &#34;Whether the security group itself is allowed by an egress rule.&#34;
+     *   aws.ec2.egress_rules.to_port: &#34;End of the egress port range.&#34;
+     *   aws.ec2.egress_rules.description: &#34;Description of the egress rule.&#34;
+     *   aws.ec2.additional_security_group_ids: &#34;Additional security groups attached to EC2 runners.&#34;
+     *   aws.ec2.cloudwatch_agent.config: &#34;CloudWatch Agent configuration for EC2 runners.&#34;
+     *   aws.ec2.instance_profile_path: &#34;IAM path used for the EC2 instance profile.&#34;
+     *   aws.ec2.key_name: &#34;EC2 key pair name assigned to runner instances.&#34;
+     *   aws.ec2.associate_public_ipv4_address: &#34;Whether runner instances receive a public IPv4 address.&#34;
+     *   aws.ec2.tags: &#34;Tags applied to EC2 runner resources.&#34;
+     *   aws.ec2.ami.housekeeper.enabled: &#34;Whether AMI cleanup is enabled.&#34;
+     *   aws.ec2.ami.housekeeper.cleanup_config.maxItems: &#34;Maximum number of AMIs retained by cleanup.&#34;
+     *   aws.ec2.ami.housekeeper.cleanup_config.minimumDaysOld: &#34;Minimum AMI age in days before cleanup.&#34;
+     *   aws.ec2.ami.housekeeper.cleanup_config.amiFilters: &#34;AMI filters used to select AMIs for cleanup.&#34;
+     *   aws.ec2.ami.housekeeper.cleanup_config.amiFilters.Name: &#34;AMI filter name.&#34;
+     *   aws.ec2.ami.housekeeper.cleanup_config.amiFilters.Values: &#34;Values matched by the AMI filter.&#34;
+     *   aws.ec2.ami.housekeeper.cleanup_config.launchTemplateNames: &#34;Launch template names associated with AMIs eligible for cleanup. A runner type with dynamic labels enabled creates a second, &#39;-on-demand-override&#39; suffixed launch template; include both names if that type&#39;s AMIs should be eligible for cleanup.&#34;
+     *   aws.ec2.ami.housekeeper.cleanup_config.ssmParameterNames: &#34;SSM parameter names associated with AMIs eligible for cleanup.&#34;
+     *   aws.ec2.ami.housekeeper.cleanup_config.dryRun: &#34;Whether AMI cleanup reports changes without deleting AMIs.&#34;
+     *   aws.ec2.ami.housekeeper.artifact.zip: &#34;Local ZIP artifact used for the AMI housekeeper Lambda.&#34;
+     *   aws.ec2.ami.housekeeper.artifact.s3.key: &#34;S3 object key for the AMI housekeeper Lambda artifact.&#34;
+     *   aws.ec2.ami.housekeeper.artifact.s3.object_version: &#34;Optional S3 object version for the AMI housekeeper artifact.&#34;
+     *   aws.ec2.ami.housekeeper.lambda.memory_size: &#34;Memory allocated to the AMI housekeeper Lambda.&#34;
+     *   aws.ec2.ami.housekeeper.lambda.timeout: &#34;Timeout in seconds for the AMI housekeeper Lambda.&#34;
+     *   aws.ec2.ami.housekeeper.schedule.expression: &#34;Schedule expression for AMI cleanup.&#34;
+     *   aws.ec2.instance_termination_watcher.enabled: &#34;Whether the instance termination watcher is enabled.&#34;
+     *   aws.ec2.instance_termination_watcher.features.runner_deregistration.enabled: &#34;Whether terminated runners are deregistered.&#34;
+     *   aws.ec2.instance_termination_watcher.features.spot_termination_handler.enabled: &#34;Whether spot termination events trigger runner handling.&#34;
+     *   aws.ec2.instance_termination_watcher.features.spot_termination_notification_watcher.enabled: &#34;Whether spot termination notification monitoring is enabled.&#34;
+     *   aws.ec2.instance_termination_watcher.environment_variables: &#34;Environment variables passed to the termination watcher.&#34;
+     *   aws.ec2.instance_termination_watcher.artifact.zip: &#34;Local ZIP artifact used for the termination watcher Lambda.&#34;
+     *   aws.ec2.instance_termination_watcher.artifact.s3.key: &#34;S3 object key for the termination watcher Lambda artifact.&#34;
+     *   aws.ec2.instance_termination_watcher.artifact.s3.object_version: &#34;Optional S3 object version for the termination watcher artifact.&#34;
+     *   aws.ec2.instance_termination_watcher.lambda.memory_size: &#34;Memory allocated to the termination watcher Lambda.&#34;
+     *   aws.ec2.instance_termination_watcher.lambda.timeout: &#34;Timeout in seconds for the termination watcher Lambda.&#34;
+     *   aws.ec2.runner_binaries.enabled: &#34;Whether runner binary synchronization is enabled.&#34;
+     *   aws.ec2.runner_binaries.s3.encryption.enabled: &#34;Whether runner-binary S3 encryption is enabled.&#34;
+     *   aws.ec2.runner_binaries.s3.encryption.bucket_key_enabled: &#34;Whether an S3 bucket key is used for KMS encryption.&#34;
+     *   aws.ec2.runner_binaries.s3.encryption.sse_algorithm: &#34;S3 server-side encryption algorithm.&#34;
+     *   aws.ec2.runner_binaries.s3.encryption.kms_master_key_id: &#34;KMS key ID used for runner-binary S3 encryption.&#34;
+     *   aws.ec2.runner_binaries.s3.tags: &#34;Tags applied to the runner-binary S3 bucket.&#34;
+     *   aws.ec2.runner_binaries.s3.versioning: &#34;S3 versioning state for the runner-binary bucket.&#34;
+     *   aws.ec2.runner_binaries.s3.logging.bucket: &#34;S3 bucket receiving runner-binary access logs.&#34;
+     *   aws.ec2.runner_binaries.s3.logging.prefix: &#34;Prefix for runner-binary S3 access logs.&#34;
+     *   aws.ec2.runner_binaries.syncer.artifact.zip: &#34;Local ZIP artifact used for the runner-binary syncer Lambda.&#34;
+     *   aws.ec2.runner_binaries.syncer.artifact.s3.key: &#34;S3 object key for the runner-binary syncer artifact.&#34;
+     *   aws.ec2.runner_binaries.syncer.artifact.s3.object_version: &#34;Optional S3 object version for the runner-binary syncer artifact.&#34;
+     *   aws.ec2.runner_binaries.syncer.lambda.memory_size: &#34;Memory allocated to the runner-binary syncer Lambda.&#34;
+     *   aws.ec2.runner_binaries.syncer.lambda.timeout: &#34;Timeout in seconds for the runner-binary syncer Lambda.&#34;
+     *   aws.ec2.runner_binaries.syncer.schedule.expression: &#34;Schedule expression for runner-binary synchronization.&#34;
+     *   aws.ec2.runner_binaries.syncer.schedule.state: &#34;EventBridge rule state for runner-binary synchronization.&#34;
+     * }
+     * 
+     */
+    public Optional<Output<GlobalConfigComputeProviderArgs>> global_config_compute_provider() {
+        return Optional.ofNullable(this.global_config_compute_provider);
+    }
+
+    /**
+     * Global GitHub configuration shared by all runner lanes.
+     * 
+     * global_config_github = {
+     *   app: {
+     *     key_base64: &#34;Base64-encoded GitHub App private key.&#34;
+     *     key_base64_ssm: &#34;SSM parameter containing the Base64-encoded GitHub App private key.&#34;
+     *     key_base64_ssm.arn: &#34;ARN of the SSM parameter containing the GitHub App private key.&#34;
+     *     key_base64_ssm.name: &#34;Name of the SSM parameter containing the GitHub App private key.&#34;
+     *     id: &#34;GitHub App ID.&#34;
+     *     id_ssm: &#34;SSM parameter containing the GitHub App ID.&#34;
+     *     id_ssm.arn: &#34;ARN of the SSM parameter containing the GitHub App ID.&#34;
+     *     id_ssm.name: &#34;Name of the SSM parameter containing the GitHub App ID.&#34;
+     *     installation_id: &#34;GitHub App installation ID for the primary scale-set installation.&#34;
+     *     installation_id_ssm: &#34;SSM parameter containing the primary GitHub App installation ID.&#34;
+     *     installation_id_ssm.arn: &#34;ARN of the SSM parameter containing the primary GitHub App installation ID.&#34;
+     *     installation_id_ssm.name: &#34;Name of the SSM parameter containing the primary GitHub App installation ID.&#34;
+     *     webhook_secret: &#34;GitHub App webhook secret.&#34;
+     *     webhook_secret_ssm: &#34;SSM parameter containing the GitHub App webhook secret.&#34;
+     *     webhook_secret_ssm.arn: &#34;ARN of the SSM parameter containing the GitHub App webhook secret.&#34;
+     *     webhook_secret_ssm.name: &#34;Name of the SSM parameter containing the GitHub App webhook secret.&#34;
+     *   }
+     *   additional_apps: &#34;Additional GitHub Apps used to distribute GitHub API requests.&#34;
+     *   additional_apps.key_base64: &#34;Base64-encoded private key for an additional GitHub App.&#34;
+     *   additional_apps.key_base64_ssm: &#34;SSM parameter containing an additional App private key.&#34;
+     *   additional_apps.key_base64_ssm.arn: &#34;ARN of the SSM parameter containing an additional App private key.&#34;
+     *   additional_apps.key_base64_ssm.name: &#34;Name of the SSM parameter containing an additional App private key.&#34;
+     *   additional_apps.id: &#34;ID of an additional GitHub App.&#34;
+     *   additional_apps.id_ssm: &#34;SSM parameter containing an additional GitHub App ID.&#34;
+     *   additional_apps.id_ssm.arn: &#34;ARN of the SSM parameter containing an additional GitHub App ID.&#34;
+     *   additional_apps.id_ssm.name: &#34;Name of the SSM parameter containing an additional GitHub App ID.&#34;
+     *   additional_apps.installation_id: &#34;Optional installation ID for an additional GitHub App.&#34;
+     *   additional_apps.installation_id_ssm: &#34;SSM parameter containing an additional App installation ID.&#34;
+     *   additional_apps.installation_id_ssm.arn: &#34;ARN of the SSM parameter containing an additional App installation ID.&#34;
+     *   additional_apps.installation_id_ssm.name: &#34;Name of the SSM parameter containing an additional App installation ID.&#34;
+     *   enterprise_server.url: &#34;GitHub Enterprise Server URL.&#34;
+     *   enterprise_server.ssl_verify: &#34;Whether to verify the GitHub Enterprise Server TLS certificate.&#34;
+     *   runner_owner: &#34;GitHub organization or owner/repository path for organization- or repository-level scale-set registration.&#34;
+     *   runner_registration_level: &#34;GitHub scale-set registration scope: organization or repository.&#34;
+     *   user_agent: &#34;User-Agent value sent with GitHub API requests.&#34;
+     * }
+     * 
+     */
+    @Import(name="global_config_github")
+    private @Nullable Output<GlobalConfigGithubArgs> global_config_github;
+
+    /**
+     * @return Global GitHub configuration shared by all runner lanes.
+     * 
+     * global_config_github = {
+     *   app: {
+     *     key_base64: &#34;Base64-encoded GitHub App private key.&#34;
+     *     key_base64_ssm: &#34;SSM parameter containing the Base64-encoded GitHub App private key.&#34;
+     *     key_base64_ssm.arn: &#34;ARN of the SSM parameter containing the GitHub App private key.&#34;
+     *     key_base64_ssm.name: &#34;Name of the SSM parameter containing the GitHub App private key.&#34;
+     *     id: &#34;GitHub App ID.&#34;
+     *     id_ssm: &#34;SSM parameter containing the GitHub App ID.&#34;
+     *     id_ssm.arn: &#34;ARN of the SSM parameter containing the GitHub App ID.&#34;
+     *     id_ssm.name: &#34;Name of the SSM parameter containing the GitHub App ID.&#34;
+     *     installation_id: &#34;GitHub App installation ID for the primary scale-set installation.&#34;
+     *     installation_id_ssm: &#34;SSM parameter containing the primary GitHub App installation ID.&#34;
+     *     installation_id_ssm.arn: &#34;ARN of the SSM parameter containing the primary GitHub App installation ID.&#34;
+     *     installation_id_ssm.name: &#34;Name of the SSM parameter containing the primary GitHub App installation ID.&#34;
+     *     webhook_secret: &#34;GitHub App webhook secret.&#34;
+     *     webhook_secret_ssm: &#34;SSM parameter containing the GitHub App webhook secret.&#34;
+     *     webhook_secret_ssm.arn: &#34;ARN of the SSM parameter containing the GitHub App webhook secret.&#34;
+     *     webhook_secret_ssm.name: &#34;Name of the SSM parameter containing the GitHub App webhook secret.&#34;
+     *   }
+     *   additional_apps: &#34;Additional GitHub Apps used to distribute GitHub API requests.&#34;
+     *   additional_apps.key_base64: &#34;Base64-encoded private key for an additional GitHub App.&#34;
+     *   additional_apps.key_base64_ssm: &#34;SSM parameter containing an additional App private key.&#34;
+     *   additional_apps.key_base64_ssm.arn: &#34;ARN of the SSM parameter containing an additional App private key.&#34;
+     *   additional_apps.key_base64_ssm.name: &#34;Name of the SSM parameter containing an additional App private key.&#34;
+     *   additional_apps.id: &#34;ID of an additional GitHub App.&#34;
+     *   additional_apps.id_ssm: &#34;SSM parameter containing an additional GitHub App ID.&#34;
+     *   additional_apps.id_ssm.arn: &#34;ARN of the SSM parameter containing an additional GitHub App ID.&#34;
+     *   additional_apps.id_ssm.name: &#34;Name of the SSM parameter containing an additional GitHub App ID.&#34;
+     *   additional_apps.installation_id: &#34;Optional installation ID for an additional GitHub App.&#34;
+     *   additional_apps.installation_id_ssm: &#34;SSM parameter containing an additional App installation ID.&#34;
+     *   additional_apps.installation_id_ssm.arn: &#34;ARN of the SSM parameter containing an additional App installation ID.&#34;
+     *   additional_apps.installation_id_ssm.name: &#34;Name of the SSM parameter containing an additional App installation ID.&#34;
+     *   enterprise_server.url: &#34;GitHub Enterprise Server URL.&#34;
+     *   enterprise_server.ssl_verify: &#34;Whether to verify the GitHub Enterprise Server TLS certificate.&#34;
+     *   runner_owner: &#34;GitHub organization or owner/repository path for organization- or repository-level scale-set registration.&#34;
+     *   runner_registration_level: &#34;GitHub scale-set registration scope: organization or repository.&#34;
+     *   user_agent: &#34;User-Agent value sent with GitHub API requests.&#34;
+     * }
+     * 
+     */
+    public Optional<Output<GlobalConfigGithubArgs>> global_config_github() {
+        return Optional.ofNullable(this.global_config_github);
+    }
+
+    /**
+     * Global Lambda configuration shared by all runner lanes.
+     * 
+     * global_config_lambda = {
+     *   artifact.s3.bucket: &#34;S3 bucket containing Lambda deployment artifacts.&#34;
+     *   runtime: &#34;Default Lambda runtime.&#34;
+     *   architecture: &#34;Default Lambda instruction-set architecture.&#34;
+     *   principals: &#34;Additional AWS principals allowed to invoke the Lambda functions.&#34;
+     *   principals.type: &#34;Principal type, such as AWS account, service, or organization.&#34;
+     *   principals.identifiers: &#34;Identifiers allowed for the principal type.&#34;
+     *   subnet_ids: &#34;Subnets used by Lambda functions.&#34;
+     *   security_group_ids: &#34;Security groups attached to Lambda functions.&#34;
+     *   tags: &#34;Tags applied to Lambda functions and related resources.&#34;
+     *   role.path: &#34;IAM path used for Lambda execution roles.&#34;
+     *   role.permissions_boundary: &#34;Optional IAM permissions boundary ARN for Lambda execution roles.&#34;
+     * }
+     * 
+     */
+    @Import(name="global_config_lambda")
+    private @Nullable Output<GlobalConfigLambdaArgs> global_config_lambda;
+
+    /**
+     * @return Global Lambda configuration shared by all runner lanes.
+     * 
+     * global_config_lambda = {
+     *   artifact.s3.bucket: &#34;S3 bucket containing Lambda deployment artifacts.&#34;
+     *   runtime: &#34;Default Lambda runtime.&#34;
+     *   architecture: &#34;Default Lambda instruction-set architecture.&#34;
+     *   principals: &#34;Additional AWS principals allowed to invoke the Lambda functions.&#34;
+     *   principals.type: &#34;Principal type, such as AWS account, service, or organization.&#34;
+     *   principals.identifiers: &#34;Identifiers allowed for the principal type.&#34;
+     *   subnet_ids: &#34;Subnets used by Lambda functions.&#34;
+     *   security_group_ids: &#34;Security groups attached to Lambda functions.&#34;
+     *   tags: &#34;Tags applied to Lambda functions and related resources.&#34;
+     *   role.path: &#34;IAM path used for Lambda execution roles.&#34;
+     *   role.permissions_boundary: &#34;Optional IAM permissions boundary ARN for Lambda execution roles.&#34;
+     * }
+     * 
+     */
+    public Optional<Output<GlobalConfigLambdaArgs>> global_config_lambda() {
+        return Optional.ofNullable(this.global_config_lambda);
+    }
+
+    /**
+     * Global observability configuration shared by all runner lanes.
+     * 
+     * global_config_observability = {
+     *   logs.level: &#34;Log level for module resources.&#34;
+     *   logs.retention_in_days: &#34;CloudWatch log retention period in days.&#34;
+     *   logs.kms_key_id: &#34;KMS key ID used to encrypt CloudWatch log groups.&#34;
+     *   logs.class: &#34;CloudWatch log group class.&#34;
+     *   logs.tags: &#34;Tags applied to CloudWatch log groups.&#34;
+     *   tracing.mode: &#34;Tracing mode used by instrumented resources.&#34;
+     *   tracing.capture_http_requests: &#34;Whether HTTP requests are captured by tracing.&#34;
+     *   tracing.capture_error: &#34;Whether errors are captured by tracing.&#34;
+     *   metrics.enabled: &#34;Whether module metrics are enabled.&#34;
+     *   metrics.namespace: &#34;CloudWatch namespace used for module metrics.&#34;
+     *   metrics.metric.github_app_rate_limit.enabled: &#34;Whether GitHub App rate-limit metrics are emitted.&#34;
+     *   metrics.metric.job_retry.enabled: &#34;Whether job-retry metrics are emitted.&#34;
+     *   metrics.metric.spot_termination_warning.enabled: &#34;Whether spot-termination warning metrics are emitted.&#34;
+     * }
+     * 
+     */
+    @Import(name="global_config_observability")
+    private @Nullable Output<GlobalConfigObservabilityArgs> global_config_observability;
+
+    /**
+     * @return Global observability configuration shared by all runner lanes.
+     * 
+     * global_config_observability = {
+     *   logs.level: &#34;Log level for module resources.&#34;
+     *   logs.retention_in_days: &#34;CloudWatch log retention period in days.&#34;
+     *   logs.kms_key_id: &#34;KMS key ID used to encrypt CloudWatch log groups.&#34;
+     *   logs.class: &#34;CloudWatch log group class.&#34;
+     *   logs.tags: &#34;Tags applied to CloudWatch log groups.&#34;
+     *   tracing.mode: &#34;Tracing mode used by instrumented resources.&#34;
+     *   tracing.capture_http_requests: &#34;Whether HTTP requests are captured by tracing.&#34;
+     *   tracing.capture_error: &#34;Whether errors are captured by tracing.&#34;
+     *   metrics.enabled: &#34;Whether module metrics are enabled.&#34;
+     *   metrics.namespace: &#34;CloudWatch namespace used for module metrics.&#34;
+     *   metrics.metric.github_app_rate_limit.enabled: &#34;Whether GitHub App rate-limit metrics are emitted.&#34;
+     *   metrics.metric.job_retry.enabled: &#34;Whether job-retry metrics are emitted.&#34;
+     *   metrics.metric.spot_termination_warning.enabled: &#34;Whether spot-termination warning metrics are emitted.&#34;
+     * }
+     * 
+     */
+    public Optional<Output<GlobalConfigObservabilityArgs>> global_config_observability() {
+        return Optional.ofNullable(this.global_config_observability);
+    }
+
+    /**
+     * Global orchestration-provider configuration shared by all runner lanes.
+     * 
+     * global_config_orchestration_provider = {
+     *   webhook: {
+     *     queue_selection_strategy: &#34;Strategy used to select the build queue for a webhook event.&#34;
+     *     eventbridge.enabled: &#34;Whether EventBridge integration is enabled for webhook events.&#34;
+     *     eventbridge.accept_events: &#34;Event types accepted by the EventBridge integration.&#34;
+     *     matcher_config_parameter_store_tier: &#34;SSM Parameter Store tier used for matcher configuration.&#34;
+     *     runner.boot_time_in_minutes: &#34;Expected runner boot time used by orchestration.&#34;
+     *     runner.ephemeral: &#34;Whether runners created by the orchestration provider are ephemeral.&#34;
+     *     runner.jit_config_enabled: &#34;Whether JIT runner configuration is enabled.&#34;
+     *     runner.maximum_count: &#34;Maximum number of runners that orchestration may create.&#34;
+     *     github.repository_white_list: &#34;Repositories allowed to use the webhook configuration.&#34;
+     *     lambda.artifact.zip: &#34;Local ZIP artifact used for orchestration Lambda functions.&#34;
+     *     lambda.artifact.s3.key: &#34;S3 object key for the orchestration Lambda artifact.&#34;
+     *     lambda.artifact.s3.object_version: &#34;Optional S3 object version for the orchestration Lambda artifact.&#34;
+     *     lambda.scale.up.memory_size: &#34;Memory allocated to the scale-up Lambda.&#34;
+     *     lambda.scale.up.timeout: &#34;Timeout in seconds for the scale-up Lambda.&#34;
+     *     lambda.scale.up.reserved_concurrent_executions: &#34;Reserved concurrent executions for the scale-up Lambda.&#34;
+     *     lambda.scale.up.job_queued_check_enabled: &#34;Whether the scale-up Lambda checks queued jobs.&#34;
+     *     lambda.scale.up.event_source_mapping.batch_size: &#34;Maximum records passed to one scale-up Lambda invocation.&#34;
+     *     lambda.scale.up.event_source_mapping.maximum_batching_window_in_seconds: &#34;Maximum time to batch records before invoking the scale-up Lambda.&#34;
+     *     lambda.scale.up.tags: &#34;Tags applied to the scale-up Lambda.&#34;
+     *     lambda.scale.down.memory_size: &#34;Memory allocated to the scale-down Lambda.&#34;
+     *     lambda.scale.down.timeout: &#34;Timeout in seconds for the scale-down Lambda.&#34;
+     *     lambda.scale.down.schedule_expression: &#34;Schedule expression for scale-down processing.&#34;
+     *     lambda.scale.down.minimum_running_time_in_minutes: &#34;Minimum runner lifetime before scale-down.&#34;
+     *     lambda.scale.down.idle_confirmation_seconds: &#34;Seconds a runner must consistently report not-busy before scale-down terminates it; 0 disables the confirmation window.&#34;
+     *     lambda.scale.down.idle_config: &#34;Scheduled minimum idle-runner pool settings.&#34;
+     *     lambda.scale.down.idle_config.cron: &#34;Cron expression defining when the idle-runner count applies.&#34;
+     *     lambda.scale.down.idle_config.timeZone: &#34;Time zone used to evaluate the idle-runner schedule.&#34;
+     *     lambda.scale.down.idle_config.idleCount: &#34;Minimum number of idle runners maintained during the schedule.&#34;
+     *     lambda.scale.down.idle_config.evictionStrategy: &#34;Strategy used when evicting idle runners.&#34;
+     *     lambda.scale.down.tags: &#34;Tags applied to the scale-down Lambda.&#34;
+     *     lambda.webhook.artifact.zip: &#34;Local ZIP artifact used for the webhook Lambda.&#34;
+     *     lambda.webhook.artifact.s3.key: &#34;S3 object key for the webhook Lambda artifact.&#34;
+     *     lambda.webhook.artifact.s3.object_version: &#34;Optional S3 object version for the webhook Lambda artifact.&#34;
+     *     lambda.webhook.api_gateway_access_log_settings: &#34;API Gateway access-log destination and format.&#34;
+     *     lambda.webhook.api_gateway_access_log_settings.destination_arn: &#34;ARN of the API Gateway access-log destination.&#34;
+     *     lambda.webhook.api_gateway_access_log_settings.format: &#34;API Gateway access-log format.&#34;
+     *     lambda.webhook.memory_size: &#34;Memory allocated to the webhook Lambda.&#34;
+     *     lambda.webhook.timeout: &#34;Timeout in seconds for the webhook Lambda.&#34;
+     *     lambda.webhook.tags: &#34;Tags applied to the webhook Lambda.&#34;
+     *     lambda.pool.memory_size: &#34;Memory allocated to the pool Lambda.&#34;
+     *     lambda.pool.timeout: &#34;Timeout in seconds for the pool Lambda.&#34;
+     *     lambda.pool.reserved_concurrent_executions: &#34;Reserved concurrent executions for the pool Lambda.&#34;
+     *     lambda.pool.config: &#34;Scheduled runner-pool size configuration.&#34;
+     *     lambda.pool.config.schedule_expression: &#34;Schedule expression for the pool size.&#34;
+     *     lambda.pool.config.schedule_expression_timezone: &#34;Time zone used to evaluate the pool schedule.&#34;
+     *     lambda.pool.config.size: &#34;Runner pool size applied by the schedule.&#34;
+     *     lambda.pool.include_busy_runners: &#34;Whether busy runners are included in pool sizing.&#34;
+     *     lambda.pool.runner_owner: &#34;GitHub organization that owns the runner pool.&#34;
+     *     lambda.pool.tags: &#34;Tags applied to the pool Lambda.&#34;
+     *     queue.delay_webhook_event: &#34;Seconds a webhook event remains invisible in the build queue before processing.&#34;
+     *     queue.job_queue_retention_in_seconds: &#34;Seconds a queued job is retained before it is purged.&#34;
+     *     queue.visibility_timeout_seconds: &#34;Build queue visibility timeout in seconds.&#34;
+     *     queue.redrive_build_queue.enabled: &#34;Whether the build queue dead-letter queue is enabled.&#34;
+     *     queue.redrive_build_queue.maxReceiveCount: &#34;Maximum receives before a message is moved to the dead-letter queue.&#34;
+     *     queue.tags: &#34;Tags applied to build queues.&#34;
+     *     queue.encryption.kms_data_key_reuse_period_seconds: &#34;KMS data-key reuse period for queue encryption.&#34;
+     *     queue.encryption.kms_master_key_id: &#34;KMS key ID used for queue encryption.&#34;
+     *     queue.encryption.sqs_managed_sse_enabled: &#34;Whether SQS-managed server-side encryption is enabled.&#34;
+     *   }
+     * }
+     * 
+     */
+    @Import(name="global_config_orchestration_provider")
+    private @Nullable Output<GlobalConfigOrchestrationProviderArgs> global_config_orchestration_provider;
+
+    /**
+     * @return Global orchestration-provider configuration shared by all runner lanes.
+     * 
+     * global_config_orchestration_provider = {
+     *   webhook: {
+     *     queue_selection_strategy: &#34;Strategy used to select the build queue for a webhook event.&#34;
+     *     eventbridge.enabled: &#34;Whether EventBridge integration is enabled for webhook events.&#34;
+     *     eventbridge.accept_events: &#34;Event types accepted by the EventBridge integration.&#34;
+     *     matcher_config_parameter_store_tier: &#34;SSM Parameter Store tier used for matcher configuration.&#34;
+     *     runner.boot_time_in_minutes: &#34;Expected runner boot time used by orchestration.&#34;
+     *     runner.ephemeral: &#34;Whether runners created by the orchestration provider are ephemeral.&#34;
+     *     runner.jit_config_enabled: &#34;Whether JIT runner configuration is enabled.&#34;
+     *     runner.maximum_count: &#34;Maximum number of runners that orchestration may create.&#34;
+     *     github.repository_white_list: &#34;Repositories allowed to use the webhook configuration.&#34;
+     *     lambda.artifact.zip: &#34;Local ZIP artifact used for orchestration Lambda functions.&#34;
+     *     lambda.artifact.s3.key: &#34;S3 object key for the orchestration Lambda artifact.&#34;
+     *     lambda.artifact.s3.object_version: &#34;Optional S3 object version for the orchestration Lambda artifact.&#34;
+     *     lambda.scale.up.memory_size: &#34;Memory allocated to the scale-up Lambda.&#34;
+     *     lambda.scale.up.timeout: &#34;Timeout in seconds for the scale-up Lambda.&#34;
+     *     lambda.scale.up.reserved_concurrent_executions: &#34;Reserved concurrent executions for the scale-up Lambda.&#34;
+     *     lambda.scale.up.job_queued_check_enabled: &#34;Whether the scale-up Lambda checks queued jobs.&#34;
+     *     lambda.scale.up.event_source_mapping.batch_size: &#34;Maximum records passed to one scale-up Lambda invocation.&#34;
+     *     lambda.scale.up.event_source_mapping.maximum_batching_window_in_seconds: &#34;Maximum time to batch records before invoking the scale-up Lambda.&#34;
+     *     lambda.scale.up.tags: &#34;Tags applied to the scale-up Lambda.&#34;
+     *     lambda.scale.down.memory_size: &#34;Memory allocated to the scale-down Lambda.&#34;
+     *     lambda.scale.down.timeout: &#34;Timeout in seconds for the scale-down Lambda.&#34;
+     *     lambda.scale.down.schedule_expression: &#34;Schedule expression for scale-down processing.&#34;
+     *     lambda.scale.down.minimum_running_time_in_minutes: &#34;Minimum runner lifetime before scale-down.&#34;
+     *     lambda.scale.down.idle_confirmation_seconds: &#34;Seconds a runner must consistently report not-busy before scale-down terminates it; 0 disables the confirmation window.&#34;
+     *     lambda.scale.down.idle_config: &#34;Scheduled minimum idle-runner pool settings.&#34;
+     *     lambda.scale.down.idle_config.cron: &#34;Cron expression defining when the idle-runner count applies.&#34;
+     *     lambda.scale.down.idle_config.timeZone: &#34;Time zone used to evaluate the idle-runner schedule.&#34;
+     *     lambda.scale.down.idle_config.idleCount: &#34;Minimum number of idle runners maintained during the schedule.&#34;
+     *     lambda.scale.down.idle_config.evictionStrategy: &#34;Strategy used when evicting idle runners.&#34;
+     *     lambda.scale.down.tags: &#34;Tags applied to the scale-down Lambda.&#34;
+     *     lambda.webhook.artifact.zip: &#34;Local ZIP artifact used for the webhook Lambda.&#34;
+     *     lambda.webhook.artifact.s3.key: &#34;S3 object key for the webhook Lambda artifact.&#34;
+     *     lambda.webhook.artifact.s3.object_version: &#34;Optional S3 object version for the webhook Lambda artifact.&#34;
+     *     lambda.webhook.api_gateway_access_log_settings: &#34;API Gateway access-log destination and format.&#34;
+     *     lambda.webhook.api_gateway_access_log_settings.destination_arn: &#34;ARN of the API Gateway access-log destination.&#34;
+     *     lambda.webhook.api_gateway_access_log_settings.format: &#34;API Gateway access-log format.&#34;
+     *     lambda.webhook.memory_size: &#34;Memory allocated to the webhook Lambda.&#34;
+     *     lambda.webhook.timeout: &#34;Timeout in seconds for the webhook Lambda.&#34;
+     *     lambda.webhook.tags: &#34;Tags applied to the webhook Lambda.&#34;
+     *     lambda.pool.memory_size: &#34;Memory allocated to the pool Lambda.&#34;
+     *     lambda.pool.timeout: &#34;Timeout in seconds for the pool Lambda.&#34;
+     *     lambda.pool.reserved_concurrent_executions: &#34;Reserved concurrent executions for the pool Lambda.&#34;
+     *     lambda.pool.config: &#34;Scheduled runner-pool size configuration.&#34;
+     *     lambda.pool.config.schedule_expression: &#34;Schedule expression for the pool size.&#34;
+     *     lambda.pool.config.schedule_expression_timezone: &#34;Time zone used to evaluate the pool schedule.&#34;
+     *     lambda.pool.config.size: &#34;Runner pool size applied by the schedule.&#34;
+     *     lambda.pool.include_busy_runners: &#34;Whether busy runners are included in pool sizing.&#34;
+     *     lambda.pool.runner_owner: &#34;GitHub organization that owns the runner pool.&#34;
+     *     lambda.pool.tags: &#34;Tags applied to the pool Lambda.&#34;
+     *     queue.delay_webhook_event: &#34;Seconds a webhook event remains invisible in the build queue before processing.&#34;
+     *     queue.job_queue_retention_in_seconds: &#34;Seconds a queued job is retained before it is purged.&#34;
+     *     queue.visibility_timeout_seconds: &#34;Build queue visibility timeout in seconds.&#34;
+     *     queue.redrive_build_queue.enabled: &#34;Whether the build queue dead-letter queue is enabled.&#34;
+     *     queue.redrive_build_queue.maxReceiveCount: &#34;Maximum receives before a message is moved to the dead-letter queue.&#34;
+     *     queue.tags: &#34;Tags applied to build queues.&#34;
+     *     queue.encryption.kms_data_key_reuse_period_seconds: &#34;KMS data-key reuse period for queue encryption.&#34;
+     *     queue.encryption.kms_master_key_id: &#34;KMS key ID used for queue encryption.&#34;
+     *     queue.encryption.sqs_managed_sse_enabled: &#34;Whether SQS-managed server-side encryption is enabled.&#34;
+     *   }
+     * }
+     * 
+     */
+    public Optional<Output<GlobalConfigOrchestrationProviderArgs>> global_config_orchestration_provider() {
+        return Optional.ofNullable(this.global_config_orchestration_provider);
+    }
+
+    /**
+     * Global storage-provider configuration shared by all runner lanes.
+     * 
+     * global_config_storage_provider = {
+     *   aws.ssm.paths.root: &#34;Root path for SSM parameters.&#34;
+     *   aws.ssm.paths.app: &#34;Path segment for application parameters.&#34;
+     *   aws.ssm.paths.webhook: &#34;Path segment for webhook parameters.&#34;
+     *   aws.ssm.paths.tokens: &#34;Path segment for runner token parameters.&#34;
+     *   aws.ssm.paths.config: &#34;Path segment for runner configuration parameters.&#34;
+     *   aws.ssm.kms_key_id: &#34;KMS key ID used to encrypt SSM parameters.&#34;
+     *   aws.ssm.tags: &#34;Tags applied to SSM resources.&#34;
+     *   aws.ssm.parameters.tags: &#34;Tags applied to runner configuration parameters.&#34;
+     *   aws.ssm.housekeeper.schedule_expression: &#34;Schedule for the SSM parameter housekeeper.&#34;
+     *   aws.ssm.housekeeper.state: &#34;EventBridge rule state for the SSM housekeeper.&#34;
+     *   aws.ssm.housekeeper.tags: &#34;Tags applied to the SSM housekeeper resources.&#34;
+     *   aws.ssm.housekeeper.lambda.artifact.zip: &#34;Local ZIP artifact used for the SSM housekeeper Lambda.&#34;
+     *   aws.ssm.housekeeper.lambda.artifact.s3.key: &#34;S3 object key for the SSM housekeeper Lambda.&#34;
+     *   aws.ssm.housekeeper.lambda.artifact.s3.object_version: &#34;Optional S3 object version for the SSM housekeeper artifact.&#34;
+     *   aws.ssm.housekeeper.lambda.memory_size: &#34;Memory allocated to the SSM housekeeper Lambda.&#34;
+     *   aws.ssm.housekeeper.lambda.timeout: &#34;Timeout in seconds for the SSM housekeeper Lambda.&#34;
+     *   aws.ssm.housekeeper.config.tokenPath: &#34;Parameter path containing runner tokens to clean up.&#34;
+     *   aws.ssm.housekeeper.config.minimumDaysOld: &#34;Minimum age in days before an old token is eligible for cleanup.&#34;
+     *   aws.ssm.housekeeper.config.dryRun: &#34;Whether the SSM housekeeper reports cleanup without deleting parameters.&#34;
+     * }
+     * 
+     */
+    @Import(name="global_config_storage_provider")
+    private @Nullable Output<GlobalConfigStorageProviderArgs> global_config_storage_provider;
+
+    /**
+     * @return Global storage-provider configuration shared by all runner lanes.
+     * 
+     * global_config_storage_provider = {
+     *   aws.ssm.paths.root: &#34;Root path for SSM parameters.&#34;
+     *   aws.ssm.paths.app: &#34;Path segment for application parameters.&#34;
+     *   aws.ssm.paths.webhook: &#34;Path segment for webhook parameters.&#34;
+     *   aws.ssm.paths.tokens: &#34;Path segment for runner token parameters.&#34;
+     *   aws.ssm.paths.config: &#34;Path segment for runner configuration parameters.&#34;
+     *   aws.ssm.kms_key_id: &#34;KMS key ID used to encrypt SSM parameters.&#34;
+     *   aws.ssm.tags: &#34;Tags applied to SSM resources.&#34;
+     *   aws.ssm.parameters.tags: &#34;Tags applied to runner configuration parameters.&#34;
+     *   aws.ssm.housekeeper.schedule_expression: &#34;Schedule for the SSM parameter housekeeper.&#34;
+     *   aws.ssm.housekeeper.state: &#34;EventBridge rule state for the SSM housekeeper.&#34;
+     *   aws.ssm.housekeeper.tags: &#34;Tags applied to the SSM housekeeper resources.&#34;
+     *   aws.ssm.housekeeper.lambda.artifact.zip: &#34;Local ZIP artifact used for the SSM housekeeper Lambda.&#34;
+     *   aws.ssm.housekeeper.lambda.artifact.s3.key: &#34;S3 object key for the SSM housekeeper Lambda.&#34;
+     *   aws.ssm.housekeeper.lambda.artifact.s3.object_version: &#34;Optional S3 object version for the SSM housekeeper artifact.&#34;
+     *   aws.ssm.housekeeper.lambda.memory_size: &#34;Memory allocated to the SSM housekeeper Lambda.&#34;
+     *   aws.ssm.housekeeper.lambda.timeout: &#34;Timeout in seconds for the SSM housekeeper Lambda.&#34;
+     *   aws.ssm.housekeeper.config.tokenPath: &#34;Parameter path containing runner tokens to clean up.&#34;
+     *   aws.ssm.housekeeper.config.minimumDaysOld: &#34;Minimum age in days before an old token is eligible for cleanup.&#34;
+     *   aws.ssm.housekeeper.config.dryRun: &#34;Whether the SSM housekeeper reports cleanup without deleting parameters.&#34;
+     * }
+     * 
+     */
+    public Optional<Output<GlobalConfigStorageProviderArgs>> global_config_storage_provider() {
+        return Optional.ofNullable(this.global_config_storage_provider);
     }
 
     /**
@@ -651,6 +1294,8 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     *     Accepts either the stable v1 runner configuration shape or the provider-boundary v2 shape. Entries with `runner_config` use the v1 shape; entries without `runner_config` use the v2 shape. A v2 entry does not need matcher configuration. A v2 entry must be acknowledged with `experimental_features = [&#34;multi-runner-v2&#34;]`; the v2 shape is experimental and may change before graduation.
+     *     
      *     multi_runner_config = {
      *       runner_config: {
      *         runner_os: &#34;The EC2 Operating System type to use for action runner instances (linux, osx, windows).&#34;
@@ -681,6 +1326,7 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
      *         runner_additional_security_group_ids: &#34;List of additional security groups IDs to apply to the runner. If added outside the multi_runner_config block, the additional security group(s) will be applied to all runner configs. If added inside the multi_runner_config, the additional security group(s) will be applied to the individual runner.&#34;
      *         runner_as_root: &#34;Run the action runner under the root user. Variable `runner_run_as` will be ignored.&#34;
      *         runner_boot_time_in_minutes: &#34;The minimum time for an EC2 runner to boot and register as a runner.&#34;
+     *         scale_down_idle_confirmation_seconds: &#34;Number of seconds a runner must consistently report not-busy before scale-down terminates it. GitHub&#39;s busy flag can be stale, so a single not-busy reading is not sufficient evidence a runner is idle. 0 keeps the previous single-reading behaviour.&#34;
      *         runner_disable_default_labels: &#34;Disable default labels for the runners (os, architecture and `self-hosted`). If enabled, the runner will only have the extra labels provided in `runner_extra_labels`. In case you on own start script is used, this configuration parameter needs to be parsed via SSM.&#34;
      *         runner_extra_labels: &#34;Extra (custom) labels for the runners (GitHub). Separate each label by a comma. Labels checks on the webhook can be enforced by setting `multi_runner_config.matcherConfig.exactMatch`. GitHub read-only labels should not be provided.&#34;
      *         runner_group_name: &#34;Name of the runner group.&#34;
@@ -711,7 +1357,28 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
      *         block_device_mappings: &#34;The EC2 instance block device configuration. Takes the following keys: `device_name`, `delete_on_termination`, `volume_type`, `volume_size`, `encrypted`, `iops`, `throughput`, `kms_key_id`, `snapshot_id`, `volume_initialization_rate`.&#34;
      *         job_retry: &#34;Experimental! Can be removed / changed without trigger a major release. Configure job retries. The configuration enables job retries (for ephemeral runners). After creating the instances a message will be published to a job retry queue. The job retry check lambda is checking after a delay if the job is queued. If not the message will be published again on the scale-up (build queue). Using this feature can impact the rate limit of the GitHub app.&#34;
      *         pool_config: &#34;The configuration for updating the pool. The `pool_size` to adjust to by the events triggered by the `schedule_expression`. For example you can configure a cron expression for week days to adjust the pool to 10 and another expression for the weekend to adjust the pool to 1. Use `schedule_expression_timezone` to override the schedule time zone (defaults to UTC).&#34;
+     *         ssm_ttl_seconds.tokens: &#34;Optional TTL in seconds for the SSM parameters holding the runner registration token / JIT config. When set, the parameters are created with an SSM expiration policy so SSM deletes them itself after the TTL passes. Requires the Advanced parameter tier for every token parameter, which incurs additional costs. Expiration is enforced asynchronously by SSM; the SSM housekeeper lambda remains as a backstop. Must be a positive number, and should comfortably exceed the runner boot time so the config does not expire before the instance reads it.&#34;
      *         iam_overrides: &#34;Allows to (optionally) override the instance profile and runner role created by the module. Set `override_instance_profile` to true and provide the `instance_profile_name` to use an existing instance profile. Set `override_runner_role` to true and provide the `runner_role_arn` to use an existing role for the runner instances.&#34;
+     *       }
+     *       # V2 contract
+     *       tags: &#34;Tags applied to resources created for this runner configuration.&#34;
+     *       runner: &#34;Runner settings such as the operating system, architecture, labels, hooks, runner group, name prefix, and IAM role configuration.&#34;
+     *       lambda: &#34;Lambda settings such as runtime, architecture, networking, tags, and execution-role options for this runner configuration.&#34;
+     *       # Webhook, queue, and scale-up/scale-down orchestration settings.
+     *       orchestration_provider: {
+     *         webhook: {
+     *           matcherConfig: &#34;Label matching and dynamic-label policy used to route workflow jobs to this runner configuration.&#34;
+     *           runner: &#34;Runner lifecycle settings including boot time, ephemeral mode, JIT configuration, and maximum runner count.&#34;
+     *           queue: &#34;Build queue delay, retention, visibility timeout, redrive, and tags.&#34;
+     *         }
+     *       }
+     *       ssm: &#34;SSM parameter paths, tags, and housekeeper settings for runner configuration storage.&#34;
+     *       observability: &#34;Logging, tracing, and metric settings for the resources in this runner configuration.&#34;
+     *       # Compute settings for the runner provider.
+     *       compute_provider: {
+     *         aws: {
+     *           ec2: &#34;AWS EC2 runner settings, including AMI selection, instance types, capacity strategy, VPC and subnet placement, storage, user data, and runner access.&#34;
+     *         }
      *       }
      *       matcherConfig: {
      *         labelMatchers: &#34;The list of list of labels supported by the runner configuration. `[[self-hosted, linux, x64, example]]`&#34;
@@ -719,17 +1386,19 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
      *         bidirectionalLabelMatch: &#34;If set to true, the runner labels and workflow job labels must be an exact two-way match (same set, any order, no extras or missing labels). This is stricter than `exactMatch` which only checks that workflow labels are a subset of runner labels. When false, if __any__ workflow label matches it will trigger the webhook.&#34;
      *         priority: &#34;If set it defines the priority of the matcher, the matcher with the lowest priority will be evaluated first. Default is 999, allowed values 0-999.&#34;
      *         enableDynamicLabels: &#34;Experimental! When true the dispatcher allows `ghr-*` dynamic labels for jobs routed to this runner. Default false.&#34;
-     *         awsDynamicLabelsPolicy: &#34;Optional AWS dynamic label policy evaluated by the dispatcher. Only effective when `enableDynamicLabels = true`. Jobs whose provider dynamic labels violate every matching runner&#39;s policy are rejected with a 202 (a warning is logged). Evaluation: keys in `blocked_keys` are always rejected; keys in `restricted_keys` are allowed only when their value passes the rule; unlisted keys are allowed. Schema: `{ blocked_keys = [&lt;key&gt;], restricted_keys = { &lt;key&gt; = { allowed = [globs], denied = [globs], max = number|string } } }`. Keys use the dynamic label suffix, e.g. `instance-type` for `ghr-ec2-instance-type`.&#34;
+     *         awsDynamicLabelsPolicy: &#34;Optional AWS dynamic label policy evaluated by the dispatcher. Only effective when `enableDynamicLabels = true`. Jobs whose provider dynamic labels violate every matching runner&#39;s policy are rejected with a 202 (a warning is logged). Evaluation: if `allowed_keys` is set, only those keys are accepted; keys in `blocked_keys` are always rejected (cannot be used together with `allowed_keys`); keys in `restricted_keys` are allowed only when their value passes the rule; a key not listed anywhere is allowed. Schema: `{ allowed_keys = [&lt;key&gt;], blocked_keys = [&lt;key&gt;], restricted_keys = { &lt;key&gt; = { allowed = [globs], denied = [globs], max = number|string } } }`. Keys use the dynamic label suffix, e.g. `instance-type` for `ghr-ec2-instance-type`.&#34;
      *       }
      *       redrive_build_queue: &#34;Set options to attach (optional) a dead letter queue to the build queue, the queue between the webhook and the scale up lambda. You have the following options. 1. Disable by setting `enabled` to false. 2. Enable by setting `enabled` to `true`, `maxReceiveCount` to a number of max retries.&#34;
      *     }
      * 
      */
-    @Import(name="multi_runner_config", required=true)
-    private Output<Map<String,MultiRunnerConfigArgs>> multi_runner_config;
+    @Import(name="multi_runner_config")
+    private @Nullable Output<Map<String,MultiRunnerConfigArgs>> multi_runner_config;
 
     /**
-     * @return     multi_runner_config = {
+     * @return     Accepts either the stable v1 runner configuration shape or the provider-boundary v2 shape. Entries with `runner_config` use the v1 shape; entries without `runner_config` use the v2 shape. A v2 entry does not need matcher configuration. A v2 entry must be acknowledged with `experimental_features = [&#34;multi-runner-v2&#34;]`; the v2 shape is experimental and may change before graduation.
+     * 
+     *     multi_runner_config = {
      *       runner_config: {
      *         runner_os: &#34;The EC2 Operating System type to use for action runner instances (linux, osx, windows).&#34;
      *         runner_architecture: &#34;The platform architecture of the runner instance_type.&#34;
@@ -759,6 +1428,7 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
      *         runner_additional_security_group_ids: &#34;List of additional security groups IDs to apply to the runner. If added outside the multi_runner_config block, the additional security group(s) will be applied to all runner configs. If added inside the multi_runner_config, the additional security group(s) will be applied to the individual runner.&#34;
      *         runner_as_root: &#34;Run the action runner under the root user. Variable `runner_run_as` will be ignored.&#34;
      *         runner_boot_time_in_minutes: &#34;The minimum time for an EC2 runner to boot and register as a runner.&#34;
+     *         scale_down_idle_confirmation_seconds: &#34;Number of seconds a runner must consistently report not-busy before scale-down terminates it. GitHub&#39;s busy flag can be stale, so a single not-busy reading is not sufficient evidence a runner is idle. 0 keeps the previous single-reading behaviour.&#34;
      *         runner_disable_default_labels: &#34;Disable default labels for the runners (os, architecture and `self-hosted`). If enabled, the runner will only have the extra labels provided in `runner_extra_labels`. In case you on own start script is used, this configuration parameter needs to be parsed via SSM.&#34;
      *         runner_extra_labels: &#34;Extra (custom) labels for the runners (GitHub). Separate each label by a comma. Labels checks on the webhook can be enforced by setting `multi_runner_config.matcherConfig.exactMatch`. GitHub read-only labels should not be provided.&#34;
      *         runner_group_name: &#34;Name of the runner group.&#34;
@@ -789,7 +1459,28 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
      *         block_device_mappings: &#34;The EC2 instance block device configuration. Takes the following keys: `device_name`, `delete_on_termination`, `volume_type`, `volume_size`, `encrypted`, `iops`, `throughput`, `kms_key_id`, `snapshot_id`, `volume_initialization_rate`.&#34;
      *         job_retry: &#34;Experimental! Can be removed / changed without trigger a major release. Configure job retries. The configuration enables job retries (for ephemeral runners). After creating the instances a message will be published to a job retry queue. The job retry check lambda is checking after a delay if the job is queued. If not the message will be published again on the scale-up (build queue). Using this feature can impact the rate limit of the GitHub app.&#34;
      *         pool_config: &#34;The configuration for updating the pool. The `pool_size` to adjust to by the events triggered by the `schedule_expression`. For example you can configure a cron expression for week days to adjust the pool to 10 and another expression for the weekend to adjust the pool to 1. Use `schedule_expression_timezone` to override the schedule time zone (defaults to UTC).&#34;
+     *         ssm_ttl_seconds.tokens: &#34;Optional TTL in seconds for the SSM parameters holding the runner registration token / JIT config. When set, the parameters are created with an SSM expiration policy so SSM deletes them itself after the TTL passes. Requires the Advanced parameter tier for every token parameter, which incurs additional costs. Expiration is enforced asynchronously by SSM; the SSM housekeeper lambda remains as a backstop. Must be a positive number, and should comfortably exceed the runner boot time so the config does not expire before the instance reads it.&#34;
      *         iam_overrides: &#34;Allows to (optionally) override the instance profile and runner role created by the module. Set `override_instance_profile` to true and provide the `instance_profile_name` to use an existing instance profile. Set `override_runner_role` to true and provide the `runner_role_arn` to use an existing role for the runner instances.&#34;
+     *       }
+     *       # V2 contract
+     *       tags: &#34;Tags applied to resources created for this runner configuration.&#34;
+     *       runner: &#34;Runner settings such as the operating system, architecture, labels, hooks, runner group, name prefix, and IAM role configuration.&#34;
+     *       lambda: &#34;Lambda settings such as runtime, architecture, networking, tags, and execution-role options for this runner configuration.&#34;
+     *       # Webhook, queue, and scale-up/scale-down orchestration settings.
+     *       orchestration_provider: {
+     *         webhook: {
+     *           matcherConfig: &#34;Label matching and dynamic-label policy used to route workflow jobs to this runner configuration.&#34;
+     *           runner: &#34;Runner lifecycle settings including boot time, ephemeral mode, JIT configuration, and maximum runner count.&#34;
+     *           queue: &#34;Build queue delay, retention, visibility timeout, redrive, and tags.&#34;
+     *         }
+     *       }
+     *       ssm: &#34;SSM parameter paths, tags, and housekeeper settings for runner configuration storage.&#34;
+     *       observability: &#34;Logging, tracing, and metric settings for the resources in this runner configuration.&#34;
+     *       # Compute settings for the runner provider.
+     *       compute_provider: {
+     *         aws: {
+     *           ec2: &#34;AWS EC2 runner settings, including AMI selection, instance types, capacity strategy, VPC and subnet placement, storage, user data, and runner access.&#34;
+     *         }
      *       }
      *       matcherConfig: {
      *         labelMatchers: &#34;The list of list of labels supported by the runner configuration. `[[self-hosted, linux, x64, example]]`&#34;
@@ -797,14 +1488,14 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
      *         bidirectionalLabelMatch: &#34;If set to true, the runner labels and workflow job labels must be an exact two-way match (same set, any order, no extras or missing labels). This is stricter than `exactMatch` which only checks that workflow labels are a subset of runner labels. When false, if __any__ workflow label matches it will trigger the webhook.&#34;
      *         priority: &#34;If set it defines the priority of the matcher, the matcher with the lowest priority will be evaluated first. Default is 999, allowed values 0-999.&#34;
      *         enableDynamicLabels: &#34;Experimental! When true the dispatcher allows `ghr-*` dynamic labels for jobs routed to this runner. Default false.&#34;
-     *         awsDynamicLabelsPolicy: &#34;Optional AWS dynamic label policy evaluated by the dispatcher. Only effective when `enableDynamicLabels = true`. Jobs whose provider dynamic labels violate every matching runner&#39;s policy are rejected with a 202 (a warning is logged). Evaluation: keys in `blocked_keys` are always rejected; keys in `restricted_keys` are allowed only when their value passes the rule; unlisted keys are allowed. Schema: `{ blocked_keys = [&lt;key&gt;], restricted_keys = { &lt;key&gt; = { allowed = [globs], denied = [globs], max = number|string } } }`. Keys use the dynamic label suffix, e.g. `instance-type` for `ghr-ec2-instance-type`.&#34;
+     *         awsDynamicLabelsPolicy: &#34;Optional AWS dynamic label policy evaluated by the dispatcher. Only effective when `enableDynamicLabels = true`. Jobs whose provider dynamic labels violate every matching runner&#39;s policy are rejected with a 202 (a warning is logged). Evaluation: if `allowed_keys` is set, only those keys are accepted; keys in `blocked_keys` are always rejected (cannot be used together with `allowed_keys`); keys in `restricted_keys` are allowed only when their value passes the rule; a key not listed anywhere is allowed. Schema: `{ allowed_keys = [&lt;key&gt;], blocked_keys = [&lt;key&gt;], restricted_keys = { &lt;key&gt; = { allowed = [globs], denied = [globs], max = number|string } } }`. Keys use the dynamic label suffix, e.g. `instance-type` for `ghr-ec2-instance-type`.&#34;
      *       }
      *       redrive_build_queue: &#34;Set options to attach (optional) a dead letter queue to the build queue, the queue between the webhook and the scale up lambda. You have the following options. 1. Disable by setting `enabled` to false. 2. Enable by setting `enabled` to `true`, `maxReceiveCount` to a number of max retries.&#34;
      *     }
      * 
      */
-    public Output<Map<String,MultiRunnerConfigArgs>> multi_runner_config() {
-        return this.multi_runner_config;
+    public Optional<Output<Map<String,MultiRunnerConfigArgs>>> multi_runner_config() {
+        return Optional.ofNullable(this.multi_runner_config);
     }
 
     /**
@@ -1225,18 +1916,18 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * List of subnets in which the action runners will be launched, the subnets needs to be subnets in the `vpc_id`.
+     * List of subnets in which stable v1 action runners will be launched. Omit when using the experimental v2 interface.
      * 
      */
-    @Import(name="subnet_ids", required=true)
-    private Output<List<String>> subnet_ids;
+    @Import(name="subnet_ids")
+    private @Nullable Output<List<String>> subnet_ids;
 
     /**
-     * @return List of subnets in which the action runners will be launched, the subnets needs to be subnets in the `vpc_id`.
+     * @return List of subnets in which stable v1 action runners will be launched. Omit when using the experimental v2 interface.
      * 
      */
-    public Output<List<String>> subnet_ids() {
-        return this.subnet_ids;
+    public Optional<Output<List<String>>> subnet_ids() {
+        return Optional.ofNullable(this.subnet_ids);
     }
 
     /**
@@ -1315,18 +2006,18 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The VPC for security groups of the action runners.
+     * The VPC for security groups of stable v1 action runners. Omit when using the experimental v2 interface.
      * 
      */
-    @Import(name="vpc_id", required=true)
-    private Output<String> vpc_id;
+    @Import(name="vpc_id")
+    private @Nullable Output<String> vpc_id;
 
     /**
-     * @return The VPC for security groups of the action runners.
+     * @return The VPC for security groups of stable v1 action runners. Omit when using the experimental v2 interface.
      * 
      */
-    public Output<String> vpc_id() {
-        return this.vpc_id;
+    public Optional<Output<String>> vpc_id() {
+        return Optional.ofNullable(this.vpc_id);
     }
 
     /**
@@ -1437,9 +2128,17 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
         this.enable_ami_housekeeper = $.enable_ami_housekeeper;
         this.enable_managed_runner_security_group = $.enable_managed_runner_security_group;
         this.eventbridge = $.eventbridge;
+        this.experimental_features = $.experimental_features;
         this.ghes_ssl_verify = $.ghes_ssl_verify;
         this.ghes_url = $.ghes_url;
         this.github_app = $.github_app;
+        this.global_config = $.global_config;
+        this.global_config_compute_provider = $.global_config_compute_provider;
+        this.global_config_github = $.global_config_github;
+        this.global_config_lambda = $.global_config_lambda;
+        this.global_config_observability = $.global_config_observability;
+        this.global_config_orchestration_provider = $.global_config_orchestration_provider;
+        this.global_config_storage_provider = $.global_config_storage_provider;
         this.iam_overrides = $.iam_overrides;
         this.instance_profile_path = $.instance_profile_path;
         this.instance_termination_watcher = $.instance_termination_watcher;
@@ -1582,6 +2281,8 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param ami_housekeeper_cleanup_config Configuration for AMI cleanup.
          * 
+         * - `launchTemplateNames`: Launch template names associated with AMIs eligible for cleanup. A runner type with dynamic labels enabled creates a second, `-on-demand-override` suffixed launch template; include both names if that type&#39;s AMIs should be eligible for cleanup.
+         * 
          * @return builder
          * 
          */
@@ -1592,6 +2293,8 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param ami_housekeeper_cleanup_config Configuration for AMI cleanup.
+         * 
+         * - `launchTemplateNames`: Launch template names associated with AMIs eligible for cleanup. A runner type with dynamic labels enabled creates a second, `-on-demand-override` suffixed launch template; include both names if that type&#39;s AMIs should be eligible for cleanup.
          * 
          * @return builder
          * 
@@ -1874,6 +2577,46 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
+         * @param experimental_features Explicit acknowledgement for opt-in features whose schemas may change
+         * while experimental. Set to [&#34;multi-runner-v2&#34;] when using the v2
+         * provider-boundary configuration. This flag will become a deprecated no-op
+         * for one release when the feature graduates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder experimental_features(@Nullable Output<List<String>> experimental_features) {
+            $.experimental_features = experimental_features;
+            return this;
+        }
+
+        /**
+         * @param experimental_features Explicit acknowledgement for opt-in features whose schemas may change
+         * while experimental. Set to [&#34;multi-runner-v2&#34;] when using the v2
+         * provider-boundary configuration. This flag will become a deprecated no-op
+         * for one release when the feature graduates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder experimental_features(List<String> experimental_features) {
+            return experimental_features(Output.of(experimental_features));
+        }
+
+        /**
+         * @param experimental_features Explicit acknowledgement for opt-in features whose schemas may change
+         * while experimental. Set to [&#34;multi-runner-v2&#34;] when using the v2
+         * provider-boundary configuration. This flag will become a deprecated no-op
+         * for one release when the feature graduates.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder experimental_features(String... experimental_features) {
+            return experimental_features(List.of(experimental_features));
+        }
+
+        /**
          * @param ghes_ssl_verify GitHub Enterprise SSL verification. Set to &#39;false&#39; when custom certificate (chains) is used for GitHub Enterprise Server (insecure).
          * 
          * @return builder
@@ -1916,7 +2659,9 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param github_app   GitHub app parameters, see your github app.
+         * @param github_app   GitHub app parameters for the stable v1 interface, see your github app.
+         *   Omit this value when using the experimental v2 interface and provide the
+         *   app through `global_config_github` instead.
          *   You can optionally create the SSM parameters yourself and provide the ARN and name here, through the `*_ssm` attributes.
          *   If you chose to provide the configuration values directly here,
          *   please ensure the key is the base64-encoded `.pem` file (the output of `base64 app.private-key.pem`, not the content of `private-key.pem`).
@@ -1925,13 +2670,15 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder github_app(Output<GithubAppArgs> github_app) {
+        public Builder github_app(@Nullable Output<GithubAppArgs> github_app) {
             $.github_app = github_app;
             return this;
         }
 
         /**
-         * @param github_app   GitHub app parameters, see your github app.
+         * @param github_app   GitHub app parameters for the stable v1 interface, see your github app.
+         *   Omit this value when using the experimental v2 interface and provide the
+         *   app through `global_config_github` instead.
          *   You can optionally create the SSM parameters yourself and provide the ARN and name here, through the `*_ssm` attributes.
          *   If you chose to provide the configuration values directly here,
          *   please ensure the key is the base64-encoded `.pem` file (the output of `base64 app.private-key.pem`, not the content of `private-key.pem`).
@@ -1942,6 +2689,655 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder github_app(GithubAppArgs github_app) {
             return github_app(Output.of(github_app));
+        }
+
+        /**
+         * @param global_config Global defaults shared by all runner lanes.
+         * 
+         * global_config = {
+         *   tags: &#34;Tags applied to resources created for all runner lanes.&#34;
+         *   roles: {
+         *     path: &#34;IAM path used for roles created for runner resources.&#34;
+         *     permissions_boundary: &#34;Optional IAM permissions boundary ARN applied to created roles.&#34;
+         *   }
+         *   runner: {
+         *     os: &#34;Default operating system for runners.&#34;
+         *     architecture: &#34;Default runner architecture.&#34;
+         *     disable_default_labels: &#34;Whether to omit the default operating-system, architecture, and self-hosted labels.&#34;
+         *     extra_labels: &#34;Additional labels applied to all runners.&#34;
+         *     group_name: &#34;Default GitHub runner group.&#34;
+         *     name_prefix: &#34;Prefix for runner names.&#34;
+         *     run_as_root: &#34;Whether the GitHub Actions runner executes as root.&#34;
+         *     run_as: &#34;User that runs the GitHub Actions agent when it is not running as root.&#34;
+         *     auto_update_disabled: &#34;Whether automatic GitHub Actions runner updates are disabled.&#34;
+         *     tags: &#34;Tags applied to runner resources.&#34;
+         *     hooks: {
+         *       job_started: &#34;Script executed when a job starts on a runner.&#34;
+         *       job_completed: &#34;Script executed when a job completes on a runner.&#34;
+         *     }
+         *     iam: {
+         *       role.arn: &#34;Existing IAM role ARN to use for runners.&#34;
+         *       managed_policy_arns: &#34;Managed policy ARNs attached to the runner IAM role.&#34;
+         *       additional_trust_policy_json: &#34;Additional trust policy JSON merged into the runner role trust policy.&#34;
+         *       path: &#34;IAM path used for the runner role.&#34;
+         *       permissions_boundary: &#34;Optional IAM permissions boundary ARN for the runner role.&#34;
+         *     }
+         *   }
+         * }
+         * 
+         * @return builder
+         * 
+         */
+        public Builder global_config(@Nullable Output<GlobalConfigArgs> global_config) {
+            $.global_config = global_config;
+            return this;
+        }
+
+        /**
+         * @param global_config Global defaults shared by all runner lanes.
+         * 
+         * global_config = {
+         *   tags: &#34;Tags applied to resources created for all runner lanes.&#34;
+         *   roles: {
+         *     path: &#34;IAM path used for roles created for runner resources.&#34;
+         *     permissions_boundary: &#34;Optional IAM permissions boundary ARN applied to created roles.&#34;
+         *   }
+         *   runner: {
+         *     os: &#34;Default operating system for runners.&#34;
+         *     architecture: &#34;Default runner architecture.&#34;
+         *     disable_default_labels: &#34;Whether to omit the default operating-system, architecture, and self-hosted labels.&#34;
+         *     extra_labels: &#34;Additional labels applied to all runners.&#34;
+         *     group_name: &#34;Default GitHub runner group.&#34;
+         *     name_prefix: &#34;Prefix for runner names.&#34;
+         *     run_as_root: &#34;Whether the GitHub Actions runner executes as root.&#34;
+         *     run_as: &#34;User that runs the GitHub Actions agent when it is not running as root.&#34;
+         *     auto_update_disabled: &#34;Whether automatic GitHub Actions runner updates are disabled.&#34;
+         *     tags: &#34;Tags applied to runner resources.&#34;
+         *     hooks: {
+         *       job_started: &#34;Script executed when a job starts on a runner.&#34;
+         *       job_completed: &#34;Script executed when a job completes on a runner.&#34;
+         *     }
+         *     iam: {
+         *       role.arn: &#34;Existing IAM role ARN to use for runners.&#34;
+         *       managed_policy_arns: &#34;Managed policy ARNs attached to the runner IAM role.&#34;
+         *       additional_trust_policy_json: &#34;Additional trust policy JSON merged into the runner role trust policy.&#34;
+         *       path: &#34;IAM path used for the runner role.&#34;
+         *       permissions_boundary: &#34;Optional IAM permissions boundary ARN for the runner role.&#34;
+         *     }
+         *   }
+         * }
+         * 
+         * @return builder
+         * 
+         */
+        public Builder global_config(GlobalConfigArgs global_config) {
+            return global_config(Output.of(global_config));
+        }
+
+        /**
+         * @param global_config_compute_provider Global compute-provider configuration shared by all runner lanes.
+         * 
+         * global_config_compute_provider = {
+         *   selections: &#34;Compute-provider selections keyed by namespace.&#34;
+         *   selections.namespace: &#34;Provider namespace used to resolve a compute implementation.&#34;
+         *   selections.type: &#34;Compute-provider type selected for the namespace.&#34;
+         *   aws.ec2.vpc_id: &#34;Default VPC for EC2 runners.&#34;
+         *   aws.ec2.subnet_ids: &#34;Default subnets for EC2 runners.&#34;
+         *   aws.ec2.managed_security_group_enabled: &#34;Whether the module manages the default runner security group.&#34;
+         *   aws.ec2.egress_rules: &#34;Egress rules for the managed runner security group.&#34;
+         *   aws.ec2.egress_rules.cidr_blocks: &#34;IPv4 CIDR blocks allowed by an egress rule.&#34;
+         *   aws.ec2.egress_rules.ipv6_cidr_blocks: &#34;IPv6 CIDR blocks allowed by an egress rule.&#34;
+         *   aws.ec2.egress_rules.prefix_list_ids: &#34;AWS prefix lists allowed by an egress rule.&#34;
+         *   aws.ec2.egress_rules.from_port: &#34;Start of the egress port range.&#34;
+         *   aws.ec2.egress_rules.protocol: &#34;Protocol for the egress rule.&#34;
+         *   aws.ec2.egress_rules.security_groups: &#34;Referenced security groups allowed by an egress rule.&#34;
+         *   aws.ec2.egress_rules.self: &#34;Whether the security group itself is allowed by an egress rule.&#34;
+         *   aws.ec2.egress_rules.to_port: &#34;End of the egress port range.&#34;
+         *   aws.ec2.egress_rules.description: &#34;Description of the egress rule.&#34;
+         *   aws.ec2.additional_security_group_ids: &#34;Additional security groups attached to EC2 runners.&#34;
+         *   aws.ec2.cloudwatch_agent.config: &#34;CloudWatch Agent configuration for EC2 runners.&#34;
+         *   aws.ec2.instance_profile_path: &#34;IAM path used for the EC2 instance profile.&#34;
+         *   aws.ec2.key_name: &#34;EC2 key pair name assigned to runner instances.&#34;
+         *   aws.ec2.associate_public_ipv4_address: &#34;Whether runner instances receive a public IPv4 address.&#34;
+         *   aws.ec2.tags: &#34;Tags applied to EC2 runner resources.&#34;
+         *   aws.ec2.ami.housekeeper.enabled: &#34;Whether AMI cleanup is enabled.&#34;
+         *   aws.ec2.ami.housekeeper.cleanup_config.maxItems: &#34;Maximum number of AMIs retained by cleanup.&#34;
+         *   aws.ec2.ami.housekeeper.cleanup_config.minimumDaysOld: &#34;Minimum AMI age in days before cleanup.&#34;
+         *   aws.ec2.ami.housekeeper.cleanup_config.amiFilters: &#34;AMI filters used to select AMIs for cleanup.&#34;
+         *   aws.ec2.ami.housekeeper.cleanup_config.amiFilters.Name: &#34;AMI filter name.&#34;
+         *   aws.ec2.ami.housekeeper.cleanup_config.amiFilters.Values: &#34;Values matched by the AMI filter.&#34;
+         *   aws.ec2.ami.housekeeper.cleanup_config.launchTemplateNames: &#34;Launch template names associated with AMIs eligible for cleanup. A runner type with dynamic labels enabled creates a second, &#39;-on-demand-override&#39; suffixed launch template; include both names if that type&#39;s AMIs should be eligible for cleanup.&#34;
+         *   aws.ec2.ami.housekeeper.cleanup_config.ssmParameterNames: &#34;SSM parameter names associated with AMIs eligible for cleanup.&#34;
+         *   aws.ec2.ami.housekeeper.cleanup_config.dryRun: &#34;Whether AMI cleanup reports changes without deleting AMIs.&#34;
+         *   aws.ec2.ami.housekeeper.artifact.zip: &#34;Local ZIP artifact used for the AMI housekeeper Lambda.&#34;
+         *   aws.ec2.ami.housekeeper.artifact.s3.key: &#34;S3 object key for the AMI housekeeper Lambda artifact.&#34;
+         *   aws.ec2.ami.housekeeper.artifact.s3.object_version: &#34;Optional S3 object version for the AMI housekeeper artifact.&#34;
+         *   aws.ec2.ami.housekeeper.lambda.memory_size: &#34;Memory allocated to the AMI housekeeper Lambda.&#34;
+         *   aws.ec2.ami.housekeeper.lambda.timeout: &#34;Timeout in seconds for the AMI housekeeper Lambda.&#34;
+         *   aws.ec2.ami.housekeeper.schedule.expression: &#34;Schedule expression for AMI cleanup.&#34;
+         *   aws.ec2.instance_termination_watcher.enabled: &#34;Whether the instance termination watcher is enabled.&#34;
+         *   aws.ec2.instance_termination_watcher.features.runner_deregistration.enabled: &#34;Whether terminated runners are deregistered.&#34;
+         *   aws.ec2.instance_termination_watcher.features.spot_termination_handler.enabled: &#34;Whether spot termination events trigger runner handling.&#34;
+         *   aws.ec2.instance_termination_watcher.features.spot_termination_notification_watcher.enabled: &#34;Whether spot termination notification monitoring is enabled.&#34;
+         *   aws.ec2.instance_termination_watcher.environment_variables: &#34;Environment variables passed to the termination watcher.&#34;
+         *   aws.ec2.instance_termination_watcher.artifact.zip: &#34;Local ZIP artifact used for the termination watcher Lambda.&#34;
+         *   aws.ec2.instance_termination_watcher.artifact.s3.key: &#34;S3 object key for the termination watcher Lambda artifact.&#34;
+         *   aws.ec2.instance_termination_watcher.artifact.s3.object_version: &#34;Optional S3 object version for the termination watcher artifact.&#34;
+         *   aws.ec2.instance_termination_watcher.lambda.memory_size: &#34;Memory allocated to the termination watcher Lambda.&#34;
+         *   aws.ec2.instance_termination_watcher.lambda.timeout: &#34;Timeout in seconds for the termination watcher Lambda.&#34;
+         *   aws.ec2.runner_binaries.enabled: &#34;Whether runner binary synchronization is enabled.&#34;
+         *   aws.ec2.runner_binaries.s3.encryption.enabled: &#34;Whether runner-binary S3 encryption is enabled.&#34;
+         *   aws.ec2.runner_binaries.s3.encryption.bucket_key_enabled: &#34;Whether an S3 bucket key is used for KMS encryption.&#34;
+         *   aws.ec2.runner_binaries.s3.encryption.sse_algorithm: &#34;S3 server-side encryption algorithm.&#34;
+         *   aws.ec2.runner_binaries.s3.encryption.kms_master_key_id: &#34;KMS key ID used for runner-binary S3 encryption.&#34;
+         *   aws.ec2.runner_binaries.s3.tags: &#34;Tags applied to the runner-binary S3 bucket.&#34;
+         *   aws.ec2.runner_binaries.s3.versioning: &#34;S3 versioning state for the runner-binary bucket.&#34;
+         *   aws.ec2.runner_binaries.s3.logging.bucket: &#34;S3 bucket receiving runner-binary access logs.&#34;
+         *   aws.ec2.runner_binaries.s3.logging.prefix: &#34;Prefix for runner-binary S3 access logs.&#34;
+         *   aws.ec2.runner_binaries.syncer.artifact.zip: &#34;Local ZIP artifact used for the runner-binary syncer Lambda.&#34;
+         *   aws.ec2.runner_binaries.syncer.artifact.s3.key: &#34;S3 object key for the runner-binary syncer artifact.&#34;
+         *   aws.ec2.runner_binaries.syncer.artifact.s3.object_version: &#34;Optional S3 object version for the runner-binary syncer artifact.&#34;
+         *   aws.ec2.runner_binaries.syncer.lambda.memory_size: &#34;Memory allocated to the runner-binary syncer Lambda.&#34;
+         *   aws.ec2.runner_binaries.syncer.lambda.timeout: &#34;Timeout in seconds for the runner-binary syncer Lambda.&#34;
+         *   aws.ec2.runner_binaries.syncer.schedule.expression: &#34;Schedule expression for runner-binary synchronization.&#34;
+         *   aws.ec2.runner_binaries.syncer.schedule.state: &#34;EventBridge rule state for runner-binary synchronization.&#34;
+         * }
+         * 
+         * @return builder
+         * 
+         */
+        public Builder global_config_compute_provider(@Nullable Output<GlobalConfigComputeProviderArgs> global_config_compute_provider) {
+            $.global_config_compute_provider = global_config_compute_provider;
+            return this;
+        }
+
+        /**
+         * @param global_config_compute_provider Global compute-provider configuration shared by all runner lanes.
+         * 
+         * global_config_compute_provider = {
+         *   selections: &#34;Compute-provider selections keyed by namespace.&#34;
+         *   selections.namespace: &#34;Provider namespace used to resolve a compute implementation.&#34;
+         *   selections.type: &#34;Compute-provider type selected for the namespace.&#34;
+         *   aws.ec2.vpc_id: &#34;Default VPC for EC2 runners.&#34;
+         *   aws.ec2.subnet_ids: &#34;Default subnets for EC2 runners.&#34;
+         *   aws.ec2.managed_security_group_enabled: &#34;Whether the module manages the default runner security group.&#34;
+         *   aws.ec2.egress_rules: &#34;Egress rules for the managed runner security group.&#34;
+         *   aws.ec2.egress_rules.cidr_blocks: &#34;IPv4 CIDR blocks allowed by an egress rule.&#34;
+         *   aws.ec2.egress_rules.ipv6_cidr_blocks: &#34;IPv6 CIDR blocks allowed by an egress rule.&#34;
+         *   aws.ec2.egress_rules.prefix_list_ids: &#34;AWS prefix lists allowed by an egress rule.&#34;
+         *   aws.ec2.egress_rules.from_port: &#34;Start of the egress port range.&#34;
+         *   aws.ec2.egress_rules.protocol: &#34;Protocol for the egress rule.&#34;
+         *   aws.ec2.egress_rules.security_groups: &#34;Referenced security groups allowed by an egress rule.&#34;
+         *   aws.ec2.egress_rules.self: &#34;Whether the security group itself is allowed by an egress rule.&#34;
+         *   aws.ec2.egress_rules.to_port: &#34;End of the egress port range.&#34;
+         *   aws.ec2.egress_rules.description: &#34;Description of the egress rule.&#34;
+         *   aws.ec2.additional_security_group_ids: &#34;Additional security groups attached to EC2 runners.&#34;
+         *   aws.ec2.cloudwatch_agent.config: &#34;CloudWatch Agent configuration for EC2 runners.&#34;
+         *   aws.ec2.instance_profile_path: &#34;IAM path used for the EC2 instance profile.&#34;
+         *   aws.ec2.key_name: &#34;EC2 key pair name assigned to runner instances.&#34;
+         *   aws.ec2.associate_public_ipv4_address: &#34;Whether runner instances receive a public IPv4 address.&#34;
+         *   aws.ec2.tags: &#34;Tags applied to EC2 runner resources.&#34;
+         *   aws.ec2.ami.housekeeper.enabled: &#34;Whether AMI cleanup is enabled.&#34;
+         *   aws.ec2.ami.housekeeper.cleanup_config.maxItems: &#34;Maximum number of AMIs retained by cleanup.&#34;
+         *   aws.ec2.ami.housekeeper.cleanup_config.minimumDaysOld: &#34;Minimum AMI age in days before cleanup.&#34;
+         *   aws.ec2.ami.housekeeper.cleanup_config.amiFilters: &#34;AMI filters used to select AMIs for cleanup.&#34;
+         *   aws.ec2.ami.housekeeper.cleanup_config.amiFilters.Name: &#34;AMI filter name.&#34;
+         *   aws.ec2.ami.housekeeper.cleanup_config.amiFilters.Values: &#34;Values matched by the AMI filter.&#34;
+         *   aws.ec2.ami.housekeeper.cleanup_config.launchTemplateNames: &#34;Launch template names associated with AMIs eligible for cleanup. A runner type with dynamic labels enabled creates a second, &#39;-on-demand-override&#39; suffixed launch template; include both names if that type&#39;s AMIs should be eligible for cleanup.&#34;
+         *   aws.ec2.ami.housekeeper.cleanup_config.ssmParameterNames: &#34;SSM parameter names associated with AMIs eligible for cleanup.&#34;
+         *   aws.ec2.ami.housekeeper.cleanup_config.dryRun: &#34;Whether AMI cleanup reports changes without deleting AMIs.&#34;
+         *   aws.ec2.ami.housekeeper.artifact.zip: &#34;Local ZIP artifact used for the AMI housekeeper Lambda.&#34;
+         *   aws.ec2.ami.housekeeper.artifact.s3.key: &#34;S3 object key for the AMI housekeeper Lambda artifact.&#34;
+         *   aws.ec2.ami.housekeeper.artifact.s3.object_version: &#34;Optional S3 object version for the AMI housekeeper artifact.&#34;
+         *   aws.ec2.ami.housekeeper.lambda.memory_size: &#34;Memory allocated to the AMI housekeeper Lambda.&#34;
+         *   aws.ec2.ami.housekeeper.lambda.timeout: &#34;Timeout in seconds for the AMI housekeeper Lambda.&#34;
+         *   aws.ec2.ami.housekeeper.schedule.expression: &#34;Schedule expression for AMI cleanup.&#34;
+         *   aws.ec2.instance_termination_watcher.enabled: &#34;Whether the instance termination watcher is enabled.&#34;
+         *   aws.ec2.instance_termination_watcher.features.runner_deregistration.enabled: &#34;Whether terminated runners are deregistered.&#34;
+         *   aws.ec2.instance_termination_watcher.features.spot_termination_handler.enabled: &#34;Whether spot termination events trigger runner handling.&#34;
+         *   aws.ec2.instance_termination_watcher.features.spot_termination_notification_watcher.enabled: &#34;Whether spot termination notification monitoring is enabled.&#34;
+         *   aws.ec2.instance_termination_watcher.environment_variables: &#34;Environment variables passed to the termination watcher.&#34;
+         *   aws.ec2.instance_termination_watcher.artifact.zip: &#34;Local ZIP artifact used for the termination watcher Lambda.&#34;
+         *   aws.ec2.instance_termination_watcher.artifact.s3.key: &#34;S3 object key for the termination watcher Lambda artifact.&#34;
+         *   aws.ec2.instance_termination_watcher.artifact.s3.object_version: &#34;Optional S3 object version for the termination watcher artifact.&#34;
+         *   aws.ec2.instance_termination_watcher.lambda.memory_size: &#34;Memory allocated to the termination watcher Lambda.&#34;
+         *   aws.ec2.instance_termination_watcher.lambda.timeout: &#34;Timeout in seconds for the termination watcher Lambda.&#34;
+         *   aws.ec2.runner_binaries.enabled: &#34;Whether runner binary synchronization is enabled.&#34;
+         *   aws.ec2.runner_binaries.s3.encryption.enabled: &#34;Whether runner-binary S3 encryption is enabled.&#34;
+         *   aws.ec2.runner_binaries.s3.encryption.bucket_key_enabled: &#34;Whether an S3 bucket key is used for KMS encryption.&#34;
+         *   aws.ec2.runner_binaries.s3.encryption.sse_algorithm: &#34;S3 server-side encryption algorithm.&#34;
+         *   aws.ec2.runner_binaries.s3.encryption.kms_master_key_id: &#34;KMS key ID used for runner-binary S3 encryption.&#34;
+         *   aws.ec2.runner_binaries.s3.tags: &#34;Tags applied to the runner-binary S3 bucket.&#34;
+         *   aws.ec2.runner_binaries.s3.versioning: &#34;S3 versioning state for the runner-binary bucket.&#34;
+         *   aws.ec2.runner_binaries.s3.logging.bucket: &#34;S3 bucket receiving runner-binary access logs.&#34;
+         *   aws.ec2.runner_binaries.s3.logging.prefix: &#34;Prefix for runner-binary S3 access logs.&#34;
+         *   aws.ec2.runner_binaries.syncer.artifact.zip: &#34;Local ZIP artifact used for the runner-binary syncer Lambda.&#34;
+         *   aws.ec2.runner_binaries.syncer.artifact.s3.key: &#34;S3 object key for the runner-binary syncer artifact.&#34;
+         *   aws.ec2.runner_binaries.syncer.artifact.s3.object_version: &#34;Optional S3 object version for the runner-binary syncer artifact.&#34;
+         *   aws.ec2.runner_binaries.syncer.lambda.memory_size: &#34;Memory allocated to the runner-binary syncer Lambda.&#34;
+         *   aws.ec2.runner_binaries.syncer.lambda.timeout: &#34;Timeout in seconds for the runner-binary syncer Lambda.&#34;
+         *   aws.ec2.runner_binaries.syncer.schedule.expression: &#34;Schedule expression for runner-binary synchronization.&#34;
+         *   aws.ec2.runner_binaries.syncer.schedule.state: &#34;EventBridge rule state for runner-binary synchronization.&#34;
+         * }
+         * 
+         * @return builder
+         * 
+         */
+        public Builder global_config_compute_provider(GlobalConfigComputeProviderArgs global_config_compute_provider) {
+            return global_config_compute_provider(Output.of(global_config_compute_provider));
+        }
+
+        /**
+         * @param global_config_github Global GitHub configuration shared by all runner lanes.
+         * 
+         * global_config_github = {
+         *   app: {
+         *     key_base64: &#34;Base64-encoded GitHub App private key.&#34;
+         *     key_base64_ssm: &#34;SSM parameter containing the Base64-encoded GitHub App private key.&#34;
+         *     key_base64_ssm.arn: &#34;ARN of the SSM parameter containing the GitHub App private key.&#34;
+         *     key_base64_ssm.name: &#34;Name of the SSM parameter containing the GitHub App private key.&#34;
+         *     id: &#34;GitHub App ID.&#34;
+         *     id_ssm: &#34;SSM parameter containing the GitHub App ID.&#34;
+         *     id_ssm.arn: &#34;ARN of the SSM parameter containing the GitHub App ID.&#34;
+         *     id_ssm.name: &#34;Name of the SSM parameter containing the GitHub App ID.&#34;
+         *     installation_id: &#34;GitHub App installation ID for the primary scale-set installation.&#34;
+         *     installation_id_ssm: &#34;SSM parameter containing the primary GitHub App installation ID.&#34;
+         *     installation_id_ssm.arn: &#34;ARN of the SSM parameter containing the primary GitHub App installation ID.&#34;
+         *     installation_id_ssm.name: &#34;Name of the SSM parameter containing the primary GitHub App installation ID.&#34;
+         *     webhook_secret: &#34;GitHub App webhook secret.&#34;
+         *     webhook_secret_ssm: &#34;SSM parameter containing the GitHub App webhook secret.&#34;
+         *     webhook_secret_ssm.arn: &#34;ARN of the SSM parameter containing the GitHub App webhook secret.&#34;
+         *     webhook_secret_ssm.name: &#34;Name of the SSM parameter containing the GitHub App webhook secret.&#34;
+         *   }
+         *   additional_apps: &#34;Additional GitHub Apps used to distribute GitHub API requests.&#34;
+         *   additional_apps.key_base64: &#34;Base64-encoded private key for an additional GitHub App.&#34;
+         *   additional_apps.key_base64_ssm: &#34;SSM parameter containing an additional App private key.&#34;
+         *   additional_apps.key_base64_ssm.arn: &#34;ARN of the SSM parameter containing an additional App private key.&#34;
+         *   additional_apps.key_base64_ssm.name: &#34;Name of the SSM parameter containing an additional App private key.&#34;
+         *   additional_apps.id: &#34;ID of an additional GitHub App.&#34;
+         *   additional_apps.id_ssm: &#34;SSM parameter containing an additional GitHub App ID.&#34;
+         *   additional_apps.id_ssm.arn: &#34;ARN of the SSM parameter containing an additional GitHub App ID.&#34;
+         *   additional_apps.id_ssm.name: &#34;Name of the SSM parameter containing an additional GitHub App ID.&#34;
+         *   additional_apps.installation_id: &#34;Optional installation ID for an additional GitHub App.&#34;
+         *   additional_apps.installation_id_ssm: &#34;SSM parameter containing an additional App installation ID.&#34;
+         *   additional_apps.installation_id_ssm.arn: &#34;ARN of the SSM parameter containing an additional App installation ID.&#34;
+         *   additional_apps.installation_id_ssm.name: &#34;Name of the SSM parameter containing an additional App installation ID.&#34;
+         *   enterprise_server.url: &#34;GitHub Enterprise Server URL.&#34;
+         *   enterprise_server.ssl_verify: &#34;Whether to verify the GitHub Enterprise Server TLS certificate.&#34;
+         *   runner_owner: &#34;GitHub organization or owner/repository path for organization- or repository-level scale-set registration.&#34;
+         *   runner_registration_level: &#34;GitHub scale-set registration scope: organization or repository.&#34;
+         *   user_agent: &#34;User-Agent value sent with GitHub API requests.&#34;
+         * }
+         * 
+         * @return builder
+         * 
+         */
+        public Builder global_config_github(@Nullable Output<GlobalConfigGithubArgs> global_config_github) {
+            $.global_config_github = global_config_github;
+            return this;
+        }
+
+        /**
+         * @param global_config_github Global GitHub configuration shared by all runner lanes.
+         * 
+         * global_config_github = {
+         *   app: {
+         *     key_base64: &#34;Base64-encoded GitHub App private key.&#34;
+         *     key_base64_ssm: &#34;SSM parameter containing the Base64-encoded GitHub App private key.&#34;
+         *     key_base64_ssm.arn: &#34;ARN of the SSM parameter containing the GitHub App private key.&#34;
+         *     key_base64_ssm.name: &#34;Name of the SSM parameter containing the GitHub App private key.&#34;
+         *     id: &#34;GitHub App ID.&#34;
+         *     id_ssm: &#34;SSM parameter containing the GitHub App ID.&#34;
+         *     id_ssm.arn: &#34;ARN of the SSM parameter containing the GitHub App ID.&#34;
+         *     id_ssm.name: &#34;Name of the SSM parameter containing the GitHub App ID.&#34;
+         *     installation_id: &#34;GitHub App installation ID for the primary scale-set installation.&#34;
+         *     installation_id_ssm: &#34;SSM parameter containing the primary GitHub App installation ID.&#34;
+         *     installation_id_ssm.arn: &#34;ARN of the SSM parameter containing the primary GitHub App installation ID.&#34;
+         *     installation_id_ssm.name: &#34;Name of the SSM parameter containing the primary GitHub App installation ID.&#34;
+         *     webhook_secret: &#34;GitHub App webhook secret.&#34;
+         *     webhook_secret_ssm: &#34;SSM parameter containing the GitHub App webhook secret.&#34;
+         *     webhook_secret_ssm.arn: &#34;ARN of the SSM parameter containing the GitHub App webhook secret.&#34;
+         *     webhook_secret_ssm.name: &#34;Name of the SSM parameter containing the GitHub App webhook secret.&#34;
+         *   }
+         *   additional_apps: &#34;Additional GitHub Apps used to distribute GitHub API requests.&#34;
+         *   additional_apps.key_base64: &#34;Base64-encoded private key for an additional GitHub App.&#34;
+         *   additional_apps.key_base64_ssm: &#34;SSM parameter containing an additional App private key.&#34;
+         *   additional_apps.key_base64_ssm.arn: &#34;ARN of the SSM parameter containing an additional App private key.&#34;
+         *   additional_apps.key_base64_ssm.name: &#34;Name of the SSM parameter containing an additional App private key.&#34;
+         *   additional_apps.id: &#34;ID of an additional GitHub App.&#34;
+         *   additional_apps.id_ssm: &#34;SSM parameter containing an additional GitHub App ID.&#34;
+         *   additional_apps.id_ssm.arn: &#34;ARN of the SSM parameter containing an additional GitHub App ID.&#34;
+         *   additional_apps.id_ssm.name: &#34;Name of the SSM parameter containing an additional GitHub App ID.&#34;
+         *   additional_apps.installation_id: &#34;Optional installation ID for an additional GitHub App.&#34;
+         *   additional_apps.installation_id_ssm: &#34;SSM parameter containing an additional App installation ID.&#34;
+         *   additional_apps.installation_id_ssm.arn: &#34;ARN of the SSM parameter containing an additional App installation ID.&#34;
+         *   additional_apps.installation_id_ssm.name: &#34;Name of the SSM parameter containing an additional App installation ID.&#34;
+         *   enterprise_server.url: &#34;GitHub Enterprise Server URL.&#34;
+         *   enterprise_server.ssl_verify: &#34;Whether to verify the GitHub Enterprise Server TLS certificate.&#34;
+         *   runner_owner: &#34;GitHub organization or owner/repository path for organization- or repository-level scale-set registration.&#34;
+         *   runner_registration_level: &#34;GitHub scale-set registration scope: organization or repository.&#34;
+         *   user_agent: &#34;User-Agent value sent with GitHub API requests.&#34;
+         * }
+         * 
+         * @return builder
+         * 
+         */
+        public Builder global_config_github(GlobalConfigGithubArgs global_config_github) {
+            return global_config_github(Output.of(global_config_github));
+        }
+
+        /**
+         * @param global_config_lambda Global Lambda configuration shared by all runner lanes.
+         * 
+         * global_config_lambda = {
+         *   artifact.s3.bucket: &#34;S3 bucket containing Lambda deployment artifacts.&#34;
+         *   runtime: &#34;Default Lambda runtime.&#34;
+         *   architecture: &#34;Default Lambda instruction-set architecture.&#34;
+         *   principals: &#34;Additional AWS principals allowed to invoke the Lambda functions.&#34;
+         *   principals.type: &#34;Principal type, such as AWS account, service, or organization.&#34;
+         *   principals.identifiers: &#34;Identifiers allowed for the principal type.&#34;
+         *   subnet_ids: &#34;Subnets used by Lambda functions.&#34;
+         *   security_group_ids: &#34;Security groups attached to Lambda functions.&#34;
+         *   tags: &#34;Tags applied to Lambda functions and related resources.&#34;
+         *   role.path: &#34;IAM path used for Lambda execution roles.&#34;
+         *   role.permissions_boundary: &#34;Optional IAM permissions boundary ARN for Lambda execution roles.&#34;
+         * }
+         * 
+         * @return builder
+         * 
+         */
+        public Builder global_config_lambda(@Nullable Output<GlobalConfigLambdaArgs> global_config_lambda) {
+            $.global_config_lambda = global_config_lambda;
+            return this;
+        }
+
+        /**
+         * @param global_config_lambda Global Lambda configuration shared by all runner lanes.
+         * 
+         * global_config_lambda = {
+         *   artifact.s3.bucket: &#34;S3 bucket containing Lambda deployment artifacts.&#34;
+         *   runtime: &#34;Default Lambda runtime.&#34;
+         *   architecture: &#34;Default Lambda instruction-set architecture.&#34;
+         *   principals: &#34;Additional AWS principals allowed to invoke the Lambda functions.&#34;
+         *   principals.type: &#34;Principal type, such as AWS account, service, or organization.&#34;
+         *   principals.identifiers: &#34;Identifiers allowed for the principal type.&#34;
+         *   subnet_ids: &#34;Subnets used by Lambda functions.&#34;
+         *   security_group_ids: &#34;Security groups attached to Lambda functions.&#34;
+         *   tags: &#34;Tags applied to Lambda functions and related resources.&#34;
+         *   role.path: &#34;IAM path used for Lambda execution roles.&#34;
+         *   role.permissions_boundary: &#34;Optional IAM permissions boundary ARN for Lambda execution roles.&#34;
+         * }
+         * 
+         * @return builder
+         * 
+         */
+        public Builder global_config_lambda(GlobalConfigLambdaArgs global_config_lambda) {
+            return global_config_lambda(Output.of(global_config_lambda));
+        }
+
+        /**
+         * @param global_config_observability Global observability configuration shared by all runner lanes.
+         * 
+         * global_config_observability = {
+         *   logs.level: &#34;Log level for module resources.&#34;
+         *   logs.retention_in_days: &#34;CloudWatch log retention period in days.&#34;
+         *   logs.kms_key_id: &#34;KMS key ID used to encrypt CloudWatch log groups.&#34;
+         *   logs.class: &#34;CloudWatch log group class.&#34;
+         *   logs.tags: &#34;Tags applied to CloudWatch log groups.&#34;
+         *   tracing.mode: &#34;Tracing mode used by instrumented resources.&#34;
+         *   tracing.capture_http_requests: &#34;Whether HTTP requests are captured by tracing.&#34;
+         *   tracing.capture_error: &#34;Whether errors are captured by tracing.&#34;
+         *   metrics.enabled: &#34;Whether module metrics are enabled.&#34;
+         *   metrics.namespace: &#34;CloudWatch namespace used for module metrics.&#34;
+         *   metrics.metric.github_app_rate_limit.enabled: &#34;Whether GitHub App rate-limit metrics are emitted.&#34;
+         *   metrics.metric.job_retry.enabled: &#34;Whether job-retry metrics are emitted.&#34;
+         *   metrics.metric.spot_termination_warning.enabled: &#34;Whether spot-termination warning metrics are emitted.&#34;
+         * }
+         * 
+         * @return builder
+         * 
+         */
+        public Builder global_config_observability(@Nullable Output<GlobalConfigObservabilityArgs> global_config_observability) {
+            $.global_config_observability = global_config_observability;
+            return this;
+        }
+
+        /**
+         * @param global_config_observability Global observability configuration shared by all runner lanes.
+         * 
+         * global_config_observability = {
+         *   logs.level: &#34;Log level for module resources.&#34;
+         *   logs.retention_in_days: &#34;CloudWatch log retention period in days.&#34;
+         *   logs.kms_key_id: &#34;KMS key ID used to encrypt CloudWatch log groups.&#34;
+         *   logs.class: &#34;CloudWatch log group class.&#34;
+         *   logs.tags: &#34;Tags applied to CloudWatch log groups.&#34;
+         *   tracing.mode: &#34;Tracing mode used by instrumented resources.&#34;
+         *   tracing.capture_http_requests: &#34;Whether HTTP requests are captured by tracing.&#34;
+         *   tracing.capture_error: &#34;Whether errors are captured by tracing.&#34;
+         *   metrics.enabled: &#34;Whether module metrics are enabled.&#34;
+         *   metrics.namespace: &#34;CloudWatch namespace used for module metrics.&#34;
+         *   metrics.metric.github_app_rate_limit.enabled: &#34;Whether GitHub App rate-limit metrics are emitted.&#34;
+         *   metrics.metric.job_retry.enabled: &#34;Whether job-retry metrics are emitted.&#34;
+         *   metrics.metric.spot_termination_warning.enabled: &#34;Whether spot-termination warning metrics are emitted.&#34;
+         * }
+         * 
+         * @return builder
+         * 
+         */
+        public Builder global_config_observability(GlobalConfigObservabilityArgs global_config_observability) {
+            return global_config_observability(Output.of(global_config_observability));
+        }
+
+        /**
+         * @param global_config_orchestration_provider Global orchestration-provider configuration shared by all runner lanes.
+         * 
+         * global_config_orchestration_provider = {
+         *   webhook: {
+         *     queue_selection_strategy: &#34;Strategy used to select the build queue for a webhook event.&#34;
+         *     eventbridge.enabled: &#34;Whether EventBridge integration is enabled for webhook events.&#34;
+         *     eventbridge.accept_events: &#34;Event types accepted by the EventBridge integration.&#34;
+         *     matcher_config_parameter_store_tier: &#34;SSM Parameter Store tier used for matcher configuration.&#34;
+         *     runner.boot_time_in_minutes: &#34;Expected runner boot time used by orchestration.&#34;
+         *     runner.ephemeral: &#34;Whether runners created by the orchestration provider are ephemeral.&#34;
+         *     runner.jit_config_enabled: &#34;Whether JIT runner configuration is enabled.&#34;
+         *     runner.maximum_count: &#34;Maximum number of runners that orchestration may create.&#34;
+         *     github.repository_white_list: &#34;Repositories allowed to use the webhook configuration.&#34;
+         *     lambda.artifact.zip: &#34;Local ZIP artifact used for orchestration Lambda functions.&#34;
+         *     lambda.artifact.s3.key: &#34;S3 object key for the orchestration Lambda artifact.&#34;
+         *     lambda.artifact.s3.object_version: &#34;Optional S3 object version for the orchestration Lambda artifact.&#34;
+         *     lambda.scale.up.memory_size: &#34;Memory allocated to the scale-up Lambda.&#34;
+         *     lambda.scale.up.timeout: &#34;Timeout in seconds for the scale-up Lambda.&#34;
+         *     lambda.scale.up.reserved_concurrent_executions: &#34;Reserved concurrent executions for the scale-up Lambda.&#34;
+         *     lambda.scale.up.job_queued_check_enabled: &#34;Whether the scale-up Lambda checks queued jobs.&#34;
+         *     lambda.scale.up.event_source_mapping.batch_size: &#34;Maximum records passed to one scale-up Lambda invocation.&#34;
+         *     lambda.scale.up.event_source_mapping.maximum_batching_window_in_seconds: &#34;Maximum time to batch records before invoking the scale-up Lambda.&#34;
+         *     lambda.scale.up.tags: &#34;Tags applied to the scale-up Lambda.&#34;
+         *     lambda.scale.down.memory_size: &#34;Memory allocated to the scale-down Lambda.&#34;
+         *     lambda.scale.down.timeout: &#34;Timeout in seconds for the scale-down Lambda.&#34;
+         *     lambda.scale.down.schedule_expression: &#34;Schedule expression for scale-down processing.&#34;
+         *     lambda.scale.down.minimum_running_time_in_minutes: &#34;Minimum runner lifetime before scale-down.&#34;
+         *     lambda.scale.down.idle_confirmation_seconds: &#34;Seconds a runner must consistently report not-busy before scale-down terminates it; 0 disables the confirmation window.&#34;
+         *     lambda.scale.down.idle_config: &#34;Scheduled minimum idle-runner pool settings.&#34;
+         *     lambda.scale.down.idle_config.cron: &#34;Cron expression defining when the idle-runner count applies.&#34;
+         *     lambda.scale.down.idle_config.timeZone: &#34;Time zone used to evaluate the idle-runner schedule.&#34;
+         *     lambda.scale.down.idle_config.idleCount: &#34;Minimum number of idle runners maintained during the schedule.&#34;
+         *     lambda.scale.down.idle_config.evictionStrategy: &#34;Strategy used when evicting idle runners.&#34;
+         *     lambda.scale.down.tags: &#34;Tags applied to the scale-down Lambda.&#34;
+         *     lambda.webhook.artifact.zip: &#34;Local ZIP artifact used for the webhook Lambda.&#34;
+         *     lambda.webhook.artifact.s3.key: &#34;S3 object key for the webhook Lambda artifact.&#34;
+         *     lambda.webhook.artifact.s3.object_version: &#34;Optional S3 object version for the webhook Lambda artifact.&#34;
+         *     lambda.webhook.api_gateway_access_log_settings: &#34;API Gateway access-log destination and format.&#34;
+         *     lambda.webhook.api_gateway_access_log_settings.destination_arn: &#34;ARN of the API Gateway access-log destination.&#34;
+         *     lambda.webhook.api_gateway_access_log_settings.format: &#34;API Gateway access-log format.&#34;
+         *     lambda.webhook.memory_size: &#34;Memory allocated to the webhook Lambda.&#34;
+         *     lambda.webhook.timeout: &#34;Timeout in seconds for the webhook Lambda.&#34;
+         *     lambda.webhook.tags: &#34;Tags applied to the webhook Lambda.&#34;
+         *     lambda.pool.memory_size: &#34;Memory allocated to the pool Lambda.&#34;
+         *     lambda.pool.timeout: &#34;Timeout in seconds for the pool Lambda.&#34;
+         *     lambda.pool.reserved_concurrent_executions: &#34;Reserved concurrent executions for the pool Lambda.&#34;
+         *     lambda.pool.config: &#34;Scheduled runner-pool size configuration.&#34;
+         *     lambda.pool.config.schedule_expression: &#34;Schedule expression for the pool size.&#34;
+         *     lambda.pool.config.schedule_expression_timezone: &#34;Time zone used to evaluate the pool schedule.&#34;
+         *     lambda.pool.config.size: &#34;Runner pool size applied by the schedule.&#34;
+         *     lambda.pool.include_busy_runners: &#34;Whether busy runners are included in pool sizing.&#34;
+         *     lambda.pool.runner_owner: &#34;GitHub organization that owns the runner pool.&#34;
+         *     lambda.pool.tags: &#34;Tags applied to the pool Lambda.&#34;
+         *     queue.delay_webhook_event: &#34;Seconds a webhook event remains invisible in the build queue before processing.&#34;
+         *     queue.job_queue_retention_in_seconds: &#34;Seconds a queued job is retained before it is purged.&#34;
+         *     queue.visibility_timeout_seconds: &#34;Build queue visibility timeout in seconds.&#34;
+         *     queue.redrive_build_queue.enabled: &#34;Whether the build queue dead-letter queue is enabled.&#34;
+         *     queue.redrive_build_queue.maxReceiveCount: &#34;Maximum receives before a message is moved to the dead-letter queue.&#34;
+         *     queue.tags: &#34;Tags applied to build queues.&#34;
+         *     queue.encryption.kms_data_key_reuse_period_seconds: &#34;KMS data-key reuse period for queue encryption.&#34;
+         *     queue.encryption.kms_master_key_id: &#34;KMS key ID used for queue encryption.&#34;
+         *     queue.encryption.sqs_managed_sse_enabled: &#34;Whether SQS-managed server-side encryption is enabled.&#34;
+         *   }
+         * }
+         * 
+         * @return builder
+         * 
+         */
+        public Builder global_config_orchestration_provider(@Nullable Output<GlobalConfigOrchestrationProviderArgs> global_config_orchestration_provider) {
+            $.global_config_orchestration_provider = global_config_orchestration_provider;
+            return this;
+        }
+
+        /**
+         * @param global_config_orchestration_provider Global orchestration-provider configuration shared by all runner lanes.
+         * 
+         * global_config_orchestration_provider = {
+         *   webhook: {
+         *     queue_selection_strategy: &#34;Strategy used to select the build queue for a webhook event.&#34;
+         *     eventbridge.enabled: &#34;Whether EventBridge integration is enabled for webhook events.&#34;
+         *     eventbridge.accept_events: &#34;Event types accepted by the EventBridge integration.&#34;
+         *     matcher_config_parameter_store_tier: &#34;SSM Parameter Store tier used for matcher configuration.&#34;
+         *     runner.boot_time_in_minutes: &#34;Expected runner boot time used by orchestration.&#34;
+         *     runner.ephemeral: &#34;Whether runners created by the orchestration provider are ephemeral.&#34;
+         *     runner.jit_config_enabled: &#34;Whether JIT runner configuration is enabled.&#34;
+         *     runner.maximum_count: &#34;Maximum number of runners that orchestration may create.&#34;
+         *     github.repository_white_list: &#34;Repositories allowed to use the webhook configuration.&#34;
+         *     lambda.artifact.zip: &#34;Local ZIP artifact used for orchestration Lambda functions.&#34;
+         *     lambda.artifact.s3.key: &#34;S3 object key for the orchestration Lambda artifact.&#34;
+         *     lambda.artifact.s3.object_version: &#34;Optional S3 object version for the orchestration Lambda artifact.&#34;
+         *     lambda.scale.up.memory_size: &#34;Memory allocated to the scale-up Lambda.&#34;
+         *     lambda.scale.up.timeout: &#34;Timeout in seconds for the scale-up Lambda.&#34;
+         *     lambda.scale.up.reserved_concurrent_executions: &#34;Reserved concurrent executions for the scale-up Lambda.&#34;
+         *     lambda.scale.up.job_queued_check_enabled: &#34;Whether the scale-up Lambda checks queued jobs.&#34;
+         *     lambda.scale.up.event_source_mapping.batch_size: &#34;Maximum records passed to one scale-up Lambda invocation.&#34;
+         *     lambda.scale.up.event_source_mapping.maximum_batching_window_in_seconds: &#34;Maximum time to batch records before invoking the scale-up Lambda.&#34;
+         *     lambda.scale.up.tags: &#34;Tags applied to the scale-up Lambda.&#34;
+         *     lambda.scale.down.memory_size: &#34;Memory allocated to the scale-down Lambda.&#34;
+         *     lambda.scale.down.timeout: &#34;Timeout in seconds for the scale-down Lambda.&#34;
+         *     lambda.scale.down.schedule_expression: &#34;Schedule expression for scale-down processing.&#34;
+         *     lambda.scale.down.minimum_running_time_in_minutes: &#34;Minimum runner lifetime before scale-down.&#34;
+         *     lambda.scale.down.idle_confirmation_seconds: &#34;Seconds a runner must consistently report not-busy before scale-down terminates it; 0 disables the confirmation window.&#34;
+         *     lambda.scale.down.idle_config: &#34;Scheduled minimum idle-runner pool settings.&#34;
+         *     lambda.scale.down.idle_config.cron: &#34;Cron expression defining when the idle-runner count applies.&#34;
+         *     lambda.scale.down.idle_config.timeZone: &#34;Time zone used to evaluate the idle-runner schedule.&#34;
+         *     lambda.scale.down.idle_config.idleCount: &#34;Minimum number of idle runners maintained during the schedule.&#34;
+         *     lambda.scale.down.idle_config.evictionStrategy: &#34;Strategy used when evicting idle runners.&#34;
+         *     lambda.scale.down.tags: &#34;Tags applied to the scale-down Lambda.&#34;
+         *     lambda.webhook.artifact.zip: &#34;Local ZIP artifact used for the webhook Lambda.&#34;
+         *     lambda.webhook.artifact.s3.key: &#34;S3 object key for the webhook Lambda artifact.&#34;
+         *     lambda.webhook.artifact.s3.object_version: &#34;Optional S3 object version for the webhook Lambda artifact.&#34;
+         *     lambda.webhook.api_gateway_access_log_settings: &#34;API Gateway access-log destination and format.&#34;
+         *     lambda.webhook.api_gateway_access_log_settings.destination_arn: &#34;ARN of the API Gateway access-log destination.&#34;
+         *     lambda.webhook.api_gateway_access_log_settings.format: &#34;API Gateway access-log format.&#34;
+         *     lambda.webhook.memory_size: &#34;Memory allocated to the webhook Lambda.&#34;
+         *     lambda.webhook.timeout: &#34;Timeout in seconds for the webhook Lambda.&#34;
+         *     lambda.webhook.tags: &#34;Tags applied to the webhook Lambda.&#34;
+         *     lambda.pool.memory_size: &#34;Memory allocated to the pool Lambda.&#34;
+         *     lambda.pool.timeout: &#34;Timeout in seconds for the pool Lambda.&#34;
+         *     lambda.pool.reserved_concurrent_executions: &#34;Reserved concurrent executions for the pool Lambda.&#34;
+         *     lambda.pool.config: &#34;Scheduled runner-pool size configuration.&#34;
+         *     lambda.pool.config.schedule_expression: &#34;Schedule expression for the pool size.&#34;
+         *     lambda.pool.config.schedule_expression_timezone: &#34;Time zone used to evaluate the pool schedule.&#34;
+         *     lambda.pool.config.size: &#34;Runner pool size applied by the schedule.&#34;
+         *     lambda.pool.include_busy_runners: &#34;Whether busy runners are included in pool sizing.&#34;
+         *     lambda.pool.runner_owner: &#34;GitHub organization that owns the runner pool.&#34;
+         *     lambda.pool.tags: &#34;Tags applied to the pool Lambda.&#34;
+         *     queue.delay_webhook_event: &#34;Seconds a webhook event remains invisible in the build queue before processing.&#34;
+         *     queue.job_queue_retention_in_seconds: &#34;Seconds a queued job is retained before it is purged.&#34;
+         *     queue.visibility_timeout_seconds: &#34;Build queue visibility timeout in seconds.&#34;
+         *     queue.redrive_build_queue.enabled: &#34;Whether the build queue dead-letter queue is enabled.&#34;
+         *     queue.redrive_build_queue.maxReceiveCount: &#34;Maximum receives before a message is moved to the dead-letter queue.&#34;
+         *     queue.tags: &#34;Tags applied to build queues.&#34;
+         *     queue.encryption.kms_data_key_reuse_period_seconds: &#34;KMS data-key reuse period for queue encryption.&#34;
+         *     queue.encryption.kms_master_key_id: &#34;KMS key ID used for queue encryption.&#34;
+         *     queue.encryption.sqs_managed_sse_enabled: &#34;Whether SQS-managed server-side encryption is enabled.&#34;
+         *   }
+         * }
+         * 
+         * @return builder
+         * 
+         */
+        public Builder global_config_orchestration_provider(GlobalConfigOrchestrationProviderArgs global_config_orchestration_provider) {
+            return global_config_orchestration_provider(Output.of(global_config_orchestration_provider));
+        }
+
+        /**
+         * @param global_config_storage_provider Global storage-provider configuration shared by all runner lanes.
+         * 
+         * global_config_storage_provider = {
+         *   aws.ssm.paths.root: &#34;Root path for SSM parameters.&#34;
+         *   aws.ssm.paths.app: &#34;Path segment for application parameters.&#34;
+         *   aws.ssm.paths.webhook: &#34;Path segment for webhook parameters.&#34;
+         *   aws.ssm.paths.tokens: &#34;Path segment for runner token parameters.&#34;
+         *   aws.ssm.paths.config: &#34;Path segment for runner configuration parameters.&#34;
+         *   aws.ssm.kms_key_id: &#34;KMS key ID used to encrypt SSM parameters.&#34;
+         *   aws.ssm.tags: &#34;Tags applied to SSM resources.&#34;
+         *   aws.ssm.parameters.tags: &#34;Tags applied to runner configuration parameters.&#34;
+         *   aws.ssm.housekeeper.schedule_expression: &#34;Schedule for the SSM parameter housekeeper.&#34;
+         *   aws.ssm.housekeeper.state: &#34;EventBridge rule state for the SSM housekeeper.&#34;
+         *   aws.ssm.housekeeper.tags: &#34;Tags applied to the SSM housekeeper resources.&#34;
+         *   aws.ssm.housekeeper.lambda.artifact.zip: &#34;Local ZIP artifact used for the SSM housekeeper Lambda.&#34;
+         *   aws.ssm.housekeeper.lambda.artifact.s3.key: &#34;S3 object key for the SSM housekeeper Lambda.&#34;
+         *   aws.ssm.housekeeper.lambda.artifact.s3.object_version: &#34;Optional S3 object version for the SSM housekeeper artifact.&#34;
+         *   aws.ssm.housekeeper.lambda.memory_size: &#34;Memory allocated to the SSM housekeeper Lambda.&#34;
+         *   aws.ssm.housekeeper.lambda.timeout: &#34;Timeout in seconds for the SSM housekeeper Lambda.&#34;
+         *   aws.ssm.housekeeper.config.tokenPath: &#34;Parameter path containing runner tokens to clean up.&#34;
+         *   aws.ssm.housekeeper.config.minimumDaysOld: &#34;Minimum age in days before an old token is eligible for cleanup.&#34;
+         *   aws.ssm.housekeeper.config.dryRun: &#34;Whether the SSM housekeeper reports cleanup without deleting parameters.&#34;
+         * }
+         * 
+         * @return builder
+         * 
+         */
+        public Builder global_config_storage_provider(@Nullable Output<GlobalConfigStorageProviderArgs> global_config_storage_provider) {
+            $.global_config_storage_provider = global_config_storage_provider;
+            return this;
+        }
+
+        /**
+         * @param global_config_storage_provider Global storage-provider configuration shared by all runner lanes.
+         * 
+         * global_config_storage_provider = {
+         *   aws.ssm.paths.root: &#34;Root path for SSM parameters.&#34;
+         *   aws.ssm.paths.app: &#34;Path segment for application parameters.&#34;
+         *   aws.ssm.paths.webhook: &#34;Path segment for webhook parameters.&#34;
+         *   aws.ssm.paths.tokens: &#34;Path segment for runner token parameters.&#34;
+         *   aws.ssm.paths.config: &#34;Path segment for runner configuration parameters.&#34;
+         *   aws.ssm.kms_key_id: &#34;KMS key ID used to encrypt SSM parameters.&#34;
+         *   aws.ssm.tags: &#34;Tags applied to SSM resources.&#34;
+         *   aws.ssm.parameters.tags: &#34;Tags applied to runner configuration parameters.&#34;
+         *   aws.ssm.housekeeper.schedule_expression: &#34;Schedule for the SSM parameter housekeeper.&#34;
+         *   aws.ssm.housekeeper.state: &#34;EventBridge rule state for the SSM housekeeper.&#34;
+         *   aws.ssm.housekeeper.tags: &#34;Tags applied to the SSM housekeeper resources.&#34;
+         *   aws.ssm.housekeeper.lambda.artifact.zip: &#34;Local ZIP artifact used for the SSM housekeeper Lambda.&#34;
+         *   aws.ssm.housekeeper.lambda.artifact.s3.key: &#34;S3 object key for the SSM housekeeper Lambda.&#34;
+         *   aws.ssm.housekeeper.lambda.artifact.s3.object_version: &#34;Optional S3 object version for the SSM housekeeper artifact.&#34;
+         *   aws.ssm.housekeeper.lambda.memory_size: &#34;Memory allocated to the SSM housekeeper Lambda.&#34;
+         *   aws.ssm.housekeeper.lambda.timeout: &#34;Timeout in seconds for the SSM housekeeper Lambda.&#34;
+         *   aws.ssm.housekeeper.config.tokenPath: &#34;Parameter path containing runner tokens to clean up.&#34;
+         *   aws.ssm.housekeeper.config.minimumDaysOld: &#34;Minimum age in days before an old token is eligible for cleanup.&#34;
+         *   aws.ssm.housekeeper.config.dryRun: &#34;Whether the SSM housekeeper reports cleanup without deleting parameters.&#34;
+         * }
+         * 
+         * @return builder
+         * 
+         */
+        public Builder global_config_storage_provider(GlobalConfigStorageProviderArgs global_config_storage_provider) {
+            return global_config_storage_provider(Output.of(global_config_storage_provider));
         }
 
         /**
@@ -2413,7 +3809,9 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param multi_runner_config     multi_runner_config = {
+         * @param multi_runner_config     Accepts either the stable v1 runner configuration shape or the provider-boundary v2 shape. Entries with `runner_config` use the v1 shape; entries without `runner_config` use the v2 shape. A v2 entry does not need matcher configuration. A v2 entry must be acknowledged with `experimental_features = [&#34;multi-runner-v2&#34;]`; the v2 shape is experimental and may change before graduation.
+         * 
+         *     multi_runner_config = {
          *       runner_config: {
          *         runner_os: &#34;The EC2 Operating System type to use for action runner instances (linux, osx, windows).&#34;
          *         runner_architecture: &#34;The platform architecture of the runner instance_type.&#34;
@@ -2443,6 +3841,7 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
          *         runner_additional_security_group_ids: &#34;List of additional security groups IDs to apply to the runner. If added outside the multi_runner_config block, the additional security group(s) will be applied to all runner configs. If added inside the multi_runner_config, the additional security group(s) will be applied to the individual runner.&#34;
          *         runner_as_root: &#34;Run the action runner under the root user. Variable `runner_run_as` will be ignored.&#34;
          *         runner_boot_time_in_minutes: &#34;The minimum time for an EC2 runner to boot and register as a runner.&#34;
+         *         scale_down_idle_confirmation_seconds: &#34;Number of seconds a runner must consistently report not-busy before scale-down terminates it. GitHub&#39;s busy flag can be stale, so a single not-busy reading is not sufficient evidence a runner is idle. 0 keeps the previous single-reading behaviour.&#34;
          *         runner_disable_default_labels: &#34;Disable default labels for the runners (os, architecture and `self-hosted`). If enabled, the runner will only have the extra labels provided in `runner_extra_labels`. In case you on own start script is used, this configuration parameter needs to be parsed via SSM.&#34;
          *         runner_extra_labels: &#34;Extra (custom) labels for the runners (GitHub). Separate each label by a comma. Labels checks on the webhook can be enforced by setting `multi_runner_config.matcherConfig.exactMatch`. GitHub read-only labels should not be provided.&#34;
          *         runner_group_name: &#34;Name of the runner group.&#34;
@@ -2473,7 +3872,28 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
          *         block_device_mappings: &#34;The EC2 instance block device configuration. Takes the following keys: `device_name`, `delete_on_termination`, `volume_type`, `volume_size`, `encrypted`, `iops`, `throughput`, `kms_key_id`, `snapshot_id`, `volume_initialization_rate`.&#34;
          *         job_retry: &#34;Experimental! Can be removed / changed without trigger a major release. Configure job retries. The configuration enables job retries (for ephemeral runners). After creating the instances a message will be published to a job retry queue. The job retry check lambda is checking after a delay if the job is queued. If not the message will be published again on the scale-up (build queue). Using this feature can impact the rate limit of the GitHub app.&#34;
          *         pool_config: &#34;The configuration for updating the pool. The `pool_size` to adjust to by the events triggered by the `schedule_expression`. For example you can configure a cron expression for week days to adjust the pool to 10 and another expression for the weekend to adjust the pool to 1. Use `schedule_expression_timezone` to override the schedule time zone (defaults to UTC).&#34;
+         *         ssm_ttl_seconds.tokens: &#34;Optional TTL in seconds for the SSM parameters holding the runner registration token / JIT config. When set, the parameters are created with an SSM expiration policy so SSM deletes them itself after the TTL passes. Requires the Advanced parameter tier for every token parameter, which incurs additional costs. Expiration is enforced asynchronously by SSM; the SSM housekeeper lambda remains as a backstop. Must be a positive number, and should comfortably exceed the runner boot time so the config does not expire before the instance reads it.&#34;
          *         iam_overrides: &#34;Allows to (optionally) override the instance profile and runner role created by the module. Set `override_instance_profile` to true and provide the `instance_profile_name` to use an existing instance profile. Set `override_runner_role` to true and provide the `runner_role_arn` to use an existing role for the runner instances.&#34;
+         *       }
+         *       # V2 contract
+         *       tags: &#34;Tags applied to resources created for this runner configuration.&#34;
+         *       runner: &#34;Runner settings such as the operating system, architecture, labels, hooks, runner group, name prefix, and IAM role configuration.&#34;
+         *       lambda: &#34;Lambda settings such as runtime, architecture, networking, tags, and execution-role options for this runner configuration.&#34;
+         *       # Webhook, queue, and scale-up/scale-down orchestration settings.
+         *       orchestration_provider: {
+         *         webhook: {
+         *           matcherConfig: &#34;Label matching and dynamic-label policy used to route workflow jobs to this runner configuration.&#34;
+         *           runner: &#34;Runner lifecycle settings including boot time, ephemeral mode, JIT configuration, and maximum runner count.&#34;
+         *           queue: &#34;Build queue delay, retention, visibility timeout, redrive, and tags.&#34;
+         *         }
+         *       }
+         *       ssm: &#34;SSM parameter paths, tags, and housekeeper settings for runner configuration storage.&#34;
+         *       observability: &#34;Logging, tracing, and metric settings for the resources in this runner configuration.&#34;
+         *       # Compute settings for the runner provider.
+         *       compute_provider: {
+         *         aws: {
+         *           ec2: &#34;AWS EC2 runner settings, including AMI selection, instance types, capacity strategy, VPC and subnet placement, storage, user data, and runner access.&#34;
+         *         }
          *       }
          *       matcherConfig: {
          *         labelMatchers: &#34;The list of list of labels supported by the runner configuration. `[[self-hosted, linux, x64, example]]`&#34;
@@ -2481,7 +3901,7 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
          *         bidirectionalLabelMatch: &#34;If set to true, the runner labels and workflow job labels must be an exact two-way match (same set, any order, no extras or missing labels). This is stricter than `exactMatch` which only checks that workflow labels are a subset of runner labels. When false, if __any__ workflow label matches it will trigger the webhook.&#34;
          *         priority: &#34;If set it defines the priority of the matcher, the matcher with the lowest priority will be evaluated first. Default is 999, allowed values 0-999.&#34;
          *         enableDynamicLabels: &#34;Experimental! When true the dispatcher allows `ghr-*` dynamic labels for jobs routed to this runner. Default false.&#34;
-         *         awsDynamicLabelsPolicy: &#34;Optional AWS dynamic label policy evaluated by the dispatcher. Only effective when `enableDynamicLabels = true`. Jobs whose provider dynamic labels violate every matching runner&#39;s policy are rejected with a 202 (a warning is logged). Evaluation: keys in `blocked_keys` are always rejected; keys in `restricted_keys` are allowed only when their value passes the rule; unlisted keys are allowed. Schema: `{ blocked_keys = [&lt;key&gt;], restricted_keys = { &lt;key&gt; = { allowed = [globs], denied = [globs], max = number|string } } }`. Keys use the dynamic label suffix, e.g. `instance-type` for `ghr-ec2-instance-type`.&#34;
+         *         awsDynamicLabelsPolicy: &#34;Optional AWS dynamic label policy evaluated by the dispatcher. Only effective when `enableDynamicLabels = true`. Jobs whose provider dynamic labels violate every matching runner&#39;s policy are rejected with a 202 (a warning is logged). Evaluation: if `allowed_keys` is set, only those keys are accepted; keys in `blocked_keys` are always rejected (cannot be used together with `allowed_keys`); keys in `restricted_keys` are allowed only when their value passes the rule; a key not listed anywhere is allowed. Schema: `{ allowed_keys = [&lt;key&gt;], blocked_keys = [&lt;key&gt;], restricted_keys = { &lt;key&gt; = { allowed = [globs], denied = [globs], max = number|string } } }`. Keys use the dynamic label suffix, e.g. `instance-type` for `ghr-ec2-instance-type`.&#34;
          *       }
          *       redrive_build_queue: &#34;Set options to attach (optional) a dead letter queue to the build queue, the queue between the webhook and the scale up lambda. You have the following options. 1. Disable by setting `enabled` to false. 2. Enable by setting `enabled` to `true`, `maxReceiveCount` to a number of max retries.&#34;
          *     }
@@ -2489,13 +3909,15 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder multi_runner_config(Output<Map<String,MultiRunnerConfigArgs>> multi_runner_config) {
+        public Builder multi_runner_config(@Nullable Output<Map<String,MultiRunnerConfigArgs>> multi_runner_config) {
             $.multi_runner_config = multi_runner_config;
             return this;
         }
 
         /**
-         * @param multi_runner_config     multi_runner_config = {
+         * @param multi_runner_config     Accepts either the stable v1 runner configuration shape or the provider-boundary v2 shape. Entries with `runner_config` use the v1 shape; entries without `runner_config` use the v2 shape. A v2 entry does not need matcher configuration. A v2 entry must be acknowledged with `experimental_features = [&#34;multi-runner-v2&#34;]`; the v2 shape is experimental and may change before graduation.
+         * 
+         *     multi_runner_config = {
          *       runner_config: {
          *         runner_os: &#34;The EC2 Operating System type to use for action runner instances (linux, osx, windows).&#34;
          *         runner_architecture: &#34;The platform architecture of the runner instance_type.&#34;
@@ -2525,6 +3947,7 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
          *         runner_additional_security_group_ids: &#34;List of additional security groups IDs to apply to the runner. If added outside the multi_runner_config block, the additional security group(s) will be applied to all runner configs. If added inside the multi_runner_config, the additional security group(s) will be applied to the individual runner.&#34;
          *         runner_as_root: &#34;Run the action runner under the root user. Variable `runner_run_as` will be ignored.&#34;
          *         runner_boot_time_in_minutes: &#34;The minimum time for an EC2 runner to boot and register as a runner.&#34;
+         *         scale_down_idle_confirmation_seconds: &#34;Number of seconds a runner must consistently report not-busy before scale-down terminates it. GitHub&#39;s busy flag can be stale, so a single not-busy reading is not sufficient evidence a runner is idle. 0 keeps the previous single-reading behaviour.&#34;
          *         runner_disable_default_labels: &#34;Disable default labels for the runners (os, architecture and `self-hosted`). If enabled, the runner will only have the extra labels provided in `runner_extra_labels`. In case you on own start script is used, this configuration parameter needs to be parsed via SSM.&#34;
          *         runner_extra_labels: &#34;Extra (custom) labels for the runners (GitHub). Separate each label by a comma. Labels checks on the webhook can be enforced by setting `multi_runner_config.matcherConfig.exactMatch`. GitHub read-only labels should not be provided.&#34;
          *         runner_group_name: &#34;Name of the runner group.&#34;
@@ -2555,7 +3978,28 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
          *         block_device_mappings: &#34;The EC2 instance block device configuration. Takes the following keys: `device_name`, `delete_on_termination`, `volume_type`, `volume_size`, `encrypted`, `iops`, `throughput`, `kms_key_id`, `snapshot_id`, `volume_initialization_rate`.&#34;
          *         job_retry: &#34;Experimental! Can be removed / changed without trigger a major release. Configure job retries. The configuration enables job retries (for ephemeral runners). After creating the instances a message will be published to a job retry queue. The job retry check lambda is checking after a delay if the job is queued. If not the message will be published again on the scale-up (build queue). Using this feature can impact the rate limit of the GitHub app.&#34;
          *         pool_config: &#34;The configuration for updating the pool. The `pool_size` to adjust to by the events triggered by the `schedule_expression`. For example you can configure a cron expression for week days to adjust the pool to 10 and another expression for the weekend to adjust the pool to 1. Use `schedule_expression_timezone` to override the schedule time zone (defaults to UTC).&#34;
+         *         ssm_ttl_seconds.tokens: &#34;Optional TTL in seconds for the SSM parameters holding the runner registration token / JIT config. When set, the parameters are created with an SSM expiration policy so SSM deletes them itself after the TTL passes. Requires the Advanced parameter tier for every token parameter, which incurs additional costs. Expiration is enforced asynchronously by SSM; the SSM housekeeper lambda remains as a backstop. Must be a positive number, and should comfortably exceed the runner boot time so the config does not expire before the instance reads it.&#34;
          *         iam_overrides: &#34;Allows to (optionally) override the instance profile and runner role created by the module. Set `override_instance_profile` to true and provide the `instance_profile_name` to use an existing instance profile. Set `override_runner_role` to true and provide the `runner_role_arn` to use an existing role for the runner instances.&#34;
+         *       }
+         *       # V2 contract
+         *       tags: &#34;Tags applied to resources created for this runner configuration.&#34;
+         *       runner: &#34;Runner settings such as the operating system, architecture, labels, hooks, runner group, name prefix, and IAM role configuration.&#34;
+         *       lambda: &#34;Lambda settings such as runtime, architecture, networking, tags, and execution-role options for this runner configuration.&#34;
+         *       # Webhook, queue, and scale-up/scale-down orchestration settings.
+         *       orchestration_provider: {
+         *         webhook: {
+         *           matcherConfig: &#34;Label matching and dynamic-label policy used to route workflow jobs to this runner configuration.&#34;
+         *           runner: &#34;Runner lifecycle settings including boot time, ephemeral mode, JIT configuration, and maximum runner count.&#34;
+         *           queue: &#34;Build queue delay, retention, visibility timeout, redrive, and tags.&#34;
+         *         }
+         *       }
+         *       ssm: &#34;SSM parameter paths, tags, and housekeeper settings for runner configuration storage.&#34;
+         *       observability: &#34;Logging, tracing, and metric settings for the resources in this runner configuration.&#34;
+         *       # Compute settings for the runner provider.
+         *       compute_provider: {
+         *         aws: {
+         *           ec2: &#34;AWS EC2 runner settings, including AMI selection, instance types, capacity strategy, VPC and subnet placement, storage, user data, and runner access.&#34;
+         *         }
          *       }
          *       matcherConfig: {
          *         labelMatchers: &#34;The list of list of labels supported by the runner configuration. `[[self-hosted, linux, x64, example]]`&#34;
@@ -2563,7 +4007,7 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
          *         bidirectionalLabelMatch: &#34;If set to true, the runner labels and workflow job labels must be an exact two-way match (same set, any order, no extras or missing labels). This is stricter than `exactMatch` which only checks that workflow labels are a subset of runner labels. When false, if __any__ workflow label matches it will trigger the webhook.&#34;
          *         priority: &#34;If set it defines the priority of the matcher, the matcher with the lowest priority will be evaluated first. Default is 999, allowed values 0-999.&#34;
          *         enableDynamicLabels: &#34;Experimental! When true the dispatcher allows `ghr-*` dynamic labels for jobs routed to this runner. Default false.&#34;
-         *         awsDynamicLabelsPolicy: &#34;Optional AWS dynamic label policy evaluated by the dispatcher. Only effective when `enableDynamicLabels = true`. Jobs whose provider dynamic labels violate every matching runner&#39;s policy are rejected with a 202 (a warning is logged). Evaluation: keys in `blocked_keys` are always rejected; keys in `restricted_keys` are allowed only when their value passes the rule; unlisted keys are allowed. Schema: `{ blocked_keys = [&lt;key&gt;], restricted_keys = { &lt;key&gt; = { allowed = [globs], denied = [globs], max = number|string } } }`. Keys use the dynamic label suffix, e.g. `instance-type` for `ghr-ec2-instance-type`.&#34;
+         *         awsDynamicLabelsPolicy: &#34;Optional AWS dynamic label policy evaluated by the dispatcher. Only effective when `enableDynamicLabels = true`. Jobs whose provider dynamic labels violate every matching runner&#39;s policy are rejected with a 202 (a warning is logged). Evaluation: if `allowed_keys` is set, only those keys are accepted; keys in `blocked_keys` are always rejected (cannot be used together with `allowed_keys`); keys in `restricted_keys` are allowed only when their value passes the rule; a key not listed anywhere is allowed. Schema: `{ allowed_keys = [&lt;key&gt;], blocked_keys = [&lt;key&gt;], restricted_keys = { &lt;key&gt; = { allowed = [globs], denied = [globs], max = number|string } } }`. Keys use the dynamic label suffix, e.g. `instance-type` for `ghr-ec2-instance-type`.&#34;
          *       }
          *       redrive_build_queue: &#34;Set options to attach (optional) a dead letter queue to the build queue, the queue between the webhook and the scale up lambda. You have the following options. 1. Disable by setting `enabled` to false. 2. Enable by setting `enabled` to `true`, `maxReceiveCount` to a number of max retries.&#34;
          *     }
@@ -3185,18 +4629,18 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param subnet_ids List of subnets in which the action runners will be launched, the subnets needs to be subnets in the `vpc_id`.
+         * @param subnet_ids List of subnets in which stable v1 action runners will be launched. Omit when using the experimental v2 interface.
          * 
          * @return builder
          * 
          */
-        public Builder subnet_ids(Output<List<String>> subnet_ids) {
+        public Builder subnet_ids(@Nullable Output<List<String>> subnet_ids) {
             $.subnet_ids = subnet_ids;
             return this;
         }
 
         /**
-         * @param subnet_ids List of subnets in which the action runners will be launched, the subnets needs to be subnets in the `vpc_id`.
+         * @param subnet_ids List of subnets in which stable v1 action runners will be launched. Omit when using the experimental v2 interface.
          * 
          * @return builder
          * 
@@ -3206,7 +4650,7 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param subnet_ids List of subnets in which the action runners will be launched, the subnets needs to be subnets in the `vpc_id`.
+         * @param subnet_ids List of subnets in which stable v1 action runners will be launched. Omit when using the experimental v2 interface.
          * 
          * @return builder
          * 
@@ -3321,18 +4765,18 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param vpc_id The VPC for security groups of the action runners.
+         * @param vpc_id The VPC for security groups of stable v1 action runners. Omit when using the experimental v2 interface.
          * 
          * @return builder
          * 
          */
-        public Builder vpc_id(Output<String> vpc_id) {
+        public Builder vpc_id(@Nullable Output<String> vpc_id) {
             $.vpc_id = vpc_id;
             return this;
         }
 
         /**
-         * @param vpc_id The VPC for security groups of the action runners.
+         * @param vpc_id The VPC for security groups of stable v1 action runners. Omit when using the experimental v2 interface.
          * 
          * @return builder
          * 
@@ -3470,18 +4914,6 @@ public final class ModuleArgs extends com.pulumi.resources.ResourceArgs {
         public ModuleArgs build() {
             if ($.aws_region == null) {
                 throw new MissingRequiredPropertyException("ModuleArgs", "aws_region");
-            }
-            if ($.github_app == null) {
-                throw new MissingRequiredPropertyException("ModuleArgs", "github_app");
-            }
-            if ($.multi_runner_config == null) {
-                throw new MissingRequiredPropertyException("ModuleArgs", "multi_runner_config");
-            }
-            if ($.subnet_ids == null) {
-                throw new MissingRequiredPropertyException("ModuleArgs", "subnet_ids");
-            }
-            if ($.vpc_id == null) {
-                throw new MissingRequiredPropertyException("ModuleArgs", "vpc_id");
             }
             return $;
         }

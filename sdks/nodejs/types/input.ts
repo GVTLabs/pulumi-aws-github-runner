@@ -51,6 +51,8 @@ export interface EventbridgeArgs {
 export interface GithubAppArgs {
     id?: pulumi.Input<string | undefined>;
     id_ssm?: pulumi.Input<inputs.GithubAppIdSsmArgs | undefined>;
+    installation_id?: pulumi.Input<string | undefined>;
+    installation_id_ssm?: pulumi.Input<inputs.GithubAppInstallationIdSsmArgs | undefined>;
     key_base64?: pulumi.Input<string | undefined>;
     key_base64_ssm?: pulumi.Input<inputs.GithubAppKeyBase64SsmArgs | undefined>;
     webhook_secret?: pulumi.Input<string | undefined>;
@@ -58,6 +60,11 @@ export interface GithubAppArgs {
 }
 
 export interface GithubAppIdSsmArgs {
+    arn?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
+}
+
+export interface GithubAppInstallationIdSsmArgs {
     arn?: pulumi.Input<string | undefined>;
     name?: pulumi.Input<string | undefined>;
 }
@@ -70,6 +77,674 @@ export interface GithubAppKeyBase64SsmArgs {
 export interface GithubAppWebhookSecretSsmArgs {
     arn?: pulumi.Input<string | undefined>;
     name?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigArgs {
+    roles?: pulumi.Input<inputs.GlobalConfigRolesArgs | undefined>;
+    runner?: pulumi.Input<inputs.GlobalConfigRunnerArgs | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface GlobalConfigComputeProviderArgs {
+    aws?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsArgs | undefined>;
+    selections?: pulumi.Input<{[key: string]: pulumi.Input<inputs.GlobalConfigComputeProviderSelectionsArgs>} | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsArgs {
+    ec2?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2Args | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2Args {
+    additional_security_group_ids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    ami?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2AmiArgs | undefined>;
+    associate_public_ipv4_address?: pulumi.Input<boolean | undefined>;
+    cloudwatch_agent?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2CloudwatchAgentArgs | undefined>;
+    egress_rules?: pulumi.Input<pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2EgressRulesArgs>[] | undefined>;
+    instance_profile_path?: pulumi.Input<string | undefined>;
+    instance_termination_watcher?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArgs | undefined>;
+    key_name?: pulumi.Input<string | undefined>;
+    managed_security_group_enabled?: pulumi.Input<boolean | undefined>;
+    runner_binaries?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2RunnerBinariesArgs | undefined>;
+    subnet_ids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    vpc_id?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2AmiArgs {
+    housekeeper?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2AmiHousekeeperArgs | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2AmiHousekeeperArgs {
+    artifact?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactArgs | undefined>;
+    cleanup_config?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigArgs | undefined>;
+    enabled?: pulumi.Input<boolean | undefined>;
+    lambda?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2AmiHousekeeperLambdaArgs | undefined>;
+    schedule?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2AmiHousekeeperScheduleArgs | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactArgs {
+    s3?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactS3Args | undefined>;
+    zip?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2AmiHousekeeperArtifactS3Args {
+    key?: pulumi.Input<string | undefined>;
+    object_version?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigArgs {
+    amiFilters?: pulumi.Input<pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigAmiFiltersArgs>[] | undefined>;
+    dryRun?: pulumi.Input<boolean | undefined>;
+    launchTemplateNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    maxItems?: pulumi.Input<number | undefined>;
+    minimumDaysOld?: pulumi.Input<number | undefined>;
+    ssmParameterNames?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2AmiHousekeeperCleanupConfigAmiFiltersArgs {
+    Name?: pulumi.Input<string | undefined>;
+    Values?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2AmiHousekeeperLambdaArgs {
+    memory_size?: pulumi.Input<number | undefined>;
+    timeout?: pulumi.Input<number | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2AmiHousekeeperScheduleArgs {
+    expression?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2CloudwatchAgentArgs {
+    config?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2EgressRulesArgs {
+    cidr_blocks?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    from_port?: pulumi.Input<number | undefined>;
+    ipv6_cidr_blocks?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    prefix_list_ids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    protocol?: pulumi.Input<string | undefined>;
+    security_groups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    self?: pulumi.Input<boolean | undefined>;
+    to_port?: pulumi.Input<number | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArgs {
+    artifact?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactArgs | undefined>;
+    enabled?: pulumi.Input<boolean | undefined>;
+    environment_variables?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    features?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesArgs | undefined>;
+    lambda?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherLambdaArgs | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactArgs {
+    s3?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactS3Args | undefined>;
+    zip?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherArtifactS3Args {
+    key?: pulumi.Input<string | undefined>;
+    object_version?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesArgs {
+    runner_deregistration?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesRunnerDeregistrationArgs | undefined>;
+    spot_termination_handler?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationHandlerArgs | undefined>;
+    spot_termination_notification_watcher?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationNotificationWatcherArgs | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesRunnerDeregistrationArgs {
+    enabled?: pulumi.Input<boolean | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationHandlerArgs {
+    enabled?: pulumi.Input<boolean | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherFeaturesSpotTerminationNotificationWatcherArgs {
+    enabled?: pulumi.Input<boolean | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2InstanceTerminationWatcherLambdaArgs {
+    memory_size?: pulumi.Input<number | undefined>;
+    timeout?: pulumi.Input<number | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2RunnerBinariesArgs {
+    enabled?: pulumi.Input<boolean | undefined>;
+    s3?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2RunnerBinariesS3Args | undefined>;
+    syncer?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArgs | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2RunnerBinariesS3Args {
+    encryption?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2RunnerBinariesS3EncryptionArgs | undefined>;
+    logging?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2RunnerBinariesS3LoggingArgs | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    versioning?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2RunnerBinariesS3EncryptionArgs {
+    bucket_key_enabled?: pulumi.Input<boolean | undefined>;
+    enabled?: pulumi.Input<boolean | undefined>;
+    kms_master_key_id?: pulumi.Input<string | undefined>;
+    sse_algorithm?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2RunnerBinariesS3LoggingArgs {
+    bucket?: pulumi.Input<string | undefined>;
+    prefix?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArgs {
+    artifact?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactArgs | undefined>;
+    lambda?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerLambdaArgs | undefined>;
+    schedule?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerScheduleArgs | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactArgs {
+    s3?: pulumi.Input<inputs.GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactS3Args | undefined>;
+    zip?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerArtifactS3Args {
+    key?: pulumi.Input<string | undefined>;
+    object_version?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerLambdaArgs {
+    memory_size?: pulumi.Input<number | undefined>;
+    timeout?: pulumi.Input<number | undefined>;
+}
+
+export interface GlobalConfigComputeProviderAwsEc2RunnerBinariesSyncerScheduleArgs {
+    expression?: pulumi.Input<string | undefined>;
+    state?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigComputeProviderSelectionsArgs {
+    namespace?: pulumi.Input<string | undefined>;
+    type?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigGithubArgs {
+    additional_apps?: pulumi.Input<pulumi.Input<inputs.GlobalConfigGithubAdditionalAppsArgs>[] | undefined>;
+    app?: pulumi.Input<inputs.GlobalConfigGithubAppArgs | undefined>;
+    enterprise_server?: pulumi.Input<inputs.GlobalConfigGithubEnterpriseServerArgs | undefined>;
+    runner_owner?: pulumi.Input<string | undefined>;
+    runner_registration_level?: pulumi.Input<string | undefined>;
+    user_agent?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigGithubAdditionalAppsArgs {
+    id?: pulumi.Input<string | undefined>;
+    id_ssm?: pulumi.Input<inputs.GlobalConfigGithubAdditionalAppsIdSsmArgs | undefined>;
+    installation_id?: pulumi.Input<string | undefined>;
+    installation_id_ssm?: pulumi.Input<inputs.GlobalConfigGithubAdditionalAppsInstallationIdSsmArgs | undefined>;
+    key_base64?: pulumi.Input<string | undefined>;
+    key_base64_ssm?: pulumi.Input<inputs.GlobalConfigGithubAdditionalAppsKeyBase64SsmArgs | undefined>;
+}
+
+export interface GlobalConfigGithubAdditionalAppsIdSsmArgs {
+    arn?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigGithubAdditionalAppsInstallationIdSsmArgs {
+    arn?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigGithubAdditionalAppsKeyBase64SsmArgs {
+    arn?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigGithubAppArgs {
+    id?: pulumi.Input<string | undefined>;
+    id_ssm?: pulumi.Input<inputs.GlobalConfigGithubAppIdSsmArgs | undefined>;
+    installation_id?: pulumi.Input<string | undefined>;
+    installation_id_ssm?: pulumi.Input<inputs.GlobalConfigGithubAppInstallationIdSsmArgs | undefined>;
+    key_base64?: pulumi.Input<string | undefined>;
+    key_base64_ssm?: pulumi.Input<inputs.GlobalConfigGithubAppKeyBase64SsmArgs | undefined>;
+    webhook_secret?: pulumi.Input<string | undefined>;
+    webhook_secret_ssm?: pulumi.Input<inputs.GlobalConfigGithubAppWebhookSecretSsmArgs | undefined>;
+}
+
+export interface GlobalConfigGithubAppIdSsmArgs {
+    arn?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigGithubAppInstallationIdSsmArgs {
+    arn?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigGithubAppKeyBase64SsmArgs {
+    arn?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigGithubAppWebhookSecretSsmArgs {
+    arn?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigGithubEnterpriseServerArgs {
+    ssl_verify?: pulumi.Input<boolean | undefined>;
+    url?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigLambdaArgs {
+    architecture?: pulumi.Input<string | undefined>;
+    artifact?: pulumi.Input<inputs.GlobalConfigLambdaArtifactArgs | undefined>;
+    principals?: pulumi.Input<pulumi.Input<inputs.GlobalConfigLambdaPrincipalsArgs>[] | undefined>;
+    role?: pulumi.Input<inputs.GlobalConfigLambdaRoleArgs | undefined>;
+    runtime?: pulumi.Input<string | undefined>;
+    security_group_ids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    subnet_ids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface GlobalConfigLambdaArtifactArgs {
+    s3?: pulumi.Input<inputs.GlobalConfigLambdaArtifactS3Args | undefined>;
+}
+
+export interface GlobalConfigLambdaArtifactS3Args {
+    bucket?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigLambdaPrincipalsArgs {
+    identifiers?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    type?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigLambdaRoleArgs {
+    path?: pulumi.Input<string | undefined>;
+    permissions_boundary?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigObservabilityArgs {
+    logs?: pulumi.Input<inputs.GlobalConfigObservabilityLogsArgs | undefined>;
+    metrics?: pulumi.Input<inputs.GlobalConfigObservabilityMetricsArgs | undefined>;
+    tracing?: pulumi.Input<inputs.GlobalConfigObservabilityTracingArgs | undefined>;
+}
+
+export interface GlobalConfigObservabilityLogsArgs {
+    class?: pulumi.Input<string | undefined>;
+    kms_key_id?: pulumi.Input<string | undefined>;
+    level?: pulumi.Input<string | undefined>;
+    retention_in_days?: pulumi.Input<number | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface GlobalConfigObservabilityMetricsArgs {
+    enabled?: pulumi.Input<boolean | undefined>;
+    metric?: pulumi.Input<inputs.GlobalConfigObservabilityMetricsMetricArgs | undefined>;
+    namespace?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigObservabilityMetricsMetricArgs {
+    github_app_rate_limit?: pulumi.Input<inputs.GlobalConfigObservabilityMetricsMetricGithubAppRateLimitArgs | undefined>;
+    job_retry?: pulumi.Input<inputs.GlobalConfigObservabilityMetricsMetricJobRetryArgs | undefined>;
+    spot_termination_warning?: pulumi.Input<inputs.GlobalConfigObservabilityMetricsMetricSpotTerminationWarningArgs | undefined>;
+}
+
+export interface GlobalConfigObservabilityMetricsMetricGithubAppRateLimitArgs {
+    enabled?: pulumi.Input<boolean | undefined>;
+}
+
+export interface GlobalConfigObservabilityMetricsMetricJobRetryArgs {
+    enabled?: pulumi.Input<boolean | undefined>;
+}
+
+export interface GlobalConfigObservabilityMetricsMetricSpotTerminationWarningArgs {
+    enabled?: pulumi.Input<boolean | undefined>;
+}
+
+export interface GlobalConfigObservabilityTracingArgs {
+    capture_error?: pulumi.Input<boolean | undefined>;
+    capture_http_requests?: pulumi.Input<boolean | undefined>;
+    mode?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderArgs {
+    scale_set?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderScaleSetArgs | undefined>;
+    webhook?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookArgs | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderScaleSetArgs {
+    config_store?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderScaleSetConfigStoreArgs | undefined>;
+    container?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderScaleSetContainerArgs | undefined>;
+    ecs?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderScaleSetEcsArgs | undefined>;
+    grouping?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderScaleSetGroupingArgs | undefined>;
+    logging?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderScaleSetLoggingArgs | undefined>;
+    network?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderScaleSetNetworkArgs | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderScaleSetConfigStoreArgs {
+    path_prefix?: pulumi.Input<string | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    tier?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderScaleSetContainerArgs {
+    health_check_command?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    health_check_interval?: pulumi.Input<number | undefined>;
+    health_check_retries?: pulumi.Input<number | undefined>;
+    health_check_start_period?: pulumi.Input<number | undefined>;
+    health_check_timeout?: pulumi.Input<number | undefined>;
+    health_path?: pulumi.Input<string | undefined>;
+    health_port?: pulumi.Input<number | undefined>;
+    health_stale_after_seconds?: pulumi.Input<number | undefined>;
+    image?: pulumi.Input<string | undefined>;
+    reconnect_initial_backoff_seconds?: pulumi.Input<number | undefined>;
+    reconnect_max_backoff_seconds?: pulumi.Input<number | undefined>;
+    session_close_timeout_seconds?: pulumi.Input<number | undefined>;
+    shutdown_timeout_seconds?: pulumi.Input<number | undefined>;
+    stop_timeout_seconds?: pulumi.Input<number | undefined>;
+    user?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderScaleSetEcsArgs {
+    cluster?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderScaleSetEcsClusterArgs | undefined>;
+    iam?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderScaleSetEcsIamArgs | undefined>;
+    service?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderScaleSetEcsServiceArgs | undefined>;
+    task?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderScaleSetEcsTaskArgs | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderScaleSetEcsClusterArgs {
+    arn?: pulumi.Input<string | undefined>;
+    container_insights?: pulumi.Input<boolean | undefined>;
+    mode?: pulumi.Input<string | undefined>;
+    name?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderScaleSetEcsIamArgs {
+    path?: pulumi.Input<string | undefined>;
+    permissions_boundary?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderScaleSetEcsServiceArgs {
+    platform_version?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderScaleSetEcsTaskArgs {
+    cpu?: pulumi.Input<number | undefined>;
+    cpu_architecture?: pulumi.Input<string | undefined>;
+    ephemeral_storage?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderScaleSetEcsTaskEphemeralStorageArgs | undefined>;
+    memory?: pulumi.Input<number | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderScaleSetEcsTaskEphemeralStorageArgs {
+    size_in_gib?: pulumi.Input<number | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderScaleSetGroupingArgs {
+    custom?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderScaleSetGroupingCustomArgs | undefined>;
+    strategy?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderScaleSetGroupingCustomArgs {
+    groups?: pulumi.Input<{[key: string]: pulumi.Input<inputs.GlobalConfigOrchestrationProviderScaleSetGroupingCustomGroupsArgs>} | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderScaleSetGroupingCustomGroupsArgs {
+    runner_configs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderScaleSetLoggingArgs {
+    kms_key_id?: pulumi.Input<string | undefined>;
+    log_group_class?: pulumi.Input<string | undefined>;
+    retention_in_days?: pulumi.Input<number | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderScaleSetNetworkArgs {
+    https_egress?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderScaleSetNetworkHttpsEgressArgs | undefined>;
+    subnet_ids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    vpc_id?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderScaleSetNetworkHttpsEgressArgs {
+    ipv4_cidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    ipv6_cidrs?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookArgs {
+    eventbridge?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookEventbridgeArgs | undefined>;
+    github?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookGithubArgs | undefined>;
+    lambda?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookLambdaArgs | undefined>;
+    matcher_config_parameter_store_tier?: pulumi.Input<string | undefined>;
+    queue?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookQueueArgs | undefined>;
+    queue_selection_strategy?: pulumi.Input<string | undefined>;
+    runner?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookRunnerArgs | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookEventbridgeArgs {
+    accept_events?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    enabled?: pulumi.Input<boolean | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookGithubArgs {
+    repository_white_list?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookLambdaArgs {
+    artifact?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookLambdaArtifactArgs | undefined>;
+    pool?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookLambdaPoolArgs | undefined>;
+    scale?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookLambdaScaleArgs | undefined>;
+    webhook?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookLambdaWebhookArgs | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookLambdaArtifactArgs {
+    s3?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookLambdaArtifactS3Args | undefined>;
+    zip?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookLambdaArtifactS3Args {
+    key?: pulumi.Input<string | undefined>;
+    object_version?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookLambdaPoolArgs {
+    config?: pulumi.Input<pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookLambdaPoolConfigArgs>[] | undefined>;
+    include_busy_runners?: pulumi.Input<boolean | undefined>;
+    memory_size?: pulumi.Input<number | undefined>;
+    reserved_concurrent_executions?: pulumi.Input<number | undefined>;
+    runner_owner?: pulumi.Input<string | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    timeout?: pulumi.Input<number | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookLambdaPoolConfigArgs {
+    schedule_expression?: pulumi.Input<string | undefined>;
+    schedule_expression_timezone?: pulumi.Input<string | undefined>;
+    size?: pulumi.Input<number | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookLambdaScaleArgs {
+    down?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookLambdaScaleDownArgs | undefined>;
+    up?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookLambdaScaleUpArgs | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookLambdaScaleDownArgs {
+    idle_config?: pulumi.Input<pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgs>[] | undefined>;
+    idle_confirmation_seconds?: pulumi.Input<number | undefined>;
+    memory_size?: pulumi.Input<number | undefined>;
+    minimum_running_time_in_minutes?: pulumi.Input<number | undefined>;
+    schedule_expression?: pulumi.Input<string | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    timeout?: pulumi.Input<number | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgs {
+    cron?: pulumi.Input<string | undefined>;
+    evictionStrategy?: pulumi.Input<string | undefined>;
+    idleCount?: pulumi.Input<number | undefined>;
+    timeZone?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookLambdaScaleUpArgs {
+    event_source_mapping?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgs | undefined>;
+    job_queued_check_enabled?: pulumi.Input<boolean | undefined>;
+    memory_size?: pulumi.Input<number | undefined>;
+    reserved_concurrent_executions?: pulumi.Input<number | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    timeout?: pulumi.Input<number | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgs {
+    batch_size?: pulumi.Input<number | undefined>;
+    maximum_batching_window_in_seconds?: pulumi.Input<number | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookLambdaWebhookArgs {
+    api_gateway_access_log_settings?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookLambdaWebhookApiGatewayAccessLogSettingsArgs | undefined>;
+    artifact?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactArgs | undefined>;
+    memory_size?: pulumi.Input<number | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    timeout?: pulumi.Input<number | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookLambdaWebhookApiGatewayAccessLogSettingsArgs {
+    destination_arn?: pulumi.Input<string | undefined>;
+    format?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactArgs {
+    s3?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactS3Args | undefined>;
+    zip?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookLambdaWebhookArtifactS3Args {
+    key?: pulumi.Input<string | undefined>;
+    object_version?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookQueueArgs {
+    delay_webhook_event?: pulumi.Input<number | undefined>;
+    encryption?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookQueueEncryptionArgs | undefined>;
+    job_queue_retention_in_seconds?: pulumi.Input<number | undefined>;
+    redrive_build_queue?: pulumi.Input<inputs.GlobalConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgs | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    visibility_timeout_seconds?: pulumi.Input<number | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookQueueEncryptionArgs {
+    kms_data_key_reuse_period_seconds?: pulumi.Input<number | undefined>;
+    kms_master_key_id?: pulumi.Input<string | undefined>;
+    sqs_managed_sse_enabled?: pulumi.Input<boolean | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgs {
+    enabled?: pulumi.Input<boolean | undefined>;
+    maxReceiveCount?: pulumi.Input<number | undefined>;
+}
+
+export interface GlobalConfigOrchestrationProviderWebhookRunnerArgs {
+    boot_time_in_minutes?: pulumi.Input<number | undefined>;
+    ephemeral?: pulumi.Input<boolean | undefined>;
+    jit_config_enabled?: pulumi.Input<boolean | undefined>;
+    maximum_count?: pulumi.Input<number | undefined>;
+}
+
+export interface GlobalConfigRolesArgs {
+    path?: pulumi.Input<string | undefined>;
+    permissions_boundary?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigRunnerArgs {
+    architecture?: pulumi.Input<string | undefined>;
+    auto_update_disabled?: pulumi.Input<boolean | undefined>;
+    disable_default_labels?: pulumi.Input<boolean | undefined>;
+    extra_labels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    group_name?: pulumi.Input<string | undefined>;
+    hooks?: pulumi.Input<inputs.GlobalConfigRunnerHooksArgs | undefined>;
+    iam?: pulumi.Input<inputs.GlobalConfigRunnerIamArgs | undefined>;
+    name_prefix?: pulumi.Input<string | undefined>;
+    os?: pulumi.Input<string | undefined>;
+    run_as?: pulumi.Input<string | undefined>;
+    run_as_root?: pulumi.Input<boolean | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface GlobalConfigRunnerHooksArgs {
+    job_completed?: pulumi.Input<string | undefined>;
+    job_started?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigRunnerIamArgs {
+    additional_trust_policy_json?: pulumi.Input<string | undefined>;
+    managed_policy_arns?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    path?: pulumi.Input<string | undefined>;
+    permissions_boundary?: pulumi.Input<string | undefined>;
+    role?: pulumi.Input<inputs.GlobalConfigRunnerIamRoleArgs | undefined>;
+}
+
+export interface GlobalConfigRunnerIamRoleArgs {
+    arn?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigStorageProviderArgs {
+    aws?: pulumi.Input<inputs.GlobalConfigStorageProviderAwsArgs | undefined>;
+}
+
+export interface GlobalConfigStorageProviderAwsArgs {
+    ssm?: pulumi.Input<inputs.GlobalConfigStorageProviderAwsSsmArgs | undefined>;
+}
+
+export interface GlobalConfigStorageProviderAwsSsmArgs {
+    housekeeper?: pulumi.Input<inputs.GlobalConfigStorageProviderAwsSsmHousekeeperArgs | undefined>;
+    kms_key_id?: pulumi.Input<string | undefined>;
+    parameters?: pulumi.Input<inputs.GlobalConfigStorageProviderAwsSsmParametersArgs | undefined>;
+    paths?: pulumi.Input<inputs.GlobalConfigStorageProviderAwsSsmPathsArgs | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface GlobalConfigStorageProviderAwsSsmHousekeeperArgs {
+    config?: pulumi.Input<inputs.GlobalConfigStorageProviderAwsSsmHousekeeperConfigArgs | undefined>;
+    lambda?: pulumi.Input<inputs.GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArgs | undefined>;
+    schedule_expression?: pulumi.Input<string | undefined>;
+    state?: pulumi.Input<string | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface GlobalConfigStorageProviderAwsSsmHousekeeperConfigArgs {
+    dryRun?: pulumi.Input<boolean | undefined>;
+    minimumDaysOld?: pulumi.Input<number | undefined>;
+    tokenPath?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArgs {
+    artifact?: pulumi.Input<inputs.GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgs | undefined>;
+    memory_size?: pulumi.Input<number | undefined>;
+    timeout?: pulumi.Input<number | undefined>;
+}
+
+export interface GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgs {
+    s3?: pulumi.Input<inputs.GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3Args | undefined>;
+    zip?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3Args {
+    key?: pulumi.Input<string | undefined>;
+    object_version?: pulumi.Input<string | undefined>;
+}
+
+export interface GlobalConfigStorageProviderAwsSsmParametersArgs {
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface GlobalConfigStorageProviderAwsSsmPathsArgs {
+    app?: pulumi.Input<string | undefined>;
+    config?: pulumi.Input<string | undefined>;
+    root?: pulumi.Input<string | undefined>;
+    tokens?: pulumi.Input<string | undefined>;
+    webhook?: pulumi.Input<string | undefined>;
 }
 
 export interface IamOverridesArgs {
@@ -114,9 +789,215 @@ export interface MetricsMetricArgs {
 }
 
 export interface MultiRunnerConfigArgs {
+    compute_provider?: pulumi.Input<inputs.MultiRunnerConfigComputeProviderArgs | undefined>;
+    lambda?: pulumi.Input<inputs.MultiRunnerConfigLambdaArgs | undefined>;
     matcherConfig?: pulumi.Input<inputs.MultiRunnerConfigMatcherConfigArgs | undefined>;
+    observability?: pulumi.Input<inputs.MultiRunnerConfigObservabilityArgs | undefined>;
+    orchestration_provider?: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderArgs | undefined>;
     redrive_build_queue?: pulumi.Input<inputs.MultiRunnerConfigRedriveBuildQueueArgs | undefined>;
+    runner?: pulumi.Input<inputs.MultiRunnerConfigRunnerArgs | undefined>;
     runner_config?: pulumi.Input<inputs.MultiRunnerConfigRunnerConfigArgs | undefined>;
+    storage_provider?: pulumi.Input<inputs.MultiRunnerConfigStorageProviderArgs | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderArgs {
+    aws?: pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsArgs | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsArgs {
+    ec2?: pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2Args | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2Args {
+    additional_security_group_ids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    ami?: pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2AmiArgs | undefined>;
+    associate_public_ipv4_address?: pulumi.Input<boolean | undefined>;
+    binaries_syncer?: pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2BinariesSyncerArgs | undefined>;
+    block_device_mappings?: pulumi.Input<pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2BlockDeviceMappingsArgs>[] | undefined>;
+    cloudwatch_agent?: pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2CloudwatchAgentArgs | undefined>;
+    cpu_options?: pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2CpuOptionsArgs | undefined>;
+    create_service_linked_role_spot?: pulumi.Input<boolean | undefined>;
+    credit_specification?: pulumi.Input<string | undefined>;
+    detailed_monitoring_enabled?: pulumi.Input<boolean | undefined>;
+    ebs_optimized?: pulumi.Input<boolean | undefined>;
+    egress_rules?: pulumi.Input<pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2EgressRulesArgs>[] | undefined>;
+    instance_allocation_strategy?: pulumi.Input<string | undefined>;
+    instance_max_spot_price?: pulumi.Input<string | undefined>;
+    instance_profile?: pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2InstanceProfileArgs | undefined>;
+    instance_profile_path?: pulumi.Input<string | undefined>;
+    instance_target_capacity_type?: pulumi.Input<string | undefined>;
+    instance_type_priorities?: pulumi.Input<{[key: string]: pulumi.Input<number>} | undefined>;
+    instance_types?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    key_name?: pulumi.Input<string | undefined>;
+    license_specifications?: pulumi.Input<pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2LicenseSpecificationsArgs>[] | undefined>;
+    log_files?: pulumi.Input<pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2LogFilesArgs>[] | undefined>;
+    managed_security_group_enabled?: pulumi.Input<boolean | undefined>;
+    metadata_options?: pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2MetadataOptionsArgs | undefined>;
+    network_interfaces?: pulumi.Input<pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesArgs>[] | undefined>;
+    on_demand_failover_for_errors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    placement?: pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2PlacementArgs | undefined>;
+    scale_errors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    ssm_enabled?: pulumi.Input<boolean | undefined>;
+    subnet_ids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    use_dedicated_host?: pulumi.Input<boolean | undefined>;
+    user_data?: pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2UserDataArgs | undefined>;
+    vpc_id?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2AmiArgs {
+    filter?: pulumi.Input<{[key: string]: pulumi.Input<pulumi.Input<string>[]>} | undefined>;
+    id_ssm_parameter?: pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2AmiIdSsmParameterArgs | undefined>;
+    kms_key?: pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2AmiKmsKeyArgs | undefined>;
+    owners?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2AmiIdSsmParameterArgs {
+    arn?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2AmiKmsKeyArgs {
+    arn?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2BinariesSyncerArgs {
+    enabled?: pulumi.Input<boolean | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2BlockDeviceMappingsArgs {
+    delete_on_termination?: pulumi.Input<boolean | undefined>;
+    device_name?: pulumi.Input<string | undefined>;
+    encrypted?: pulumi.Input<boolean | undefined>;
+    iops?: pulumi.Input<number | undefined>;
+    kms_key_id?: pulumi.Input<string | undefined>;
+    snapshot_id?: pulumi.Input<string | undefined>;
+    throughput?: pulumi.Input<number | undefined>;
+    volume_initialization_rate?: pulumi.Input<number | undefined>;
+    volume_size?: pulumi.Input<number | undefined>;
+    volume_type?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2CloudwatchAgentArgs {
+    config?: pulumi.Input<string | undefined>;
+    enabled?: pulumi.Input<boolean | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2CpuOptionsArgs {
+    amd_sev_snp?: pulumi.Input<string | undefined>;
+    core_count?: pulumi.Input<number | undefined>;
+    nested_virtualization?: pulumi.Input<string | undefined>;
+    threads_per_core?: pulumi.Input<number | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2EgressRulesArgs {
+    cidr_blocks?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    from_port?: pulumi.Input<number | undefined>;
+    ipv6_cidr_blocks?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    prefix_list_ids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    protocol?: pulumi.Input<string | undefined>;
+    security_groups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    self?: pulumi.Input<boolean | undefined>;
+    to_port?: pulumi.Input<number | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2InstanceProfileArgs {
+    name?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2LicenseSpecificationsArgs {
+    license_configuration_arn?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2LogFilesArgs {
+    file_path?: pulumi.Input<string | undefined>;
+    log_class?: pulumi.Input<string | undefined>;
+    log_group_name?: pulumi.Input<string | undefined>;
+    log_stream_name?: pulumi.Input<string | undefined>;
+    prefix_log_group?: pulumi.Input<boolean | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2MetadataOptionsArgs {
+    http_endpoint?: pulumi.Input<string | undefined>;
+    http_put_response_hop_limit?: pulumi.Input<number | undefined>;
+    http_tokens?: pulumi.Input<string | undefined>;
+    instance_metadata_tags?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesArgs {
+    associate_carrier_ip_address?: pulumi.Input<boolean | undefined>;
+    associate_public_ip_address?: pulumi.Input<boolean | undefined>;
+    connection_tracking_specification?: pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesConnectionTrackingSpecificationArgs | undefined>;
+    delete_on_termination?: pulumi.Input<boolean | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    device_index?: pulumi.Input<number | undefined>;
+    ena_srd_specification?: pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationArgs | undefined>;
+    interface_type?: pulumi.Input<string | undefined>;
+    ipv4_address_count?: pulumi.Input<number | undefined>;
+    ipv4_addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    ipv4_prefix_count?: pulumi.Input<number | undefined>;
+    ipv4_prefixes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    ipv6_address_count?: pulumi.Input<number | undefined>;
+    ipv6_addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    ipv6_prefix_count?: pulumi.Input<number | undefined>;
+    ipv6_prefixes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    network_card_index?: pulumi.Input<number | undefined>;
+    network_interface_id?: pulumi.Input<string | undefined>;
+    primary_ipv6?: pulumi.Input<boolean | undefined>;
+    private_ip_address?: pulumi.Input<string | undefined>;
+    security_groups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    subnet_id?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesConnectionTrackingSpecificationArgs {
+    tcp_established_timeout?: pulumi.Input<number | undefined>;
+    udp_stream_timeout?: pulumi.Input<number | undefined>;
+    udp_timeout?: pulumi.Input<number | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationArgs {
+    ena_srd_enabled?: pulumi.Input<boolean | undefined>;
+    ena_srd_udp_specification?: pulumi.Input<inputs.MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgs | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2NetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgs {
+    ena_srd_udp_enabled?: pulumi.Input<boolean | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2PlacementArgs {
+    affinity?: pulumi.Input<string | undefined>;
+    availability_zone?: pulumi.Input<string | undefined>;
+    group_id?: pulumi.Input<string | undefined>;
+    group_name?: pulumi.Input<string | undefined>;
+    host_id?: pulumi.Input<string | undefined>;
+    host_resource_group_arn?: pulumi.Input<string | undefined>;
+    partition_number?: pulumi.Input<number | undefined>;
+    spread_domain?: pulumi.Input<string | undefined>;
+    tenancy?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigComputeProviderAwsEc2UserDataArgs {
+    content?: pulumi.Input<string | undefined>;
+    debug_logging_enabled?: pulumi.Input<boolean | undefined>;
+    enabled?: pulumi.Input<boolean | undefined>;
+    post_install?: pulumi.Input<string | undefined>;
+    pre_install?: pulumi.Input<string | undefined>;
+    template?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigLambdaArgs {
+    architecture?: pulumi.Input<string | undefined>;
+    role?: pulumi.Input<inputs.MultiRunnerConfigLambdaRoleArgs | undefined>;
+    runtime?: pulumi.Input<string | undefined>;
+    security_group_ids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    subnet_ids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface MultiRunnerConfigLambdaRoleArgs {
+    path?: pulumi.Input<string | undefined>;
+    permissions_boundary?: pulumi.Input<string | undefined>;
 }
 
 export interface MultiRunnerConfigMatcherConfigArgs {
@@ -128,9 +1009,210 @@ export interface MultiRunnerConfigMatcherConfigArgs {
     priority?: pulumi.Input<number | undefined>;
 }
 
+export interface MultiRunnerConfigObservabilityArgs {
+    logs?: pulumi.Input<inputs.MultiRunnerConfigObservabilityLogsArgs | undefined>;
+    metrics?: pulumi.Input<inputs.MultiRunnerConfigObservabilityMetricsArgs | undefined>;
+    tracing?: pulumi.Input<inputs.MultiRunnerConfigObservabilityTracingArgs | undefined>;
+}
+
+export interface MultiRunnerConfigObservabilityLogsArgs {
+    class?: pulumi.Input<string | undefined>;
+    kms_key_id?: pulumi.Input<string | undefined>;
+    level?: pulumi.Input<string | undefined>;
+    retention_in_days?: pulumi.Input<number | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface MultiRunnerConfigObservabilityMetricsArgs {
+    enabled?: pulumi.Input<boolean | undefined>;
+    metric?: pulumi.Input<inputs.MultiRunnerConfigObservabilityMetricsMetricArgs | undefined>;
+    namespace?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigObservabilityMetricsMetricArgs {
+    github_app_rate_limit?: pulumi.Input<inputs.MultiRunnerConfigObservabilityMetricsMetricGithubAppRateLimitArgs | undefined>;
+    job_retry?: pulumi.Input<inputs.MultiRunnerConfigObservabilityMetricsMetricJobRetryArgs | undefined>;
+    spot_termination_warning?: pulumi.Input<inputs.MultiRunnerConfigObservabilityMetricsMetricSpotTerminationWarningArgs | undefined>;
+}
+
+export interface MultiRunnerConfigObservabilityMetricsMetricGithubAppRateLimitArgs {
+    enabled?: pulumi.Input<boolean | undefined>;
+}
+
+export interface MultiRunnerConfigObservabilityMetricsMetricJobRetryArgs {
+    enabled?: pulumi.Input<boolean | undefined>;
+}
+
+export interface MultiRunnerConfigObservabilityMetricsMetricSpotTerminationWarningArgs {
+    enabled?: pulumi.Input<boolean | undefined>;
+}
+
+export interface MultiRunnerConfigObservabilityTracingArgs {
+    capture_error?: pulumi.Input<boolean | undefined>;
+    capture_http_requests?: pulumi.Input<boolean | undefined>;
+    mode?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderArgs {
+    scale_set?: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderScaleSetArgs | undefined>;
+    webhook?: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderWebhookArgs | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderScaleSetArgs {
+    name?: pulumi.Input<string | undefined>;
+    runner?: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderScaleSetRunnerArgs | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderScaleSetRunnerArgs {
+    boot_time_in_minutes?: pulumi.Input<number | undefined>;
+    max_runners?: pulumi.Input<number | undefined>;
+    min_runners?: pulumi.Input<number | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderWebhookArgs {
+    github?: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderWebhookGithubArgs | undefined>;
+    job_retry?: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderWebhookJobRetryArgs | undefined>;
+    lambda?: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderWebhookLambdaArgs | undefined>;
+    matcherConfig?: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigArgs | undefined>;
+    queue?: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderWebhookQueueArgs | undefined>;
+    runner?: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderWebhookRunnerArgs | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderWebhookGithubArgs {
+    organization_runners?: pulumi.Input<boolean | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderWebhookJobRetryArgs {
+    delay_backoff?: pulumi.Input<number | undefined>;
+    delay_in_seconds?: pulumi.Input<number | undefined>;
+    enabled?: pulumi.Input<boolean | undefined>;
+    lambda?: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderWebhookJobRetryLambdaArgs | undefined>;
+    max_attempts?: pulumi.Input<number | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderWebhookJobRetryLambdaArgs {
+    memory_size?: pulumi.Input<number | undefined>;
+    reserved_concurrent_executions?: pulumi.Input<number | undefined>;
+    timeout?: pulumi.Input<number | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderWebhookLambdaArgs {
+    pool?: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolArgs | undefined>;
+    scale?: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleArgs | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolArgs {
+    config?: pulumi.Input<pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolConfigArgs>[] | undefined>;
+    include_busy_runners?: pulumi.Input<boolean | undefined>;
+    memory_size?: pulumi.Input<number | undefined>;
+    reserved_concurrent_executions?: pulumi.Input<number | undefined>;
+    runner_owner?: pulumi.Input<string | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    timeout?: pulumi.Input<number | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderWebhookLambdaPoolConfigArgs {
+    schedule_expression?: pulumi.Input<string | undefined>;
+    schedule_expression_timezone?: pulumi.Input<string | undefined>;
+    size?: pulumi.Input<number | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleArgs {
+    down?: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownArgs | undefined>;
+    up?: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpArgs | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownArgs {
+    idle_config?: pulumi.Input<pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgs>[] | undefined>;
+    idle_confirmation_seconds?: pulumi.Input<number | undefined>;
+    memory_size?: pulumi.Input<number | undefined>;
+    minimum_running_time_in_minutes?: pulumi.Input<number | undefined>;
+    schedule_expression?: pulumi.Input<string | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    timeout?: pulumi.Input<number | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleDownIdleConfigArgs {
+    cron?: pulumi.Input<string | undefined>;
+    evictionStrategy?: pulumi.Input<string | undefined>;
+    idleCount?: pulumi.Input<number | undefined>;
+    timeZone?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpArgs {
+    event_source_mapping?: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgs | undefined>;
+    job_queued_check_enabled?: pulumi.Input<boolean | undefined>;
+    memory_size?: pulumi.Input<number | undefined>;
+    reserved_concurrent_executions?: pulumi.Input<number | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    timeout?: pulumi.Input<number | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderWebhookLambdaScaleUpEventSourceMappingArgs {
+    batch_size?: pulumi.Input<number | undefined>;
+    maximum_batching_window_in_seconds?: pulumi.Input<number | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigArgs {
+    awsDynamicLabelsPolicy?: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyArgs | undefined>;
+    bidirectionalLabelMatch?: pulumi.Input<boolean | undefined>;
+    dynamic_labels_enabled?: pulumi.Input<boolean | undefined>;
+    exactMatch?: pulumi.Input<boolean | undefined>;
+    labelMatchers?: pulumi.Input<pulumi.Input<pulumi.Input<string>[]>[] | undefined>;
+    priority?: pulumi.Input<number | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyArgs {
+    allowed_keys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    blocked_keys?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    restricted_keys?: pulumi.Input<{[key: string]: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyRestrictedKeysArgs>} | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderWebhookMatcherConfigAwsDynamicLabelsPolicyRestrictedKeysArgs {
+    allowed?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    denied?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    max?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderWebhookQueueArgs {
+    delay_webhook_event?: pulumi.Input<number | undefined>;
+    job_queue_retention_in_seconds?: pulumi.Input<number | undefined>;
+    redrive_build_queue?: pulumi.Input<inputs.MultiRunnerConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgs | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    visibility_timeout_seconds?: pulumi.Input<number | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderWebhookQueueRedriveBuildQueueArgs {
+    enabled?: pulumi.Input<boolean | undefined>;
+    maxReceiveCount?: pulumi.Input<number | undefined>;
+}
+
+export interface MultiRunnerConfigOrchestrationProviderWebhookRunnerArgs {
+    boot_time_in_minutes?: pulumi.Input<number | undefined>;
+    ephemeral?: pulumi.Input<boolean | undefined>;
+    jit_config_enabled?: pulumi.Input<boolean | undefined>;
+    maximum_count?: pulumi.Input<number | undefined>;
+}
+
 export interface MultiRunnerConfigRedriveBuildQueueArgs {
     enabled?: pulumi.Input<boolean | undefined>;
     maxReceiveCount?: pulumi.Input<number | undefined>;
+}
+
+export interface MultiRunnerConfigRunnerArgs {
+    architecture?: pulumi.Input<string | undefined>;
+    auto_update_disabled?: pulumi.Input<boolean | undefined>;
+    disable_default_labels?: pulumi.Input<boolean | undefined>;
+    extra_labels?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    group_name?: pulumi.Input<string | undefined>;
+    hooks?: pulumi.Input<inputs.MultiRunnerConfigRunnerHooksArgs | undefined>;
+    iam?: pulumi.Input<inputs.MultiRunnerConfigRunnerIamArgs | undefined>;
+    name_prefix?: pulumi.Input<string | undefined>;
+    os?: pulumi.Input<string | undefined>;
+    run_as?: pulumi.Input<string | undefined>;
+    run_as_root?: pulumi.Input<boolean | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
 }
 
 export interface MultiRunnerConfigRunnerConfigArgs {
@@ -166,6 +1248,7 @@ export interface MultiRunnerConfigRunnerConfigArgs {
     lambda_event_source_mapping_maximum_batching_window_in_seconds?: pulumi.Input<number | undefined>;
     license_specifications?: pulumi.Input<pulumi.Input<inputs.MultiRunnerConfigRunnerConfigLicenseSpecificationsArgs>[] | undefined>;
     minimum_running_time_in_minutes?: pulumi.Input<number | undefined>;
+    network_interfaces?: pulumi.Input<pulumi.Input<inputs.MultiRunnerConfigRunnerConfigNetworkInterfacesArgs>[] | undefined>;
     placement?: pulumi.Input<inputs.MultiRunnerConfigRunnerConfigPlacementArgs | undefined>;
     pool_config?: pulumi.Input<pulumi.Input<inputs.MultiRunnerConfigRunnerConfigPoolConfigArgs>[] | undefined>;
     pool_runner_owner?: pulumi.Input<string | undefined>;
@@ -186,9 +1269,11 @@ export interface MultiRunnerConfigRunnerConfigArgs {
     runner_os?: pulumi.Input<string | undefined>;
     runner_run_as?: pulumi.Input<string | undefined>;
     runners_maximum_count?: pulumi.Input<number | undefined>;
+    scale_down_idle_confirmation_seconds?: pulumi.Input<number | undefined>;
     scale_down_schedule_expression?: pulumi.Input<string | undefined>;
     scale_errors?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     scale_up_reserved_concurrent_executions?: pulumi.Input<number | undefined>;
+    ssm_ttl_seconds?: pulumi.Input<inputs.MultiRunnerConfigRunnerConfigSsmTtlSecondsArgs | undefined>;
     subnet_ids?: pulumi.Input<pulumi.Input<string>[] | undefined>;
     use_dedicated_host?: pulumi.Input<boolean | undefined>;
     userdata_content?: pulumi.Input<string | undefined>;
@@ -252,6 +1337,46 @@ export interface MultiRunnerConfigRunnerConfigLicenseSpecificationsArgs {
     license_configuration_arn?: pulumi.Input<string | undefined>;
 }
 
+export interface MultiRunnerConfigRunnerConfigNetworkInterfacesArgs {
+    associate_carrier_ip_address?: pulumi.Input<boolean | undefined>;
+    associate_public_ip_address?: pulumi.Input<boolean | undefined>;
+    connection_tracking_specification?: pulumi.Input<inputs.MultiRunnerConfigRunnerConfigNetworkInterfacesConnectionTrackingSpecificationArgs | undefined>;
+    delete_on_termination?: pulumi.Input<boolean | undefined>;
+    description?: pulumi.Input<string | undefined>;
+    device_index?: pulumi.Input<number | undefined>;
+    ena_srd_specification?: pulumi.Input<inputs.MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationArgs | undefined>;
+    interface_type?: pulumi.Input<string | undefined>;
+    ipv4_address_count?: pulumi.Input<number | undefined>;
+    ipv4_addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    ipv4_prefix_count?: pulumi.Input<number | undefined>;
+    ipv4_prefixes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    ipv6_address_count?: pulumi.Input<number | undefined>;
+    ipv6_addresses?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    ipv6_prefix_count?: pulumi.Input<number | undefined>;
+    ipv6_prefixes?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    network_card_index?: pulumi.Input<number | undefined>;
+    network_interface_id?: pulumi.Input<string | undefined>;
+    primary_ipv6?: pulumi.Input<boolean | undefined>;
+    private_ip_address?: pulumi.Input<string | undefined>;
+    security_groups?: pulumi.Input<pulumi.Input<string>[] | undefined>;
+    subnet_id?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigRunnerConfigNetworkInterfacesConnectionTrackingSpecificationArgs {
+    tcp_established_timeout?: pulumi.Input<number | undefined>;
+    udp_stream_timeout?: pulumi.Input<number | undefined>;
+    udp_timeout?: pulumi.Input<number | undefined>;
+}
+
+export interface MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationArgs {
+    ena_srd_enabled?: pulumi.Input<boolean | undefined>;
+    ena_srd_udp_specification?: pulumi.Input<inputs.MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgs | undefined>;
+}
+
+export interface MultiRunnerConfigRunnerConfigNetworkInterfacesEnaSrdSpecificationEnaSrdUdpSpecificationArgs {
+    ena_srd_udp_enabled?: pulumi.Input<boolean | undefined>;
+}
+
 export interface MultiRunnerConfigRunnerConfigPlacementArgs {
     affinity?: pulumi.Input<string | undefined>;
     availability_zone?: pulumi.Input<string | undefined>;
@@ -276,6 +1401,87 @@ export interface MultiRunnerConfigRunnerConfigRunnerLogFilesArgs {
     log_group_name?: pulumi.Input<string | undefined>;
     log_stream_name?: pulumi.Input<string | undefined>;
     prefix_log_group?: pulumi.Input<boolean | undefined>;
+}
+
+export interface MultiRunnerConfigRunnerConfigSsmTtlSecondsArgs {
+    tokens?: pulumi.Input<number | undefined>;
+}
+
+export interface MultiRunnerConfigRunnerHooksArgs {
+    job_completed?: pulumi.Input<string | undefined>;
+    job_started?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigRunnerIamArgs {
+    additional_trust_policy_json?: pulumi.Input<string | undefined>;
+    managed_policy_arns?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    path?: pulumi.Input<string | undefined>;
+    permissions_boundary?: pulumi.Input<string | undefined>;
+    role?: pulumi.Input<inputs.MultiRunnerConfigRunnerIamRoleArgs | undefined>;
+}
+
+export interface MultiRunnerConfigRunnerIamRoleArgs {
+    arn?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigStorageProviderArgs {
+    aws?: pulumi.Input<inputs.MultiRunnerConfigStorageProviderAwsArgs | undefined>;
+}
+
+export interface MultiRunnerConfigStorageProviderAwsArgs {
+    ssm?: pulumi.Input<inputs.MultiRunnerConfigStorageProviderAwsSsmArgs | undefined>;
+}
+
+export interface MultiRunnerConfigStorageProviderAwsSsmArgs {
+    housekeeper?: pulumi.Input<inputs.MultiRunnerConfigStorageProviderAwsSsmHousekeeperArgs | undefined>;
+    parameters?: pulumi.Input<inputs.MultiRunnerConfigStorageProviderAwsSsmParametersArgs | undefined>;
+    paths?: pulumi.Input<inputs.MultiRunnerConfigStorageProviderAwsSsmPathsArgs | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+    ttl_seconds?: pulumi.Input<inputs.MultiRunnerConfigStorageProviderAwsSsmTtlSecondsArgs | undefined>;
+}
+
+export interface MultiRunnerConfigStorageProviderAwsSsmHousekeeperArgs {
+    config?: pulumi.Input<inputs.MultiRunnerConfigStorageProviderAwsSsmHousekeeperConfigArgs | undefined>;
+    lambda?: pulumi.Input<inputs.MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArgs | undefined>;
+    schedule_expression?: pulumi.Input<string | undefined>;
+    state?: pulumi.Input<string | undefined>;
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface MultiRunnerConfigStorageProviderAwsSsmHousekeeperConfigArgs {
+    dryRun?: pulumi.Input<boolean | undefined>;
+    minimumDaysOld?: pulumi.Input<number | undefined>;
+    tokenPath?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArgs {
+    artifact?: pulumi.Input<inputs.MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgs | undefined>;
+    memory_size?: pulumi.Input<number | undefined>;
+    timeout?: pulumi.Input<number | undefined>;
+}
+
+export interface MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactArgs {
+    s3?: pulumi.Input<inputs.MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3Args | undefined>;
+    zip?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigStorageProviderAwsSsmHousekeeperLambdaArtifactS3Args {
+    key?: pulumi.Input<string | undefined>;
+    object_version?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigStorageProviderAwsSsmParametersArgs {
+    tags?: pulumi.Input<{[key: string]: pulumi.Input<string>} | undefined>;
+}
+
+export interface MultiRunnerConfigStorageProviderAwsSsmPathsArgs {
+    config?: pulumi.Input<string | undefined>;
+    root?: pulumi.Input<string | undefined>;
+    tokens?: pulumi.Input<string | undefined>;
+}
+
+export interface MultiRunnerConfigStorageProviderAwsSsmTtlSecondsArgs {
+    tokens?: pulumi.Input<number | undefined>;
 }
 
 export interface QueueEncryptionArgs {

@@ -5,9 +5,17 @@ package com.pulumi.githubrunner.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.githubrunner.inputs.MultiRunnerConfigComputeProviderArgs;
+import com.pulumi.githubrunner.inputs.MultiRunnerConfigLambdaArgs;
 import com.pulumi.githubrunner.inputs.MultiRunnerConfigMatcherConfigArgs;
+import com.pulumi.githubrunner.inputs.MultiRunnerConfigObservabilityArgs;
+import com.pulumi.githubrunner.inputs.MultiRunnerConfigOrchestrationProviderArgs;
 import com.pulumi.githubrunner.inputs.MultiRunnerConfigRedriveBuildQueueArgs;
+import com.pulumi.githubrunner.inputs.MultiRunnerConfigRunnerArgs;
 import com.pulumi.githubrunner.inputs.MultiRunnerConfigRunnerConfigArgs;
+import com.pulumi.githubrunner.inputs.MultiRunnerConfigStorageProviderArgs;
+import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -17,11 +25,39 @@ public final class MultiRunnerConfigArgs extends com.pulumi.resources.ResourceAr
 
     public static final MultiRunnerConfigArgs Empty = new MultiRunnerConfigArgs();
 
+    @Import(name="compute_provider")
+    private @Nullable Output<MultiRunnerConfigComputeProviderArgs> compute_provider;
+
+    public Optional<Output<MultiRunnerConfigComputeProviderArgs>> compute_provider() {
+        return Optional.ofNullable(this.compute_provider);
+    }
+
+    @Import(name="lambda")
+    private @Nullable Output<MultiRunnerConfigLambdaArgs> lambda;
+
+    public Optional<Output<MultiRunnerConfigLambdaArgs>> lambda() {
+        return Optional.ofNullable(this.lambda);
+    }
+
     @Import(name="matcherConfig")
     private @Nullable Output<MultiRunnerConfigMatcherConfigArgs> matcherConfig;
 
     public Optional<Output<MultiRunnerConfigMatcherConfigArgs>> matcherConfig() {
         return Optional.ofNullable(this.matcherConfig);
+    }
+
+    @Import(name="observability")
+    private @Nullable Output<MultiRunnerConfigObservabilityArgs> observability;
+
+    public Optional<Output<MultiRunnerConfigObservabilityArgs>> observability() {
+        return Optional.ofNullable(this.observability);
+    }
+
+    @Import(name="orchestration_provider")
+    private @Nullable Output<MultiRunnerConfigOrchestrationProviderArgs> orchestration_provider;
+
+    public Optional<Output<MultiRunnerConfigOrchestrationProviderArgs>> orchestration_provider() {
+        return Optional.ofNullable(this.orchestration_provider);
     }
 
     @Import(name="redrive_build_queue")
@@ -31,6 +67,13 @@ public final class MultiRunnerConfigArgs extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.redrive_build_queue);
     }
 
+    @Import(name="runner")
+    private @Nullable Output<MultiRunnerConfigRunnerArgs> runner;
+
+    public Optional<Output<MultiRunnerConfigRunnerArgs>> runner() {
+        return Optional.ofNullable(this.runner);
+    }
+
     @Import(name="runner_config")
     private @Nullable Output<MultiRunnerConfigRunnerConfigArgs> runner_config;
 
@@ -38,12 +81,33 @@ public final class MultiRunnerConfigArgs extends com.pulumi.resources.ResourceAr
         return Optional.ofNullable(this.runner_config);
     }
 
+    @Import(name="storage_provider")
+    private @Nullable Output<MultiRunnerConfigStorageProviderArgs> storage_provider;
+
+    public Optional<Output<MultiRunnerConfigStorageProviderArgs>> storage_provider() {
+        return Optional.ofNullable(this.storage_provider);
+    }
+
+    @Import(name="tags")
+    private @Nullable Output<Map<String,String>> tags;
+
+    public Optional<Output<Map<String,String>>> tags() {
+        return Optional.ofNullable(this.tags);
+    }
+
     private MultiRunnerConfigArgs() {}
 
     private MultiRunnerConfigArgs(MultiRunnerConfigArgs $) {
+        this.compute_provider = $.compute_provider;
+        this.lambda = $.lambda;
         this.matcherConfig = $.matcherConfig;
+        this.observability = $.observability;
+        this.orchestration_provider = $.orchestration_provider;
         this.redrive_build_queue = $.redrive_build_queue;
+        this.runner = $.runner;
         this.runner_config = $.runner_config;
+        this.storage_provider = $.storage_provider;
+        this.tags = $.tags;
     }
 
     public static Builder builder() {
@@ -64,6 +128,24 @@ public final class MultiRunnerConfigArgs extends com.pulumi.resources.ResourceAr
             $ = new MultiRunnerConfigArgs(Objects.requireNonNull(defaults));
         }
 
+        public Builder compute_provider(@Nullable Output<MultiRunnerConfigComputeProviderArgs> compute_provider) {
+            $.compute_provider = compute_provider;
+            return this;
+        }
+
+        public Builder compute_provider(MultiRunnerConfigComputeProviderArgs compute_provider) {
+            return compute_provider(Output.of(compute_provider));
+        }
+
+        public Builder lambda(@Nullable Output<MultiRunnerConfigLambdaArgs> lambda) {
+            $.lambda = lambda;
+            return this;
+        }
+
+        public Builder lambda(MultiRunnerConfigLambdaArgs lambda) {
+            return lambda(Output.of(lambda));
+        }
+
         public Builder matcherConfig(@Nullable Output<MultiRunnerConfigMatcherConfigArgs> matcherConfig) {
             $.matcherConfig = matcherConfig;
             return this;
@@ -71,6 +153,24 @@ public final class MultiRunnerConfigArgs extends com.pulumi.resources.ResourceAr
 
         public Builder matcherConfig(MultiRunnerConfigMatcherConfigArgs matcherConfig) {
             return matcherConfig(Output.of(matcherConfig));
+        }
+
+        public Builder observability(@Nullable Output<MultiRunnerConfigObservabilityArgs> observability) {
+            $.observability = observability;
+            return this;
+        }
+
+        public Builder observability(MultiRunnerConfigObservabilityArgs observability) {
+            return observability(Output.of(observability));
+        }
+
+        public Builder orchestration_provider(@Nullable Output<MultiRunnerConfigOrchestrationProviderArgs> orchestration_provider) {
+            $.orchestration_provider = orchestration_provider;
+            return this;
+        }
+
+        public Builder orchestration_provider(MultiRunnerConfigOrchestrationProviderArgs orchestration_provider) {
+            return orchestration_provider(Output.of(orchestration_provider));
         }
 
         public Builder redrive_build_queue(@Nullable Output<MultiRunnerConfigRedriveBuildQueueArgs> redrive_build_queue) {
@@ -82,6 +182,15 @@ public final class MultiRunnerConfigArgs extends com.pulumi.resources.ResourceAr
             return redrive_build_queue(Output.of(redrive_build_queue));
         }
 
+        public Builder runner(@Nullable Output<MultiRunnerConfigRunnerArgs> runner) {
+            $.runner = runner;
+            return this;
+        }
+
+        public Builder runner(MultiRunnerConfigRunnerArgs runner) {
+            return runner(Output.of(runner));
+        }
+
         public Builder runner_config(@Nullable Output<MultiRunnerConfigRunnerConfigArgs> runner_config) {
             $.runner_config = runner_config;
             return this;
@@ -89,6 +198,24 @@ public final class MultiRunnerConfigArgs extends com.pulumi.resources.ResourceAr
 
         public Builder runner_config(MultiRunnerConfigRunnerConfigArgs runner_config) {
             return runner_config(Output.of(runner_config));
+        }
+
+        public Builder storage_provider(@Nullable Output<MultiRunnerConfigStorageProviderArgs> storage_provider) {
+            $.storage_provider = storage_provider;
+            return this;
+        }
+
+        public Builder storage_provider(MultiRunnerConfigStorageProviderArgs storage_provider) {
+            return storage_provider(Output.of(storage_provider));
+        }
+
+        public Builder tags(@Nullable Output<Map<String,String>> tags) {
+            $.tags = tags;
+            return this;
+        }
+
+        public Builder tags(Map<String,String> tags) {
+            return tags(Output.of(tags));
         }
 
         public MultiRunnerConfigArgs build() {

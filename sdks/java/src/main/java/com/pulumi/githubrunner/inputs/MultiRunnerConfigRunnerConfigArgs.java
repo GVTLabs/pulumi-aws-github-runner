@@ -12,9 +12,11 @@ import com.pulumi.githubrunner.inputs.MultiRunnerConfigRunnerConfigIamOverridesA
 import com.pulumi.githubrunner.inputs.MultiRunnerConfigRunnerConfigIdleConfigArgs;
 import com.pulumi.githubrunner.inputs.MultiRunnerConfigRunnerConfigJobRetryArgs;
 import com.pulumi.githubrunner.inputs.MultiRunnerConfigRunnerConfigLicenseSpecificationsArgs;
+import com.pulumi.githubrunner.inputs.MultiRunnerConfigRunnerConfigNetworkInterfacesArgs;
 import com.pulumi.githubrunner.inputs.MultiRunnerConfigRunnerConfigPlacementArgs;
 import com.pulumi.githubrunner.inputs.MultiRunnerConfigRunnerConfigPoolConfigArgs;
 import com.pulumi.githubrunner.inputs.MultiRunnerConfigRunnerConfigRunnerLogFilesArgs;
+import com.pulumi.githubrunner.inputs.MultiRunnerConfigRunnerConfigSsmTtlSecondsArgs;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Object;
@@ -254,6 +256,13 @@ public final class MultiRunnerConfigRunnerConfigArgs extends com.pulumi.resource
         return Optional.ofNullable(this.minimum_running_time_in_minutes);
     }
 
+    @Import(name="network_interfaces")
+    private @Nullable Output<List<MultiRunnerConfigRunnerConfigNetworkInterfacesArgs>> network_interfaces;
+
+    public Optional<Output<List<MultiRunnerConfigRunnerConfigNetworkInterfacesArgs>>> network_interfaces() {
+        return Optional.ofNullable(this.network_interfaces);
+    }
+
     @Import(name="placement")
     private @Nullable Output<MultiRunnerConfigRunnerConfigPlacementArgs> placement;
 
@@ -394,6 +403,13 @@ public final class MultiRunnerConfigRunnerConfigArgs extends com.pulumi.resource
         return Optional.ofNullable(this.runners_maximum_count);
     }
 
+    @Import(name="scale_down_idle_confirmation_seconds")
+    private @Nullable Output<Double> scale_down_idle_confirmation_seconds;
+
+    public Optional<Output<Double>> scale_down_idle_confirmation_seconds() {
+        return Optional.ofNullable(this.scale_down_idle_confirmation_seconds);
+    }
+
     @Import(name="scale_down_schedule_expression")
     private @Nullable Output<String> scale_down_schedule_expression;
 
@@ -413,6 +429,13 @@ public final class MultiRunnerConfigRunnerConfigArgs extends com.pulumi.resource
 
     public Optional<Output<Double>> scale_up_reserved_concurrent_executions() {
         return Optional.ofNullable(this.scale_up_reserved_concurrent_executions);
+    }
+
+    @Import(name="ssm_ttl_seconds")
+    private @Nullable Output<MultiRunnerConfigRunnerConfigSsmTtlSecondsArgs> ssm_ttl_seconds;
+
+    public Optional<Output<MultiRunnerConfigRunnerConfigSsmTtlSecondsArgs>> ssm_ttl_seconds() {
+        return Optional.ofNullable(this.ssm_ttl_seconds);
     }
 
     @Import(name="subnet_ids")
@@ -499,6 +522,7 @@ public final class MultiRunnerConfigRunnerConfigArgs extends com.pulumi.resource
         this.lambda_event_source_mapping_maximum_batching_window_in_seconds = $.lambda_event_source_mapping_maximum_batching_window_in_seconds;
         this.license_specifications = $.license_specifications;
         this.minimum_running_time_in_minutes = $.minimum_running_time_in_minutes;
+        this.network_interfaces = $.network_interfaces;
         this.placement = $.placement;
         this.pool_config = $.pool_config;
         this.pool_runner_owner = $.pool_runner_owner;
@@ -519,9 +543,11 @@ public final class MultiRunnerConfigRunnerConfigArgs extends com.pulumi.resource
         this.runner_os = $.runner_os;
         this.runner_run_as = $.runner_run_as;
         this.runners_maximum_count = $.runners_maximum_count;
+        this.scale_down_idle_confirmation_seconds = $.scale_down_idle_confirmation_seconds;
         this.scale_down_schedule_expression = $.scale_down_schedule_expression;
         this.scale_errors = $.scale_errors;
         this.scale_up_reserved_concurrent_executions = $.scale_up_reserved_concurrent_executions;
+        this.ssm_ttl_seconds = $.ssm_ttl_seconds;
         this.subnet_ids = $.subnet_ids;
         this.use_dedicated_host = $.use_dedicated_host;
         this.userdata_content = $.userdata_content;
@@ -857,6 +883,19 @@ public final class MultiRunnerConfigRunnerConfigArgs extends com.pulumi.resource
             return minimum_running_time_in_minutes(Output.of(minimum_running_time_in_minutes));
         }
 
+        public Builder network_interfaces(@Nullable Output<List<MultiRunnerConfigRunnerConfigNetworkInterfacesArgs>> network_interfaces) {
+            $.network_interfaces = network_interfaces;
+            return this;
+        }
+
+        public Builder network_interfaces(List<MultiRunnerConfigRunnerConfigNetworkInterfacesArgs> network_interfaces) {
+            return network_interfaces(Output.of(network_interfaces));
+        }
+
+        public Builder network_interfaces(MultiRunnerConfigRunnerConfigNetworkInterfacesArgs... network_interfaces) {
+            return network_interfaces(List.of(network_interfaces));
+        }
+
         public Builder placement(@Nullable Output<MultiRunnerConfigRunnerConfigPlacementArgs> placement) {
             $.placement = placement;
             return this;
@@ -1057,6 +1096,15 @@ public final class MultiRunnerConfigRunnerConfigArgs extends com.pulumi.resource
             return runners_maximum_count(Output.of(runners_maximum_count));
         }
 
+        public Builder scale_down_idle_confirmation_seconds(@Nullable Output<Double> scale_down_idle_confirmation_seconds) {
+            $.scale_down_idle_confirmation_seconds = scale_down_idle_confirmation_seconds;
+            return this;
+        }
+
+        public Builder scale_down_idle_confirmation_seconds(Double scale_down_idle_confirmation_seconds) {
+            return scale_down_idle_confirmation_seconds(Output.of(scale_down_idle_confirmation_seconds));
+        }
+
         public Builder scale_down_schedule_expression(@Nullable Output<String> scale_down_schedule_expression) {
             $.scale_down_schedule_expression = scale_down_schedule_expression;
             return this;
@@ -1086,6 +1134,15 @@ public final class MultiRunnerConfigRunnerConfigArgs extends com.pulumi.resource
 
         public Builder scale_up_reserved_concurrent_executions(Double scale_up_reserved_concurrent_executions) {
             return scale_up_reserved_concurrent_executions(Output.of(scale_up_reserved_concurrent_executions));
+        }
+
+        public Builder ssm_ttl_seconds(@Nullable Output<MultiRunnerConfigRunnerConfigSsmTtlSecondsArgs> ssm_ttl_seconds) {
+            $.ssm_ttl_seconds = ssm_ttl_seconds;
+            return this;
+        }
+
+        public Builder ssm_ttl_seconds(MultiRunnerConfigRunnerConfigSsmTtlSecondsArgs ssm_ttl_seconds) {
+            return ssm_ttl_seconds(Output.of(ssm_ttl_seconds));
         }
 
         public Builder subnet_ids(@Nullable Output<List<String>> subnet_ids) {

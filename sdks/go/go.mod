@@ -1,4 +1,4 @@
-module github.com/gvtlabs/pulumi-aws-github-runner/sdks/go/v7
+module github.com/gvtlabs/pulumi-aws-github-runner/sdks/go/v8
 
 go 1.25
 
