@@ -563,7 +563,7 @@ namespace Pulumi.GithubRunner
         public Input<string>? Kms_key_arn { get; set; }
 
         /// <summary>
-        /// AWS Lambda architecture. Lambda functions using Graviton processors ('arm64') tend to have better price/performance than 'x86_64' functions. 
+        /// AWS Lambda architecture. Lambda functions using Graviton processors ('arm64') tend to have better price/performance than 'x86_64' functions.
         /// </summary>
         [Input("lambda_architecture")]
         public Input<string>? Lambda_architecture { get; set; }
@@ -681,7 +681,7 @@ namespace Pulumi.GithubRunner
 
         /// <summary>
         ///     Accepts either the stable v1 runner configuration shape or the provider-boundary v2 shape. Entries with `runner_config` use the v1 shape; entries without `runner_config` use the v2 shape. A v2 entry does not need matcher configuration. A v2 entry must be acknowledged with `experimental_features = ["multi-runner-v2"]`; the v2 shape is experimental and may change before graduation.
-        /// 
+        ///     
         ///     multi_runner_config = {
         ///       runner_config: {
         ///         runner_os: "The EC2 Operating System type to use for action runner instances (linux, osx, windows)."

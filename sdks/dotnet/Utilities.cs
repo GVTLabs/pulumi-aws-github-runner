@@ -71,8 +71,8 @@ namespace Pulumi.GithubRunner
                 downloadUrl: "",
                 parameterization: new global::Pulumi.RegisterPackageRequest.PackageParameterization(
                     name: "github-runner",
-                    version: "8.0.0",
-                    value: global::System.Convert.FromBase64String("ewogICJtb2R1bGUiOiAiZ2l0aHViLWF3cy1ydW5uZXJzL2dpdGh1Yi1ydW5uZXIvYXdzLy9tb2R1bGVzL211bHRpLXJ1bm5lciIsCiAgInZlcnNpb24iOiAiOC4wLjAiLAogICJwYWNrYWdlTmFtZSI6ICJnaXRodWItcnVubmVyIgp9")));
+                    version: "8.1.0",
+                    value: global::System.Convert.FromBase64String("ewogICJtb2R1bGUiOiAiZ2l0aHViLWF3cy1ydW5uZXJzL2dpdGh1Yi1ydW5uZXIvYXdzLy9tb2R1bGVzL211bHRpLXJ1bm5lciIsCiAgInZlcnNpb24iOiAiOC4xLjAiLAogICJwYWNrYWdlTmFtZSI6ICJnaXRodWItcnVubmVyIgp9")));
         }
 
         private readonly static string version;

@@ -167,8 +167,8 @@ func callPlainInner(
 // The reference is cached per pulumi.Context so that concurrent inline
 // programs each register with their own engine and receive distinct refs.
 func PkgGetPackageRef(ctx *pulumi.Context) (string, error) {
-	return ctx.GetOrRegisterPackageRef("github-runner:8.0.0", func() (*pulumirpc.RegisterPackageRequest, error) {
-		parameter, err := base64.StdEncoding.DecodeString("ewogICJtb2R1bGUiOiAiZ2l0aHViLWF3cy1ydW5uZXJzL2dpdGh1Yi1ydW5uZXIvYXdzLy9tb2R1bGVzL211bHRpLXJ1bm5lciIsCiAgInZlcnNpb24iOiAiOC4wLjAiLAogICJwYWNrYWdlTmFtZSI6ICJnaXRodWItcnVubmVyIgp9")
+	return ctx.GetOrRegisterPackageRef("github-runner:8.1.0", func() (*pulumirpc.RegisterPackageRequest, error) {
+		parameter, err := base64.StdEncoding.DecodeString("ewogICJtb2R1bGUiOiAiZ2l0aHViLWF3cy1ydW5uZXJzL2dpdGh1Yi1ydW5uZXIvYXdzLy9tb2R1bGVzL211bHRpLXJ1bm5lciIsCiAgInZlcnNpb24iOiAiOC4xLjAiLAogICJwYWNrYWdlTmFtZSI6ICJnaXRodWItcnVubmVyIgp9")
 		if err != nil {
 			return nil, err
 		}
@@ -179,7 +179,7 @@ func PkgGetPackageRef(ctx *pulumi.Context) (string, error) {
 			DownloadUrl: "",
 			Parameterization: &pulumirpc.Parameterization{
 				Name:    "github-runner",
-				Version: "8.0.0",
+				Version: "8.1.0",
 				Value:   parameter,
 			},
 		}, nil
@@ -190,7 +190,7 @@ func PkgGetPackageRef(ctx *pulumi.Context) (string, error) {
 func PkgResourceDefaultOpts(opts []pulumi.ResourceOption) []pulumi.ResourceOption {
 	defaults := []pulumi.ResourceOption{}
 
-	version := semver.MustParse("8.0.0")
+	version := semver.MustParse("8.1.0")
 	if !version.Equals(semver.Version{}) {
 		defaults = append(defaults, pulumi.Version(version.String()))
 	}
@@ -201,7 +201,7 @@ func PkgResourceDefaultOpts(opts []pulumi.ResourceOption) []pulumi.ResourceOptio
 func PkgInvokeDefaultOpts(opts []pulumi.InvokeOption) []pulumi.InvokeOption {
 	defaults := []pulumi.InvokeOption{}
 
-	version := semver.MustParse("8.0.0")
+	version := semver.MustParse("8.1.0")
 	if !version.Equals(semver.Version{}) {
 		defaults = append(defaults, pulumi.Version(version.String()))
 	}
