@@ -2996,6 +2996,12 @@ class Module(pulumi.CustomResource):
         __props__.__dict__["webhook"] = None
         return Module(resource_name, opts=opts, __props__=__props__)
 
+    @staticmethod
+    def exists(id: pulumi.Input[str],
+            opts: Optional[pulumi.ResourceOptions] = None) -> pulumi.Output[bool]:
+        __props__: dict = {}
+        return pulumi.runtime.exists_resource(None, 'github-runner:index:Module', id, __props__, opts or pulumi.ResourceOptions(), package_ref=_utilities.get_package())
+
     @_builtins.property
     @pulumi.getter
     def binaries_syncer_map(self) -> pulumi.Output[Optional[Sequence[_builtins.str]]]:

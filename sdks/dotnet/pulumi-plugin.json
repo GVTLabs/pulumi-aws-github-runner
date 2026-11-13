@@ -4,7 +4,7 @@
   "version": "0.2.2",
   "parameterization": {
     "name": "github-runner",
-    "version": "8.1.0",
-    "value": "ewogICJtb2R1bGUiOiAiZ2l0aHViLWF3cy1ydW5uZXJzL2dpdGh1Yi1ydW5uZXIvYXdzLy9tb2R1bGVzL211bHRpLXJ1bm5lciIsCiAgInZlcnNpb24iOiAiOC4xLjAiLAogICJwYWNrYWdlTmFtZSI6ICJnaXRodWItcnVubmVyIgp9"
+    "version": "8.1.1",
+    "value": "ewogICJtb2R1bGUiOiAiZ2l0aHViLWF3cy1ydW5uZXJzL2dpdGh1Yi1ydW5uZXIvYXdzLy9tb2R1bGVzL211bHRpLXJ1bm5lciIsCiAgInZlcnNpb24iOiAiOC4xLjEiLAogICJwYWNrYWdlTmFtZSI6ICJnaXRodWItcnVubmVyIgp9"
   }
 }

@@ -101,7 +101,7 @@ export async function getPackage(): Promise<string | undefined> {
 		baseProviderVersion: "0.2.2",
 		baseProviderDownloadUrl: "",
 		packageName: "github-runner",
-		packageVersion: "8.1.0",
-		base64Parameter: "ewogICJtb2R1bGUiOiAiZ2l0aHViLWF3cy1ydW5uZXJzL2dpdGh1Yi1ydW5uZXIvYXdzLy9tb2R1bGVzL211bHRpLXJ1bm5lciIsCiAgInZlcnNpb24iOiAiOC4xLjAiLAogICJwYWNrYWdlTmFtZSI6ICJnaXRodWItcnVubmVyIgp9",
+		packageVersion: "8.1.1",
+		base64Parameter: "ewogICJtb2R1bGUiOiAiZ2l0aHViLWF3cy1ydW5uZXJzL2dpdGh1Yi1ydW5uZXIvYXdzLy9tb2R1bGVzL211bHRpLXJ1bm5lciIsCiAgInZlcnNpb24iOiAiOC4xLjEiLAogICJwYWNrYWdlTmFtZSI6ICJnaXRodWItcnVubmVyIgp9",
 	});
 }

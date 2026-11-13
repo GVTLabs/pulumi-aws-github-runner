@@ -76,6 +76,18 @@ func (ModuleState) ElementType() reflect.Type {
 	return reflect.TypeOf((*moduleState)(nil)).Elem()
 }
 
+// ModuleExists checks whether an existing Module resource with the given ID exists.
+func ModuleExists(ctx *pulumi.Context,
+	id pulumi.StringInput, state *ModuleState, opts ...pulumi.ResourceOption) pulumi.BoolOutput {
+	ref, err := internal.PkgGetPackageRef(ctx)
+	if err != nil {
+		return pulumi.Bool(false).ToBoolOutput().ApplyT(func(bool) (bool, error) {
+			return false, err
+		}).(pulumi.BoolOutput)
+	}
+	return ctx.ExistsResource("github-runner:index:Module", id, state, ref, opts...)
+}
+
 type moduleArgs struct {
 	// Additional GitHub Apps for random API rate limit distribution.
 	//

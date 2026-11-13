@@ -9,7 +9,7 @@ from setuptools.command.install import install
 from subprocess import check_call
 
 
-VERSION = "8.1.0"
+VERSION = "8.1.1"
 def readme():
     try:
         with open('README.md', encoding='utf-8') as f:
@@ -32,7 +32,7 @@ setup(name='pulumi_github_runner',
       },
       install_requires=[
           'packaging>=24.0',
-          'pulumi>=3.247.0,<4.0.0',
+          'pulumi>=3.269.0,<4.0.0',
           'semver>=2.8.1',
           'typing-extensions>=4.11,<5; python_version < "3.11"'
       ],

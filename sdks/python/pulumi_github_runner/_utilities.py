@@ -325,7 +325,7 @@ def get_plugin_download_url():
 	return None
 
 def get_version():
-    return "8.1.0"
+    return "8.1.1"
 
 async def get_package() -> str:
 	return await pulumi.runtime.register_package(
@@ -334,6 +334,6 @@ async def get_package() -> str:
 		base_provider_download_url=get_plugin_download_url() or "",
 		package_name="github-runner",
 		package_version=get_version(),
-		base64_parameter="ewogICJtb2R1bGUiOiAiZ2l0aHViLWF3cy1ydW5uZXJzL2dpdGh1Yi1ydW5uZXIvYXdzLy9tb2R1bGVzL211bHRpLXJ1bm5lciIsCiAgInZlcnNpb24iOiAiOC4xLjAiLAogICJwYWNrYWdlTmFtZSI6ICJnaXRodWItcnVubmVyIgp9",
+		base64_parameter="ewogICJtb2R1bGUiOiAiZ2l0aHViLWF3cy1ydW5uZXJzL2dpdGh1Yi1ydW5uZXIvYXdzLy9tb2R1bGVzL211bHRpLXJ1bm5lciIsCiAgInZlcnNpb24iOiAiOC4xLjEiLAogICJwYWNrYWdlTmFtZSI6ICJnaXRodWItcnVubmVyIgp9",
 	)
 	
